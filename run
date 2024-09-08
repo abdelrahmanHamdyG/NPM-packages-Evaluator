@@ -2,22 +2,24 @@
 
 echo "the script begins to run"
 mode=$1
-npx tsc
-
-if [ $? -ne 0 ]; then
-    echo "A problem in compiling typescript"
-else
-    echo "Compiling typescript is done Successfully";
-fi
 
 case "$mode" in
     install)
-        node ./dist/Index.js install
+        npm install
+        npx tsc
+
+        if [ $? -ne 0 ]; then
+            echo "A problem in compiling typescript"
+        else
+            echo "Compiling typescript is done Successfully";
+        fi
         ;;
     test)
+        npx tsc
         node ./dist/Index.js test
         ;;
     *)
+        npx tsc
         if [ -f "$mode" ]; then
             node ./dist/Index.js "$mode"
         else 

@@ -15,9 +15,9 @@ export class Metrics{
         return 0;
     }
 
-    public calculateScore():number{
+    public calculateScore(packageData:PackageData):number{
 
-
+        console.log(packageData.name);
         return 0;
 
     }

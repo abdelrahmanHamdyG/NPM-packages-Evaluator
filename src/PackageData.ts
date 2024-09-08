@@ -1,7 +1,8 @@
 export class PackageData{
 
-    numberOfCommits:number;
-    numberOfForks:number;
+    name?:string;
+    numberOfCommits?:number;
+    numberOfForks?:number;
     
 
     constructor(numberOfCommits:number,numberOfForks:number){
