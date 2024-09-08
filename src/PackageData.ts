@@ -9,6 +9,4 @@ export class PackageData{
         this.numberOfCommits=numberOfCommits;
         this.numberOfForks=numberOfForks;
     }
-
-
 }

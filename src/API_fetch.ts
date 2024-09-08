@@ -29,6 +29,3 @@ export async function fetchRepoData(
       console.error("Error fetching data:", error);
     }
   };
-
-
-
