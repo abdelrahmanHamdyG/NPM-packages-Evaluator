@@ -8,7 +8,12 @@ const mode=args[0];
 
 
 const cli=new CLI();
+// eslint-disable-next-line no-constant-condition
+if(true){
 
+    cli.rankModules(mode);
+
+}else{
 switch(mode){
 
     case "install":
@@ -23,7 +28,7 @@ switch(mode){
        
 };
 
-
+}
 
 
 
