@@ -1,11 +1,11 @@
-import { PackageData } from "./PackageData";
+import { GitHubData } from "./GitHubData";
 
 export class Metrics{
 
 
-    packageData:PackageData;
+    packageData:GitHubData;
 
-    constructor(packageData:PackageData){
+    constructor(packageData:GitHubData){
 
         this.packageData=packageData;
     }
@@ -15,7 +15,7 @@ export class Metrics{
         return 0;
     }
 
-    public calculateScore(packageData:PackageData):number{
+    public calculateScore(packageData:GitHubData):number{
 
         console.log(packageData.name);
         return 0;

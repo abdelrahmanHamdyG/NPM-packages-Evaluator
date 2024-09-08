@@ -1,49 +1,74 @@
-//import { Octokit } from "octokit";
-// import dotenv from "dotenv";
-// dotenv.config();
+import { Octokit } from "octokit";
+import dotenv from "dotenv";
+import { GitHubData } from "./GitHubData.js";
+import { NPMData } from "./NPMData.js";
+dotenv.config();
 
-//const env: NodeJS.ProcessEnv = process.env;
+const env: NodeJS.ProcessEnv = process.env;
+
 
 export async function fetchRepoData(
     owner: string,
-    name: string,
-
-): Promise <void | JSON> {
-
+    name: string
+): Promise<void | GitHubData> {
     try {
-       
         const octokit = new Octokit({
             auth: env.GITHUB_TOKEN
         });
-        
 
-      const response =  await octokit.request("GET /repos/{owner}/{repo}", {
-        owner: owner,
-        repo: name,
-        headers: {
-          "X-GitHub-Api-Version": "2022-11-28"
-        }
-      });
-      return response.data as JSON;
+        // Fetch repository data
+        const reposResponse = 
+        await octokit.request("GET /repos/{owner}/{repo}", {
+            owner: owner,
+            repo: name,
+            headers: {
+                "X-GitHub-Api-Version": "2022-11-28"
+            }
+        });
+
+        // Fetch issues
+        const issuesResponse = 
+        await octokit.request("GET /repos/{owner}/{repo}/issues", {
+            owner: owner,
+            repo: name,
+            headers: {
+                "X-GitHub-Api-Version": "2022-11-28"
+            }
+        });
+
+        // Fetch commits
+        const commitsResponse =
+         await octokit.request("GET /repos/{owner}/{repo}/commits", {
+            owner: owner,
+            repo: name,
+            headers: {
+                "X-GitHub-Api-Version": "2022-11-28"
+            }
+        });
+
+        // Return desired information
+        return new GitHubData(reposResponse.data.name
+          , issuesResponse.data.length,
+            commitsResponse.data.length);
     } catch (error) {
-      console.error("Error fetching data:", error);
+        console.error("Error fetching data:", error);
     }
-  };
+}
+
 
 
   export async function fetchNpmPackageData
-  (packageName : string): Promise <void | JSON> {
+  (packageName : string): Promise <void | NPMData> {
     const url = `https://api.npms.io/v2/package/${packageName}`;
 
   try {
-    console.log("we are here");
+    
     const response = await fetch(url);
     const data = await response.json();
-    console.log("this is the data returned from the npm \n"+data);
-    const repository = data?.collected?.metadata?.repository;
-    console.log(repository);
+    const metadata = data?.collected?.metadata;
+     
     
-    return data;
+    return new NPMData(metadata.license,metadata.repository.url);
 
   } catch (error) {
     console.error("Error fetching data:", error);
