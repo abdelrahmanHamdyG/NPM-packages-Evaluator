@@ -6,7 +6,7 @@ const mode=args[0];
 console.log(mode);
 console.log(args[1]);
 const cli=new CLI();
-        
+
 switch(mode){
     case "test":
         cli.testSuites();

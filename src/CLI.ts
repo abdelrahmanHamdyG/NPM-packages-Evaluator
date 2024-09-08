@@ -1,6 +1,8 @@
+
 import { fetchRepoData } from "./API_fetch.js";
 import { PackageData } from "./PackageData.js";
-
+import { fetchNpmPackageData } from "./API_fetch.js";
+import { exec } from "child_process";
 
 export class CLI {
 
@@ -11,7 +13,15 @@ export class CLI {
     
     
     public rankModules(path:string):void {
-        console.log("we are ranking  "+ path);
+        
+        console.log("we are in the rank modules");
+        fetchNpmPackageData("even").then(
+
+            (res:void | JSON) =>{
+                 console.log(res);
+            
+          });
+
         fetchRepoData("abdelrahmanHamdyG", "ECE-46100-Project-").then(
             (res:void | JSON) =>{
                 if (res){
