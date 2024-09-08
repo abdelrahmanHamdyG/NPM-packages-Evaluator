@@ -1,5 +1,5 @@
-import { fetchRepoData } from "./API_fetch.js";
-import { PackageData } from "./PackageData.js";
+import { fetchNpmPackageData } from "./API_fetch.js";
+//import { PackageData } from "./PackageData.js";
 import { exec } from "child_process";
 
 export class CLI {
@@ -11,18 +11,30 @@ export class CLI {
     
     
     public rankModules(path:string):void {
-
-        fetchRepoData("abdelrahmanHamdyG", "ECE-46100-Project-").then(
+        console.log("we are in the rank modules");
+        fetchNpmPackageData("even").then(
             (res:void | JSON) =>{
-                if (res){
-                const res_obj= res as PackageData ;
+                // if (res){
+                // const res_obj= res as PackageData ;
                 
-                const res_info: PackageData = {
-                    name: res_obj.name,
-                };
-                console.log(res_info.name);
-            }
+                // const res_info: PackageData = {
+                //     name: res_obj.name,
+                // };
+                 console.log(res);
+            
             });
+
+        // fetchRepoData("abdelrahmanHamdyG", "ECE-46100-Project-").then(
+        //     (res:void | JSON) =>{
+        //         if (res){
+        //         const res_obj= res as PackageData ;
+                
+        //         const res_info: PackageData = {
+        //             name: res_obj.name,
+        //         };
+        //         console.log(res_info.name);
+        //     }
+        //     });
         console.log("we found the file " + path);
 
     }
