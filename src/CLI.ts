@@ -2,24 +2,33 @@ import { fetchRepoData } from "./API_fetch.js";
 import { fetchNpmPackageData } from "./API_fetch.js";
 import {GitHubData } from "./GitHubData.js";
 import {NPMData } from "./NPMData.js";
+import {Logger} from "./logger.js";
+
+
+
+
+const logger=new Logger();
 
 export class CLI {
     public testSuites(): void {
-        console.log("We should test things here");
+        
+        logger.log(1,"we started testing now");
     }
     
     public rankModules(path: string): void {
-        console.log("Rank modules is called and the path is " + path);
+        logger.log(2,"rankModulesFunction is called and the path is " + path);
 
         fetchNpmPackageData("even").then(
             (res: void | NPMData) => {
                 if (res) {
                     console.log("This is NPM data:\n");
+                    logger.log(1,"data come from the npm "+res);
                     console.log(res);
                 }
             }
         ).catch(error => {
-            console.error("Error fetching NPM package data:", error);
+            logger.log(1,"Error fetching GitHub repository data");
+            logger.log(2,error);
         });
 
 
@@ -27,12 +36,13 @@ export class CLI {
         fetchRepoData("abdelrahmanHamdyG", "ECE-46100-Project-").then(
             (res: void | GitHubData) => {
                 if (res) {
-                    console.log("This is GitHub Data:\n");
+                    logger.log(1,"data come from the GitHub API "+res);
                     console.log(res);
                 }
             }
         ).catch(error => {
-            console.error("Error fetching GitHub repository data:", error);
+            logger.log(1,"Error fetching GitHub repository data");
+            logger.log(2,error);
         });
 
         

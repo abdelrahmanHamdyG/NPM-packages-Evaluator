@@ -1,4 +1,4 @@
-import { GitHubData } from "./GitHubData";
+import { GitHubData } from "./GitHubData.js";
 
 export class Metrics{
 

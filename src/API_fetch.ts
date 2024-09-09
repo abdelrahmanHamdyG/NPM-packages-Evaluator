@@ -2,6 +2,13 @@ import { Octokit } from "octokit";
 import dotenv from "dotenv";
 import { GitHubData } from "./GitHubData.js";
 import { NPMData } from "./NPMData.js";
+import {Logger} from "./logger.js";
+
+
+
+
+const logger=new Logger();
+
 dotenv.config();
 
 const env: NodeJS.ProcessEnv = process.env;
@@ -15,6 +22,10 @@ export async function fetchRepoData(
         const octokit = new Octokit({
             auth: env.GITHUB_TOKEN
         });
+
+        logger.log(1,"we are fetching the data from github API");
+        logger.log(2,"we are in the fetchRepoData with parameters owner:"+
+            owner+" repo name="+name);
 
         // Fetch repository data
         const reposResponse = 
@@ -47,6 +58,8 @@ export async function fetchRepoData(
         });
 
         // Return desired information
+        logger.log(2,
+            "succussfully returning the data fetched from Github API");
         return new GitHubData(reposResponse.data.name
           , issuesResponse.data.length,
             commitsResponse.data.length);
@@ -63,11 +76,16 @@ export async function fetchRepoData(
 
   try {
     
+    logger.log(1,"we are fetching the data from NPM ");
+    logger.log(2,"we are in the fetchNpmPackageData for package:"+packageName);
     const response = await fetch(url);
     const data = await response.json();
     const metadata = data?.collected?.metadata;
      
     
+    logger.log(2,
+        "succussfully returning the data fetched from Github API");
+   
     return new NPMData(metadata.license,metadata.repository.url);
 
   } catch (error) {
