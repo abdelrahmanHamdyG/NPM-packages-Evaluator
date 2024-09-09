@@ -1,5 +1,5 @@
-import { fetchRepoData } from "./API_fetch.js";
-import { fetchNpmPackageData } from "./API_fetch.js";
+import { GitHubAPI } from "./GitHubAPI.js";
+import { NpmAPI } from "./NpmAPI.js";
 import {GitHubData } from "./GitHubData.js";
 import {NPMData } from "./NPMData.js";
 import {Logger} from "./logger.js";
@@ -18,7 +18,10 @@ export class CLI {
     public rankModules(path: string): void {
         logger.log(2,"rankModulesFunction is called and the path is " + path);
 
-        fetchNpmPackageData("even").then(
+        const gitHubAPI=new GitHubAPI("abdelrahmanHamdyG","ECE-46100-Project-");
+        const npmAPI=new NpmAPI("even");
+        
+        npmAPI.fetchData().then(
             (res: void | NPMData) => {
                 if (res) {
                     console.log("This is NPM data:\n");
@@ -33,7 +36,7 @@ export class CLI {
 
 
 
-        fetchRepoData("abdelrahmanHamdyG", "ECE-46100-Project-").then(
+        gitHubAPI.fetchData().then(
             (res: void | GitHubData) => {
                 if (res) {
                     logger.log(1,"data come from the GitHub API "+res);
