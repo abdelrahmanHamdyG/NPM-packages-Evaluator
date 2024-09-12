@@ -1,4 +1,5 @@
 import { API } from "./API.js";
+
 import { NPMData } from "./NPMData.js";
 
 export class NpmAPI extends API{
@@ -9,23 +10,23 @@ export class NpmAPI extends API{
         this.packageName = packageName;
     }
 
-    public async fetchData(): Promise <void | NPMData>{
+    public async fetchData(): Promise < NPMData>{
         const url = `https://api.npms.io/v2/package/${this.packageName}`;
 
         try {
             this.logger.log(1, "Fetching data from NPM");
             this.logger.log(2, 
                 `Fetching data for package: ${this.packageName}`);
-
+            
             const response = await fetch(url);
             const data = await response.json();
             const metadata = data?.collected?.metadata;
-
             this.logger.log(2, "Successfully fetched data from NPM");
-            return new NPMData(metadata.license, metadata.repository.url);
+            return new NPMData(metadata.license, metadata.links.repository);
         } catch (error) {
             if(error)
                 this.logger.log(0, `Error fetching data: ${error}`);
         }
+        return new NPMData();
     }
 }

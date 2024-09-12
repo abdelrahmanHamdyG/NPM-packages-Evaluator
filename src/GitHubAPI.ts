@@ -12,7 +12,7 @@ export class GitHubAPI extends API{
         this.repoName = repoName;
     }
 
-    public async fetchData():  Promise<void | GitHubData>  {
+    public async fetchData():  Promise<GitHubData>  {
         const octokit = new Octokit({
             auth: process.env.GITHUB_TOKEN
         });
@@ -57,5 +57,6 @@ export class GitHubAPI extends API{
             if(error)
                 this.logger.log(0, `Error fetching data: ${error}`);
         }
+        return new GitHubData();
     }
 }

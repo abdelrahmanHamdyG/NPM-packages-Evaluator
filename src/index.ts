@@ -7,6 +7,7 @@ const logger=new Logger();
 const args=process.argv.slice(2);
 const mode=args[0];
 const cli=new CLI();
+logger.log(1,"\n\n\n New Run \n\n\n");
 
 switch(mode){
     case "test":
@@ -16,6 +17,7 @@ switch(mode){
     case "rank" :
         logger.log(1,"we are going to rank the modules now");
         cli.rankModules(args[1]);
+
         break;
     default:
         break;

@@ -1,9 +1,130 @@
-2024-09-09T02:12:31.160Z [INFO]: we are running the tests now
-2024-09-09T02:12:31.162Z [INFO]: we started testing now
-2024-09-09T02:13:35.548Z [INFO]: we are running the tests now
-2024-09-09T02:13:35.550Z [INFO]: we started testing now
-2024-09-09T03:32:31.423Z [INFO]: we are going to rank the modules now
-2024-09-09T03:32:31.425Z [INFO]: Fetching data from NPM
-2024-09-09T03:32:31.526Z [INFO]: Fetching data from GitHub API
-2024-09-09T03:32:31.895Z [INFO]: data come from the npm [object Object]
-2024-09-09T03:32:32.394Z [INFO]: data come from the GitHub API [object Object]
+2024-09-12T18:25:19.757Z [INFO]: 
+
+
+ New Run 
+
+
+
+2024-09-12T18:25:19.759Z [INFO]: we are going to rank the modules now
+2024-09-12T18:25:19.759Z [DEBUG]: rankModulesFunction is called and the path is someThing.txt
+2024-09-12T18:25:19.759Z [DEBUG]: ddddd
+2024-09-12T18:25:19.760Z [DEBUG]: data comming is string  https://www.npmjs.com/package/lodash
+https://www.npmjs.com/package/express
+https://github.com/abdelrahmanHamdyG/Book-Exchange-Api
+2024-09-12T18:25:19.761Z [DEBUG]: type of z is object
+2024-09-12T18:25:19.761Z [DEBUG]: the npm package is  lodash
+2024-09-12T18:25:19.762Z [INFO]: Fetching data from NPM
+2024-09-12T18:25:19.762Z [DEBUG]: Fetching data for package: lodash
+2024-09-12T18:25:19.824Z [DEBUG]: the npm package is  express
+2024-09-12T18:25:19.825Z [INFO]: Fetching data from NPM
+2024-09-12T18:25:19.825Z [DEBUG]: Fetching data for package: express
+2024-09-12T18:25:19.826Z [DEBUG]: the github user is abdelrahmanHamdyG the github repo is Book-Exchange-Api
+2024-09-12T18:25:19.829Z [INFO]: Fetching data from GitHub API
+2024-09-12T18:25:19.829Z [DEBUG]: Fetching data for owner: abdelrahmanHamdyG, repo: 
+                Book-Exchange-Api
+2024-09-12T18:25:20.161Z [DEBUG]: Successfully fetched data from NPM
+2024-09-12T18:25:20.162Z [INFO]: Fetching data from GitHub API
+2024-09-12T18:25:20.163Z [DEBUG]: Fetching data for owner: lodash, repo: 
+                lodash
+2024-09-12T18:25:20.251Z [DEBUG]: Successfully fetched data from NPM
+2024-09-12T18:25:20.251Z [INFO]: Fetching data from GitHub API
+2024-09-12T18:25:20.252Z [DEBUG]: Fetching data for owner: expressjs, repo: 
+                express
+2024-09-12T18:25:20.701Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-12T18:25:21.243Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-12T18:25:21.422Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-12T18:25:21.422Z [INFO]: Result 1:
+2024-09-12T18:25:21.422Z [INFO]: NPM Data: 
+ license:
+                            MIT, GithubUrl: 
+                            https://github.com/lodash/lodash
+2024-09-12T18:25:21.422Z [DEBUG]: Github Data: 
+ name:
+                                lodash, numberOfIssues: 
+                                30,
+                                 numberOfCommits: 
+                                 30
+2024-09-12T18:25:21.423Z [INFO]: Result 2:
+2024-09-12T18:25:21.423Z [INFO]: NPM Data: 
+ license:
+                            MIT, GithubUrl: 
+                            https://github.com/expressjs/express
+2024-09-12T18:25:21.423Z [DEBUG]: Github Data: 
+ name:
+                                express, numberOfIssues: 
+                                30,
+                                 numberOfCommits: 
+                                 30
+2024-09-12T18:25:21.423Z [INFO]: Result 3:
+2024-09-12T18:25:21.424Z [INFO]: NPM Data: 
+ license:
+                            empty, GithubUrl: 
+                            empty
+2024-09-12T18:25:21.424Z [DEBUG]: Github Data: 
+ name:
+                                Book-Exchange-Api, numberOfIssues: 
+                                0,
+                                 numberOfCommits: 
+                                 0
+2024-09-12T18:26:07.259Z [INFO]: 
+
+
+ New Run 
+
+
+
+2024-09-12T18:26:07.261Z [INFO]: we are going to rank the modules now
+2024-09-12T18:26:07.261Z [DEBUG]: rankModulesFunction is called and the path is someThing.txt
+2024-09-12T18:26:07.261Z [DEBUG]: ddddd
+2024-09-12T18:26:07.262Z [DEBUG]: data comming is string  https://www.npmjs.com/package/lodash
+https://www.npmjs.com/package/express
+https://github.com/abdelrahmanHamdyG/Book-Exchange-Api
+2024-09-12T18:26:07.263Z [DEBUG]: type of z is object
+2024-09-12T18:26:07.263Z [DEBUG]: the npm package is  lodash
+2024-09-12T18:26:07.264Z [INFO]: Fetching data from NPM
+2024-09-12T18:26:07.264Z [DEBUG]: Fetching data for package: lodash
+2024-09-12T18:26:07.324Z [DEBUG]: the npm package is  express
+2024-09-12T18:26:07.325Z [INFO]: Fetching data from NPM
+2024-09-12T18:26:07.325Z [DEBUG]: Fetching data for package: express
+2024-09-12T18:26:07.326Z [DEBUG]: the github user is abdelrahmanHamdyG the github repo is Book-Exchange-Api
+2024-09-12T18:26:07.329Z [INFO]: Fetching data from GitHub API
+2024-09-12T18:26:07.329Z [DEBUG]: Fetching data for owner: abdelrahmanHamdyG, repo: 
+                Book-Exchange-Api
+2024-09-12T18:26:07.637Z [DEBUG]: Successfully fetched data from NPM
+2024-09-12T18:26:07.638Z [INFO]: Fetching data from GitHub API
+2024-09-12T18:26:07.639Z [DEBUG]: Fetching data for owner: lodash, repo: 
+                lodash
+2024-09-12T18:26:07.720Z [DEBUG]: Successfully fetched data from NPM
+2024-09-12T18:26:07.721Z [INFO]: Fetching data from GitHub API
+2024-09-12T18:26:07.721Z [DEBUG]: Fetching data for owner: expressjs, repo: 
+                express
+2024-09-12T18:26:08.145Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-12T18:26:08.512Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-12T18:26:08.852Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-12T18:26:08.853Z [INFO]: Result 1:
+2024-09-12T18:26:08.853Z [INFO]: NPM Data:  license:
+                            MIT, GithubUrl: 
+                            https://github.com/lodash/lodash
+2024-09-12T18:26:08.854Z [DEBUG]: Github Data: name:
+                                lodash, numberOfIssues: 
+                                30,
+                                 numberOfCommits: 
+                                 30
+2024-09-12T18:26:08.854Z [INFO]: Result 2:
+2024-09-12T18:26:08.854Z [INFO]: NPM Data:  license:
+                            MIT, GithubUrl: 
+                            https://github.com/expressjs/express
+2024-09-12T18:26:08.854Z [DEBUG]: Github Data: name:
+                                express, numberOfIssues: 
+                                30,
+                                 numberOfCommits: 
+                                 30
+2024-09-12T18:26:08.854Z [INFO]: Result 3:
+2024-09-12T18:26:08.854Z [INFO]: NPM Data:  license:
+                            empty, GithubUrl: 
+                            empty
+2024-09-12T18:26:08.855Z [DEBUG]: Github Data: name:
+                                Book-Exchange-Api, numberOfIssues: 
+                                0,
+                                 numberOfCommits: 
+                                 30
