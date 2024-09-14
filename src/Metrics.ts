@@ -1,13 +1,17 @@
 import { GitHubData } from "./GitHubData.js";
+import { NPMData } from "./NPMData.js";
 
 export class Metrics{
 
+    protected githubData:GitHubData;
+    protected npmData:NPMData;
+    
 
-    packageData:GitHubData;
+    constructor(githubData:GitHubData,npmData:NPMData){
 
-    constructor(packageData:GitHubData){
-
-        this.packageData=packageData;
+        this.githubData=githubData;
+        this.npmData=npmData;
+        
     }
 
     public calculateLatency():number{

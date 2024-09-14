@@ -146,8 +146,7 @@ export class CLI {
 
     private parseGitHubUrl(url: string):
      { username: string, repoName: string }  {
-        // Regular expression to match GitHub repository URLs
-        // eslint-disable-next-line no-useless-escape
+        
         const regex = /https:\/\/github\.com\/([^\/]+)\/([^\/]+)/;
     
         // Apply the regex to the provided URL
