@@ -50,9 +50,25 @@ export class GitHubAPI extends API{
                 }
             });
 
+            const contributors = await octokit
+            .request("GET /repos/{owner}/{repo}/contributors", {
+                owner: this.owner,
+                repo: this.repoName,
+                headers: {
+                    "X-GitHub-Api-Version": "2022-11-28"
+                }
+            });
+
+            const contributionsArray: number[] = [];
+            for (let i = 0; i < contributors.length; i++) {
+                contributionsArray.push(contributors[i].contributions);
+              }
+            
+
             this.logger.log(2, "Successfully fetched data from GitHub API");
             return new GitHubData(reposResponse.data.name,
-                 issuesResponse.data.length, commitsResponse.data.length);
+                 issuesResponse.data.length, commitsResponse.data.length,
+                 contributionsArray);
         } catch (error) {
             if(error)
                 this.logger.log(0, `Error fetching data: ${error}`);

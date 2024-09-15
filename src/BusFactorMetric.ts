@@ -10,6 +10,35 @@ export class BusFactorMetric extends Metrics {
 
   public calculateScore(): number {
     
+    const totalCommits = this.totalCommits();
+  
+    const hhi = this.HHI(totalCommits);
+
+    const busFactor = 1 - hhi;
+  
+    return busFactor;
+  }
+
+  public totalCommits():number{
+    let totalCommits = 0;
+    if(this.githubData.contributionsArray?.length){
+      for (let i = 0; i < this.githubData.contributionsArray.length; i++) {
+        totalCommits += this.githubData.contributionsArray[i];
+      }
+      return totalCommits;
+    }
+    return -1;
+  }
+
+  public HHI(totalCommits:number):number{
+    let hhi = 0;
+    if(this.githubData.contributionsArray?.length){
+      for (let i = 0; i < this.githubData.contributionsArray.length; i++) {
+        const share = this.githubData.contributionsArray[i] / totalCommits;
+        hhi += share * share;
+      }
+      return hhi;
+    }
     return -1;
   }
 
