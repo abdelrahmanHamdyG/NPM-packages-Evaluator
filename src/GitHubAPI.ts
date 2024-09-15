@@ -1,5 +1,4 @@
 import { Octokit } from "octokit";
-
 import { GitHubData } from "./GitHubData.js";
 import { API } from "./API.js";
 import { Issue } from "./IssueInterface.js";
@@ -21,9 +20,7 @@ export class GitHubAPI extends API {
         });
 
         try {
-            this.logger.log(2, 
-                `Fetching data for owner: ${this.owner}, repo: 
-                ${this.repoName}`);
+            this.logger.log(2, `Fetching data for owner: ${this.owner}, repo: ${this.repoName}`);
 
             // Initialize API requests
             const reposRequest = octokit.request("GET /repos/{owner}/{repo}", {
@@ -75,12 +72,9 @@ export class GitHubAPI extends API {
             }, 0);
 
             // Check if the repo has a README and description
-            const readmeFound = readmeResponse ? true : false;
-            const descriptionFound = reposResponse.data.description ? true : false;
-            let license = "empty";
-            if (reposResponse.data.license != null) {
-                license = reposResponse.data.license.name;
-            }
+            const readmeFound = !!readmeResponse;
+            const descriptionFound = !!reposResponse.data.description;
+            let license = reposResponse.data.license ? reposResponse.data.license.name : "empty";
 
             // Calculate the time to close issues
             const timesToClose: number[] = issues.map((issue: Issue) => {
@@ -106,9 +100,7 @@ export class GitHubAPI extends API {
                 issues
             );
         } catch (error) {
-            if (error) {
-                this.logger.log(2, `Error fetching data: ${error} for the repo ${this.repoName}`);
-            }
+            this.logger.log(2, `Error fetching data: ${error} for the repo ${this.repoName}`);
             return new GitHubData(); // Return empty data on error
         }
     }
@@ -156,7 +148,7 @@ export class GitHubAPI extends API {
         const perPage = 100;
         let moreContributors = true;
 
-        while (page<5) {
+        while (page < 5) {
             const contributorsResponse = await octokit.request("GET /repos/{owner}/{repo}/stats/contributors", {
                 owner: this.owner,
                 repo: this.repoName,
@@ -168,7 +160,6 @@ export class GitHubAPI extends API {
             });
 
             const fetchedContributors = contributorsResponse.data as Contributor[];
-
             if (fetchedContributors.length === 0) {
                 moreContributors = false;
             } else {
@@ -178,5 +169,14 @@ export class GitHubAPI extends API {
         }
 
         return contributors;
+    }
+
+    public generateRepoUrl(username: string, repoName: string): string {
+        // Ensure the username and repoName are trimmed and not empty
+        if (!username.trim() || !repoName.trim()) {
+            throw new Error("Username and repository name cannot be empty.");
+        }
+        // Construct the GitHub repository URL
+        return `https://github.com/${username}/${repoName}`;
     }
 }
