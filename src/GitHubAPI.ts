@@ -63,12 +63,18 @@ export class GitHubAPI extends API{
             for (let i = 0; i < contributors.length; i++) {
                 contributionsArray.push(contributors[i].contributions);
               }
-            
 
+            const readmeFound = 
+            reposResponse.data.readme ? true : false;
+            const descriptionFound = 
+            reposResponse.data.description ? true : false;
+            
             this.logger.log(2, "Successfully fetched data from GitHub API");
             return new GitHubData(reposResponse.data.name,
                  issuesResponse.data.length, commitsResponse.data.length,
-                 contributionsArray);
+                 contributionsArray,readmeFound,descriptionFound,
+                 reposResponse.data.forks_count,
+                 reposResponse.data.stargazers_count);
         } catch (error) {
             if(error)
                 this.logger.log(0, `Error fetching data: ${error}`);

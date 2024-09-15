@@ -8,12 +8,35 @@ export class RampUpMetric extends Metrics {
     super(githubData,npmData);
   }
   public calculateScore(): number {
-    
-    return -1;
+    const RampUp = this.calculateReadmeDescription() 
+    + this.calculateForksStarsPercentage();
+    return RampUp;
   }
 
   public calculateLatency():number{
 
     return -1;
+  }
+
+  public calculateForksStarsPercentage():number{
+    const totalForksStars = (this.githubData.numberOfForks ?? 0)
+    + (this.githubData.numberOfStars ?? 0);
+
+    if (totalForksStars >= 1000){
+      return 0.7;
+    }
+    else{
+      return 0.7 * totalForksStars;
+    }
+  }
+
+  public calculateReadmeDescription():number{
+    if(this.githubData.readme && this.githubData.description){
+      return 0.3;
+    }
+    else if (this.githubData.readme || this.githubData.description){
+      return 0.15;
+    }
+    return 0;
   }
 }
