@@ -1,11 +1,12 @@
 // RampUpMetric.ts
 import { Metrics } from "./Metrics.js";
 import { GitHubData } from "./GitHubData.js";
+import { NPMData } from "./NPMData.js";
 
 export class ResponsivenessMetric extends Metrics {
   constructor(githubData: GitHubData,npmData:NPMData) {
     super(githubData,npmData);
-  }
+    }
 
   public calculateScore(): number {
     

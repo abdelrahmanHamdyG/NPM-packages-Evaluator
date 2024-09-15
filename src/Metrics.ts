@@ -5,7 +5,8 @@ export class Metrics{
 
     protected githubData:GitHubData;
     protected npmData:NPMData;
-    
+
+
 
     constructor(githubData:GitHubData,npmData:NPMData){
 
@@ -15,16 +16,15 @@ export class Metrics{
     }
 
     public calculateLatency():number{
-
         return 0;
     }
+
 
     public calculateScore(packageData:GitHubData):number{
-
         console.log(packageData.name);
         return 0;
-
     }
 
 
+    
 }
