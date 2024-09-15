@@ -1,6 +1,6 @@
-import { API } from "./API";
+import { API } from "./API.js";
 
-import { NPMData } from "./NPMData";
+import { NPMData } from "./NPMData.js";
 
 export class NpmAPI extends API{
     private packageName: string;

@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
-import { GitHubData } from "./GitHubData";
-import { API } from "./API";
+import { GitHubData } from "./GitHubData.js";
+import { API } from "./API.js";
 
 export class GitHubAPI extends API{
     private owner: string;
