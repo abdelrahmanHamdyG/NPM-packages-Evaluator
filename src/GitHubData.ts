@@ -8,13 +8,14 @@ export class   GitHubData{
     public description?:boolean;
     public numberOfForks?:number;
     public numberOfStars?:number;
+    public license?:string;
     
 
     constructor(name:string="empty",
         numberOfIssues:number=-1,numberOfCommits:number=-1,
         contributionsArray: number[] = [],readme:boolean=false,
         description:boolean=false,
-        numberOfForks:number=-1,numberOfStars:number=-1,){
+        numberOfForks:number=-1,numberOfStars:number=-1,license:string="empty"){
         this.name=name;
         this.numberOfIssues=numberOfIssues;
         this.numberOfCommits=numberOfCommits;
@@ -23,5 +24,6 @@ export class   GitHubData{
         this.description = description;
         this.numberOfForks = numberOfForks;
         this.numberOfStars = numberOfStars;
+        this.license = license;
     }
 }

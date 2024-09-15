@@ -74,7 +74,8 @@ export class GitHubAPI extends API{
                  issuesResponse.data.length, commitsResponse.data.length,
                  contributionsArray,readmeFound,descriptionFound,
                  reposResponse.data.forks_count,
-                 reposResponse.data.stargazers_count);
+                 reposResponse.data.stargazers_count,
+                 reposResponse.data.license.name);
         } catch (error) {
             if(error)
                 this.logger.log(0, `Error fetching data: ${error}`);
