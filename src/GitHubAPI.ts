@@ -1,6 +1,7 @@
 import { Octokit } from "octokit";
 import { GitHubData } from "./GitHubData";
 import { API } from "./API";
+import { Issue } from "./IssueInterface.js";
 
 export class GitHubAPI extends API{
     private owner: string;
@@ -68,6 +69,11 @@ export class GitHubAPI extends API{
             reposResponse.data.readme ? true : false;
             const descriptionFound = 
             reposResponse.data.description ? true : false;
+
+            
+
+            const issues: Issue[] = issuesResponse.data as Issue[];
+            
             
             this.logger.log(2, "Successfully fetched data from GitHub API");
             return new GitHubData(reposResponse.data.name,
@@ -75,7 +81,8 @@ export class GitHubAPI extends API{
                  contributionsArray,readmeFound,descriptionFound,
                  reposResponse.data.forks_count,
                  reposResponse.data.stargazers_count,
-                 reposResponse.data.license.name);
+                 reposResponse.data.license.name,
+                 issues);
         } catch (error) {
             if(error)
                 this.logger.log(0, `Error fetching data: ${error}`);
