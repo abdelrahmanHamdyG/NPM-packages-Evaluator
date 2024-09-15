@@ -21,9 +21,9 @@ export class BusFactorMetric extends Metrics {
 
   public totalCommits():number{
     let totalCommits = 0;
-    if(this.githubData.contributionsArray?.length){
-      for (let i = 0; i < this.githubData.contributionsArray.length; i++) {
-        totalCommits += this.githubData.contributionsArray[i];
+    if(this.githubData.contributions?.length){
+      for (let i = 0; i < this.githubData.contributions.length; i++) {
+        totalCommits += this.githubData.contributions[i].commits;
       }
       return totalCommits;
     }
@@ -32,9 +32,9 @@ export class BusFactorMetric extends Metrics {
 
   public HHI(totalCommits:number):number{
     let hhi = 0;
-    if(this.githubData.contributionsArray?.length){
-      for (let i = 0; i < this.githubData.contributionsArray.length; i++) {
-        const share = this.githubData.contributionsArray[i] / totalCommits;
+    if(this.githubData.contributions?.length){
+      for (let i = 0; i < this.githubData.contributions.length; i++) {
+        const share = this.githubData.contributions[i].commits / totalCommits;
         hhi += share * share;
       }
       return hhi;
