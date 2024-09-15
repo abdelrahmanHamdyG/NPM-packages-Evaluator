@@ -45,14 +45,14 @@ export class   GitHubData{
         logger.log(2, `Number of Stars: ${this.numberOfStars !== undefined ? this.numberOfStars : "N/A"}`);
         logger.log(2, `GitHub Data:`);
         logger.log(2, `Name: ${this.name || "N/A"}`);
-        logger.log(2, `Number of Issues: ${this.numberOfIssues !== undefined ? this.numberOfIssues : "N/A"}`);
-        logger.log(2, `Number of Commits: ${this.numberOfCommits !== undefined ? this.numberOfCommits : "N/A"}`);
+ 
         if(this.contributionsArray)
             logger.log(2, `Contributions Array: ${this.contributionsArray.length > 0 ? this.contributionsArray.join(", ") : "N/A"}`);
         logger.log(2, `Readme Present: ${this.readme ? "Yes" : "No"}`);
         logger.log(2, `Description Present: ${this.description ? "Yes" : "No"}`);
+        logger.log(2, `Number of Issues: ${this.numberOfIssues !== undefined ? this.numberOfIssues : "N/A"}`);
+
         
-        logger.log(2, `License: ${this.license || "N/A"}`);
         
     }
 

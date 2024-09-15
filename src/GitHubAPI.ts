@@ -36,14 +36,39 @@ export class GitHubAPI extends API{
                 }
             });
 
-            const issuesResponse = await octokit
-            .request("GET /repos/{owner}/{repo}/issues", {
-                owner: this.owner,
-                repo: this.repoName,
-                headers: {
-                    "X-GitHub-Api-Version": "2022-11-28"
+            const issues: Issue[] = [];
+            let page = 1;
+            let perPage = 100;
+            let moreIssues = true;
+
+            const currentDate = new Date();
+
+            const threeMonthsAgo = new Date(currentDate.setMonth(currentDate.getMonth() - 3)).toISOString();
+
+            while (moreIssues) {
+                const issuesResponse = await octokit.request("GET /repos/{owner}/{repo}/issues", {
+                    owner: this.owner,
+                    repo: this.repoName,
+                    headers: {
+                        "X-GitHub-Api-Version": "2022-11-28"
+                    },
+                    page: page,
+                    per_page: perPage,
+                    state: "closed",
+                    since: threeMonthsAgo 
+                });
+
+                const fetchedIssues = issuesResponse.data as Issue[];
+
+                if (fetchedIssues.length === 0) {
+                    moreIssues = false;
+                } else {
+                    issues.push(...fetchedIssues);
+                    page++;
                 }
-            });
+            }
+
+
 
             const commitsResponse = await octokit
             .request("GET /repos/{owner}/{repo}/commits", {
@@ -76,14 +101,18 @@ export class GitHubAPI extends API{
             if(reposResponse.data.license!=null)
                 license= reposResponse.data.license.name
             
-
-            const issues: Issue[] = issuesResponse.data as Issue[];
+// 
             
             
-            if(this.repoName=="Book-Exchange-Api")
-                console.log(reposResponse.data.name)
+            
+            if(this.repoName=="express"){
+                
+                
+                 console.log(issues[0]);
+            }
+                
             return new GitHubData(reposResponse.data.name,
-                 issuesResponse.data.length, commitsResponse.data.length,
+                 issues.length, commitsResponse.data.length,
                  contributionsArray,readmeFound,descriptionFound,
                  reposResponse.data.forks_count,
                  reposResponse.data.stargazers_count,
