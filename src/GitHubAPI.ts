@@ -3,12 +3,13 @@ import { Octokit } from "octokit";
 import { GitHubData } from "./GitHubData.js";
 import { API } from "./API.js";
 import { Issue } from "./IssueInterface.js";
-import { url } from "inspector";
+
 
 
 export class GitHubAPI extends API{
     private owner: string;
     private repoName: string;
+    
 
     constructor(owner: string, repoName: string) {
         super();
@@ -101,17 +102,14 @@ export class GitHubAPI extends API{
             if(reposResponse.data.license!=null)
                 license= reposResponse.data.license.name
             
-// 
-            
-            
-            
+
             if(this.repoName=="express"){
                 
                 
-                 console.log(issues[0]);
+                 //console.log(issues[0]);
             }
                 
-            return new GitHubData(reposResponse.data.name,
+            return new GitHubData(this.generateRepoUrl(this.owner,this.repoName),reposResponse.data.name,
                  issues.length, commitsResponse.data.length,
                  contributionsArray,readmeFound,descriptionFound,
                  reposResponse.data.forks_count,
@@ -124,4 +122,14 @@ export class GitHubAPI extends API{
         }
         return new GitHubData();
     }
+
+    public  generateRepoUrl(username: string, repoName: string): string {
+        // Ensure the username and repoName are trimmed and not empty
+        if (!username.trim() || !repoName.trim()) {
+            throw new Error("Username and repository name cannot be empty.");
+        }
+        // Construct the GitHub repository URL
+        return `https://github.com/${username}/${repoName}`;
+    }
+
 }

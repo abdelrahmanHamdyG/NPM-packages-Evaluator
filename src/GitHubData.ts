@@ -2,7 +2,10 @@ import { Issue } from "./IssueInterface.js";
 import { Logger } from "./logger.js";
 export class   GitHubData{
 
+    
+    public url?:string;
     public name?:string;
+    
     public numberOfIssues?:number;
     public numberOfCommits?:number;
     contributionsArray?: number[] = [];
@@ -14,7 +17,7 @@ export class   GitHubData{
     public Issues?:Issue[];
     
 
-    constructor(name:string="empty",
+    constructor(url:string="empty",name:string="empty",
         numberOfIssues:number=-1,numberOfCommits:number=-1,
         contributionsArray: number[] = [],readme:boolean=false,
         description:boolean=false,
@@ -30,6 +33,8 @@ export class   GitHubData{
         this.numberOfStars = numberOfStars;
         this.license = license;
         this.Issues = Issues;
+        this.url=url;
+        
     }
     public printMyData(){
         const logger=new Logger();

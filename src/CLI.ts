@@ -5,6 +5,12 @@ import {GitHubData } from "./GitHubData.js";
 import {NPMData } from "./NPMData.js";
 import {Logger} from "./logger.js";
 import fs from "fs/promises";
+import { CorrectnessMetric } from "./CorrectnessMetric.js";
+import { ResponsivenessMetric } from "./ResponsivenessMetric.js";
+import { RampUpMetric } from "./RampUpMetric.js";
+import { BusFactorMetric } from "./BusFactorMetric.js";
+import { LicenseMetric } from "./LicenseMetric.js";
+
 
 
 
@@ -62,7 +68,18 @@ export class CLI {
                             githubData.printMyData();
                         logger.log(1,"\n\n\n**************************\n\n\n")
                         logger.log(2,"\n\n\n**************************\n\n\n")
-                    
+                        if(githubData&&npmData){
+                            const correctnessMetric=new CorrectnessMetric(githubData,npmData);
+                            const responsiveNessMetric=new ResponsivenessMetric(githubData,npmData);
+                            const rampUpMetric=new RampUpMetric(githubData,npmData);
+                            const busFactorMetric=new BusFactorMetric(githubData,npmData);
+                            const licenseMetric=new LicenseMetric(githubData,npmData);
+                            const responsivenessScore=responsiveNessMetric.calculateScore();
+                            const rampUp=rampUpMetric.calculateScore();
+                            const busFactor=busFactorMetric.calculateScore();
+                            const license=licenseMetric.calculateScore();
+                            
+                        }
                 });
             })
             .catch(error => {
