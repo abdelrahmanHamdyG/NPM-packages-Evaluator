@@ -21,11 +21,10 @@ export class CLI {
     
 
     private async readFromFile(path:string):Promise<Array<string>>{
-        logger.log(2,"ddddd");
+        
         try{
         
         const data=await fs.readFile(path,"utf8");
-        logger.log(2,"data comming is "+ typeof data +"  "+data  );
 
         const z:Array<string>=data.split("\n");
 
@@ -33,14 +32,11 @@ export class CLI {
 
             arr[i]=v.trim();
         }) ;
-        
-        logger.log(2,"type of z is "+ typeof z);
         return z;
 
         }catch(err){
             logger.log(2,"there is an error in path "+path+"  " +err);
             return [];  
-
         }
         
     }
@@ -48,17 +44,24 @@ export class CLI {
     public rankModules(path: string): void {
         this.rankModulesTogether(path)
             .then(results => {
+
+                logger.log(1,"\n\nThe data fetched for each url:\n\n")
+                logger.log(2,"\n\nThe data fetched for each url:\n\n")
                 results.forEach(({ npmData, githubData }, index) => {
-                    
+
+                        
+                        
                         logger.log(1, `Result ${index + 1}:`);
-                        logger.log(1, `NPM Data:  license:
-                            ${npmData?.license}, GithubUrl: 
-                            ${npmData?.githubUrl}`);
-                        logger.log(2, `Github Data: name:
-                                ${githubData?.name}, numberOfIssues: 
-                                ${githubData?.numberOfIssues},
-                                 numberOfCommits: 
-                                 ${githubData?.numberOfCommits}`);
+                        logger.log(2, `Result ${index + 1}:`);
+                        if(npmData)
+                            npmData.printMyData();
+                        logger.log(1,"\n**************************\n")
+                        logger.log(2,"\n**************************\n")
+                    
+                        if(githubData)
+                            githubData.printMyData();
+                        logger.log(1,"\n\n\n**************************\n\n\n")
+                        logger.log(2,"\n\n\n**************************\n\n\n")
                     
                 });
             })
@@ -80,6 +83,7 @@ export class CLI {
         const promisesArray=[];
         for(let i=0;i<urls.length;i++){
             
+            
             let gitUrl="empty";
             let npmUrl="empty";
             if(urls[i][8]=="g"){
@@ -87,6 +91,8 @@ export class CLI {
             }else{
                 npmUrl=urls[i];
             }
+            
+            logger.log(2,`the url ${urls[i]} has github url =${gitUrl} and npm url= ${npmUrl}`)
             const data= this.fetchBothData(npmUrl,gitUrl);
             promisesArray.push(data);
         }
@@ -111,11 +117,16 @@ export class CLI {
         let npmData=new NPMData();
         let githubData=new GitHubData();
         if(githubUrl!="empty"){
+
+            
             const githubObject=this.parseGitHubUrl(githubUrl);
             logger.log(2,"the github user is "+githubObject.
                 username+ " the github repo is "+githubObject.repoName);
             const gitHubAPI=new GitHubAPI(githubObject.username
                 ,githubObject.repoName);
+
+            logger.log(2,`we are fetching data for the giturl:${githubUrl}\n with username:${githubObject.username} and reponame:${githubObject.repoName}`)
+
             githubData= await gitHubAPI.fetchData();
            
            return { npmData,githubData};
@@ -126,8 +137,10 @@ export class CLI {
                 
             const npmAPI=new NpmAPI(npmObject);
             npmData=await npmAPI.fetchData();
+            logger.log(2,`we are fetching data for the npmurl:${npmUrl}\n with packagenam:${npmData}\n`)
             if(npmData.githubUrl&&npmData.githubUrl!="empty"){
                 const githubObject=this.parseGitHubUrl(npmData.githubUrl);
+                logger.log(2,`we got the github url after the npm url and it is :${npmData.githubUrl}`)
 
                 const gitHubAPI=new GitHubAPI(githubObject.username
                     ,githubObject.repoName);

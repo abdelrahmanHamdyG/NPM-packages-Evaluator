@@ -1,8 +1,9 @@
 import { Octokit } from "octokit";
 
-import { GitHubData } from "./GitHubData";
-import { API } from "./API";
+import { GitHubData } from "./GitHubData.js";
+import { API } from "./API.js";
 import { Issue } from "./IssueInterface.js";
+import { url } from "inspector";
 
 
 export class GitHubAPI extends API{
@@ -21,7 +22,7 @@ export class GitHubAPI extends API{
         });
 
         try {
-            this.logger.log(1, "Fetching data from GitHub API");
+            
             this.logger.log(2, 
                 `Fetching data for owner: ${this.owner}, repo: 
                 ${this.repoName}`);
@@ -71,23 +72,26 @@ export class GitHubAPI extends API{
             reposResponse.data.readme ? true : false;
             const descriptionFound = 
             reposResponse.data.description ? true : false;
-
+            let license="empty";
+            if(reposResponse.data.license!=null)
+                license= reposResponse.data.license.name
             
 
             const issues: Issue[] = issuesResponse.data as Issue[];
             
             
-            this.logger.log(2, "Successfully fetched data from GitHub API");
+            if(this.repoName=="Book-Exchange-Api")
+                console.log(reposResponse.data.name)
             return new GitHubData(reposResponse.data.name,
                  issuesResponse.data.length, commitsResponse.data.length,
                  contributionsArray,readmeFound,descriptionFound,
                  reposResponse.data.forks_count,
                  reposResponse.data.stargazers_count,
-                 reposResponse.data.license.name,
+                 license,
                  issues);
         } catch (error) {
             if(error)
-                this.logger.log(0, `Error fetching data: ${error}`);
+                this.logger.log(2, `Error fetching data: ${error} for the repo ${this.repoName}`);
         }
         return new GitHubData();
     }
