@@ -16,7 +16,7 @@ switch(mode){
         break;
     case "rank" :
         logger.log(1,"we are going to rank the modules now");
-        logger.log(2,`rank modules is called with parameter =${args[1]} `)
+        logger.log(2,`rank modules is called with parameter =${args[1]} `);
         cli.rankModules(args[1]);
 
         break;
