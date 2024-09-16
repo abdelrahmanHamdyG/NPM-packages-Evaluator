@@ -10,7 +10,7 @@ export class ResponsivenessMetric extends Metrics {
 
   constructor(githubData: GitHubData, npmData: NPMData) {
     super(githubData, npmData);
-    this.filteredIssues = this.IssueFilter();
+  
   }
 
   public calculateScore(): number {
@@ -28,18 +28,7 @@ export class ResponsivenessMetric extends Metrics {
     return -1;
   }
 
-  private IssueFilter(): Issue[] {
-    const currentDate = new Date();
-    const threeMonthsAgo = new Date();
-    threeMonthsAgo.setMonth(currentDate.getMonth() - 3);
-    const sinceDate = threeMonthsAgo.toISOString();
-
-    return this.githubData.Issues?.filter((issue: Issue) => {
-      const createdAt = new Date(issue.created_at);
-      const closedAt = issue.closed_at ? new Date(issue.closed_at) : null;
-      return createdAt >= new Date(sinceDate) && closedAt !== null;
-    }) || [];
-  }
+  
 
   private getTimeDiff(): number[] {
     return this.filteredIssues.map((issue: Issue) => {
