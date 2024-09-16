@@ -62,14 +62,16 @@ export class GitHubAPI extends API {
 
             // Process contributors data
             const totalContributions = (contributors as Contributor[]).map((contributor: Contributor) => ({
-                contributor: contributor.author.login,
-                totalLinesAdded: contributor.total,
+               contributor: contributor.login,
+                // totalLinesAdded: contributor.total,
                 commits: contributor.contributions
             }));
 
-            const totalCodeLines = totalContributions.reduce((sum, contributor) => {
-                return sum + contributor.totalLinesAdded;
-            }, 0);
+
+
+            /*const numberOfComms = totalContributions.reduce((sum, contributor) => {
+                return sum + contributor.commits;
+            }, 0); */
 
             // Check if the repo has a README and description
             const readmeFound = !!readmeResponse;
@@ -77,11 +79,11 @@ export class GitHubAPI extends API {
             let license = reposResponse.data.license ? reposResponse.data.license.name : "empty";
 
             // Calculate the time to close issues
-            const timesToClose: number[] = issues.map((issue: Issue) => {
+            /*const timesToClose: number[] = issues.map((issue: Issue) => {
                 const createdAt = new Date(issue.created_at);
                 const closedAt = new Date(issue.closed_at);
                 return (closedAt.getTime() - createdAt.getTime()) / (1000 * 60 * 60 * 24); // Difference in days
-            });
+            });*/
 
             this.logger.log(2, "Successfully fetched data from GitHub API");
             return new GitHubData(
@@ -94,8 +96,6 @@ export class GitHubAPI extends API {
                 readmeFound,
                 descriptionFound,
                 totalContributions,
-                totalCodeLines,
-                timesToClose,
                 license,
                 issues
             );
@@ -145,11 +145,13 @@ export class GitHubAPI extends API {
     private async fetchContributors(octokit: Octokit): Promise<Contributor[]> {
         const contributors: Contributor[] = [];
         let page = 1;
-        const perPage = 100;
+        const perPage = 50;
         let moreContributors = true;
 
-        while (page < 5) {
-            const contributorsResponse = await octokit.request("GET /repos/{owner}/{repo}/stats/contributors", {
+
+        while (moreContributors) {
+            const contributorsResponse = await octokit.request("GET /repos/{owner}/{repo}/contributors", {
+
                 owner: this.owner,
                 repo: this.repoName,
                 headers: {

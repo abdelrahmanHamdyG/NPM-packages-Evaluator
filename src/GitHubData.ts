@@ -13,9 +13,7 @@ export class   GitHubData{
     public numberOfCollaborators?:number;
     public readme?:boolean;
     public description?:boolean;
-    public contributions?:Array<{contributor:string,totalLinesAdded:number,commits:number}>;
-    public numberOfCodeLines?:number;
-    public timeToCloseIssues?:number[];
+    public contributions?:Array<{contributor:string,commits:number}>;
     public license?:string;
     public Issues?:Issue[];
     
@@ -29,9 +27,7 @@ export class   GitHubData{
         numberOfCollaborators:number=-1,
         readme:boolean=false,
         description:boolean=false,
-        contributions:Array<{contributor:string,totalLinesAdded:number,commits:number}>=[],
-        numberOfCodeLines:number=-1,
-        timeToCloseIssues:number[]=[],
+        contributions:Array<{contributor:string,commits:number}>=[],
         license:string="empty",
         Issues:Issue[]=[]){
 
@@ -45,8 +41,6 @@ export class   GitHubData{
         this.readme=readme;
         this.description=description;
         this.contributions=contributions;
-        this.numberOfCodeLines=numberOfCodeLines;
-        this.timeToCloseIssues=timeToCloseIssues;
         this.license = license;
         this.Issues = Issues;
         this.url=url;
@@ -68,7 +62,7 @@ export class   GitHubData{
         logger.log(2, `Name: ${this.name || "N/A"}`);
  
         if(this.contributions)
-            logger.log(2, `Contributions Array: ${this.contributions.length > 0 ? this.contributions[0].contributor : "N/A"}`);
+            logger.log(2, `Contributions Array: ${this.contributions.length > 0 ? this.contributions[0].commits : "N/A"}`);
         logger.log(2, `Readme Present: ${this.readme ? "Yes" : "No"}`);
         logger.log(2, `Description Present: ${this.description ? "Yes" : "No"}`);
         logger.log(2, `Number of Issues: ${this.numberOfIssues !== undefined ? this.numberOfIssues : "N/A"}`);
