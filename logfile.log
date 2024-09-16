@@ -122,3 +122,642 @@ https://github.com/abdelrahmanHamdyG/Book-Exchange-Api
                                 0,
                                  numberOfCommits: 
                                  30
+2024-09-15T14:14:58.527Z [INFO]: Fetching data from NPM
+2024-09-15T14:14:58.529Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:14:58.991Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:19:58.542Z [INFO]: Fetching data from NPM
+2024-09-15T14:19:58.543Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:19:58.969Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:19:58.973Z [INFO]: Fetching data from NPM
+2024-09-15T14:19:58.973Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:19:59.111Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:22:40.212Z [INFO]: Fetching data from NPM
+2024-09-15T14:22:40.214Z [DEBUG]: Fetching data for package: express
+2024-09-15T14:22:40.704Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:22:40.707Z [INFO]: Fetching data from NPM
+2024-09-15T14:22:40.707Z [DEBUG]: Fetching data for package: express
+2024-09-15T14:22:40.851Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:27:06.869Z [INFO]: Fetching data from NPM
+2024-09-15T14:27:06.871Z [DEBUG]: Fetching data for package: express
+2024-09-15T14:27:07.390Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:27:07.394Z [INFO]: Fetching data from NPM
+2024-09-15T14:27:07.394Z [DEBUG]: Fetching data for package: express
+2024-09-15T14:27:07.533Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:28:46.214Z [INFO]: Fetching data from NPM
+2024-09-15T14:28:46.216Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:28:46.537Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:28:46.542Z [INFO]: Fetching data from NPM
+2024-09-15T14:28:46.542Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:28:46.683Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:32:25.222Z [INFO]: Fetching data from NPM
+2024-09-15T14:32:25.224Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:32:25.673Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:32:25.677Z [INFO]: Fetching data from NPM
+2024-09-15T14:32:25.677Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:32:25.818Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:36:32.382Z [INFO]: Fetching data from NPM
+2024-09-15T14:36:32.384Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:36:32.797Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:36:32.802Z [INFO]: Fetching data from NPM
+2024-09-15T14:36:32.802Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:36:32.942Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:37:08.432Z [INFO]: Fetching data from NPM
+2024-09-15T14:37:08.434Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:37:08.879Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:37:08.883Z [INFO]: Fetching data from NPM
+2024-09-15T14:37:08.883Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:37:09.020Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:41:19.138Z [INFO]: Fetching data from NPM
+2024-09-15T14:41:19.140Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:41:19.572Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:41:19.573Z [SILENT]: Error fetching data: TypeError: extractedUrl.length is not a function
+2024-09-15T14:41:19.583Z [INFO]: Fetching data from NPM
+2024-09-15T14:41:19.583Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:41:19.724Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:41:19.725Z [SILENT]: Error fetching data: TypeError: extractedUrl.length is not a function
+2024-09-15T14:43:51.477Z [INFO]: Fetching data from NPM
+2024-09-15T14:43:51.479Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:43:51.917Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:43:51.917Z [SILENT]: Error fetching data: TypeError: extractedUrl.length is not a function
+2024-09-15T14:43:51.928Z [INFO]: Fetching data from NPM
+2024-09-15T14:43:51.929Z [DEBUG]: Fetching data for package: is-equal
+2024-09-15T14:43:52.067Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:43:52.068Z [SILENT]: Error fetching data: TypeError: extractedUrl.length is not a function
+2024-09-15T14:44:22.236Z [INFO]: Fetching data from NPM
+2024-09-15T14:44:22.237Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:44:22.658Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:44:22.659Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'repository')
+2024-09-15T14:44:22.670Z [INFO]: Fetching data from NPM
+2024-09-15T14:44:22.670Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:44:22.806Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:44:22.807Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'repository')
+2024-09-15T14:45:07.323Z [INFO]: Fetching data from NPM
+2024-09-15T14:45:07.326Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:45:07.765Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:45:07.766Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'repository')
+2024-09-15T14:45:07.780Z [INFO]: Fetching data from NPM
+2024-09-15T14:45:07.781Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:45:07.919Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:45:07.920Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'repository')
+2024-09-15T14:53:11.160Z [INFO]: Fetching data from NPM
+2024-09-15T14:53:11.161Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:53:11.594Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:53:11.595Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'versions')
+2024-09-15T14:53:11.607Z [INFO]: Fetching data from NPM
+2024-09-15T14:53:11.607Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:53:11.746Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:53:11.747Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'versions')
+2024-09-15T14:54:05.209Z [INFO]: Fetching data from NPM
+2024-09-15T14:54:05.211Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:54:05.586Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:54:05.587Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'repository')
+2024-09-15T14:54:05.597Z [INFO]: Fetching data from NPM
+2024-09-15T14:54:05.597Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:54:05.734Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:54:05.735Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'repository')
+2024-09-15T14:55:04.735Z [INFO]: Fetching data from NPM
+2024-09-15T14:55:04.736Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:55:05.179Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:55:05.179Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'url')
+2024-09-15T14:55:05.192Z [INFO]: Fetching data from NPM
+2024-09-15T14:55:05.193Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:55:05.228Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:55:05.229Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'url')
+2024-09-15T14:55:56.350Z [INFO]: Fetching data from NPM
+2024-09-15T14:55:56.354Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:55:56.692Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'metadata')
+2024-09-15T14:55:56.707Z [INFO]: Fetching data from NPM
+2024-09-15T14:55:56.708Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:55:56.748Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'metadata')
+2024-09-15T14:56:23.218Z [INFO]: Fetching data from NPM
+2024-09-15T14:56:23.219Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:56:23.419Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:56:23.419Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'versions')
+2024-09-15T14:56:23.432Z [INFO]: Fetching data from NPM
+2024-09-15T14:56:23.432Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:56:23.469Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:56:23.470Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'versions')
+2024-09-15T14:57:51.611Z [INFO]: Fetching data from NPM
+2024-09-15T14:57:51.612Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:57:51.894Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:57:51.895Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'versions')
+2024-09-15T14:57:51.907Z [INFO]: Fetching data from NPM
+2024-09-15T14:57:51.908Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:57:51.965Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:57:51.966Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'versions')
+2024-09-15T14:59:38.215Z [INFO]: Fetching data from NPM
+2024-09-15T14:59:38.217Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:59:38.491Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:59:38.492Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'url')
+2024-09-15T14:59:38.508Z [INFO]: Fetching data from NPM
+2024-09-15T14:59:38.509Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T14:59:38.583Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T14:59:38.584Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'url')
+2024-09-15T15:00:38.373Z [INFO]: Fetching data from NPM
+2024-09-15T15:00:38.375Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T15:00:38.884Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T15:00:38.898Z [SILENT]: Error fetching data: TypeError: gitHubURL.slice is not a function
+2024-09-15T15:00:38.911Z [INFO]: Fetching data from NPM
+2024-09-15T15:00:38.915Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T15:00:38.966Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T15:00:38.981Z [SILENT]: Error fetching data: TypeError: gitHubURL.slice is not a function
+2024-09-15T15:10:00.435Z [INFO]: Fetching data from NPM
+2024-09-15T15:10:00.437Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T15:10:01.015Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T15:10:01.022Z [SILENT]: Error fetching data: TypeError: gitHubURL.slice is not a function
+2024-09-15T15:10:01.038Z [INFO]: Fetching data from NPM
+2024-09-15T15:10:01.039Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T15:10:01.087Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T15:10:01.094Z [SILENT]: Error fetching data: TypeError: gitHubURL.slice is not a function
+2024-09-15T15:11:39.460Z [INFO]: Fetching data from NPM
+2024-09-15T15:11:39.462Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T15:11:39.751Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T15:11:39.752Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'repository')
+2024-09-15T15:11:39.770Z [INFO]: Fetching data from NPM
+2024-09-15T15:11:39.770Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T15:11:39.819Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T15:11:39.820Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'repository')
+2024-09-15T15:16:53.841Z [INFO]: Fetching data from NPM
+2024-09-15T15:16:53.845Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T15:16:54.487Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T15:16:54.488Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'repository')
+2024-09-15T15:16:54.512Z [INFO]: Fetching data from NPM
+2024-09-15T15:16:54.513Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T15:16:54.573Z [DEBUG]: Successfully fetched data from NPM
+2024-09-15T15:16:54.574Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'repository')
+2024-09-15T15:22:17.436Z [INFO]: Fetching data from NPM
+2024-09-15T15:22:17.438Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T15:22:17.931Z [INFO]: Fetching data from NPM
+2024-09-15T15:22:17.931Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T15:24:52.194Z [INFO]: Fetching data from NPM
+2024-09-15T15:24:52.196Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T15:24:52.406Z [INFO]: Fetching data from NPM
+2024-09-15T15:24:52.407Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T18:45:39.164Z [INFO]: Fetching data from NPM
+2024-09-15T18:45:39.166Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T18:45:39.830Z [INFO]: Fetching data from NPM
+2024-09-15T18:45:39.831Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T18:55:17.034Z [INFO]: Fetching data from NPM
+2024-09-15T18:55:17.037Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T18:55:17.627Z [INFO]: Fetching data from NPM
+2024-09-15T18:55:17.628Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T18:58:24.554Z [INFO]: Fetching data from NPM
+2024-09-15T18:58:24.559Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T18:58:24.967Z [INFO]: Fetching data from NPM
+2024-09-15T18:58:24.968Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T19:53:25.952Z [INFO]: Fetching data from NPM
+2024-09-15T19:53:25.954Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T19:53:26.526Z [INFO]: Fetching data from NPM
+2024-09-15T19:53:26.526Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T19:56:17.693Z [INFO]: Fetching data from NPM
+2024-09-15T19:56:17.696Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T19:56:17.991Z [INFO]: Fetching data from NPM
+2024-09-15T19:56:17.991Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T19:58:30.464Z [INFO]: Fetching data from NPM
+2024-09-15T19:58:30.467Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T19:58:30.985Z [INFO]: Fetching data from NPM
+2024-09-15T19:58:30.986Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:00:38.134Z [INFO]: Fetching data from NPM
+2024-09-15T20:00:38.137Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:00:38.405Z [INFO]: Fetching data from NPM
+2024-09-15T20:00:38.406Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:01:17.235Z [INFO]: Fetching data from NPM
+2024-09-15T20:01:17.237Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:01:17.533Z [INFO]: Fetching data from NPM
+2024-09-15T20:01:17.534Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:08:51.901Z [INFO]: Fetching data from NPM
+2024-09-15T20:08:51.904Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:08:52.630Z [INFO]: Fetching data from NPM
+2024-09-15T20:08:52.631Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:10:19.082Z [INFO]: Fetching data from NPM
+2024-09-15T20:10:19.084Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:10:19.302Z [INFO]: Fetching data from NPM
+2024-09-15T20:10:19.303Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:13:28.073Z [INFO]: Fetching data from NPM
+2024-09-15T20:13:28.075Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:13:28.290Z [INFO]: Fetching data from NPM
+2024-09-15T20:13:28.291Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:14:03.392Z [INFO]: Fetching data from NPM
+2024-09-15T20:14:03.394Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:14:04.003Z [INFO]: Fetching data from NPM
+2024-09-15T20:14:04.004Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:22:19.453Z [INFO]: Fetching data from NPM
+2024-09-15T20:22:19.455Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:22:20.042Z [INFO]: Fetching data from NPM
+2024-09-15T20:22:20.043Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:23:20.406Z [INFO]: Fetching data from NPM
+2024-09-15T20:23:20.410Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:23:20.686Z [INFO]: Fetching data from NPM
+2024-09-15T20:23:20.687Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:32:37.904Z [INFO]: Fetching data from NPM
+2024-09-15T20:32:37.907Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:32:38.413Z [INFO]: Fetching data from NPM
+2024-09-15T20:32:38.413Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:34:54.744Z [INFO]: Fetching data from NPM
+2024-09-15T20:34:54.747Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:34:55.105Z [INFO]: Fetching data from NPM
+2024-09-15T20:34:55.105Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:47:35.773Z [INFO]: Fetching data from NPM
+2024-09-15T20:47:35.775Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:47:36.364Z [INFO]: Fetching data from NPM
+2024-09-15T20:47:36.364Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:57:23.581Z [INFO]: Fetching data from NPM
+2024-09-15T20:57:23.584Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T20:57:24.138Z [INFO]: Fetching data from NPM
+2024-09-15T20:57:24.139Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:07:04.532Z [INFO]: Fetching data from NPM
+2024-09-15T21:07:04.535Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:07:05.381Z [INFO]: Fetching data from NPM
+2024-09-15T21:07:05.381Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:13:50.900Z [INFO]: Fetching data from NPM
+2024-09-15T21:13:50.903Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:13:51.451Z [INFO]: Fetching data from NPM
+2024-09-15T21:13:51.451Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:14:26.897Z [INFO]: Fetching data from NPM
+2024-09-15T21:14:26.900Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:14:27.219Z [INFO]: Fetching data from NPM
+2024-09-15T21:14:27.220Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:16:09.709Z [INFO]: Fetching data from NPM
+2024-09-15T21:16:09.712Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:16:10.044Z [INFO]: Fetching data from NPM
+2024-09-15T21:16:10.045Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:24:08.031Z [INFO]: Fetching data from NPM
+2024-09-15T21:24:08.034Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:24:08.615Z [INFO]: Fetching data from NPM
+2024-09-15T21:24:08.615Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:39:58.532Z [INFO]: Fetching data from NPM
+2024-09-15T21:39:58.535Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:39:59.122Z [INFO]: Fetching data from NPM
+2024-09-15T21:39:59.123Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:41:02.810Z [INFO]: Fetching data from NPM
+2024-09-15T21:41:02.812Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:41:03.057Z [INFO]: Fetching data from NPM
+2024-09-15T21:41:03.058Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:41:04.990Z [INFO]: Fetching data from GitHub API
+2024-09-15T21:41:04.993Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T21:41:04.994Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-15T21:41:05.000Z [INFO]: Fetching data from GitHub API
+2024-09-15T21:41:05.001Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T21:41:05.002Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-15T21:42:05.042Z [INFO]: Fetching data from NPM
+2024-09-15T21:42:05.047Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T21:42:05.309Z [INFO]: Fetching data from GitHub API
+2024-09-15T21:42:05.313Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T21:42:05.316Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-15T21:42:05.330Z [INFO]: Fetching data from GitHub API
+2024-09-15T21:42:05.331Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T21:42:05.332Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-15T21:42:05.571Z [INFO]: Fetching data from NPM
+2024-09-15T21:42:05.573Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T22:54:47.924Z [INFO]: Fetching data from NPM
+2024-09-15T22:54:47.927Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T22:54:47.999Z [INFO]: Fetching data from GitHub API
+2024-09-15T22:54:48.002Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T22:54:48.003Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-15T22:54:48.009Z [INFO]: Fetching data from GitHub API
+2024-09-15T22:54:48.009Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T22:54:48.011Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-15T22:54:48.507Z [INFO]: Fetching data from NPM
+2024-09-15T22:54:48.508Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T22:55:44.548Z [INFO]: Fetching data from NPM
+2024-09-15T22:55:44.553Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T22:55:44.964Z [INFO]: Fetching data from NPM
+2024-09-15T22:55:44.965Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T22:55:47.242Z [INFO]: Fetching data from GitHub API
+2024-09-15T22:55:47.244Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T22:55:47.246Z [SILENT]: Error fetching data: Error: empty
+2024-09-15T22:55:47.265Z [INFO]: Fetching data from GitHub API
+2024-09-15T22:55:47.265Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T22:55:47.266Z [SILENT]: Error fetching data: Error: empty
+2024-09-15T22:55:47.270Z [INFO]: Fetching data from GitHub API
+2024-09-15T22:55:47.270Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T22:55:47.271Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-15T22:59:19.404Z [INFO]: Fetching data from NPM
+2024-09-15T22:59:19.407Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T22:59:19.774Z [INFO]: Fetching data from NPM
+2024-09-15T22:59:19.774Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T22:59:22.602Z [INFO]: Fetching data from GitHub API
+2024-09-15T22:59:22.604Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T22:59:22.605Z [SILENT]: Error fetching data: Error: empty
+2024-09-15T22:59:22.624Z [INFO]: Fetching data from GitHub API
+2024-09-15T22:59:22.624Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T22:59:22.626Z [SILENT]: Error fetching data: Error: empty
+2024-09-15T22:59:22.629Z [INFO]: Fetching data from GitHub API
+2024-09-15T22:59:22.629Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T22:59:22.630Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-15T23:03:16.067Z [INFO]: Fetching data from NPM
+2024-09-15T23:03:16.072Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T23:03:16.752Z [INFO]: Fetching data from NPM
+2024-09-15T23:03:16.753Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T23:03:18.681Z [INFO]: Fetching data from GitHub API
+2024-09-15T23:03:18.684Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T23:03:18.686Z [SILENT]: Error fetching data: Error: Unknown API endpoint
+2024-09-15T23:03:18.717Z [INFO]: Fetching data from GitHub API
+2024-09-15T23:03:18.717Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T23:03:18.718Z [SILENT]: Error fetching data: Error: Unknown API endpoint
+2024-09-15T23:03:18.723Z [INFO]: Fetching data from GitHub API
+2024-09-15T23:03:18.723Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T23:03:18.724Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-15T23:06:22.798Z [INFO]: Fetching data from NPM
+2024-09-15T23:06:22.810Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T23:06:23.558Z [INFO]: Fetching data from NPM
+2024-09-15T23:06:23.561Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T23:06:27.393Z [INFO]: Fetching data from GitHub API
+2024-09-15T23:06:27.395Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T23:06:27.397Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-15T23:06:27.402Z [INFO]: Fetching data from GitHub API
+2024-09-15T23:06:27.402Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T23:06:27.404Z [SILENT]: Error fetching data: Error: Unknown API endpoint
+2024-09-15T23:06:27.424Z [INFO]: Fetching data from GitHub API
+2024-09-15T23:06:27.424Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T23:06:27.425Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-15T23:07:22.992Z [INFO]: Fetching data from NPM
+2024-09-15T23:07:22.997Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T23:07:23.377Z [INFO]: Fetching data from NPM
+2024-09-15T23:07:23.378Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T23:07:26.571Z [INFO]: Fetching data from GitHub API
+2024-09-15T23:07:26.573Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T23:07:26.574Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-15T23:07:26.582Z [INFO]: Fetching data from GitHub API
+2024-09-15T23:07:26.582Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T23:07:26.583Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-15T23:07:26.587Z [INFO]: Fetching data from GitHub API
+2024-09-15T23:07:26.587Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T23:07:26.589Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-15T23:48:14.309Z [INFO]: Fetching data from GitHub API
+2024-09-15T23:48:14.313Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T23:48:14.314Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-15T23:48:14.320Z [INFO]: Fetching data from GitHub API
+2024-09-15T23:48:14.321Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T23:48:14.322Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-15T23:48:14.326Z [INFO]: Fetching data from GitHub API
+2024-09-15T23:48:14.327Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-15T23:48:14.328Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-15T23:48:14.491Z [INFO]: Fetching data from NPM
+2024-09-15T23:48:14.493Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-15T23:48:15.084Z [INFO]: Fetching data from NPM
+2024-09-15T23:48:15.084Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T00:04:11.225Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:04:11.228Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:04:11.229Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:04:11.236Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:04:11.237Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:04:11.238Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:04:11.242Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:04:11.243Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:04:11.244Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-16T00:04:13.360Z [INFO]: Fetching data from NPM
+2024-09-16T00:04:13.362Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T00:04:13.916Z [INFO]: Fetching data from NPM
+2024-09-16T00:04:13.917Z [DEBUG]: Fetching data for package: is-equal
+2024-09-16T00:04:13.968Z [SILENT]: Error fetching data: TypeError: extractedUrl.length is not a function
+2024-09-16T00:04:13.977Z [INFO]: Fetching data from NPM
+2024-09-16T00:04:13.978Z [DEBUG]: Fetching data for package: is-even
+2024-09-16T00:06:03.876Z [INFO]: Fetching data from NPM
+2024-09-16T00:06:03.878Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T00:06:03.947Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:06:03.950Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:06:03.952Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:06:03.959Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:06:03.960Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:06:03.961Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:06:03.964Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:06:03.965Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:06:03.966Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-16T00:06:04.269Z [INFO]: Fetching data from NPM
+2024-09-16T00:06:04.269Z [DEBUG]: Fetching data for package: is-equal
+2024-09-16T00:06:04.611Z [SILENT]: Error fetching data: TypeError: extractedUrl.length is not a function
+2024-09-16T00:06:04.619Z [INFO]: Fetching data from NPM
+2024-09-16T00:06:04.619Z [DEBUG]: Fetching data for package: is-even
+2024-09-16T00:12:42.118Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:12:42.123Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:12:42.124Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:12:42.132Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:12:42.133Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:12:42.134Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:12:42.138Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:12:42.139Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:12:42.140Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-16T00:12:45.373Z [INFO]: Fetching data from NPM
+2024-09-16T00:12:45.375Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T00:12:45.914Z [INFO]: Fetching data from NPM
+2024-09-16T00:12:45.914Z [DEBUG]: Fetching data for package: is-equal
+2024-09-16T00:12:45.963Z [SILENT]: Error fetching data: TypeError: extractedUrl.length is not a function
+2024-09-16T00:12:45.973Z [INFO]: Fetching data from NPM
+2024-09-16T00:12:45.974Z [DEBUG]: Fetching data for package: is-even
+2024-09-16T00:15:05.509Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:15:05.512Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:15:05.514Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:15:05.522Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:15:05.522Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:15:05.523Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:15:05.527Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:15:05.528Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:15:05.529Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-16T00:15:08.542Z [INFO]: Fetching data from NPM
+2024-09-16T00:15:08.544Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T00:15:09.091Z [INFO]: Fetching data from NPM
+2024-09-16T00:15:09.091Z [DEBUG]: Fetching data for package: is-equal
+2024-09-16T00:15:09.152Z [INFO]: Fetching data from NPM
+2024-09-16T00:15:09.152Z [DEBUG]: Fetching data for package: is-even
+2024-09-16T00:24:51.877Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:24:51.879Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:24:51.881Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:24:51.887Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:24:51.888Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:24:51.889Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:24:51.893Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:24:51.893Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:24:51.896Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-16T00:24:54.258Z [INFO]: Fetching data from NPM
+2024-09-16T00:24:54.260Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T00:24:54.826Z [INFO]: Fetching data from NPM
+2024-09-16T00:24:54.827Z [DEBUG]: Fetching data for package: is-equal
+2024-09-16T00:24:55.156Z [INFO]: Fetching data from NPM
+2024-09-16T00:24:55.156Z [DEBUG]: Fetching data for package: is-even
+2024-09-16T00:28:42.453Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:28:42.456Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:28:42.457Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:28:42.464Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:28:42.465Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:28:42.465Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:28:42.469Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:28:42.470Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:28:42.471Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-16T00:28:44.567Z [INFO]: Fetching data from NPM
+2024-09-16T00:28:44.570Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T00:28:44.886Z [INFO]: Fetching data from NPM
+2024-09-16T00:28:44.886Z [DEBUG]: Fetching data for package: is-equal
+2024-09-16T00:28:44.985Z [INFO]: Fetching data from NPM
+2024-09-16T00:28:44.985Z [DEBUG]: Fetching data for package: is-even
+2024-09-16T00:28:45.044Z [INFO]: Fetching data from NPM
+2024-09-16T00:28:45.044Z [DEBUG]: Fetching data for package: wrongname
+2024-09-16T00:28:45.387Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'latest')
+2024-09-16T00:30:02.156Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:30:02.158Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:30:02.159Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:30:02.165Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:30:02.165Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:30:02.166Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:30:02.168Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:30:02.169Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:30:02.171Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-16T00:30:04.497Z [INFO]: Fetching data from NPM
+2024-09-16T00:30:04.500Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T00:30:05.120Z [INFO]: Fetching data from NPM
+2024-09-16T00:30:05.120Z [DEBUG]: Fetching data for package: is-equal
+2024-09-16T00:30:05.545Z [INFO]: Fetching data from NPM
+2024-09-16T00:30:05.546Z [DEBUG]: Fetching data for package: is-even
+2024-09-16T00:30:05.605Z [INFO]: Fetching data from NPM
+2024-09-16T00:30:05.605Z [DEBUG]: Fetching data for package: wrongname
+2024-09-16T00:30:05.939Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'latest')
+2024-09-16T00:30:43.015Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:30:43.018Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:30:43.019Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:30:43.024Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:30:43.025Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:30:43.026Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:30:43.029Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:30:43.030Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:30:43.031Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-16T00:30:45.729Z [INFO]: Fetching data from NPM
+2024-09-16T00:30:45.731Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T00:30:46.003Z [INFO]: Fetching data from NPM
+2024-09-16T00:30:46.003Z [DEBUG]: Fetching data for package: is-equal
+2024-09-16T00:30:46.061Z [INFO]: Fetching data from NPM
+2024-09-16T00:30:46.062Z [DEBUG]: Fetching data for package: is-even
+2024-09-16T00:30:46.112Z [INFO]: Fetching data from NPM
+2024-09-16T00:30:46.113Z [DEBUG]: Fetching data for package: wrongname
+2024-09-16T00:30:46.455Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'latest')
+2024-09-16T00:38:26.917Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:38:26.919Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:38:26.921Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:38:26.928Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:38:26.929Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:38:26.930Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:38:26.934Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:38:26.934Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:38:26.936Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-16T00:38:29.862Z [INFO]: Fetching data from NPM
+2024-09-16T00:38:29.865Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T00:38:30.444Z [INFO]: Fetching data from NPM
+2024-09-16T00:38:30.445Z [DEBUG]: Fetching data for package: is-equal
+2024-09-16T00:38:30.505Z [INFO]: Fetching data from NPM
+2024-09-16T00:38:30.505Z [DEBUG]: Fetching data for package: is-even
+2024-09-16T00:38:30.566Z [INFO]: Fetching data from NPM
+2024-09-16T00:38:30.567Z [DEBUG]: Fetching data for package: wrongname
+2024-09-16T00:38:30.882Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'latest')
+2024-09-16T00:39:28.490Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:39:28.492Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:39:28.493Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:39:28.498Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:39:28.499Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:39:28.500Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:39:28.504Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:39:28.504Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:39:28.506Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-16T00:39:30.921Z [INFO]: Fetching data from NPM
+2024-09-16T00:39:30.923Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T00:39:31.226Z [INFO]: Fetching data from NPM
+2024-09-16T00:39:31.227Z [DEBUG]: Fetching data for package: is-equal
+2024-09-16T00:39:31.332Z [INFO]: Fetching data from NPM
+2024-09-16T00:39:31.332Z [DEBUG]: Fetching data for package: is-even
+2024-09-16T00:39:31.386Z [INFO]: Fetching data from NPM
+2024-09-16T00:39:31.387Z [DEBUG]: Fetching data for package: wrongname
+2024-09-16T00:39:31.709Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'latest')
+2024-09-16T00:40:47.837Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:40:47.841Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:40:47.842Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:40:47.848Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:40:47.848Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:40:47.849Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T00:40:47.860Z [INFO]: Fetching data from GitHub API
+2024-09-16T00:40:47.860Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T00:40:47.861Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-16T00:40:50.696Z [INFO]: Fetching data from NPM
+2024-09-16T00:40:50.698Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T00:40:50.996Z [INFO]: Fetching data from NPM
+2024-09-16T00:40:50.996Z [DEBUG]: Fetching data for package: is-equal
+2024-09-16T00:40:51.347Z [INFO]: Fetching data from NPM
+2024-09-16T00:40:51.348Z [DEBUG]: Fetching data for package: is-even
+2024-09-16T00:40:51.411Z [INFO]: Fetching data from NPM
+2024-09-16T00:40:51.411Z [DEBUG]: Fetching data for package: wrongname
+2024-09-16T00:40:51.730Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'latest')
+2024-09-16T01:11:44.432Z [INFO]: Fetching data from GitHub API
+2024-09-16T01:11:44.436Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T01:11:44.437Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T01:11:44.443Z [INFO]: Fetching data from GitHub API
+2024-09-16T01:11:44.444Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T01:11:44.445Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-16T01:11:44.449Z [INFO]: Fetching data from GitHub API
+2024-09-16T01:11:44.449Z [DEBUG]: Fetching data for owner: owner, repo: 
+                repo
+2024-09-16T01:11:44.451Z [SILENT]: Error fetching data: Error: Failed to fetch
+2024-09-16T01:11:44.490Z [INFO]: Fetching data from NPM
+2024-09-16T01:11:44.492Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-16T01:11:45.079Z [INFO]: Fetching data from NPM
+2024-09-16T01:11:45.080Z [DEBUG]: Fetching data for package: is-equal
+2024-09-16T01:11:45.431Z [INFO]: Fetching data from NPM
+2024-09-16T01:11:45.432Z [DEBUG]: Fetching data for package: is-even
+2024-09-16T01:11:45.501Z [INFO]: Fetching data from NPM
+2024-09-16T01:11:45.501Z [DEBUG]: Fetching data for package: wrongname
+2024-09-16T01:11:45.835Z [SILENT]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'latest')

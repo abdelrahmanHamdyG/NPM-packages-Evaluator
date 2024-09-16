@@ -1,9 +1,9 @@
 /* eslint-disable no-useless-escape */
-import { GitHubAPI } from "./GitHubAPI.js";
-import { NpmAPI } from "./NpmAPI.js";
-import {GitHubData } from "./GitHubData.js";
-import {NPMData } from "./NPMData.js";
-import {Logger} from "./logger.js";
+import { GitHubAPI } from "./GitHubAPI";
+import { NpmAPI } from "./NpmAPI";
+import {GitHubData } from "./GitHubData";
+import {NPMData } from "./NPMData";
+import {Logger} from "./logger";
 import fs from "fs/promises";
 
 

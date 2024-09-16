@@ -1,4 +1,4 @@
-import { Logger } from "./logger.js";
+import { Logger } from "./logger";
 
 export abstract class API {
     protected logger: Logger;
