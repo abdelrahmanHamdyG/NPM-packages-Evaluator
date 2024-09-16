@@ -20,8 +20,8 @@ case "$mode" in
         ;;
     *)
         npx tsc
-        if [ -f "$2" ]; then
-            node ./dist/Index.js "$mode" "$2"
+        if [ -f "$1" ]; then
+            node ./dist/Index.js "$1"
         else 
             echo "file doesn't exist"
         fi

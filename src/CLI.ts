@@ -5,7 +5,6 @@ import {GitHubData } from "./GitHubData.js";
 import {NPMData } from "./NPMData.js";
 import {Logger} from "./logger.js";
 import fs from "fs/promises";
-import { CorrectnessMetric } from "./CorrectnessMetric.js";
 import { ResponsivenessMetric } from "./ResponsivenessMetric.js";
 import { RampUpMetric } from "./RampUpMetric.js";
 import { BusFactorMetric } from "./BusFactorMetric.js";

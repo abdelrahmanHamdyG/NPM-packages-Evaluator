@@ -15,6 +15,10 @@ switch(mode){
         cli.testSuites();
         break;
     case "rank" :{
+        
+    }
+        break;
+    default:{
         const start = performance.now();
             
         logger.log(1,"we are going to rank the modules now");
@@ -23,8 +27,6 @@ switch(mode){
         const end = performance.now();
         logger.log(2,`total delay of fetching is ${end-start}`)
     }
-        break;
-    default:
         break;
         
 };

@@ -11,20 +11,36 @@ export class NpmAPI extends API{
     }
 
     public async fetchData(): Promise < NPMData>{
-        const url = `https://api.npms.io/v2/package/${this.packageName}`;
+        const url = `https://registry.npmjs.org/${this.packageName}`;
 
         try {
-            this.logger.log(2, 
-                `Fetching data for package: ${this.packageName}`);
+            this.logger.log(1, "Fetching data from NPM");
+            this.logger.log(2,`Fetching data for package: ${this.packageName}`);
             
             const response = await fetch(url);
             const data = await response.json();
-            const metadata = data?.collected?.metadata;
-            this.logger.log(2, `Successfully fetched data from NPM for the url ${url}`);
-            return new NPMData(metadata.license, metadata.links.repository);
+
+            
+            const latestVersion = data["dist-tags"].latest;
+            const versionData = data.versions[latestVersion];
+            this.logger.log(3,latestVersion);
+            const license = versionData?.license ;
+            const repository = versionData?.repository;
+            let repoUrl = repository?.url;
+            let extractedUrl = repoUrl.slice(4, -4);
+            if (!extractedUrl.startsWith('https')&&extractedUrl.length!=0) {
+                extractedUrl = `https:${extractedUrl}`;
+                return new NPMData(license, extractedUrl);
+            }
+            else{
+                return new NPMData(license, extractedUrl);  
+            }
+            
+
+            
         } catch (error) {
             if(error)
-                this.logger.log(2, `Error fetching data: ${error}`);
+                this.logger.log(0, `Error fetching data: ${error}`);
         }
         return new NPMData();
     }
