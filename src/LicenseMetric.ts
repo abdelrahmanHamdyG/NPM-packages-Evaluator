@@ -7,7 +7,7 @@ export class LicenseMetric extends Metrics {
     compatibleLicenses = [
     "GNU General Public License v2 (GPL-2.0)",
     "GNU General Public License v3 (GPL-3.0)",
-    "MIT License",
+    "MIT",
     "BSD License (2-Clause)",
     "BSD License (3-Clause)",
     "Apache License 1.1",
@@ -28,7 +28,10 @@ export class LicenseMetric extends Metrics {
 
   public calculateLatency():number{
 
-    return -1;
+    const start = performance.now();
+      this.calculateScore();  
+      const end = performance.now();
+      return end - start;  
   }
 }
 

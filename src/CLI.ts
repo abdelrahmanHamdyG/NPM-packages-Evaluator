@@ -48,6 +48,10 @@ export class CLI {
     }
 
     public rankModules(path: string): void {
+        
+        
+        
+      
         this.rankModulesTogether(path)
             .then(results => {
 
@@ -69,7 +73,7 @@ export class CLI {
                         logger.log(1,"\n\n\n**************************\n\n\n")
                         logger.log(2,"\n\n\n**************************\n\n\n")
                         if(githubData&&npmData){
-                            const correctnessMetric=new CorrectnessMetric(githubData,npmData);
+                            
                             const responsiveNessMetric=new ResponsivenessMetric(githubData,npmData);
                             const rampUpMetric=new RampUpMetric(githubData,npmData);
                             const busFactorMetric=new BusFactorMetric(githubData,npmData);
@@ -78,13 +82,29 @@ export class CLI {
                             const rampUp=rampUpMetric.calculateScore();
                             const busFactor=busFactorMetric.calculateScore();
                             const license=licenseMetric.calculateScore();
-                            
+                            //correctnessMetric.calculateScore();
+                            logger.log(2,`responsiveness: ${responsivenessScore}`)
+                            logger.log(2,`responsiveness delay:${responsiveNessMetric.calculateLatency()}`)
+                            logger.log(2,`responsiveness: ${responsivenessScore}`)
+                            logger.log(2,`busfactor : ${busFactor}`)
+                            logger.log(2,`busfactor delay: ${busFactorMetric.calculateLatency()}`)
+                            logger.log(2,`ramp up : ${rampUp}`)
+                            logger.log(2,`ramp up delay: ${rampUpMetric.calculateLatency()}`)
+                            logger.log(2,`license: ${license}`)
+                            logger.log(2,`license delay: ${licenseMetric.calculateLatency()}`)
+                            logger.log(1,"\n\n\n**************************\n\n\n")
+                            logger.log(2,"\n\n\n**************************\n\n\n")
+    
+
+                        
                         }
                 });
             })
             .catch(error => {
                 logger.log(2, `Error in rankModules: ${error}`);
             });
+
+            
     }
     
 

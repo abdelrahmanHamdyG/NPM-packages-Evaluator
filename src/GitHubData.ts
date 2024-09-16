@@ -19,7 +19,8 @@ export class   GitHubData{
     
 
 
-    constructor(name:string="empty",
+    constructor(url:string="empty",
+        name:string="empty",
         numberOfIssues:number=-1,
         numberOfCommits:number=-1,
         numberOfForks:number=-1,

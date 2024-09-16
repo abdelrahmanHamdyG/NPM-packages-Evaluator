@@ -86,7 +86,7 @@ export class GitHubAPI extends API {
             });*/
 
             this.logger.log(2, "Successfully fetched data from GitHub API");
-            return new GitHubData(
+            return new GitHubData(this.generateRepoUrl(this.owner,this.repoName),
                 reposResponse.data.name,
                 issues.length,
                 commitsResponse.data.length,

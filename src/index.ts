@@ -14,11 +14,15 @@ switch(mode){
         logger.log(1,"we are running the tests now");
         cli.testSuites();
         break;
-    case "rank" :
+    case "rank" :{
+        const start = performance.now();
+            
         logger.log(1,"we are going to rank the modules now");
         logger.log(2,`rank modules is called with parameter =${args[1]} `);
         cli.rankModules(args[1]);
-
+        const end = performance.now();
+        logger.log(2,`total delay of fetching is ${end-start}`)
+    }
         break;
     default:
         break;

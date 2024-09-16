@@ -44,6 +44,9 @@ export class BusFactorMetric extends Metrics {
 
   public calculateLatency():number{
 
-    return -1;
+    const start = performance.now();
+    this.calculateScore();  
+    const end = performance.now();
+    return end - start;  
   }
 }

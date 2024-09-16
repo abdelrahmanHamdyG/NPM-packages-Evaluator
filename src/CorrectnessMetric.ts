@@ -38,7 +38,7 @@ export class CorrectnessMetric extends Metrics {
       await this.unzipFile();
 
       console.log("Getting random files...");
-      const files = this.getRandomFiles(`./${this.githubData.name}`, 10); // Adjust count as needed
+      const files = this.getRandomFiles(`./${this.githubData.name}`, 3); // Adjust count as needed
 
       console.log("Running ESLint on files...");
       this.runESLintOnFiles(files);
@@ -70,7 +70,7 @@ export class CorrectnessMetric extends Metrics {
   }
   
   
-  getRandomFiles(dir: string, count: number): string[] {
+   getRandomFiles(dir: string, count: number): string[] {
     let files: string[] = [];
     
     function readDirRecursive(currentDir: string) {
@@ -79,14 +79,15 @@ export class CorrectnessMetric extends Metrics {
         const fullPath = path.join(currentDir, entry.name);
         if (entry.isDirectory()) {
           readDirRecursive(fullPath);
-        } else {
-          // Normalize the file path
+        } else if (['.js', '.ts'].includes(path.extname(entry.name))) { // Check for .js and .ts extensions
           files.push(fullPath.replace(/\\/g, '/'));
         }
       });
     }  
+    
     readDirRecursive(dir);
   
+    // Shuffle files and return a limited number of files
     if (files.length <= count) {
       return files;
     }
@@ -98,8 +99,6 @@ export class CorrectnessMetric extends Metrics {
   
     return files.slice(0, count);
   }
-  
-  
 
   private async  unzipFile( ): Promise<void> {
     await fs.createReadStream(`./${this.githubData.name}.zip`)
@@ -131,3 +130,4 @@ export class CorrectnessMetric extends Metrics {
   
   
 }
+// 

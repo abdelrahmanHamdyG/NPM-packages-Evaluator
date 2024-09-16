@@ -15,8 +15,11 @@ export class RampUpMetric extends Metrics {
 
   public calculateLatency():number{
 
-    return -1;
-  }
+      const start = performance.now();
+      this.calculateScore();  
+      const end = performance.now();
+      return end - start;  
+    }
 
   public calculateForksStarsPercentage():number{
     const totalForksStars = (this.githubData.numberOfForks ?? 0)
@@ -26,7 +29,7 @@ export class RampUpMetric extends Metrics {
       return 0.7;
     }
     else{
-      return 0.7 * totalForksStars;
+      return 0.7 * (totalForksStars/1000);
     }
   }
 
