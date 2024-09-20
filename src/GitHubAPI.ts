@@ -93,7 +93,7 @@ export class GitHubAPI extends API {
                 commitsResponse.data.length,
                 reposResponse.data.forks_count,
                 reposResponse.data.stargazers_count,
-                reposResponse.data.collaborators_count,
+                reposResponse.data.collaborators_url.length,
                 readmeFound,
                 descriptionFound,
                 totalContributions,

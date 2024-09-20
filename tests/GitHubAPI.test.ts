@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
-import { GitHubAPI } from "../src/GitHubAPI";
-import { GitHubData } from "../src/GitHubData";
+import { GitHubAPI } from "../src/GitHubAPI.js";
+import { GitHubData } from "../src/GitHubData.js";
 
 // Mocking Octokit
 jest.mock("octokit", () => {
@@ -23,14 +23,14 @@ jest.mock("octokit", () => {
   };
 });
 
-describe('GitHubAPI fetchData', () => {
+describe("GitHubAPI fetchData", () => {
   let githubAPI: GitHubAPI;
 
   beforeEach(() => {
     githubAPI = new GitHubAPI("owner", "repo");
   });
 
-  test('fetches data successfully for repo test1', async () => {
+  test("fetches data successfully for repo test1", async () => {
     // Override the global mock for this test case
     (Octokit as unknown as jest.Mock).mockImplementationOnce(() => ({
       request: jest.fn().mockImplementation((url) => {
@@ -54,7 +54,7 @@ describe('GitHubAPI fetchData', () => {
     expect(data.numberOfCommits).toBe(8); // Ensure this matches the mock response
   });
 
-  test('fetches data successfully for repo test2', async () => {
+  test("fetches data successfully for repo test2", async () => {
     // Override the global mock for this test case
     (Octokit as unknown as jest.Mock).mockImplementationOnce(() => ({
       request: jest.fn().mockImplementation((url) => {
@@ -78,7 +78,7 @@ describe('GitHubAPI fetchData', () => {
     expect(data.numberOfCommits).toBe(15); // Ensure this matches the mock response
   });
 
-  test('handles errors for unknown repo', async () => {
+  test("handles errors for unknown repo", async () => {
     // Override the global mock to simulate an error
     (Octokit as unknown as jest.Mock).mockImplementationOnce(() => ({
       request: jest.fn().mockRejectedValueOnce(new Error("Failed to fetch"))
