@@ -89,7 +89,7 @@ export class CLI {
                             const rampUp=rampUpMetric.calculateScore();
                             const busFactor=busFactorMetric.calculateScore();
                             const license=licenseMetric.calculateScore();
-                            correctnessMetric.calculateScore();
+                            correctnessMetric.calculateScore2();
                             logger.log(2,
                                 `responsiveness: ${responsivenessScore}`);
                             logger.log(2,
@@ -139,7 +139,7 @@ export class CLI {
             
             let gitUrl="empty";
             let npmUrl="empty";
-            if(urls[i][8]=="g"){
+            if(urls[i][8]==="g"){
                 gitUrl=urls[i];
             }else{
                 npmUrl=urls[i];
@@ -171,7 +171,7 @@ export class CLI {
         
         let npmData=new NPMData();
         let githubData=new GitHubData();
-        if(githubUrl!="empty"){
+        if(githubUrl!=="empty"){
 
             
             const githubObject=this.parseGitHubUrl(githubUrl);
@@ -197,7 +197,7 @@ export class CLI {
             npmData=await npmAPI.fetchData();
             logger.log(2,`we are fetching data for the npmurl:
                 ${npmUrl}\n with packagenam:${npmData}\n`);
-            if(npmData.githubUrl&&npmData.githubUrl!="empty"){
+            if(npmData.githubUrl&&npmData.githubUrl!=="empty"){
                 const githubObject=this.parseGitHubUrl(npmData.githubUrl);
                 logger.log(2,`we got the github url after
                      the npm url and it is :${npmData.githubUrl}`);

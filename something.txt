@@ -1,1 +1,5 @@
 https://www.npmjs.com/package/lodash
+https://github.com/abdelrahmanHamdyG/Book-Exchange-Api
+https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator
+https://www.npmjs.com/package/express
+https://www.npmjs.com/package/zhs
