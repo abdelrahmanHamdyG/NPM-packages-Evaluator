@@ -10,6 +10,7 @@ export class BusFactorMetric extends Metrics {
 
   public calculateScore(): number {
     
+    
     const totalCommits = this.totalCommits();
   
     const hhi = this.HHI(totalCommits);

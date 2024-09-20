@@ -4,10 +4,10 @@ import { GitHubData } from "./GitHubData.js";
 import { NPMData } from "./NPMData.js";
 
 import fetch from "node-fetch";
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 import * as unzipper from "unzipper";
-import { exec } from 'child_process';
+import { exec } from "child_process";
 
 export class CorrectnessMetric extends Metrics {
 
@@ -19,10 +19,10 @@ export class CorrectnessMetric extends Metrics {
 
   
   public calculateScore(): number {
+    console.log("calculate score is called");
     this.analyze().then((res)=>{
       console.log(res);
-
-    })
+    });
     return -1;
 
   }
@@ -38,7 +38,10 @@ export class CorrectnessMetric extends Metrics {
       await this.unzipFile();
 
       console.log("Getting random files...");
-      const files = this.getRandomFiles(`./${this.githubData.name}`, 3); // Adjust count as needed
+      const files = 
+      this.getRandomFiles(`./${this.githubData.name
+
+      }`, 3); // Adjust count as needed
 
       console.log("Running ESLint on files...");
       this.runESLintOnFiles(files);
@@ -54,7 +57,7 @@ export class CorrectnessMetric extends Metrics {
     return -1;
   }
 
-  private async  downloadZip() {
+  private async  downloadZip():Promise<void> {
     const repoUrl=this.zipFile ||"empty";
     console.log(repoUrl);
     const response = await fetch(repoUrl);
@@ -62,25 +65,27 @@ export class CorrectnessMetric extends Metrics {
     await new Promise<void>((resolve, reject) => {
       if(response.body){
         response.body.pipe(fileStream);
-        response.body.on('error', reject);
+        response.body.on("error", reject);
     }
-      fileStream.on('finish', resolve);
+      fileStream.on("finish", resolve);
     });
 
   }
   
   
    getRandomFiles(dir: string, count: number): string[] {
-    let files: string[] = [];
+    const files: string[] = [];
     
-    function readDirRecursive(currentDir: string) {
+    function readDirRecursive(currentDir: string):void {
       const dirEntries = fs.readdirSync(currentDir, { withFileTypes: true });
       dirEntries.forEach(entry => {
         const fullPath = path.join(currentDir, entry.name);
         if (entry.isDirectory()) {
           readDirRecursive(fullPath);
-        } else if (['.js', '.ts'].includes(path.extname(entry.name))) { // Check for .js and .ts extensions
-          files.push(fullPath.replace(/\\/g, '/'));
+        } else if ([".js", ".ts"].
+          includes(path
+            .extname(entry.name))) { // Check for .js and .ts extensions
+          files.push(fullPath.replace(/\\/g, "/"));
         }
       });
     }  
@@ -106,14 +111,14 @@ export class CorrectnessMetric extends Metrics {
       .promise();
   }
   
-  runESLintOnFiles(files: string[]) {
+  runESLintOnFiles(files: string[]):void {
     // Normalize the file paths
-    const normalizedFiles = files.map(file => file.replace(/\\/g, '/'));
+    const normalizedFiles = files.map(file => file.replace(/\\/g, "/"));
   
     console.log(normalizedFiles);
     console.log(normalizedFiles.join(" "));
   
-    const eslintCommand = `npx eslint ${normalizedFiles.join(' ')}`;
+    const eslintCommand = `npx eslint ${normalizedFiles.join(" ")}`;
   
     exec(eslintCommand, (error, stdout, stderr) => {
       if (error) {

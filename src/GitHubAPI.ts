@@ -20,7 +20,10 @@ export class GitHubAPI extends API {
         });
 
         try {
-            this.logger.log(2, `Fetching data for owner: ${this.owner}, repo: ${this.repoName}`);
+            
+            this.logger.log(2,
+                 `Fetching data for owner:
+                  ${this.owner}, repo: ${this.repoName}`);
 
             // Initialize API requests
             const reposRequest = octokit.request("GET /repos/{owner}/{repo}", {
@@ -31,7 +34,8 @@ export class GitHubAPI extends API {
                 }
             });
 
-            const commitsRequest = octokit.request("GET /repos/{owner}/{repo}/commits", {
+            const commitsRequest =
+             octokit.request("GET /repos/{owner}/{repo}/commits", {
                 owner: this.owner,
                 repo: this.repoName,
                 headers: {
@@ -43,7 +47,8 @@ export class GitHubAPI extends API {
             const issuesRequest = this.fetchIssues(octokit);
             const contributorsRequest = this.fetchContributors(octokit);
 
-            const readmeRequest = octokit.request("GET /repos/{owner}/{repo}/readme", {
+            const readmeRequest = 
+            octokit.request("GET /repos/{owner}/{repo}/readme", {
                 owner: this.owner,
                 repo: this.repoName,
                 headers: {
@@ -52,7 +57,9 @@ export class GitHubAPI extends API {
             });
 
             // Wait for all data fetches to complete in parallel
-            const [reposResponse, issues, commitsResponse, contributors, readmeResponse] = await Promise.all([
+            const [reposResponse, issues, 
+                commitsResponse, contributors,
+                 readmeResponse] = await Promise.all([
                 reposRequest,
                 issuesRequest,
                 commitsRequest,
@@ -61,7 +68,8 @@ export class GitHubAPI extends API {
             ]);
 
             // Process contributors data
-            const totalContributions = (contributors as Contributor[]).map((contributor: Contributor) => ({
+            const totalContributions = (contributors as 
+                Contributor[]).map((contributor: Contributor) => ({
                contributor: contributor.login,
                 // totalLinesAdded: contributor.total,
                 commits: contributor.contributions
@@ -69,24 +77,17 @@ export class GitHubAPI extends API {
 
 
 
-            /*const numberOfComms = totalContributions.reduce((sum, contributor) => {
-                return sum + contributor.commits;
-            }, 0); */
-
-            // Check if the repo has a README and description
+            
             const readmeFound = !!readmeResponse;
             const descriptionFound = !!reposResponse.data.description;
-            let license = reposResponse.data.license ? reposResponse.data.license.name : "empty";
+            const license = reposResponse.data.license ? reposResponse.data
+            .license.name : "empty";
 
-            // Calculate the time to close issues
-            /*const timesToClose: number[] = issues.map((issue: Issue) => {
-                const createdAt = new Date(issue.created_at);
-                const closedAt = new Date(issue.closed_at);
-                return (closedAt.getTime() - createdAt.getTime()) / (1000 * 60 * 60 * 24); // Difference in days
-            });*/
+            
 
             this.logger.log(2, "Successfully fetched data from GitHub API");
-            return new GitHubData(this.generateRepoUrl(this.owner,this.repoName),
+            return new 
+            GitHubData(this.generateRepoUrl(this.owner,this.repoName),
                 reposResponse.data.name,
                 issues.length,
                 commitsResponse.data.length,
@@ -100,7 +101,8 @@ export class GitHubAPI extends API {
                 issues
             );
         } catch (error) {
-            this.logger.log(2, `Error fetching data: ${error} for the repo ${this.repoName}`);
+            this.logger.log(2,
+                 `Error fetching data: ${error} for the repo ${this.repoName}`);
             return new GitHubData(); // Return empty data on error
         }
     }
@@ -117,7 +119,8 @@ export class GitHubAPI extends API {
         threeMonthsAgo.setMonth(currentDate.getMonth() - 3);
 
         while (moreIssues) {
-            const issuesResponse = await octokit.request("GET /repos/{owner}/{repo}/issues", {
+            const issuesResponse = 
+            await octokit.request("GET /repos/{owner}/{repo}/issues", {
                 owner: this.owner,
                 repo: this.repoName,
                 headers: {
@@ -150,7 +153,8 @@ export class GitHubAPI extends API {
 
 
         while (moreContributors) {
-            const contributorsResponse = await octokit.request("GET /repos/{owner}/{repo}/contributors", {
+            const contributorsResponse = 
+            await octokit.request("GET /repos/{owner}/{repo}/contributors", {
 
                 owner: this.owner,
                 repo: this.repoName,
@@ -161,7 +165,8 @@ export class GitHubAPI extends API {
                 per_page: perPage
             });
 
-            const fetchedContributors = contributorsResponse.data as Contributor[];
+            const fetchedContributors = 
+            contributorsResponse.data as Contributor[];
             if (fetchedContributors.length === 0) {
                 moreContributors = false;
             } else {

@@ -9,6 +9,7 @@ import { ResponsivenessMetric } from "./ResponsivenessMetric.js";
 import { RampUpMetric } from "./RampUpMetric.js";
 import { BusFactorMetric } from "./BusFactorMetric.js";
 import { LicenseMetric } from "./LicenseMetric.js";
+import { CorrectnessMetric } from "./CorrectnessMetric.js";
 
 
 
@@ -54,8 +55,8 @@ export class CLI {
         this.rankModulesTogether(path)
             .then(results => {
 
-                logger.log(1,"\n\nThe data fetched for each url:\n\n")
-                logger.log(2,"\n\nThe data fetched for each url:\n\n")
+                logger.log(1,"\n\nThe data fetched for each url:\n\n");
+                logger.log(2,"\n\nThe data fetched for each url:\n\n");
                 results.forEach(({ npmData, githubData }, index) => {
 
                         
@@ -64,35 +65,51 @@ export class CLI {
                         logger.log(2, `Result ${index + 1}:`);
                         if(npmData)
                             npmData.printMyData();
-                        logger.log(1,"\n**************************\n")
-                        logger.log(2,"\n**************************\n")
+                        logger.log(1,"\n**************************\n");
+                        logger.log(2,"\n**************************\n");
                     
                         if(githubData)
                             githubData.printMyData();
-                        logger.log(1,"\n\n\n**************************\n\n\n")
-                        logger.log(2,"\n\n\n**************************\n\n\n")
+                        logger.log(1,"\n\n\n**************************\n\n\n");
+                        logger.log(2,"\n\n\n**************************\n\n\n");
                         if(githubData&&npmData){
                             
-                            const responsiveNessMetric=new ResponsivenessMetric(githubData,npmData);
-                            const rampUpMetric=new RampUpMetric(githubData,npmData);
-                            const busFactorMetric=new BusFactorMetric(githubData,npmData);
-                            const licenseMetric=new LicenseMetric(githubData,npmData);
-                            const responsivenessScore=responsiveNessMetric.calculateScore();
+                            const correctnessMetric=
+                            new CorrectnessMetric(githubData, npmData);
+                            const responsiveNessMetric=
+                            new ResponsivenessMetric(githubData,npmData);
+                            const rampUpMetric=
+                            new RampUpMetric(githubData,npmData);
+                            const busFactorMetric=
+                            new BusFactorMetric(githubData,npmData);
+                            const licenseMetric=new
+                             LicenseMetric(githubData,npmData);
+                            const responsivenessScore=
+                            responsiveNessMetric.calculateScore();
                             const rampUp=rampUpMetric.calculateScore();
                             const busFactor=busFactorMetric.calculateScore();
                             const license=licenseMetric.calculateScore();
-                            //correctnessMetric.calculateScore();
-                            logger.log(2,`responsiveness: ${responsivenessScore}`)
-                            logger.log(2,`responsiveness delay:${responsiveNessMetric.calculateLatency()}`)
-                            logger.log(2,`responsiveness: ${responsivenessScore}`)
-                            logger.log(2,`busfactor : ${busFactor}`)
-                            logger.log(2,`busfactor delay: ${busFactorMetric.calculateLatency()}`)
-                            logger.log(2,`ramp up : ${rampUp}`)
-                            logger.log(2,`ramp up delay: ${rampUpMetric.calculateLatency()}`)
-                            logger.log(2,`license: ${license}`)
-                            logger.log(2,`license delay: ${licenseMetric.calculateLatency()}`)
-                            logger.log(1,"\n\n\n**************************\n\n\n")
-                            logger.log(2,"\n\n\n**************************\n\n\n")
+                            correctnessMetric.calculateScore();
+                            logger.log(2,
+                                `responsiveness: ${responsivenessScore}`);
+                            logger.log(2,
+                                `responsiveness delay:${responsiveNessMetric
+                                    .calculateLatency()}`);
+                            logger.log(2,`responsiveness: 
+                                ${responsivenessScore}`);
+                            logger.log(2,`busfactor : ${busFactor}`);
+                            logger.log(2,`busfactor delay:
+                                 ${busFactorMetric.calculateLatency()}`);
+                            logger.log(2,`ramp up : ${rampUp}`);
+                            logger.log(2,`ramp up delay: ${rampUpMetric.
+                                calculateLatency()}`);
+                            logger.log(2,`license: ${license}`);
+                            logger.log(2,`license delay: ${licenseMetric
+                                .calculateLatency()}`);
+                            logger.log(1
+                                ,"\n\n\n**************************\n\n\n");
+                            logger.log(2,
+                                "\n\n\n**************************\n\n\n");
     
 
                         
@@ -128,7 +145,9 @@ export class CLI {
                 npmUrl=urls[i];
             }
             
-            logger.log(2,`the url ${urls[i]} has github url =${gitUrl} and npm url= ${npmUrl}`)
+            logger.log(2,
+                `the url ${urls[i]} has github url =
+                ${gitUrl} and npm url= ${npmUrl}`);
             const data= this.fetchBothData(npmUrl,gitUrl);
             promisesArray.push(data);
         }
@@ -161,7 +180,10 @@ export class CLI {
             const gitHubAPI=new GitHubAPI(githubObject.username
                 ,githubObject.repoName);
 
-            logger.log(2,`we are fetching data for the giturl:${githubUrl}\n with username:${githubObject.username} and reponame:${githubObject.repoName}`)
+            logger.log(2,`we are fetching data for the giturl:${githubUrl}
+                \n with username:${githubObject
+                    .username} and reponame:${githubObject
+                    .repoName}`);
 
             githubData= await gitHubAPI.fetchData();
            
@@ -173,10 +195,12 @@ export class CLI {
                 
             const npmAPI=new NpmAPI(npmObject);
             npmData=await npmAPI.fetchData();
-            logger.log(2,`we are fetching data for the npmurl:${npmUrl}\n with packagenam:${npmData}\n`)
+            logger.log(2,`we are fetching data for the npmurl:
+                ${npmUrl}\n with packagenam:${npmData}\n`);
             if(npmData.githubUrl&&npmData.githubUrl!="empty"){
                 const githubObject=this.parseGitHubUrl(npmData.githubUrl);
-                logger.log(2,`we got the github url after the npm url and it is :${npmData.githubUrl}`)
+                logger.log(2,`we got the github url after
+                     the npm url and it is :${npmData.githubUrl}`);
 
                 const gitHubAPI=new GitHubAPI(githubObject.username
                     ,githubObject.repoName);
