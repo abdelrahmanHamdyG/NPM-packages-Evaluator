@@ -56,10 +56,12 @@ export class   GitHubData{
         const logger=new Logger();
         logger.log(1, "GitHub Data:");
         logger.log(1, `Name: ${this.name || "N/A"}`);
+
         logger.log(1, `Number of Issues: 
             ${this.numberOfclosedIssues !== undefined ? this.numberOfclosedIssues : "N/A"}`);
         logger.log(1, `Number of Commits: 
             ${this.numberOfCommits !== undefined ? this.numberOfCommits : "N/A"}`);
+
         if(this.contributions)
             logger.log(1, `Contributions Array: 
         ${this.contributions.length > 0 ? this.contributions[0].contributor : "N/A"}`);
