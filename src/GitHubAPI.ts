@@ -19,6 +19,8 @@ export class GitHubAPI extends API {
             auth: process.env.GITHUB_TOKEN
         });
 
+
+        const start=performance.now();
         try {
             
             this.logger.log(2,
@@ -89,7 +91,8 @@ export class GitHubAPI extends API {
             .license.name : "empty";
 
             
-
+            const end=performance.now();
+            const latency=end-start;
             this.logger.log(2, "Successfully fetched data from GitHub API");
             return new 
             GitHubData(this.generateRepoUrl(this.owner,this.repoName),
@@ -105,7 +108,8 @@ export class GitHubAPI extends API {
                 license,
                 closed_issues,
                 reposResponse.data.size,
-                openIssues
+                openIssues,
+                latency,
             );
         } catch (error) {
             this.logger.log(2,

@@ -5,12 +5,14 @@ export class NPMData{
 
     public license?:string;
     public githubUrl?:string;
+    public latency:number;
     
 
-    constructor(license:string="empty",githubUrl:string="empty"){
+    constructor(license:string="empty",githubUrl:string="empty",latency:number=0){
         
         this.license=license;
         this.githubUrl=githubUrl;
+        this.latency=latency;
 
     }
     public printMyData():void {

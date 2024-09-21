@@ -17,6 +17,7 @@ export class   GitHubData{
     public Closed_Issues?:Issue[];
     public size?:number;
     public openIssues?:Issue[];
+    public latency :number;
     
 
 
@@ -33,7 +34,8 @@ export class   GitHubData{
         license:string="empty",
         Closed_Issues:Issue[]=[],
         size:number=0,
-        openIssues:Issue[]=[]
+        openIssues:Issue[]=[],
+        latency:number=0
     ){
 
 
@@ -51,6 +53,7 @@ export class   GitHubData{
         this.url=url;
         this.size=size;
         this.openIssues=openIssues;
+        this.latency=latency;
     }
     public printMyData():void{
         const logger=new Logger();
@@ -84,8 +87,6 @@ export class   GitHubData{
         logger.log(2, `Number of Issues: ${this.numberOfclosedIssues !== undefined ?
          this.numberOfclosedIssues : "N/A"}`);
 
-        
-        
     }
 
 }

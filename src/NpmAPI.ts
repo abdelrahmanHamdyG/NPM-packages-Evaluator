@@ -12,6 +12,7 @@ export class NpmAPI extends API{
 
     public async fetchData(): Promise < NPMData>{
         const url = `https://registry.npmjs.org/${this.packageName}`;
+        const start=performance.now();
 
         try {
             this.logger.log(1, "Fetching data from NPM");
@@ -20,7 +21,8 @@ export class NpmAPI extends API{
             const response = await fetch(url);
             const data = await response.json();
 
-            
+            const end=performance.now();
+            const latency=end-start;
             const latestVersion = data["dist-tags"].latest;
             const versionData = data.versions[latestVersion];
             this.logger.log(3,latestVersion);
@@ -30,10 +32,10 @@ export class NpmAPI extends API{
             let extractedUrl = repoUrl.slice(4, -4);
             if (!extractedUrl.startsWith("https")&&extractedUrl.length!==0) {
                 extractedUrl = `https:${extractedUrl}`;
-                return new NPMData(license, extractedUrl);
+                return new NPMData(license, extractedUrl,latency);
             }
             else{
-                return new NPMData(license, extractedUrl);  
+                return new NPMData(license, extractedUrl,latency);  
             }
             
 
