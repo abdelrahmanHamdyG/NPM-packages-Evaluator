@@ -15,13 +15,15 @@ export class Metrics{
         
     }
 
-    public calculateLatency():number{
-        return 0;
+    public async calculateLatency(): Promise<{ score: number; latency: number }> {
+        const score=-1;
+        const latency=-1;   
+        return { score , latency };
     }
 
 
-    public calculateScore(packageData:GitHubData):number{
-        console.log(packageData.name);
+    public async calculateScore():Promise<number>{
+        console.log("packageData.name");
         return 0;
     }
 

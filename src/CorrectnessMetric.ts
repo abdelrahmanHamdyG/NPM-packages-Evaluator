@@ -22,10 +22,11 @@ export class CorrectnessMetric extends Metrics {
   }
 
   async countTotalLinesFilesAndTests  (dir: string): Promise<{
-    totalLines: number,
-    totalFiles: number,
-    testFileCount: number,
-    testLineCount: number
+    
+  lineCount: number,
+    fileCount: number,
+    testfileCount: number,
+    testlineCount: number
   }>  {
     let totalLinesOfCode = 0;
     let totalFilesCount = 0;
@@ -38,10 +39,10 @@ export class CorrectnessMetric extends Metrics {
 
         if (file.isDirectory()) {
           return this.countTotalLinesFilesAndTests(filePath).then(result => {
-            totalLinesOfCode += result.totalLines;
-            totalFilesCount += result.totalFiles;
-            testFileCount += result.testFileCount;
-            testLineCount += result.testLineCount;
+            totalLinesOfCode += result.lineCount;
+            totalFilesCount += result.fileCount;
+            testFileCount += result.testfileCount;
+            testLineCount += result.testlineCount;
           });
         } else {
           totalFilesCount += 1; // Increment the file count
@@ -62,10 +63,10 @@ export class CorrectnessMetric extends Metrics {
       });
 
       return Promise.all(promises).then(() => ({
-        totalLines: totalLinesOfCode,
-        totalFiles: totalFilesCount,
-        testFileCount: testFileCount,
-        testLineCount: testLineCount
+        lineCount: totalLinesOfCode,
+        fileCount: totalFilesCount,
+        testfileCount: testFileCount,
+        testlineCount: testLineCount
       }));
     });
   };
@@ -135,10 +136,10 @@ export class CorrectnessMetric extends Metrics {
       const FileCountDifference = Math.abs(latestFileCount - firstFileCount);
       const LineCountDifference = Math.abs(latestLineCount - firstLineCount);
   
-      const filediffCountScore =
-       Math.max(0, Math.min(1, testFileCountDifference / FileCountDifference));
-      const linediffCountScore = Math
-      .max(0, Math.min(1, testLineCountDifference / LineCountDifference));
+      const filediffCountScore = Math.max(0,
+         Math.min(1, testFileCountDifference / FileCountDifference));
+      const linediffCountScore = Math.max(0,
+         Math.min(1, testLineCountDifference / LineCountDifference));
   
       const fileCountScore = Math.max(0, Math.min(1, latestTestFileCount / latestFileCount));
       const lineCountScore = Math.max(0, Math.min(1, latestTestLineCount / latestLineCount));
@@ -146,8 +147,9 @@ export class CorrectnessMetric extends Metrics {
       // Calculate the final correctness score (weighted average)
       const correctnessScore = Math.min(
         1,
-        Math.max(fileCountScore, lineCountScore) + 
-        0.5 * filediffCountScore + 0.5 * linediffCountScore
+        Math.max(fileCountScore, lineCountScore) +
+          0.5 * filediffCountScore +
+          0.5 * linediffCountScore
       );
   
       console.log(`Correctness score is ${correctnessScore}\n`);
@@ -160,13 +162,11 @@ export class CorrectnessMetric extends Metrics {
     } catch (error) {
       console.error("Error calculating score:", error);
   
-      
+      // Remove the repo directory if there's an error
       await fs.remove(repoDir1);
       return -1;
     }
   }
-  
-
   
 
   async getLatestCommit(dir: string): Promise<ReadCommitResult> {
@@ -185,9 +185,16 @@ export class CorrectnessMetric extends Metrics {
   }
 
   public async calculateLatency(): Promise<{ score: number; latency: number }> {
+    console.log("Measuring latency for score calculation...");
 
+    const start = performance.now();
+    const score =await this.calculateScore();
+    const end = performance.now();
 
-    return {score,latency:6};
+    const latency = end - start;
+    console.log(`Score Calculation Latency: ${latency} ms`);
+
+    return {score:score ,latency};
   }
   checkoutCommit(dir: string, oid: string): Promise<void> {
     return git.checkout({

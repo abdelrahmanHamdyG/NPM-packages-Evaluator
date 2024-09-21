@@ -89,7 +89,7 @@ export class CLI {
                             const rampUp=rampUpMetric.calculateScore();
                             const busFactor=busFactorMetric.calculateScore();
                             const license=licenseMetric.calculateScore();
-                            correctnessMetric.calculateScore2();
+                            correctnessMetric.calculateScore();
                             logger.log(2,
                                 `responsiveness: ${responsivenessScore}`);
                             logger.log(2,
