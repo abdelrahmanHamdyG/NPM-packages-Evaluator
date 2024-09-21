@@ -57,7 +57,7 @@ export class GitHubAPI extends API {
             });
 
             // Wait for all data fetches to complete in parallel
-            const [reposResponse, issues, 
+            const [reposResponse, closed_issues, 
                 commitsResponse, contributors,
                  readmeResponse] = await Promise.all([
                 reposRequest,
@@ -89,7 +89,7 @@ export class GitHubAPI extends API {
             return new 
             GitHubData(this.generateRepoUrl(this.owner,this.repoName),
                 reposResponse.data.name,
-                issues.length,
+                closed_issues.length,
                 commitsResponse.data.length,
                 reposResponse.data.forks_count,
                 reposResponse.data.stargazers_count,
@@ -98,7 +98,8 @@ export class GitHubAPI extends API {
                 descriptionFound,
                 totalContributions,
                 license,
-                issues
+                closed_issues,
+                reposResponse.data.size
             );
         } catch (error) {
             this.logger.log(2,
@@ -142,6 +143,7 @@ export class GitHubAPI extends API {
         }
 
         return issues;
+
     }
 
     // Fetch contributors with pagination

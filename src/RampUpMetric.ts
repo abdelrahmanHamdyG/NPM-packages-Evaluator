@@ -35,10 +35,26 @@ export class RampUpMetric extends Metrics {
 
   public calculateReadmeDescription():number{
     if(this.githubData.readme && this.githubData.description){
-      return 0.3;
+      return 0.2;
     }
     else if (this.githubData.readme || this.githubData.description){
-      return 0.15;
+      return 0.1;
+    }
+    return 0;
+  }
+
+  public calculateSizeProportion():number{
+    const repoSize = this.githubData.size ?? 0;
+    if(repoSize/1000 >= 100){
+      return 0.1;
+    }
+    else if(repoSize/1000 > 50){
+      return 0.2;
+    }
+    else if(repoSize/1000 > 10){
+      return 0.3;
+    }else {
+      return 0.4;
     }
     return 0;
   }
