@@ -98,7 +98,7 @@ export class LicenseMetric extends Metrics {
     super(githubData, npmData);
   }
 
-  public calculateScore(): number {
+  public async calculateScore():Promise<number>{
     let repoLicense = this.githubData.license ?? "";
 
     // If the GitHub license is not in compatibleLicenses or partialCompatibility,
@@ -124,10 +124,10 @@ export class LicenseMetric extends Metrics {
     return 0; // Incompatible
   }
 
-  public calculateLatency(): number {
+  public async calculateLatency(): Promise<{ score: number; latency: number }> {
     const start = performance.now();
-    this.calculateScore();
+    const score=await this.calculateScore();
     const end = performance.now();
-    return end - start;
+    return {score,latency:end - start};
   }
 }

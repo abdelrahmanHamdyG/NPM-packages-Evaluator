@@ -8,7 +8,7 @@ export class RampUpMetric extends Metrics {
     super(githubData, npmData);
   }
 
-  public calculateScore(): number {
+  public async calculateScore():Promise<number>{
     console.log("Calculating RampUp Score...");
 
     const readmeScore = this.calculateReadmeDescription();
@@ -33,17 +33,17 @@ export class RampUpMetric extends Metrics {
     return RampUp;
   }
 
-  public calculateLatency(): number {
+  public async calculateLatency(): Promise<{ score: number; latency: number }> {
     console.log("Measuring latency for score calculation...");
 
     const start = performance.now();
-    this.calculateScore();
+    const score =await this.calculateScore();
     const end = performance.now();
 
     const latency = end - start;
     console.log(`Score Calculation Latency: ${latency} ms`);
 
-    return latency;
+    return {score:score ,latency};
   }
 
   public calculateForksStarsPercentage(): number {

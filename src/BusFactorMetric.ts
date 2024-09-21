@@ -8,14 +8,14 @@ export class BusFactorMetric extends Metrics {
     super(githubData, npmData);
   }
 
-  public calculateScore(): number {
+  public async calculateScore():Promise<number>{
     const totalCommits = this.totalCommits();
 
     if (totalCommits <= 0) return 0; // Handle edge case where there are no commits
 
     const hhi = this.HHI(totalCommits);
 
-    // Cap HHI value to 1 and map the bus factor score to range [0, 1]
+    
     const busFactor = Math.max(0, 1 - hhi);
 
     return busFactor;
@@ -42,10 +42,10 @@ export class BusFactorMetric extends Metrics {
     return hhi; // Value is between 0 and 1
   }
 
-  public calculateLatency(): number {
+  public async calculateLatency(): Promise<{ score: number; latency: number }> {
     const start = performance.now();
-    this.calculateScore();
+    const score=await this.calculateScore();
     const end = performance.now();
-    return end - start;
+    return {score,latency:end - start};
   }
 }

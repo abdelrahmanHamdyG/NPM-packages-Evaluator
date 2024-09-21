@@ -12,11 +12,11 @@ export class ResponsivenessMetric extends Metrics {
     super(githubData, npmData);
   }
 
-  public calculateScore(): number {
+  public async calculateScore():Promise<number>{
     this.filteredIssues = this.githubData.Closed_Issues || [];
     
     if (this.filteredIssues.length === 0) {
-      // Assign a neutral score if no issues are present
+      
       return 0.25;
     }
 
@@ -41,11 +41,11 @@ export class ResponsivenessMetric extends Metrics {
     return score;
   }
 
-  public calculateLatency(): number {
+  public async calculateLatency(): Promise<{ score: number; latency: number }> {
       const start = performance.now();
-      this.calculateScore();
+      const score=await this.calculateScore();
       const end = performance.now();
-      return end - start;
+      return {score ,latency:end-start};
   }
 
   

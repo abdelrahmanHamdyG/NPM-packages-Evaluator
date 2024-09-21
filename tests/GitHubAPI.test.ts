@@ -21,7 +21,7 @@ describe("GitHubAPI Tests", () => {
     githubAPI = new GitHubAPI("owner", "repo");
     //get the Octokit mock constructor
     const OctokitMock = Octokit as unknown as vi.Mock; 
-    //change the return type from octokit type to unknown then vi.mock as typescript not allowed to change the type from octokit to another type without assign it to unkown first. 
+    
     OctokitMock.mockClear(); // reset both mock contructor and instances
     //mock the octokit instance methods
     octokitInstance = {
@@ -77,7 +77,7 @@ describe("GitHubAPI Tests", () => {
 
     expect(data).toBeInstanceOf(GitHubData);
     expect(data.name).toBe("test-repo");
-    expect(data.numberOfIssues).toBe(3);
+    expect(data.numberOfclosedIssues).toBe(3);
     expect(data.numberOfCommits).toBe(4);
     expect(data.numberOfForks).toBe(10);
     expect(data.numberOfStars).toBe(20);
