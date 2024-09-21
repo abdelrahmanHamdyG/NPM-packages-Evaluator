@@ -51,8 +51,8 @@ export class   GitHubData{
         const logger=new Logger();
         logger.log(1, "GitHub Data:");
         logger.log(1, `Name: ${this.name || "N/A"}`);
-        logger.log(1, `Number of 
-            Issues: ${this.numberOfIssues !== undefined ? this.numberOfIssues : "N/A"}`);
+        logger.log(1, `Number of Issues: ${this
+            .numberOfIssues !== undefined ? this.numberOfIssues : "N/A"}`);
         logger.log(1, `Number of Commits: ${this
             .numberOfCommits !== undefined ? this.numberOfCommits : "N/A"}`);
         if(this.contributions)

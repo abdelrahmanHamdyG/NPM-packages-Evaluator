@@ -6020,3 +6020,143 @@ The data fetched for each url:
 2024-09-21T05:50:15.101Z [DEBUG]: Fetching data for owner:
                   owner, repo: repo
 2024-09-21T05:50:15.101Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T11:36:58.110Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T11:36:58.116Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T11:36:58.124Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T11:36:58.126Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T11:36:58.130Z [DEBUG]: Readme Present: Yes
+2024-09-21T11:36:58.130Z [DEBUG]: Description Present: Yes
+2024-09-21T11:36:58.131Z [DEBUG]: Number of Forks: 3
+2024-09-21T11:36:58.131Z [DEBUG]: Number of Stars: 15
+2024-09-21T11:36:58.132Z [DEBUG]: GitHub Data:
+2024-09-21T11:36:58.132Z [DEBUG]: Name: test-repo
+2024-09-21T11:36:58.133Z [DEBUG]: Contributions
+         Array: 50
+2024-09-21T11:36:58.133Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T11:36:58.134Z [DEBUG]: Description
+             Present: Yes
+2024-09-21T11:36:58.134Z [DEBUG]: Number of
+             Issues: 5
+2024-09-21T11:57:28.979Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T11:57:28.984Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T11:57:28.994Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T11:57:28.995Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T11:57:29.002Z [DEBUG]: Readme Present: Yes
+2024-09-21T11:57:29.003Z [DEBUG]: Description Present: Yes
+2024-09-21T11:57:29.004Z [DEBUG]: Number of Forks: 3
+2024-09-21T11:57:29.005Z [DEBUG]: Number of Stars: 15
+2024-09-21T11:57:29.006Z [DEBUG]: GitHub Data:
+2024-09-21T11:57:29.007Z [DEBUG]: Name: test-repo
+2024-09-21T11:57:29.009Z [DEBUG]: Contributions
+         Array: 50
+2024-09-21T11:57:29.009Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T11:57:29.010Z [DEBUG]: Description
+             Present: Yes
+2024-09-21T11:57:29.011Z [DEBUG]: Number of
+             Issues: 5
+2024-09-21T11:58:22.949Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T11:58:22.954Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T11:58:22.963Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T11:58:22.964Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T11:58:22.968Z [DEBUG]: Readme Present: Yes
+2024-09-21T11:58:22.969Z [DEBUG]: Description Present: Yes
+2024-09-21T11:58:22.970Z [DEBUG]: Number of Forks: 3
+2024-09-21T11:58:22.971Z [DEBUG]: Number of Stars: 15
+2024-09-21T11:58:22.972Z [DEBUG]: GitHub Data:
+2024-09-21T11:58:22.973Z [DEBUG]: Name: test-repo
+2024-09-21T11:58:22.973Z [DEBUG]: Contributions
+         Array: 50
+2024-09-21T11:58:22.974Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T11:58:22.974Z [DEBUG]: Description
+             Present: Yes
+2024-09-21T11:58:22.975Z [DEBUG]: Number of
+             Issues: 5
+2024-09-21T12:11:04.327Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T12:11:04.329Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T12:11:04.333Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T12:11:04.334Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T12:11:04.336Z [DEBUG]: Readme Present: Yes
+2024-09-21T12:11:04.337Z [DEBUG]: Description Present: Yes
+2024-09-21T12:11:04.337Z [DEBUG]: Number of Forks: 3
+2024-09-21T12:11:04.338Z [DEBUG]: Number of Stars: 15
+2024-09-21T12:11:04.338Z [DEBUG]: GitHub Data:
+2024-09-21T12:11:04.339Z [DEBUG]: Name: test-repo
+2024-09-21T12:11:04.339Z [DEBUG]: Contributions
+         Array: 50
+2024-09-21T12:11:04.340Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T12:11:04.340Z [DEBUG]: Description
+             Present: Yes
+2024-09-21T12:11:04.340Z [DEBUG]: Number of
+             Issues: 5
+2024-09-21T12:13:08.265Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T12:13:08.267Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T12:13:08.272Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T12:13:08.272Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T12:13:08.274Z [DEBUG]: Readme Present: Yes
+2024-09-21T12:13:08.275Z [DEBUG]: Description Present: Yes
+2024-09-21T12:13:08.275Z [DEBUG]: Number of Forks: 3
+2024-09-21T12:13:08.276Z [DEBUG]: Number of Stars: 15
+2024-09-21T12:13:08.277Z [DEBUG]: GitHub Data:
+2024-09-21T12:13:08.277Z [DEBUG]: Name: test-repo
+2024-09-21T12:13:08.278Z [DEBUG]: Contributions
+         Array: 50
+2024-09-21T12:13:08.278Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T12:13:08.279Z [DEBUG]: Description
+             Present: Yes
+2024-09-21T12:13:08.279Z [DEBUG]: Number of
+             Issues: 5
+2024-09-21T17:06:28.475Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T17:06:28.478Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T17:06:28.482Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T17:06:28.483Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T17:06:28.486Z [DEBUG]: Readme Present: Yes
+2024-09-21T17:06:28.486Z [DEBUG]: Description Present: Yes
+2024-09-21T17:06:28.486Z [DEBUG]: Number of Forks: 3
+2024-09-21T17:06:28.486Z [DEBUG]: Number of Stars: 15
+2024-09-21T17:06:28.487Z [DEBUG]: GitHub Data:
+2024-09-21T17:06:28.487Z [DEBUG]: Name: test-repo
+2024-09-21T17:06:28.487Z [DEBUG]: Contributions
+         Array: 50
+2024-09-21T17:06:28.488Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T17:06:28.488Z [DEBUG]: Description
+             Present: Yes
+2024-09-21T17:06:28.488Z [DEBUG]: Number of
+             Issues: 5
+2024-09-21T17:25:43.025Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T17:25:43.027Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T17:25:43.030Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T17:25:43.032Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-21T17:25:43.034Z [DEBUG]: Readme Present: Yes
+2024-09-21T17:25:43.034Z [DEBUG]: Description Present: Yes
+2024-09-21T17:25:43.035Z [DEBUG]: Number of Forks: 3
+2024-09-21T17:25:43.035Z [DEBUG]: Number of Stars: 15
+2024-09-21T17:25:43.036Z [DEBUG]: GitHub Data:
+2024-09-21T17:25:43.036Z [DEBUG]: Name: test-repo
+2024-09-21T17:25:43.036Z [DEBUG]: Contributions
+         Array: 50
+2024-09-21T17:25:43.037Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T17:25:43.037Z [DEBUG]: Description
+             Present: Yes
+2024-09-21T17:25:43.038Z [DEBUG]: Number of
+             Issues: 5
