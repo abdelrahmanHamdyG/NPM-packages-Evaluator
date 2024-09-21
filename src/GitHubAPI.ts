@@ -57,15 +57,20 @@ export class GitHubAPI extends API {
             });
 
             // Wait for all data fetches to complete in parallel
-            const [reposResponse, issues, 
-                commitsResponse, contributors,
-                 readmeResponse] = await Promise.all([
+            const [reposResponse, issuesResponse, 
+                commitsResponse, contributors, 
+                readmeResponse] = await Promise.all([
                 reposRequest,
                 issuesRequest,
                 commitsRequest,
                 contributorsRequest,
                 readmeRequest.catch(() => null)
             ]);
+            
+            const closed_issues = issuesResponse.closedIssues;
+            const openIssues = issuesResponse.openIssues;
+            
+            
 
             // Process contributors data
             const totalContributions = (contributors as 
@@ -89,7 +94,7 @@ export class GitHubAPI extends API {
             return new 
             GitHubData(this.generateRepoUrl(this.owner,this.repoName),
                 reposResponse.data.name,
-                issues.length,
+                closed_issues.length,
                 commitsResponse.data.length,
                 reposResponse.data.forks_count,
                 reposResponse.data.stargazers_count,
@@ -98,7 +103,9 @@ export class GitHubAPI extends API {
                 descriptionFound,
                 totalContributions,
                 license,
-                issues
+                closed_issues,
+                reposResponse.data.size,
+                openIssues
             );
         } catch (error) {
             this.logger.log(2,
@@ -108,19 +115,21 @@ export class GitHubAPI extends API {
     }
 
     // Fetch issues with pagination
-    private async fetchIssues(octokit: Octokit): Promise<Issue[]> {
-        const issues: Issue[] = [];
+    private async fetchIssues(octokit: Octokit): 
+    Promise<{ closedIssues: Issue[], openIssues: Issue[] }> {
+        const closedIssues: Issue[] = [];
+        const openIssues: Issue[] = [];
         let page = 1;
         const perPage = 100;
         let moreIssues = true;
-
+    
         const currentDate = new Date();
         const threeMonthsAgo = new Date();
         threeMonthsAgo.setMonth(currentDate.getMonth() - 3);
-
+    
+        // Fetch closed issues
         while (moreIssues) {
-            const issuesResponse = 
-            await octokit.request("GET /repos/{owner}/{repo}/issues", {
+            const issuesResponse = await octokit.request("GET /repos/{owner}/{repo}/issues", {
                 owner: this.owner,
                 repo: this.repoName,
                 headers: {
@@ -131,18 +140,45 @@ export class GitHubAPI extends API {
                 state: "closed",
                 since: threeMonthsAgo.toISOString()
             });
-
+    
             const fetchedIssues = issuesResponse.data as Issue[];
             if (fetchedIssues.length === 0) {
                 moreIssues = false;
             } else {
-                issues.push(...fetchedIssues);
+                closedIssues.push(...fetchedIssues);
                 page++;
             }
         }
-
-        return issues;
+    
+        // Reset page counter and fetch open issues
+        page = 1;
+        moreIssues = true;
+        while (moreIssues) {
+            const issuesResponse = await octokit.request("GET /repos/{owner}/{repo}/issues", {
+                owner: this.owner,
+                repo: this.repoName,
+                headers: {
+                    "X-GitHub-Api-Version": "2022-11-28"
+                },
+                page: page,
+                per_page: perPage,
+                state: "open", // Fetch open issues
+                since: threeMonthsAgo.toISOString()
+            });
+    
+            const fetchedIssues = issuesResponse.data as Issue[];
+            if (fetchedIssues.length === 0) {
+                moreIssues = false;
+            } else {
+                openIssues.push(...fetchedIssues);
+                page++;
+            }
+        }
+    
+        // Return both closed and open issues
+        return { closedIssues, openIssues };
     }
+    
 
     // Fetch contributors with pagination
     private async fetchContributors(octokit: Octokit): Promise<Contributor[]> {

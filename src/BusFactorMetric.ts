@@ -4,50 +4,48 @@ import { GitHubData } from "./GitHubData.js";
 import { NPMData } from "./NPMData.js";
 
 export class BusFactorMetric extends Metrics {
-  constructor(githubData: GitHubData,npmData:NPMData) {
-    super(githubData,npmData);
+  constructor(githubData: GitHubData, npmData: NPMData) {
+    super(githubData, npmData);
   }
 
   public calculateScore(): number {
-    
-    
     const totalCommits = this.totalCommits();
-  
+
+    if (totalCommits <= 0) return 0; // Handle edge case where there are no commits
+
     const hhi = this.HHI(totalCommits);
 
-    const busFactor = 1 - hhi;
-  
+    // Cap HHI value to 1 and map the bus factor score to range [0, 1]
+    const busFactor = Math.max(0, 1 - hhi);
+
     return busFactor;
   }
 
-  public totalCommits():number{
+  public totalCommits(): number {
     let totalCommits = 0;
-    if(this.githubData.contributions?.length){
+    if (this.githubData.contributions?.length) {
       for (let i = 0; i < this.githubData.contributions.length; i++) {
         totalCommits += this.githubData.contributions[i].commits;
       }
-      return totalCommits;
     }
-    return -1;
+    return totalCommits;
   }
 
-  public HHI(totalCommits:number):number{
+  public HHI(totalCommits: number): number {
     let hhi = 0;
-    if(this.githubData.contributions?.length){
+    if (this.githubData.contributions?.length) {
       for (let i = 0; i < this.githubData.contributions.length; i++) {
         const share = this.githubData.contributions[i].commits / totalCommits;
-        hhi += share * share;
+        hhi += share * share; // Sum of squared shares
       }
-      return hhi;
     }
-    return -1;
+    return hhi; // Value is between 0 and 1
   }
 
-  public calculateLatency():number{
-
+  public calculateLatency(): number {
     const start = performance.now();
-    this.calculateScore();  
+    this.calculateScore();
     const end = performance.now();
-    return end - start;  
+    return end - start;
   }
 }
