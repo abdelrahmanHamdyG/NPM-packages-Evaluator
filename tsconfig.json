@@ -105,7 +105,10 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true,
+    "types": ["vitest/globals"]        // Add Vitest types to your project
+       
+                              /* Skip type checking all .d.ts files. */
   },
   "exclude": ["node_modules", "./*.ts", "tests"]
 

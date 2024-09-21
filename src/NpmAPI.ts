@@ -28,7 +28,7 @@ export class NpmAPI extends API{
             const repository = versionData?.repository;
             const repoUrl = repository?.url;
             let extractedUrl = repoUrl.slice(4, -4);
-            if (!extractedUrl.startsWith("https")&&extractedUrl.length!=0) {
+            if (!extractedUrl.startsWith("https")&&extractedUrl.length!==0) {
                 extractedUrl = `https:${extractedUrl}`;
                 return new NPMData(license, extractedUrl);
             }

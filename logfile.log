@@ -5179,3 +5179,832 @@ The data fetched for each url:
 2024-09-20T17:22:18.242Z [DEBUG]: Fetching data for owner:
                   owner, repo: repo
 2024-09-20T17:22:18.242Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:04:00.134Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-21T04:04:00.598Z [DEBUG]: Fetching data for package: is-equal
+2024-09-21T04:04:00.636Z [DEBUG]: Fetching data for package: is-even
+2024-09-21T04:04:00.675Z [DEBUG]: Fetching data for package: wrongname
+2024-09-21T04:07:48.623Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-21T04:07:48.847Z [DEBUG]: Fetching data for package: is-equal
+2024-09-21T04:07:48.886Z [DEBUG]: Fetching data for package: is-even
+2024-09-21T04:07:48.953Z [DEBUG]: Fetching data for package: wrongname
+2024-09-21T04:08:22.389Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-21T04:08:22.565Z [DEBUG]: Fetching data for package: is-equal
+2024-09-21T04:08:22.605Z [DEBUG]: Fetching data for package: is-even
+2024-09-21T04:08:22.640Z [DEBUG]: Fetching data for package: wrongname
+2024-09-21T04:10:22.493Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:10:22.496Z [DEBUG]: Error fetching data: Error: Unknown API endpoint for the repo repo
+2024-09-21T04:10:22.505Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:10:22.506Z [DEBUG]: Error fetching data: Error: Unknown API endpoint for the repo repo
+2024-09-21T04:10:22.507Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:10:22.497Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-21T04:10:22.508Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:10:22.984Z [DEBUG]: Fetching data for package: is-equal
+2024-09-21T04:10:23.335Z [DEBUG]: Fetching data for package: is-even
+2024-09-21T04:10:23.365Z [DEBUG]: Fetching data for package: wrongname
+2024-09-21T04:17:38.329Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-21T04:17:38.815Z [DEBUG]: Fetching data for package: is-equal
+2024-09-21T04:17:38.858Z [DEBUG]: Fetching data for package: is-even
+2024-09-21T04:17:38.898Z [DEBUG]: Fetching data for package: wrongname
+2024-09-21T04:26:26.364Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:26:26.366Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:26:26.378Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:26:26.379Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:26:26.380Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:26:26.381Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:26:26.373Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-21T04:26:26.879Z [DEBUG]: Fetching data for package: is-equal
+2024-09-21T04:26:26.927Z [DEBUG]: Fetching data for package: is-even
+2024-09-21T04:26:26.969Z [DEBUG]: Fetching data for package: wrongname
+2024-09-21T04:28:55.087Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:28:55.089Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:28:55.099Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:28:55.099Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:28:55.102Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:28:55.103Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:28:56.893Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:28:56.895Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:28:56.905Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:28:56.905Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:28:56.908Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:28:56.909Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:28:58.535Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:28:58.537Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:28:58.546Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:28:58.546Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:28:58.549Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:28:58.550Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:29:26.892Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:29:26.895Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:29:26.905Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:29:26.906Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:29:26.909Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:29:26.909Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:29:37.280Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-21T04:29:37.279Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:29:37.282Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:29:37.292Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:29:37.292Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:29:37.296Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:29:37.297Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:29:37.475Z [DEBUG]: Fetching data for package: is-equal
+2024-09-21T04:29:37.542Z [DEBUG]: Fetching data for package: is-even
+2024-09-21T04:29:37.603Z [DEBUG]: Fetching data for package: wrongname
+2024-09-21T04:30:10.388Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:30:10.390Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:30:10.399Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:30:10.400Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:30:10.402Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:30:10.402Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:30:10.403Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-21T04:30:10.608Z [DEBUG]: Fetching data for package: is-equal
+2024-09-21T04:30:10.674Z [DEBUG]: Fetching data for package: is-even
+2024-09-21T04:30:10.711Z [DEBUG]: Fetching data for package: wrongname
+2024-09-21T04:31:06.696Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:31:06.698Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:31:06.710Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:31:06.711Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:31:06.713Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:31:06.714Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:31:55.644Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:31:55.646Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:31:55.655Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:31:55.656Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:31:55.660Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:31:55.660Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:32:25.350Z [DEBUG]: Fetching data for package: ghanalize
+2024-09-21T04:32:25.810Z [DEBUG]: Fetching data for package: is-equal
+2024-09-21T04:32:25.851Z [DEBUG]: Fetching data for package: is-even
+2024-09-21T04:32:25.884Z [DEBUG]: Fetching data for package: wrongname
+2024-09-21T04:32:45.882Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:32:45.884Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:32:45.893Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:32:45.893Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:32:45.895Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:32:45.896Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:33:48.475Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:33:48.477Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:33:48.486Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:33:48.486Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:33:48.488Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:33:48.489Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:34:44.634Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:34:44.636Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:34:44.645Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:34:44.646Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:34:44.648Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:34:44.649Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:35:12.245Z [DEBUG]: rank modules is called with parameter =something.txt 
+2024-09-21T04:35:12.247Z [DEBUG]: rankModulesFunction is called and the path is something.txt
+2024-09-21T04:35:12.247Z [DEBUG]: total delay of fetching is 1.9599999999999227
+2024-09-21T04:35:12.249Z [DEBUG]: the url https://www.npmjs.com/package/lodash has github url =
+                empty and npm url= https://www.npmjs.com/package/lodash
+2024-09-21T04:35:12.250Z [DEBUG]: the npm package is  lodash
+2024-09-21T04:35:12.250Z [DEBUG]: Fetching data for package: lodash
+2024-09-21T04:35:12.314Z [DEBUG]: the url https://github.com/abdelrahmanHamdyG/Book-Exchange-Api has github url =
+                https://github.com/abdelrahmanHamdyG/Book-Exchange-Api and npm url= empty
+2024-09-21T04:35:12.314Z [DEBUG]: the github user is abdelrahmanHamdyG the github repo is Book-Exchange-Api
+2024-09-21T04:35:12.315Z [DEBUG]: we are fetching data for the giturl:https://github.com/abdelrahmanHamdyG/Book-Exchange-Api
+                
+ with username:abdelrahmanHamdyG and reponame:Book-Exchange-Api
+2024-09-21T04:35:12.320Z [DEBUG]: Fetching data for owner:
+                  abdelrahmanHamdyG, repo: Book-Exchange-Api
+2024-09-21T04:35:12.321Z [DEBUG]: the url https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator has github url =
+                https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator and npm url= empty
+2024-09-21T04:35:12.321Z [DEBUG]: the github user is abdelrahmanHamdyG the github repo is NPM-packages-Evaluator
+2024-09-21T04:35:12.322Z [DEBUG]: we are fetching data for the giturl:https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator
+                
+ with username:abdelrahmanHamdyG and reponame:NPM-packages-Evaluator
+2024-09-21T04:35:12.322Z [DEBUG]: Fetching data for owner:
+                  abdelrahmanHamdyG, repo: NPM-packages-Evaluator
+2024-09-21T04:35:12.323Z [DEBUG]: the url https://www.npmjs.com/package/express has github url =
+                empty and npm url= https://www.npmjs.com/package/express
+2024-09-21T04:35:12.323Z [DEBUG]: the npm package is  express
+2024-09-21T04:35:12.323Z [DEBUG]: Fetching data for package: express
+2024-09-21T04:35:12.324Z [DEBUG]: the url https://www.npmjs.com/package/zhs has github url =
+                empty and npm url= https://www.npmjs.com/package/zhs
+2024-09-21T04:35:12.325Z [DEBUG]: the npm package is  zhs
+2024-09-21T04:35:12.325Z [DEBUG]: Fetching data for package: zhs
+2024-09-21T04:35:12.499Z [DEBUG]: we are fetching data for the npmurl:
+                https://www.npmjs.com/package/lodash
+ with packagenam:[object Object]
+
+2024-09-21T04:35:12.500Z [DEBUG]: we got the github url after
+                     the npm url and it is :https://github.com/lodash/lodash
+2024-09-21T04:35:12.501Z [DEBUG]: Fetching data for owner:
+                  lodash, repo: lodash
+2024-09-21T04:35:12.521Z [DEBUG]: we are fetching data for the npmurl:
+                https://www.npmjs.com/package/express
+ with packagenam:[object Object]
+
+2024-09-21T04:35:12.521Z [DEBUG]: we got the github url after
+                     the npm url and it is :https://github.com/expressjs/express
+2024-09-21T04:35:12.522Z [DEBUG]: Fetching data for owner:
+                  expressjs, repo: express
+2024-09-21T04:35:12.739Z [DEBUG]: we are fetching data for the npmurl:
+                https://www.npmjs.com/package/zhs
+ with packagenam:[object Object]
+
+2024-09-21T04:35:12.876Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:35:12.939Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:35:14.223Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:35:17.480Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:35:17.481Z [DEBUG]: 
+
+The data fetched for each url:
+
+
+2024-09-21T04:35:17.481Z [DEBUG]: Result 1:
+2024-09-21T04:35:17.481Z [DEBUG]: NPM Data:
+2024-09-21T04:35:17.482Z [DEBUG]: License: MIT
+2024-09-21T04:35:17.482Z [DEBUG]: GitHub URL: https://github.com/lodash/lodash
+2024-09-21T04:35:17.482Z [DEBUG]: 
+**************************
+
+2024-09-21T04:35:17.482Z [DEBUG]: Readme Present: Yes
+2024-09-21T04:35:17.483Z [DEBUG]: Description Present: Yes
+2024-09-21T04:35:17.483Z [DEBUG]: Number of Forks: 7018
+2024-09-21T04:35:17.483Z [DEBUG]: Number of Stars: 59633
+2024-09-21T04:35:17.483Z [DEBUG]: GitHub Data:
+2024-09-21T04:35:17.483Z [DEBUG]: Name: lodash
+2024-09-21T04:35:17.484Z [DEBUG]: Contributions
+         Array: 6726
+2024-09-21T04:35:17.484Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T04:35:17.484Z [DEBUG]: Description
+             Present: Yes
+2024-09-21T04:35:17.484Z [DEBUG]: Number of
+             Issues: 31
+2024-09-21T04:35:17.484Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:17.486Z [DEBUG]: responsiveness: 1
+2024-09-21T04:35:17.487Z [DEBUG]: responsiveness delay:0.002200000000811997
+2024-09-21T04:35:17.487Z [DEBUG]: responsiveness: 
+                                1
+2024-09-21T04:35:17.487Z [DEBUG]: busfactor : 0.2688857716757572
+2024-09-21T04:35:17.487Z [DEBUG]: busfactor delay:
+                                 0.027099999999336433
+2024-09-21T04:35:17.487Z [DEBUG]: ramp up : 1
+2024-09-21T04:35:17.488Z [DEBUG]: ramp up delay: 0.001999999999497959
+2024-09-21T04:35:17.488Z [DEBUG]: license: 0
+2024-09-21T04:35:17.488Z [DEBUG]: license delay: 0.001900000000205182
+2024-09-21T04:35:17.488Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:17.488Z [DEBUG]: Result 2:
+2024-09-21T04:35:17.489Z [DEBUG]: NPM Data:
+2024-09-21T04:35:17.489Z [DEBUG]: License: empty
+2024-09-21T04:35:17.489Z [DEBUG]: GitHub URL: empty
+2024-09-21T04:35:17.489Z [DEBUG]: 
+**************************
+
+2024-09-21T04:35:17.490Z [DEBUG]: Readme Present: Yes
+2024-09-21T04:35:17.490Z [DEBUG]: Description Present: No
+2024-09-21T04:35:17.490Z [DEBUG]: Number of Forks: 2
+2024-09-21T04:35:17.490Z [DEBUG]: Number of Stars: 2
+2024-09-21T04:35:17.491Z [DEBUG]: GitHub Data:
+2024-09-21T04:35:17.491Z [DEBUG]: Name: Book-Exchange-Api
+2024-09-21T04:35:17.491Z [DEBUG]: Contributions
+         Array: 57
+2024-09-21T04:35:17.491Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T04:35:17.491Z [DEBUG]: Description
+             Present: No
+2024-09-21T04:35:17.492Z [DEBUG]: Number of
+             Issues: 0
+2024-09-21T04:35:17.492Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:17.492Z [DEBUG]: responsiveness: 1
+2024-09-21T04:35:17.493Z [DEBUG]: responsiveness delay:0.001999999999497959
+2024-09-21T04:35:17.493Z [DEBUG]: responsiveness: 
+                                1
+2024-09-21T04:35:17.493Z [DEBUG]: busfactor : 0
+2024-09-21T04:35:17.493Z [DEBUG]: busfactor delay:
+                                 0.002500000000509317
+2024-09-21T04:35:17.493Z [DEBUG]: ramp up : 0.1528
+2024-09-21T04:35:17.494Z [DEBUG]: ramp up delay: 0.002300000000104774
+2024-09-21T04:35:17.494Z [DEBUG]: license: 0
+2024-09-21T04:35:17.494Z [DEBUG]: license delay: 0.001900000000205182
+2024-09-21T04:35:17.494Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:17.495Z [DEBUG]: Result 3:
+2024-09-21T04:35:17.495Z [DEBUG]: NPM Data:
+2024-09-21T04:35:17.495Z [DEBUG]: License: empty
+2024-09-21T04:35:17.495Z [DEBUG]: GitHub URL: empty
+2024-09-21T04:35:17.496Z [DEBUG]: 
+**************************
+
+2024-09-21T04:35:17.496Z [DEBUG]: Readme Present: No
+2024-09-21T04:35:17.496Z [DEBUG]: Description Present: No
+2024-09-21T04:35:17.496Z [DEBUG]: Number of Forks: 1
+2024-09-21T04:35:17.497Z [DEBUG]: Number of Stars: 1
+2024-09-21T04:35:17.497Z [DEBUG]: GitHub Data:
+2024-09-21T04:35:17.497Z [DEBUG]: Name: NPM-packages-Evaluator
+2024-09-21T04:35:17.497Z [DEBUG]: Contributions
+         Array: 29
+2024-09-21T04:35:17.497Z [DEBUG]: Readme
+             Present: No
+2024-09-21T04:35:17.498Z [DEBUG]: Description
+             Present: No
+2024-09-21T04:35:17.498Z [DEBUG]: Number of
+             Issues: 19
+2024-09-21T04:35:17.498Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:17.498Z [DEBUG]: responsiveness: 1
+2024-09-21T04:35:17.499Z [DEBUG]: responsiveness delay:0.001999999999497959
+2024-09-21T04:35:17.499Z [DEBUG]: responsiveness: 
+                                1
+2024-09-21T04:35:17.499Z [DEBUG]: busfactor : 0.5930862140774678
+2024-09-21T04:35:17.499Z [DEBUG]: busfactor delay:
+                                 0.0024000000003070454
+2024-09-21T04:35:17.499Z [DEBUG]: ramp up : 0.0014
+2024-09-21T04:35:17.500Z [DEBUG]: ramp up delay: 0.002199999999902502
+2024-09-21T04:35:17.500Z [DEBUG]: license: 0
+2024-09-21T04:35:17.500Z [DEBUG]: license delay: 0.0018000000000029104
+2024-09-21T04:35:17.500Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:17.500Z [DEBUG]: Result 4:
+2024-09-21T04:35:17.501Z [DEBUG]: NPM Data:
+2024-09-21T04:35:17.501Z [DEBUG]: License: MIT
+2024-09-21T04:35:17.501Z [DEBUG]: GitHub URL: https://github.com/expressjs/express
+2024-09-21T04:35:17.501Z [DEBUG]: 
+**************************
+
+2024-09-21T04:35:17.502Z [DEBUG]: Readme Present: Yes
+2024-09-21T04:35:17.502Z [DEBUG]: Description Present: Yes
+2024-09-21T04:35:17.502Z [DEBUG]: Number of Forks: 15607
+2024-09-21T04:35:17.502Z [DEBUG]: Number of Stars: 65168
+2024-09-21T04:35:17.502Z [DEBUG]: GitHub Data:
+2024-09-21T04:35:17.503Z [DEBUG]: Name: express
+2024-09-21T04:35:17.503Z [DEBUG]: Contributions
+         Array: 3881
+2024-09-21T04:35:17.503Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T04:35:17.503Z [DEBUG]: Description
+             Present: Yes
+2024-09-21T04:35:17.503Z [DEBUG]: Number of
+             Issues: 254
+2024-09-21T04:35:17.504Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:17.504Z [DEBUG]: responsiveness: 1
+2024-09-21T04:35:17.504Z [DEBUG]: responsiveness delay:0.001900000000205182
+2024-09-21T04:35:17.504Z [DEBUG]: responsiveness: 
+                                1
+2024-09-21T04:35:17.505Z [DEBUG]: busfactor : 0.5118617307520318
+2024-09-21T04:35:17.505Z [DEBUG]: busfactor delay:
+                                 0.024800000000141154
+2024-09-21T04:35:17.505Z [DEBUG]: ramp up : 1
+2024-09-21T04:35:17.505Z [DEBUG]: ramp up delay: 0.0018000000000029104
+2024-09-21T04:35:17.505Z [DEBUG]: license: 0
+2024-09-21T04:35:17.506Z [DEBUG]: license delay: 0.0018000000000029104
+2024-09-21T04:35:17.506Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:17.506Z [DEBUG]: Result 5:
+2024-09-21T04:35:17.506Z [DEBUG]: NPM Data:
+2024-09-21T04:35:17.507Z [DEBUG]: License: ISC
+2024-09-21T04:35:17.507Z [DEBUG]: GitHub URL: N/A
+2024-09-21T04:35:17.507Z [DEBUG]: 
+**************************
+
+2024-09-21T04:35:17.507Z [DEBUG]: Readme Present: No
+2024-09-21T04:35:17.508Z [DEBUG]: Description Present: No
+2024-09-21T04:35:17.508Z [DEBUG]: Number of Forks: -1
+2024-09-21T04:35:17.508Z [DEBUG]: Number of Stars: -1
+2024-09-21T04:35:17.508Z [DEBUG]: GitHub Data:
+2024-09-21T04:35:17.508Z [DEBUG]: Name: empty
+2024-09-21T04:35:17.508Z [DEBUG]: Contributions
+         Array: N/A
+2024-09-21T04:35:17.509Z [DEBUG]: Readme
+             Present: No
+2024-09-21T04:35:17.509Z [DEBUG]: Description
+             Present: No
+2024-09-21T04:35:17.509Z [DEBUG]: Number of
+             Issues: -1
+2024-09-21T04:35:17.509Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:17.509Z [DEBUG]: responsiveness: 1
+2024-09-21T04:35:17.510Z [DEBUG]: responsiveness delay:0.006400000000212458
+2024-09-21T04:35:17.510Z [DEBUG]: responsiveness: 
+                                1
+2024-09-21T04:35:17.510Z [DEBUG]: busfactor : 2
+2024-09-21T04:35:17.510Z [DEBUG]: busfactor delay:
+                                 0.0065999999997075065
+2024-09-21T04:35:17.510Z [DEBUG]: ramp up : -0.0014
+2024-09-21T04:35:17.511Z [DEBUG]: ramp up delay: 0.008399999999710417
+2024-09-21T04:35:17.511Z [DEBUG]: license: 0
+2024-09-21T04:35:17.511Z [DEBUG]: license delay: 0.007300000000213913
+2024-09-21T04:35:17.512Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:33.569Z [DEBUG]: rank modules is called with parameter =something.txt 
+2024-09-21T04:35:33.571Z [DEBUG]: rankModulesFunction is called and the path is something.txt
+2024-09-21T04:35:33.571Z [DEBUG]: total delay of fetching is 2.0485000000000184
+2024-09-21T04:35:33.573Z [DEBUG]: the url https://www.npmjs.com/package/lodash has github url =
+                empty and npm url= https://www.npmjs.com/package/lodash
+2024-09-21T04:35:33.574Z [DEBUG]: the npm package is  lodash
+2024-09-21T04:35:33.574Z [DEBUG]: Fetching data for package: lodash
+2024-09-21T04:35:33.639Z [DEBUG]: the url https://github.com/abdelrahmanHamdyG/Book-Exchange-Api has github url =
+                https://github.com/abdelrahmanHamdyG/Book-Exchange-Api and npm url= empty
+2024-09-21T04:35:33.640Z [DEBUG]: the github user is abdelrahmanHamdyG the github repo is Book-Exchange-Api
+2024-09-21T04:35:33.640Z [DEBUG]: we are fetching data for the giturl:https://github.com/abdelrahmanHamdyG/Book-Exchange-Api
+                
+ with username:abdelrahmanHamdyG and reponame:Book-Exchange-Api
+2024-09-21T04:35:33.646Z [DEBUG]: Fetching data for owner:
+                  abdelrahmanHamdyG, repo: Book-Exchange-Api
+2024-09-21T04:35:33.647Z [DEBUG]: the url https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator has github url =
+                https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator and npm url= empty
+2024-09-21T04:35:33.648Z [DEBUG]: the github user is abdelrahmanHamdyG the github repo is NPM-packages-Evaluator
+2024-09-21T04:35:33.648Z [DEBUG]: we are fetching data for the giturl:https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator
+                
+ with username:abdelrahmanHamdyG and reponame:NPM-packages-Evaluator
+2024-09-21T04:35:33.649Z [DEBUG]: Fetching data for owner:
+                  abdelrahmanHamdyG, repo: NPM-packages-Evaluator
+2024-09-21T04:35:33.649Z [DEBUG]: the url https://www.npmjs.com/package/express has github url =
+                empty and npm url= https://www.npmjs.com/package/express
+2024-09-21T04:35:33.650Z [DEBUG]: the npm package is  express
+2024-09-21T04:35:33.650Z [DEBUG]: Fetching data for package: express
+2024-09-21T04:35:33.651Z [DEBUG]: the url https://www.npmjs.com/package/zhs has github url =
+                empty and npm url= https://www.npmjs.com/package/zhs
+2024-09-21T04:35:33.652Z [DEBUG]: the npm package is  zhs
+2024-09-21T04:35:33.652Z [DEBUG]: Fetching data for package: zhs
+2024-09-21T04:35:33.748Z [DEBUG]: we are fetching data for the npmurl:
+                https://www.npmjs.com/package/zhs
+ with packagenam:[object Object]
+
+2024-09-21T04:35:33.780Z [DEBUG]: we are fetching data for the npmurl:
+                https://www.npmjs.com/package/lodash
+ with packagenam:[object Object]
+
+2024-09-21T04:35:33.781Z [DEBUG]: we got the github url after
+                     the npm url and it is :https://github.com/lodash/lodash
+2024-09-21T04:35:33.781Z [DEBUG]: Fetching data for owner:
+                  lodash, repo: lodash
+2024-09-21T04:35:33.798Z [DEBUG]: we are fetching data for the npmurl:
+                https://www.npmjs.com/package/express
+ with packagenam:[object Object]
+
+2024-09-21T04:35:33.799Z [DEBUG]: we got the github url after
+                     the npm url and it is :https://github.com/expressjs/express
+2024-09-21T04:35:33.799Z [DEBUG]: Fetching data for owner:
+                  expressjs, repo: express
+2024-09-21T04:35:34.169Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:35:34.247Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:35:35.598Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:35:37.881Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:35:37.882Z [DEBUG]: 
+
+The data fetched for each url:
+
+
+2024-09-21T04:35:37.882Z [DEBUG]: Result 1:
+2024-09-21T04:35:37.883Z [DEBUG]: NPM Data:
+2024-09-21T04:35:37.883Z [DEBUG]: License: MIT
+2024-09-21T04:35:37.883Z [DEBUG]: GitHub URL: https://github.com/lodash/lodash
+2024-09-21T04:35:37.883Z [DEBUG]: 
+**************************
+
+2024-09-21T04:35:37.884Z [DEBUG]: Readme Present: Yes
+2024-09-21T04:35:37.884Z [DEBUG]: Description Present: Yes
+2024-09-21T04:35:37.884Z [DEBUG]: Number of Forks: 7018
+2024-09-21T04:35:37.885Z [DEBUG]: Number of Stars: 59633
+2024-09-21T04:35:37.885Z [DEBUG]: GitHub Data:
+2024-09-21T04:35:37.885Z [DEBUG]: Name: lodash
+2024-09-21T04:35:37.885Z [DEBUG]: Contributions
+         Array: 6726
+2024-09-21T04:35:37.886Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T04:35:37.886Z [DEBUG]: Description
+             Present: Yes
+2024-09-21T04:35:37.886Z [DEBUG]: Number of
+             Issues: 31
+2024-09-21T04:35:37.886Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:37.888Z [DEBUG]: responsiveness: 1
+2024-09-21T04:35:37.889Z [DEBUG]: responsiveness delay:0.0023999999993975507
+2024-09-21T04:35:37.889Z [DEBUG]: responsiveness: 
+                                1
+2024-09-21T04:35:37.889Z [DEBUG]: busfactor : 0.2688857716757572
+2024-09-21T04:35:37.890Z [DEBUG]: busfactor delay:
+                                 0.08259999999972933
+2024-09-21T04:35:37.890Z [DEBUG]: ramp up : 1
+2024-09-21T04:35:37.890Z [DEBUG]: ramp up delay: 0.002300000000104774
+2024-09-21T04:35:37.891Z [DEBUG]: license: 0
+2024-09-21T04:35:37.891Z [DEBUG]: license delay: 0.002199999999902502
+2024-09-21T04:35:37.891Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:37.891Z [DEBUG]: Result 2:
+2024-09-21T04:35:37.892Z [DEBUG]: NPM Data:
+2024-09-21T04:35:37.892Z [DEBUG]: License: empty
+2024-09-21T04:35:37.892Z [DEBUG]: GitHub URL: empty
+2024-09-21T04:35:37.893Z [DEBUG]: 
+**************************
+
+2024-09-21T04:35:37.893Z [DEBUG]: Readme Present: Yes
+2024-09-21T04:35:37.894Z [DEBUG]: Description Present: No
+2024-09-21T04:35:37.894Z [DEBUG]: Number of Forks: 2
+2024-09-21T04:35:37.894Z [DEBUG]: Number of Stars: 2
+2024-09-21T04:35:37.895Z [DEBUG]: GitHub Data:
+2024-09-21T04:35:37.895Z [DEBUG]: Name: Book-Exchange-Api
+2024-09-21T04:35:37.895Z [DEBUG]: Contributions
+         Array: 57
+2024-09-21T04:35:37.895Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T04:35:37.896Z [DEBUG]: Description
+             Present: No
+2024-09-21T04:35:37.896Z [DEBUG]: Number of
+             Issues: 0
+2024-09-21T04:35:37.896Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:37.897Z [DEBUG]: responsiveness: 1
+2024-09-21T04:35:37.897Z [DEBUG]: responsiveness delay:0.0020999999997002305
+2024-09-21T04:35:37.898Z [DEBUG]: responsiveness: 
+                                1
+2024-09-21T04:35:37.898Z [DEBUG]: busfactor : 0
+2024-09-21T04:35:37.898Z [DEBUG]: busfactor delay:
+                                 0.002599999999802094
+2024-09-21T04:35:37.898Z [DEBUG]: ramp up : 0.1528
+2024-09-21T04:35:37.899Z [DEBUG]: ramp up delay: 0.0023999999993975507
+2024-09-21T04:35:37.899Z [DEBUG]: license: 0
+2024-09-21T04:35:37.899Z [DEBUG]: license delay: 0.0020000000004074536
+2024-09-21T04:35:37.899Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:37.900Z [DEBUG]: Result 3:
+2024-09-21T04:35:37.900Z [DEBUG]: NPM Data:
+2024-09-21T04:35:37.900Z [DEBUG]: License: empty
+2024-09-21T04:35:37.901Z [DEBUG]: GitHub URL: empty
+2024-09-21T04:35:37.901Z [DEBUG]: 
+**************************
+
+2024-09-21T04:35:37.901Z [DEBUG]: Readme Present: No
+2024-09-21T04:35:37.902Z [DEBUG]: Description Present: No
+2024-09-21T04:35:37.902Z [DEBUG]: Number of Forks: 1
+2024-09-21T04:35:37.902Z [DEBUG]: Number of Stars: 1
+2024-09-21T04:35:37.903Z [DEBUG]: GitHub Data:
+2024-09-21T04:35:37.903Z [DEBUG]: Name: NPM-packages-Evaluator
+2024-09-21T04:35:37.903Z [DEBUG]: Contributions
+         Array: 29
+2024-09-21T04:35:37.903Z [DEBUG]: Readme
+             Present: No
+2024-09-21T04:35:37.904Z [DEBUG]: Description
+             Present: No
+2024-09-21T04:35:37.904Z [DEBUG]: Number of
+             Issues: 19
+2024-09-21T04:35:37.904Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:37.905Z [DEBUG]: responsiveness: 1
+2024-09-21T04:35:37.905Z [DEBUG]: responsiveness delay:0.001900000000205182
+2024-09-21T04:35:37.905Z [DEBUG]: responsiveness: 
+                                1
+2024-09-21T04:35:37.905Z [DEBUG]: busfactor : 0.5930862140774678
+2024-09-21T04:35:37.906Z [DEBUG]: busfactor delay:
+                                 0.002500000000509317
+2024-09-21T04:35:37.906Z [DEBUG]: ramp up : 0.0014
+2024-09-21T04:35:37.906Z [DEBUG]: ramp up delay: 0.002300000000104774
+2024-09-21T04:35:37.907Z [DEBUG]: license: 0
+2024-09-21T04:35:37.907Z [DEBUG]: license delay: 0.001900000000205182
+2024-09-21T04:35:37.907Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:37.907Z [DEBUG]: Result 4:
+2024-09-21T04:35:37.908Z [DEBUG]: NPM Data:
+2024-09-21T04:35:37.908Z [DEBUG]: License: MIT
+2024-09-21T04:35:37.908Z [DEBUG]: GitHub URL: https://github.com/expressjs/express
+2024-09-21T04:35:37.909Z [DEBUG]: 
+**************************
+
+2024-09-21T04:35:37.909Z [DEBUG]: Readme Present: Yes
+2024-09-21T04:35:37.909Z [DEBUG]: Description Present: Yes
+2024-09-21T04:35:37.910Z [DEBUG]: Number of Forks: 15607
+2024-09-21T04:35:37.910Z [DEBUG]: Number of Stars: 65168
+2024-09-21T04:35:37.910Z [DEBUG]: GitHub Data:
+2024-09-21T04:35:37.911Z [DEBUG]: Name: express
+2024-09-21T04:35:37.911Z [DEBUG]: Contributions
+         Array: 3881
+2024-09-21T04:35:37.911Z [DEBUG]: Readme
+             Present: Yes
+2024-09-21T04:35:37.911Z [DEBUG]: Description
+             Present: Yes
+2024-09-21T04:35:37.912Z [DEBUG]: Number of
+             Issues: 254
+2024-09-21T04:35:37.912Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:37.912Z [DEBUG]: responsiveness: 1
+2024-09-21T04:35:37.913Z [DEBUG]: responsiveness delay:0.0020999999997002305
+2024-09-21T04:35:37.913Z [DEBUG]: responsiveness: 
+                                1
+2024-09-21T04:35:37.913Z [DEBUG]: busfactor : 0.5118617307520318
+2024-09-21T04:35:37.914Z [DEBUG]: busfactor delay:
+                                 0.0261000000000422
+2024-09-21T04:35:37.914Z [DEBUG]: ramp up : 1
+2024-09-21T04:35:37.914Z [DEBUG]: ramp up delay: 0.001999999999497959
+2024-09-21T04:35:37.914Z [DEBUG]: license: 0
+2024-09-21T04:35:37.915Z [DEBUG]: license delay: 0.0024999999995998223
+2024-09-21T04:35:37.915Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:37.915Z [DEBUG]: Result 5:
+2024-09-21T04:35:37.916Z [DEBUG]: NPM Data:
+2024-09-21T04:35:37.916Z [DEBUG]: License: ISC
+2024-09-21T04:35:37.916Z [DEBUG]: GitHub URL: N/A
+2024-09-21T04:35:37.916Z [DEBUG]: 
+**************************
+
+2024-09-21T04:35:37.917Z [DEBUG]: Readme Present: No
+2024-09-21T04:35:37.917Z [DEBUG]: Description Present: No
+2024-09-21T04:35:37.918Z [DEBUG]: Number of Forks: -1
+2024-09-21T04:35:37.918Z [DEBUG]: Number of Stars: -1
+2024-09-21T04:35:37.918Z [DEBUG]: GitHub Data:
+2024-09-21T04:35:37.918Z [DEBUG]: Name: empty
+2024-09-21T04:35:37.919Z [DEBUG]: Contributions
+         Array: N/A
+2024-09-21T04:35:37.919Z [DEBUG]: Readme
+             Present: No
+2024-09-21T04:35:37.919Z [DEBUG]: Description
+             Present: No
+2024-09-21T04:35:37.919Z [DEBUG]: Number of
+             Issues: -1
+2024-09-21T04:35:37.920Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:35:37.920Z [DEBUG]: responsiveness: 1
+2024-09-21T04:35:37.920Z [DEBUG]: responsiveness delay:0.00709999999980937
+2024-09-21T04:35:37.921Z [DEBUG]: responsiveness: 
+                                1
+2024-09-21T04:35:37.921Z [DEBUG]: busfactor : 2
+2024-09-21T04:35:37.921Z [DEBUG]: busfactor delay:
+                                 0.0072000000000116415
+2024-09-21T04:35:37.921Z [DEBUG]: ramp up : -0.0014
+2024-09-21T04:35:37.922Z [DEBUG]: ramp up delay: 0.008700000000317232
+2024-09-21T04:35:37.922Z [DEBUG]: license: 0
+2024-09-21T04:35:37.922Z [DEBUG]: license delay: 0.005199999999604188
+2024-09-21T04:35:37.922Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-21T04:38:48.227Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:38:48.229Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'data') for the repo repo
+2024-09-21T04:38:48.239Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:38:48.240Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:38:56.973Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:38:56.975Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'data') for the repo repo
+2024-09-21T04:38:56.983Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:38:56.983Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:38:58.230Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:38:58.233Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'data') for the repo repo
+2024-09-21T04:38:58.243Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:38:58.244Z [DEBUG]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'catch') for the repo repo
+2024-09-21T04:40:12.763Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:40:12.765Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:40:12.775Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:40:12.776Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T04:48:11.758Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:48:11.760Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:48:11.767Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:48:11.768Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T04:53:08.881Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:53:08.882Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:53:08.890Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:53:08.891Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T04:53:11.354Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:53:11.356Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:53:11.364Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:53:11.365Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T04:53:30.233Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:53:30.235Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:53:30.243Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:53:30.243Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T04:54:55.045Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:54:55.046Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:54:55.054Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:54:55.054Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T04:54:59.767Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:54:59.769Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:54:59.777Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:54:59.778Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T04:55:14.987Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:55:14.989Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:55:14.998Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:55:14.999Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T04:56:26.773Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:56:26.775Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:56:26.783Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:56:26.784Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T04:56:36.955Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:56:36.957Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:56:36.965Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:56:36.965Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T04:57:20.366Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:57:20.367Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:57:20.376Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:57:20.377Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T04:57:31.278Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:57:31.280Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:57:31.289Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:57:31.290Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T04:59:08.264Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:59:08.266Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T04:59:08.269Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T04:59:08.270Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo

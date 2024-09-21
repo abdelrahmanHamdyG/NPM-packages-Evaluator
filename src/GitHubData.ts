@@ -47,26 +47,35 @@ export class   GitHubData{
         this.url=url;
         
     }
-    public printMyData(){
+    public printMyData():void{
         const logger=new Logger();
-        logger.log(1, `GitHub Data:`);
+        logger.log(1, "GitHub Data:");
         logger.log(1, `Name: ${this.name || "N/A"}`);
-        logger.log(1, `Number of Issues: ${this.numberOfIssues !== undefined ? this.numberOfIssues : "N/A"}`);
-        logger.log(1, `Number of Commits: ${this.numberOfCommits !== undefined ? this.numberOfCommits : "N/A"}`);
+        logger.log(1, `Number of 
+            Issues: ${this.numberOfIssues !== undefined ? this.numberOfIssues : "N/A"}`);
+        logger.log(1, `Number of Commits: ${this
+            .numberOfCommits !== undefined ? this.numberOfCommits : "N/A"}`);
         if(this.contributions)
-            logger.log(1, `Contributions Array: ${this.contributions.length > 0 ? this.contributions[0].contributor : "N/A"}`);
+            logger.log(1, `Contributions Array: ${this
+        .contributions.length > 0 ? this.contributions[0].contributor : "N/A"}`);
         logger.log(2, `Readme Present: ${this.readme ? "Yes" : "No"}`);
         logger.log(2, `Description Present: ${this.description ? "Yes" : "No"}`);
-        logger.log(2, `Number of Forks: ${this.numberOfForks !== undefined ? this.numberOfForks : "N/A"}`);
-        logger.log(2, `Number of Stars: ${this.numberOfStars !== undefined ? this.numberOfStars : "N/A"}`);
-        logger.log(2, `GitHub Data:`);
+        logger.log(2, `Number of Forks: ${this
+            .numberOfForks !== undefined ? this.numberOfForks : "N/A"}`);
+        logger.log(2, `Number of Stars: ${this.
+            numberOfStars !== undefined ? this.numberOfStars : "N/A"}`);
+        logger.log(2, "GitHub Data:");
         logger.log(2, `Name: ${this.name || "N/A"}`);
  
         if(this.contributions)
-            logger.log(2, `Contributions Array: ${this.contributions.length > 0 ? this.contributions[0].commits : "N/A"}`);
-        logger.log(2, `Readme Present: ${this.readme ? "Yes" : "No"}`);
-        logger.log(2, `Description Present: ${this.description ? "Yes" : "No"}`);
-        logger.log(2, `Number of Issues: ${this.numberOfIssues !== undefined ? this.numberOfIssues : "N/A"}`);
+            logger.log(2, `Contributions
+         Array: ${this.contributions.length > 0 ? this.contributions[0].commits : "N/A"}`);
+        logger.log(2, `Readme
+             Present: ${this.readme ? "Yes" : "No"}`);
+        logger.log(2, `Description
+             Present: ${this.description ? "Yes" : "No"}`);
+        logger.log(2, `Number of
+             Issues: ${this.numberOfIssues !== undefined ? this.numberOfIssues : "N/A"}`);
 
         
         

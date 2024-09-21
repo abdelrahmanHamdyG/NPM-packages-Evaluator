@@ -36,7 +36,7 @@ export class Logger {
   }
 
   public log(level: number, message: string):void {
-    if (level== this.logLevel) {
+    if (level=== this.logLevel) {
       const levelString = this.getLevelString(level);
       const formattedMessage = this.formatMessage(levelString, message);
       fs.appendFileSync(this.logFilePath, formattedMessage, "utf-8");

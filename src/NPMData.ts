@@ -13,7 +13,7 @@ export class NPMData{
         this.githubUrl=githubUrl;
 
     }
-    public printMyData() {
+    public printMyData():void {
         
         const logger=new Logger();
         logger.log(1, `NPM Data:`);
