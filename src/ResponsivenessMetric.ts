@@ -1,8 +1,8 @@
-// RampUpMetric.ts
 import { Metrics } from "./Metrics.js";
 import { GitHubData } from "./GitHubData.js";
 import { NPMData } from "./NPMData.js";
 import { Issue } from "./IssueInterface.js";
+
 
 export class ResponsivenessMetric extends Metrics {
 
@@ -10,34 +10,43 @@ export class ResponsivenessMetric extends Metrics {
 
   constructor(githubData: GitHubData, npmData: NPMData) {
     super(githubData, npmData);
-  
   }
 
   public calculateScore(): number {
-    const timeDifferences = this.getTimeDiff();
-    const averageTime = timeDifferences.length
-      ? timeDifferences.reduce((sum, time) => sum + time, 0)
-      / timeDifferences.length
-      : 0;
-    const score = averageTime 
-    < 7 ? 1 : Math.max((12 - (averageTime / 7)) / 12, 0);
+    this.filteredIssues = this.githubData.Closed_Issues || [];
+    
+    if (this.filteredIssues.length === 0) {
+      // Assign a neutral score if no issues are present
+      return 0.25;
+    }
+
+    
+
+    let satndard_no_of_issues = 0;
+    const repoSize = this.githubData?.size ?? 0; // Default to 0 if size is undefined
+
+    if (repoSize / 1000 >= 100) {// If the repo size is greater than 100MB
+      satndard_no_of_issues = 120;
+    } else if (repoSize / 1000 > 50){  
+      satndard_no_of_issues = 90;
+    }else{
+      satndard_no_of_issues = 80;
+    }
+
+
+    if (this.filteredIssues.length > satndard_no_of_issues) {
+      return 1;
+    }
+    const score = Math.max(this.filteredIssues.length / satndard_no_of_issues, 0);
     return score;
   }
 
   public calculateLatency(): number {
-    const start = performance.now();
-      this.calculateScore();  
+      const start = performance.now();
+      this.calculateScore();
       const end = performance.now();
-      return end - start;  
+      return end - start;
   }
 
   
-
-  private getTimeDiff(): number[] {
-    return this.filteredIssues.map((issue: Issue) => {
-      const createdAt = new Date(issue.created_at);
-      const closedAt = new Date(issue.closed_at!);
-      return (closedAt.getTime() - createdAt.getTime()) / (1000 * 60 * 60 * 24);
-    });
-  }
 }
