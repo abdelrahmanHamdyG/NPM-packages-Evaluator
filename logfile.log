@@ -6008,3 +6008,15 @@ The data fetched for each url:
 2024-09-21T04:59:08.269Z [DEBUG]: Fetching data for owner:
                   owner, repo: repo
 2024-09-21T04:59:08.270Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T05:46:16.848Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T05:46:16.851Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T05:46:16.857Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T05:46:16.858Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
+2024-09-21T05:50:15.093Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T05:50:15.096Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-21T05:50:15.101Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-21T05:50:15.101Z [DEBUG]: Error fetching data: Error: Network Error for the repo repo
