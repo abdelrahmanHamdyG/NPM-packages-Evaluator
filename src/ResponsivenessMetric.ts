@@ -24,7 +24,6 @@ export class ResponsivenessMetric extends Metrics {
 
     let satndard_no_of_issues = 0;
     const repoSize = this.githubData?.size ?? 0; // Default to 0 if size is undefined
-    console.log(this.filteredIssues.length);
 
     if (repoSize / 1000 >= 100) {// If the repo size is greater than 100MB
       satndard_no_of_issues = 120;

@@ -5,7 +5,6 @@ export class   GitHubData{
     
     public url?:string;
     public name?:string;
-    
     public numberOfclosedIssues?:number;
     public numberOfCommits?:number;
     public numberOfForks?:number;
@@ -17,6 +16,7 @@ export class   GitHubData{
     public license?:string;
     public Closed_Issues?:Issue[];
     public size?:number;
+    public openIssues?:Issue[];
     
 
 
@@ -31,7 +31,10 @@ export class   GitHubData{
         description:boolean=false,
         contributions:Array<{contributor:string,commits:number}>=[],
         license:string="empty",
-        Closed_Issues:Issue[]=[],size:number=0){
+        Closed_Issues:Issue[]=[],
+        size:number=0,
+        openIssues:Issue[]=[]
+    ){
 
 
         this.name=name;
@@ -47,7 +50,7 @@ export class   GitHubData{
         this.Closed_Issues = Closed_Issues;
         this.url=url;
         this.size=size;
-        
+        this.openIssues=openIssues;
     }
     public printMyData():void{
         const logger=new Logger();

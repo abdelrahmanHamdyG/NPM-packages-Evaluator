@@ -1,625 +1,107 @@
-2024-09-21T17:46:10.877Z [DEBUG]: rank modules is called with parameter =someThing.txt 
-2024-09-21T17:46:10.878Z [DEBUG]: rankModulesFunction is called and the path is someThing.txt
-2024-09-21T17:46:10.879Z [DEBUG]: total delay of fetching is 1.7856999999999914
-2024-09-21T17:46:10.880Z [DEBUG]: the url https://www.npmjs.com/package/lodash has github url =
+2024-09-21T19:38:36.621Z [DEBUG]: rank modules is called with parameter =someThing.txt 
+2024-09-21T19:38:36.622Z [DEBUG]: rankModulesFunction is called and the path is someThing.txt
+2024-09-21T19:38:36.622Z [DEBUG]: total delay of fetching is 1.6484999999999843
+2024-09-21T19:38:36.624Z [DEBUG]: the url https://www.npmjs.com/package/lodash has github url =
                 empty and npm url= https://www.npmjs.com/package/lodash
-2024-09-21T17:46:10.881Z [DEBUG]: the npm package is  lodash
-2024-09-21T17:46:10.882Z [DEBUG]: Fetching data for package: lodash
-2024-09-21T17:46:10.951Z [DEBUG]: the url https://github.com/abdelrahmanHamdyG/Book-Exchange-Api has github url =
-                https://github.com/abdelrahmanHamdyG/Book-Exchange-Api and npm url= empty
-2024-09-21T17:46:10.951Z [DEBUG]: the github user is abdelrahmanHamdyG the github repo is Book-Exchange-Api
-2024-09-21T17:46:10.953Z [DEBUG]: we are fetching data for the giturl:https://github.com/abdelrahmanHamdyG/Book-Exchange-Api
-                
- with username:abdelrahmanHamdyG and reponame:Book-Exchange-Api
-2024-09-21T17:46:10.956Z [DEBUG]: Fetching data for owner:
-                  abdelrahmanHamdyG, repo: Book-Exchange-Api
-2024-09-21T17:46:10.957Z [DEBUG]: the url https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator has github url =
-                https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator and npm url= empty
-2024-09-21T17:46:10.957Z [DEBUG]: the github user is abdelrahmanHamdyG the github repo is NPM-packages-Evaluator
-2024-09-21T17:46:10.958Z [DEBUG]: we are fetching data for the giturl:https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator
-                
- with username:abdelrahmanHamdyG and reponame:NPM-packages-Evaluator
-2024-09-21T17:46:10.959Z [DEBUG]: Fetching data for owner:
-                  abdelrahmanHamdyG, repo: NPM-packages-Evaluator
-2024-09-21T17:46:10.960Z [DEBUG]: the url https://www.npmjs.com/package/express has github url =
+2024-09-21T19:38:36.625Z [DEBUG]: the npm package is  lodash
+2024-09-21T19:38:36.626Z [DEBUG]: Fetching data for package: lodash
+2024-09-21T19:38:36.700Z [DEBUG]: the url https://www.npmjs.com/package/express has github url =
                 empty and npm url= https://www.npmjs.com/package/express
-2024-09-21T17:46:10.961Z [DEBUG]: the npm package is  express
-2024-09-21T17:46:10.962Z [DEBUG]: Fetching data for package: express
-2024-09-21T17:46:10.963Z [DEBUG]: the url https://www.npmjs.com/package/zhs has github url =
+2024-09-21T19:38:36.700Z [DEBUG]: the npm package is  express
+2024-09-21T19:38:36.701Z [DEBUG]: Fetching data for package: express
+2024-09-21T19:38:36.702Z [DEBUG]: the url https://www.npmjs.com/package/zhs has github url =
                 empty and npm url= https://www.npmjs.com/package/zhs
-2024-09-21T17:46:10.964Z [DEBUG]: the npm package is  zhs
-2024-09-21T17:46:10.965Z [DEBUG]: Fetching data for package: zhs
-2024-09-21T17:46:10.966Z [DEBUG]: the url https://www.npmjs.com/package/wat4hjs has github url =
+2024-09-21T19:38:36.703Z [DEBUG]: the npm package is  zhs
+2024-09-21T19:38:36.703Z [DEBUG]: Fetching data for package: zhs
+2024-09-21T19:38:36.707Z [DEBUG]: the url https://www.npmjs.com/package/wat4hjs has github url =
                 empty and npm url= https://www.npmjs.com/package/wat4hjs
-2024-09-21T17:46:10.967Z [DEBUG]: the npm package is  wat4hjs
-2024-09-21T17:46:10.968Z [DEBUG]: Fetching data for package: wat4hjs
-2024-09-21T17:46:10.969Z [DEBUG]: the url https://github.com/mrdoob/three.js/ has github url =
+2024-09-21T19:38:36.707Z [DEBUG]: the npm package is  wat4hjs
+2024-09-21T19:38:36.708Z [DEBUG]: Fetching data for package: wat4hjs
+2024-09-21T19:38:36.709Z [DEBUG]: the url https://github.com/mrdoob/three.js/ has github url =
                 https://github.com/mrdoob/three.js/ and npm url= empty
-2024-09-21T17:46:10.970Z [DEBUG]: the github user is mrdoob the github repo is three.js
-2024-09-21T17:46:10.971Z [DEBUG]: we are fetching data for the giturl:https://github.com/mrdoob/three.js/
+2024-09-21T19:38:36.709Z [DEBUG]: the github user is mrdoob the github repo is three.js
+2024-09-21T19:38:36.710Z [DEBUG]: we are fetching data for the giturl:https://github.com/mrdoob/three.js/
                 
  with username:mrdoob and reponame:three.js
-2024-09-21T17:46:10.972Z [DEBUG]: Fetching data for owner:
+2024-09-21T19:38:36.713Z [DEBUG]: Fetching data for owner:
                   mrdoob, repo: three.js
-2024-09-21T17:46:10.972Z [DEBUG]: the url https://www.npmjs.com/package/socket.io has github url =
+2024-09-21T19:38:36.714Z [DEBUG]: the url https://www.npmjs.com/package/socket.io has github url =
                 empty and npm url= https://www.npmjs.com/package/socket.io
-2024-09-21T17:46:10.973Z [DEBUG]: the npm package is  socket.io
-2024-09-21T17:46:10.974Z [DEBUG]: Fetching data for package: socket.io
-2024-09-21T17:46:10.976Z [DEBUG]: the url https://github.com/prathameshnetake/libvlc has github url =
+2024-09-21T19:38:36.714Z [DEBUG]: the npm package is  socket.io
+2024-09-21T19:38:36.714Z [DEBUG]: Fetching data for package: socket.io
+2024-09-21T19:38:36.716Z [DEBUG]: the url https://github.com/prathameshnetake/libvlc has github url =
                 https://github.com/prathameshnetake/libvlc and npm url= empty
-2024-09-21T17:46:10.976Z [DEBUG]: the github user is prathameshnetake the github repo is libvlc
-2024-09-21T17:46:10.978Z [DEBUG]: we are fetching data for the giturl:https://github.com/prathameshnetake/libvlc
+2024-09-21T19:38:36.716Z [DEBUG]: the github user is prathameshnetake the github repo is libvlc
+2024-09-21T19:38:36.717Z [DEBUG]: we are fetching data for the giturl:https://github.com/prathameshnetake/libvlc
                 
  with username:prathameshnetake and reponame:libvlc
-2024-09-21T17:46:10.978Z [DEBUG]: Fetching data for owner:
+2024-09-21T19:38:36.717Z [DEBUG]: Fetching data for owner:
                   prathameshnetake, repo: libvlc
-2024-09-21T17:46:10.979Z [DEBUG]: the url https://www.npmjs.com/package/react has github url =
+2024-09-21T19:38:36.718Z [DEBUG]: the url https://www.npmjs.com/package/react has github url =
                 empty and npm url= https://www.npmjs.com/package/react
-2024-09-21T17:46:10.979Z [DEBUG]: the npm package is  react
-2024-09-21T17:46:10.980Z [DEBUG]: Fetching data for package: react
-2024-09-21T17:46:10.981Z [DEBUG]: the url https://www.npmjs.com/package/unlicensed has github url =
+2024-09-21T19:38:36.718Z [DEBUG]: the npm package is  react
+2024-09-21T19:38:36.718Z [DEBUG]: Fetching data for package: react
+2024-09-21T19:38:36.719Z [DEBUG]: the url https://www.npmjs.com/package/unlicensed has github url =
                 empty and npm url= https://www.npmjs.com/package/unlicensed
-2024-09-21T17:46:10.982Z [DEBUG]: the npm package is  unlicensed
-2024-09-21T17:46:10.983Z [DEBUG]: Fetching data for package: unlicensed
-2024-09-21T17:46:11.115Z [DEBUG]: we are fetching data for the npmurl:
+2024-09-21T19:38:36.720Z [DEBUG]: the npm package is  unlicensed
+2024-09-21T19:38:36.720Z [DEBUG]: Fetching data for package: unlicensed
+2024-09-21T19:38:36.721Z [DEBUG]: the url https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator has github url =
+                https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator and npm url= empty
+2024-09-21T19:38:36.722Z [DEBUG]: the github user is abdelrahmanHamdyG the github repo is NPM-packages-Evaluator
+2024-09-21T19:38:36.722Z [DEBUG]: we are fetching data for the giturl:https://github.com/abdelrahmanHamdyG/NPM-packages-Evaluator
+                
+ with username:abdelrahmanHamdyG and reponame:NPM-packages-Evaluator
+2024-09-21T19:38:36.723Z [DEBUG]: Fetching data for owner:
+                  abdelrahmanHamdyG, repo: NPM-packages-Evaluator
+2024-09-21T19:38:36.856Z [DEBUG]: we are fetching data for the npmurl:
                 https://www.npmjs.com/package/zhs
  with packagenam:[object Object]
 
-2024-09-21T17:46:11.120Z [DEBUG]: we are fetching data for the npmurl:
-                https://www.npmjs.com/package/unlicensed
- with packagenam:[object Object]
-
-2024-09-21T17:46:11.121Z [DEBUG]: we got the github url after
-                     the npm url and it is :https://github.com/ryanve/unlicensed
-2024-09-21T17:46:11.124Z [DEBUG]: Fetching data for owner:
-                  ryanve, repo: unlicensed
-2024-09-21T17:46:11.129Z [DEBUG]: we are fetching data for the npmurl:
+2024-09-21T19:38:36.857Z [DEBUG]: we are fetching data for the npmurl:
                 https://www.npmjs.com/package/wat4hjs
  with packagenam:[object Object]
 
-2024-09-21T17:46:11.129Z [DEBUG]: we got the github url after
+2024-09-21T19:38:36.858Z [DEBUG]: we got the github url after
                      the npm url and it is :https://github.com/hasansultan92/watch.js
-2024-09-21T17:46:11.131Z [DEBUG]: Fetching data for owner:
+2024-09-21T19:38:36.858Z [DEBUG]: Fetching data for owner:
                   hasansultan92, repo: watch.js
-2024-09-21T17:46:11.183Z [DEBUG]: we are fetching data for the npmurl:
+2024-09-21T19:38:36.907Z [DEBUG]: we are fetching data for the npmurl:
                 https://www.npmjs.com/package/lodash
  with packagenam:[object Object]
 
-2024-09-21T17:46:11.183Z [DEBUG]: we got the github url after
+2024-09-21T19:38:36.907Z [DEBUG]: we got the github url after
                      the npm url and it is :https://github.com/lodash/lodash
-2024-09-21T17:46:11.185Z [DEBUG]: Fetching data for owner:
+2024-09-21T19:38:36.909Z [DEBUG]: Fetching data for owner:
                   lodash, repo: lodash
-2024-09-21T17:46:11.202Z [DEBUG]: we are fetching data for the npmurl:
+2024-09-21T19:38:36.923Z [DEBUG]: we are fetching data for the npmurl:
                 https://www.npmjs.com/package/socket.io
  with packagenam:[object Object]
 
-2024-09-21T17:46:11.203Z [DEBUG]: we got the github url after
+2024-09-21T19:38:36.924Z [DEBUG]: we got the github url after
                      the npm url and it is :https://github.com/socketio/socket.io
-2024-09-21T17:46:11.204Z [DEBUG]: Fetching data for owner:
+2024-09-21T19:38:36.925Z [DEBUG]: Fetching data for owner:
                   socketio, repo: socket.io
-2024-09-21T17:46:11.234Z [DEBUG]: we are fetching data for the npmurl:
+2024-09-21T19:38:36.959Z [DEBUG]: we are fetching data for the npmurl:
                 https://www.npmjs.com/package/express
  with packagenam:[object Object]
 
-2024-09-21T17:46:11.235Z [DEBUG]: we got the github url after
+2024-09-21T19:38:36.960Z [DEBUG]: we got the github url after
                      the npm url and it is :https://github.com/expressjs/express
-2024-09-21T17:46:11.237Z [DEBUG]: Fetching data for owner:
+2024-09-21T19:38:36.961Z [DEBUG]: Fetching data for owner:
                   expressjs, repo: express
-2024-09-21T17:46:11.385Z [DEBUG]: we are fetching data for the npmurl:
+2024-09-21T19:38:37.055Z [DEBUG]: we are fetching data for the npmurl:
                 https://www.npmjs.com/package/react
  with packagenam:[object Object]
 
-2024-09-21T17:46:11.386Z [DEBUG]: we got the github url after
+2024-09-21T19:38:37.056Z [DEBUG]: we got the github url after
                      the npm url and it is :https://github.com/facebook/react
-2024-09-21T17:46:11.388Z [DEBUG]: Fetching data for owner:
+2024-09-21T19:38:37.057Z [DEBUG]: Fetching data for owner:
                   facebook, repo: react
-2024-09-21T17:46:12.212Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T17:46:12.239Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T17:46:12.259Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T17:46:12.334Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T17:46:12.335Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T17:46:13.510Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T17:46:14.403Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T17:46:15.836Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T17:46:18.532Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T17:46:23.453Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T17:46:23.455Z [DEBUG]: 
-
-The data fetched for each url:
-
-
-2024-09-21T17:46:23.455Z [DEBUG]: Result 1:
-2024-09-21T17:46:23.457Z [DEBUG]: NPM Data:
-2024-09-21T17:46:23.457Z [DEBUG]: License: MIT
-2024-09-21T17:46:23.458Z [DEBUG]: GitHub URL: https://github.com/lodash/lodash
-2024-09-21T17:46:23.459Z [DEBUG]: 
-**************************
-
-2024-09-21T17:46:23.461Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.461Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.462Z [DEBUG]: Number of Forks: 
-            7018
-2024-09-21T17:46:23.463Z [DEBUG]: Number of Stars: 
-            59633
-2024-09-21T17:46:23.464Z [DEBUG]: GitHub Data:
-2024-09-21T17:46:23.465Z [DEBUG]: Name: lodash
-2024-09-21T17:46:23.466Z [DEBUG]: License Name: Other
-2024-09-21T17:46:23.467Z [DEBUG]: Contributions Array: 6726
-2024-09-21T17:46:23.468Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.469Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.470Z [DEBUG]: Number of Issues: 31
-2024-09-21T17:46:23.471Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.477Z [DEBUG]: responsiveness: 0.3875
-2024-09-21T17:46:23.478Z [DEBUG]: responsiveness delay:0.4614000000001397
-2024-09-21T17:46:23.478Z [DEBUG]: responsiveness: 
-                                0.3875
-2024-09-21T17:46:23.479Z [DEBUG]: busfactor : 0.2688857716757572
-2024-09-21T17:46:23.480Z [DEBUG]: busfactor delay:
-                                 0.050600000000486034
-2024-09-21T17:46:23.480Z [DEBUG]: ramp up : 1
-2024-09-21T17:46:23.481Z [DEBUG]: ramp up delay: 0.002800000000206637
-2024-09-21T17:46:23.482Z [DEBUG]: license: 1
-2024-09-21T17:46:23.483Z [DEBUG]: license delay: 0.004399999999805004
-2024-09-21T17:46:23.483Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.484Z [DEBUG]: Result 2:
-2024-09-21T17:46:23.485Z [DEBUG]: NPM Data:
-2024-09-21T17:46:23.485Z [DEBUG]: License: empty
-2024-09-21T17:46:23.486Z [DEBUG]: GitHub URL: empty
-2024-09-21T17:46:23.487Z [DEBUG]: 
-**************************
-
-2024-09-21T17:46:23.488Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.488Z [DEBUG]: Description Present: No
-2024-09-21T17:46:23.489Z [DEBUG]: Number of Forks: 
-            2
-2024-09-21T17:46:23.489Z [DEBUG]: Number of Stars: 
-            2
-2024-09-21T17:46:23.490Z [DEBUG]: GitHub Data:
-2024-09-21T17:46:23.490Z [DEBUG]: Name: Book-Exchange-Api
-2024-09-21T17:46:23.491Z [DEBUG]: License Name: empty
-2024-09-21T17:46:23.491Z [DEBUG]: Contributions Array: 57
-2024-09-21T17:46:23.492Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.493Z [DEBUG]: Description Present: No
-2024-09-21T17:46:23.494Z [DEBUG]: Number of Issues: 0
-2024-09-21T17:46:23.494Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.496Z [DEBUG]: responsiveness: 0.25
-2024-09-21T17:46:23.496Z [DEBUG]: responsiveness delay:0.005000000001018634
-2024-09-21T17:46:23.497Z [DEBUG]: responsiveness: 
-                                0.25
-2024-09-21T17:46:23.498Z [DEBUG]: busfactor : 0
-2024-09-21T17:46:23.499Z [DEBUG]: busfactor delay:
-                                 0.007799999999406282
-2024-09-21T17:46:23.500Z [DEBUG]: ramp up : 0.1528
-2024-09-21T17:46:23.501Z [DEBUG]: ramp up delay: 0.004100000000107684
-2024-09-21T17:46:23.502Z [DEBUG]: license: 0
-2024-09-21T17:46:23.503Z [DEBUG]: license delay: 0.0319999999992433
-2024-09-21T17:46:23.503Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.504Z [DEBUG]: Result 3:
-2024-09-21T17:46:23.506Z [DEBUG]: NPM Data:
-2024-09-21T17:46:23.506Z [DEBUG]: License: empty
-2024-09-21T17:46:23.507Z [DEBUG]: GitHub URL: empty
-2024-09-21T17:46:23.508Z [DEBUG]: 
-**************************
-
-2024-09-21T17:46:23.509Z [DEBUG]: Readme Present: No
-2024-09-21T17:46:23.509Z [DEBUG]: Description Present: No
-2024-09-21T17:46:23.510Z [DEBUG]: Number of Forks: 
-            1
-2024-09-21T17:46:23.511Z [DEBUG]: Number of Stars: 
-            1
-2024-09-21T17:46:23.512Z [DEBUG]: GitHub Data:
-2024-09-21T17:46:23.513Z [DEBUG]: Name: NPM-packages-Evaluator
-2024-09-21T17:46:23.514Z [DEBUG]: License Name: empty
-2024-09-21T17:46:23.515Z [DEBUG]: Contributions Array: 30
-2024-09-21T17:46:23.516Z [DEBUG]: Readme Present: No
-2024-09-21T17:46:23.517Z [DEBUG]: Description Present: No
-2024-09-21T17:46:23.517Z [DEBUG]: Number of Issues: 21
-2024-09-21T17:46:23.518Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.520Z [DEBUG]: responsiveness: 0.2625
-2024-09-21T17:46:23.521Z [DEBUG]: responsiveness delay:0.3408999999992375
-2024-09-21T17:46:23.521Z [DEBUG]: responsiveness: 
-                                0.2625
-2024-09-21T17:46:23.522Z [DEBUG]: busfactor : 0.5966935793925413
-2024-09-21T17:46:23.522Z [DEBUG]: busfactor delay:
-                                 0.027899999999135616
-2024-09-21T17:46:23.523Z [DEBUG]: ramp up : 0.0014
-2024-09-21T17:46:23.524Z [DEBUG]: ramp up delay: 0.004600000000209548
-2024-09-21T17:46:23.524Z [DEBUG]: license: 0
-2024-09-21T17:46:23.525Z [DEBUG]: license delay: 0.006499999999505235
-2024-09-21T17:46:23.526Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.526Z [DEBUG]: Result 4:
-2024-09-21T17:46:23.528Z [DEBUG]: NPM Data:
-2024-09-21T17:46:23.528Z [DEBUG]: License: MIT
-2024-09-21T17:46:23.529Z [DEBUG]: GitHub URL: https://github.com/expressjs/express
-2024-09-21T17:46:23.530Z [DEBUG]: 
-**************************
-
-2024-09-21T17:46:23.531Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.531Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.532Z [DEBUG]: Number of Forks: 
-            15618
-2024-09-21T17:46:23.532Z [DEBUG]: Number of Stars: 
-            65173
-2024-09-21T17:46:23.533Z [DEBUG]: GitHub Data:
-2024-09-21T17:46:23.535Z [DEBUG]: Name: express
-2024-09-21T17:46:23.535Z [DEBUG]: License Name: MIT License
-2024-09-21T17:46:23.536Z [DEBUG]: Contributions Array: 3881
-2024-09-21T17:46:23.537Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.538Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.539Z [DEBUG]: Number of Issues: 253
-2024-09-21T17:46:23.539Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.541Z [DEBUG]: responsiveness: 1
-2024-09-21T17:46:23.542Z [DEBUG]: responsiveness delay:0.27549999999973807
-2024-09-21T17:46:23.542Z [DEBUG]: responsiveness: 
-                                1
-2024-09-21T17:46:23.542Z [DEBUG]: busfactor : 0.5118617307520318
-2024-09-21T17:46:23.543Z [DEBUG]: busfactor delay:
-                                 0.05830000000059954
-2024-09-21T17:46:23.543Z [DEBUG]: ramp up : 1
-2024-09-21T17:46:23.543Z [DEBUG]: ramp up delay: 0.004800000000614091
-2024-09-21T17:46:23.543Z [DEBUG]: license: 1
-2024-09-21T17:46:23.544Z [DEBUG]: license delay: 0.008299999999508145
-2024-09-21T17:46:23.545Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.545Z [DEBUG]: Result 5:
-2024-09-21T17:46:23.546Z [DEBUG]: NPM Data:
-2024-09-21T17:46:23.546Z [DEBUG]: License: ISC
-2024-09-21T17:46:23.546Z [DEBUG]: GitHub URL: N/A
-2024-09-21T17:46:23.547Z [DEBUG]: 
-**************************
-
-2024-09-21T17:46:23.548Z [DEBUG]: Readme Present: No
-2024-09-21T17:46:23.548Z [DEBUG]: Description Present: No
-2024-09-21T17:46:23.548Z [DEBUG]: Number of Forks: 
-            0
-2024-09-21T17:46:23.549Z [DEBUG]: Number of Stars: 
-            0
-2024-09-21T17:46:23.549Z [DEBUG]: GitHub Data:
-2024-09-21T17:46:23.549Z [DEBUG]: Name: empty
-2024-09-21T17:46:23.550Z [DEBUG]: License Name: empty
-2024-09-21T17:46:23.550Z [DEBUG]: Contributions Array: N/A
-2024-09-21T17:46:23.551Z [DEBUG]: Readme Present: No
-2024-09-21T17:46:23.551Z [DEBUG]: Description Present: No
-2024-09-21T17:46:23.551Z [DEBUG]: Number of Issues: 0
-2024-09-21T17:46:23.552Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.553Z [DEBUG]: responsiveness: 0.25
-2024-09-21T17:46:23.554Z [DEBUG]: responsiveness delay:0.004600000000209548
-2024-09-21T17:46:23.554Z [DEBUG]: responsiveness: 
-                                0.25
-2024-09-21T17:46:23.555Z [DEBUG]: busfactor : 0
-2024-09-21T17:46:23.556Z [DEBUG]: busfactor delay:
-                                 0.01510000000052969
-2024-09-21T17:46:23.556Z [DEBUG]: ramp up : 0
-2024-09-21T17:46:23.557Z [DEBUG]: ramp up delay: 0.01989999999932479
-2024-09-21T17:46:23.557Z [DEBUG]: license: 0
-2024-09-21T17:46:23.558Z [DEBUG]: license delay: 0.006600000000617001
-2024-09-21T17:46:23.558Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.559Z [DEBUG]: Result 6:
-2024-09-21T17:46:23.560Z [DEBUG]: NPM Data:
-2024-09-21T17:46:23.560Z [DEBUG]: License: MIT
-2024-09-21T17:46:23.561Z [DEBUG]: GitHub URL: https://github.com/hasansultan92/watch.js
-2024-09-21T17:46:23.562Z [DEBUG]: 
-**************************
-
-2024-09-21T17:46:23.563Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.563Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.564Z [DEBUG]: Number of Forks: 
-            0
-2024-09-21T17:46:23.564Z [DEBUG]: Number of Stars: 
-            1
-2024-09-21T17:46:23.565Z [DEBUG]: GitHub Data:
-2024-09-21T17:46:23.566Z [DEBUG]: Name: watch.js
-2024-09-21T17:46:23.566Z [DEBUG]: License Name: MIT License
-2024-09-21T17:46:23.567Z [DEBUG]: Contributions Array: 7
-2024-09-21T17:46:23.567Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.568Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.569Z [DEBUG]: Number of Issues: 0
-2024-09-21T17:46:23.571Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.573Z [DEBUG]: responsiveness: 0.25
-2024-09-21T17:46:23.574Z [DEBUG]: responsiveness delay:0.004999999999199645
-2024-09-21T17:46:23.574Z [DEBUG]: responsiveness: 
-                                0.25
-2024-09-21T17:46:23.575Z [DEBUG]: busfactor : 0
-2024-09-21T17:46:23.576Z [DEBUG]: busfactor delay:
-                                 0.007499999999708962
-2024-09-21T17:46:23.577Z [DEBUG]: ramp up : 0.30069999999999997
-2024-09-21T17:46:23.578Z [DEBUG]: ramp up delay: 0.009099999999307329
-2024-09-21T17:46:23.579Z [DEBUG]: license: 1
-2024-09-21T17:46:23.580Z [DEBUG]: license delay: 0.023400000000037835
-2024-09-21T17:46:23.581Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.582Z [DEBUG]: Result 7:
-2024-09-21T17:46:23.584Z [DEBUG]: NPM Data:
-2024-09-21T17:46:23.585Z [DEBUG]: License: empty
-2024-09-21T17:46:23.586Z [DEBUG]: GitHub URL: empty
-2024-09-21T17:46:23.587Z [DEBUG]: 
-**************************
-
-2024-09-21T17:46:23.589Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.590Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.590Z [DEBUG]: Number of Forks: 
-            35310
-2024-09-21T17:46:23.591Z [DEBUG]: Number of Stars: 
-            101824
-2024-09-21T17:46:23.591Z [DEBUG]: GitHub Data:
-2024-09-21T17:46:23.593Z [DEBUG]: Name: three.js
-2024-09-21T17:46:23.593Z [DEBUG]: License Name: MIT License
-2024-09-21T17:46:23.595Z [DEBUG]: Contributions Array: 18372
-2024-09-21T17:46:23.596Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.597Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.598Z [DEBUG]: Number of Issues: 756
-2024-09-21T17:46:23.599Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.602Z [DEBUG]: responsiveness: 1
-2024-09-21T17:46:23.603Z [DEBUG]: responsiveness delay:0.5504000000000815
-2024-09-21T17:46:23.603Z [DEBUG]: responsiveness: 
-                                1
-2024-09-21T17:46:23.604Z [DEBUG]: busfactor : 0.7692751251384485
-2024-09-21T17:46:23.605Z [DEBUG]: busfactor delay:
-                                 0.11889999999948486
-2024-09-21T17:46:23.606Z [DEBUG]: ramp up : 1
-2024-09-21T17:46:23.606Z [DEBUG]: ramp up delay: 0.0059000000001105946
-2024-09-21T17:46:23.607Z [DEBUG]: license: 1
-2024-09-21T17:46:23.608Z [DEBUG]: license delay: 0.03110000000015134
-2024-09-21T17:46:23.608Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.610Z [DEBUG]: Result 8:
-2024-09-21T17:46:23.611Z [DEBUG]: NPM Data:
-2024-09-21T17:46:23.611Z [DEBUG]: License: MIT
-2024-09-21T17:46:23.612Z [DEBUG]: GitHub URL: https://github.com/socketio/socket.io
-2024-09-21T17:46:23.613Z [DEBUG]: 
-**************************
-
-2024-09-21T17:46:23.614Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.614Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.615Z [DEBUG]: Number of Forks: 
-            10096
-2024-09-21T17:46:23.616Z [DEBUG]: Number of Stars: 
-            60928
-2024-09-21T17:46:23.616Z [DEBUG]: GitHub Data:
-2024-09-21T17:46:23.617Z [DEBUG]: Name: socket.io
-2024-09-21T17:46:23.618Z [DEBUG]: License Name: MIT License
-2024-09-21T17:46:23.618Z [DEBUG]: Contributions Array: 3629
-2024-09-21T17:46:23.619Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.620Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.622Z [DEBUG]: Number of Issues: 48
-2024-09-21T17:46:23.623Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.625Z [DEBUG]: responsiveness: 0.6
-2024-09-21T17:46:23.626Z [DEBUG]: responsiveness delay:0.5995999999995547
-2024-09-21T17:46:23.627Z [DEBUG]: responsiveness: 
-                                0.6
-2024-09-21T17:46:23.627Z [DEBUG]: busfactor : 0.6956101480887518
-2024-09-21T17:46:23.628Z [DEBUG]: busfactor delay:
-                                 0.19570000000021537
-2024-09-21T17:46:23.629Z [DEBUG]: ramp up : 1
-2024-09-21T17:46:23.630Z [DEBUG]: ramp up delay: 0.02230000000054133
-2024-09-21T17:46:23.631Z [DEBUG]: license: 1
-2024-09-21T17:46:23.631Z [DEBUG]: license delay: 0.004600000000209548
-2024-09-21T17:46:23.632Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.632Z [DEBUG]: Result 9:
-2024-09-21T17:46:23.633Z [DEBUG]: NPM Data:
-2024-09-21T17:46:23.634Z [DEBUG]: License: empty
-2024-09-21T17:46:23.634Z [DEBUG]: GitHub URL: empty
-2024-09-21T17:46:23.635Z [DEBUG]: 
-**************************
-
-2024-09-21T17:46:23.636Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.637Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.638Z [DEBUG]: Number of Forks: 
-            0
-2024-09-21T17:46:23.638Z [DEBUG]: Number of Stars: 
-            2
-2024-09-21T17:46:23.639Z [DEBUG]: GitHub Data:
-2024-09-21T17:46:23.639Z [DEBUG]: Name: libvlc
-2024-09-21T17:46:23.640Z [DEBUG]: License Name: empty
-2024-09-21T17:46:23.641Z [DEBUG]: Contributions Array: 4
-2024-09-21T17:46:23.641Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.642Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.642Z [DEBUG]: Number of Issues: 0
-2024-09-21T17:46:23.643Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.644Z [DEBUG]: responsiveness: 0.25
-2024-09-21T17:46:23.645Z [DEBUG]: responsiveness delay:0.004300000000512227
-2024-09-21T17:46:23.645Z [DEBUG]: responsiveness: 
-                                0.25
-2024-09-21T17:46:23.646Z [DEBUG]: busfactor : 0
-2024-09-21T17:46:23.646Z [DEBUG]: busfactor delay:
-                                 0.03509999999914726
-2024-09-21T17:46:23.647Z [DEBUG]: ramp up : 0.3014
-2024-09-21T17:46:23.648Z [DEBUG]: ramp up delay: 0.005699999999706051
-2024-09-21T17:46:23.649Z [DEBUG]: license: 0
-2024-09-21T17:46:23.650Z [DEBUG]: license delay: 0.007399999998597195
-2024-09-21T17:46:23.650Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.651Z [DEBUG]: Result 10:
-2024-09-21T17:46:23.652Z [DEBUG]: NPM Data:
-2024-09-21T17:46:23.652Z [DEBUG]: License: MIT
-2024-09-21T17:46:23.653Z [DEBUG]: GitHub URL: https://github.com/facebook/react
-2024-09-21T17:46:23.653Z [DEBUG]: 
-**************************
-
-2024-09-21T17:46:23.654Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.655Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.655Z [DEBUG]: Number of Forks: 
-            46432
-2024-09-21T17:46:23.656Z [DEBUG]: Number of Stars: 
-            227618
-2024-09-21T17:46:23.657Z [DEBUG]: GitHub Data:
-2024-09-21T17:46:23.658Z [DEBUG]: Name: react
-2024-09-21T17:46:23.659Z [DEBUG]: License Name: MIT License
-2024-09-21T17:46:23.660Z [DEBUG]: Contributions Array: 1778
-2024-09-21T17:46:23.660Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.661Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.661Z [DEBUG]: Number of Issues: 987
-2024-09-21T17:46:23.662Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.663Z [DEBUG]: responsiveness: 1
-2024-09-21T17:46:23.664Z [DEBUG]: responsiveness delay:0.28070000000116124
-2024-09-21T17:46:23.664Z [DEBUG]: responsiveness: 
-                                1
-2024-09-21T17:46:23.665Z [DEBUG]: busfactor : 0.9455441280228913
-2024-09-21T17:46:23.665Z [DEBUG]: busfactor delay:
-                                 0.10670000000027358
-2024-09-21T17:46:23.666Z [DEBUG]: ramp up : 1
-2024-09-21T17:46:23.666Z [DEBUG]: ramp up delay: 0.0030999999999039574
-2024-09-21T17:46:23.667Z [DEBUG]: license: 1
-2024-09-21T17:46:23.667Z [DEBUG]: license delay: 0.0036000000000058208
-2024-09-21T17:46:23.668Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.668Z [DEBUG]: Result 11:
-2024-09-21T17:46:23.669Z [DEBUG]: NPM Data:
-2024-09-21T17:46:23.669Z [DEBUG]: License: UNLICENSED
-2024-09-21T17:46:23.670Z [DEBUG]: GitHub URL: https://github.com/ryanve/unlicensed
-2024-09-21T17:46:23.670Z [DEBUG]: 
-**************************
-
-2024-09-21T17:46:23.671Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.672Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.672Z [DEBUG]: Number of Forks: 
-            0
-2024-09-21T17:46:23.672Z [DEBUG]: Number of Stars: 
-            0
-2024-09-21T17:46:23.673Z [DEBUG]: GitHub Data:
-2024-09-21T17:46:23.673Z [DEBUG]: Name: unlicensed
-2024-09-21T17:46:23.674Z [DEBUG]: License Name: Other
-2024-09-21T17:46:23.675Z [DEBUG]: Contributions Array: 10
-2024-09-21T17:46:23.675Z [DEBUG]: Readme Present: Yes
-2024-09-21T17:46:23.675Z [DEBUG]: Description Present: Yes
-2024-09-21T17:46:23.676Z [DEBUG]: Number of Issues: 0
-2024-09-21T17:46:23.676Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T17:46:23.677Z [DEBUG]: responsiveness: 0.25
-2024-09-21T17:46:23.677Z [DEBUG]: responsiveness delay:0.002300000000104774
-2024-09-21T17:46:23.678Z [DEBUG]: responsiveness: 
-                                0.25
-2024-09-21T17:46:23.678Z [DEBUG]: busfactor : 0
-2024-09-21T17:46:23.679Z [DEBUG]: busfactor delay:
-                                 0.0030999999999039574
-2024-09-21T17:46:23.679Z [DEBUG]: ramp up : 0.3
-2024-09-21T17:46:23.679Z [DEBUG]: ramp up delay: 0.0018999999992956873
-2024-09-21T17:46:23.680Z [DEBUG]: license: 0
-2024-09-21T17:46:23.680Z [DEBUG]: license delay: 0.002599999999802094
-2024-09-21T17:46:23.680Z [DEBUG]: 
-
-
-**************************
-
-
-
+2024-09-21T19:38:37.123Z [DEBUG]: we are fetching data for the npmurl:
+                https://www.npmjs.com/package/unlicensed
+ with packagenam:[object Object]
+
+2024-09-21T19:38:37.124Z [DEBUG]: we got the github url after
+                     the npm url and it is :https://github.com/ryanve/unlicensed
+2024-09-21T19:38:37.125Z [DEBUG]: Fetching data for owner:
+                  ryanve, repo: unlicensed
