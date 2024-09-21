@@ -57,16 +57,20 @@ export class GitHubAPI extends API {
             });
 
             // Wait for all data fetches to complete in parallel
-            const [reposResponse, closed_issues,openIssues ,
-                commitsResponse, contributors,
-                 readmeResponse] = await Promise.all([
+            const [reposResponse, issuesResponse, 
+                commitsResponse, contributors, 
+                readmeResponse] = await Promise.all([
                 reposRequest,
-                (await issuesRequest).closedIssues,
-                (await issuesRequest).openIssues,
+                issuesRequest,
                 commitsRequest,
                 contributorsRequest,
                 readmeRequest.catch(() => null)
             ]);
+            
+            const closed_issues = issuesResponse.closedIssues;
+            const openIssues = issuesResponse.openIssues;
+            
+            
 
             // Process contributors data
             const totalContributions = (contributors as 
