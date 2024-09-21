@@ -80,7 +80,7 @@ export class CorrectnessMetric extends Metrics {
       dir: repoName as string,
       url: this.githubData?.url as string,
       singleBranch: true,
-      depth:21,
+      depth:11,
     }).then(() => {
       console.log(`Repository cloned successfully to ${repoName}`);
     }).catch(error => {
@@ -149,7 +149,7 @@ export class CorrectnessMetric extends Metrics {
         1,
         Math.max(fileCountScore, lineCountScore) +
           0.5 * filediffCountScore +
-          0.5 * linediffCountScore
+          0.5 * linediffCountScore+0.2* +0.00005*(this.githubData.numberOfStars||0)
       );
   
       console.log(`Correctness score is ${correctnessScore}\n`);
@@ -176,7 +176,7 @@ export class CorrectnessMetric extends Metrics {
 
   
   async getCommit20Ago(dir: string): Promise<ReadCommitResult> {
-    const commits = await git.log({ fs, dir, depth: 21 });
+    const commits = await git.log({ fs, dir, depth: 11 });
     return commits[commits.length-1];
   }
 
