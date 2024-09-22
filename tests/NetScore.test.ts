@@ -6,6 +6,7 @@ import { Issue } from "../src/IssueInterface";
 import {ResponsivenessMetric} from"../src/ResponsivenessMetric";
 import { RampUpMetric } from "../src/RampUpMetric";
 import {LicenseMetric} from"../src/LicenseMetric";
+import { Metrics } from "../src/Metrics";
 
 import { BusFactorMetric } from "../src/BusFactorMetric";
 function createMockIssues(numIssues: number): Issue[] {
@@ -46,5 +47,16 @@ describe("NetScore Tests", () => {
         const score  = await netScore.calculateScore();
         const expected=(0.5 / 11) + (1/11)*(await busFactor.calculateScore())+(1/11)*(await rampUpMetric.calculateScore())+(5/11)*(await responsivenessMetric.calculateScore())+(3/11)* (await licenseMetric.calculateScore());
         expect(score).toBeCloseTo(expected,5);
+      });
+      test("return value of net score", async () => {
+        const score  = await netScore.calculateScore();
+        const s  = netScore.getMetricResults();
+        expect(s).toBeDefined;
+      });
+      test("should calcualate the net score and latency", async () => {
+        const {latency,score}  = await netScore.calculateLatency();
+        const expected=(0.5 / 11) + (1/11)*(await busFactor.calculateScore())+(1/11)*(await rampUpMetric.calculateScore())+(5/11)*(await responsivenessMetric.calculateScore())+(3/11)* (await licenseMetric.calculateScore());
+        expect(score).toBeCloseTo(expected,5);
+        expect(latency).toBeGreaterThan(0);
       });
 });
