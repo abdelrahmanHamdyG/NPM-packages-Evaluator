@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/40</span>
+                <span class='fraction'>0/39</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/40</span>
+                <span class='fraction'>0/39</span>
             </div>
         
             
@@ -114,9 +114,7 @@
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -127,18 +125,18 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -159,10 +157,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -175,51 +171,49 @@ import { GitHubData } from "./GitHubData.js";
 import { NPMData } from "./NPMData.js";
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export class BusFactorMetric extends Metrics {</span>
-<span class="cstat-no" title="statement not covered" >  constructor(githubData: GitHubData,npmData:NPMData) {</span>
-<span class="cstat-no" title="statement not covered" >    super(githubData,npmData);</span>
+<span class="cstat-no" title="statement not covered" >  constructor(githubData: GitHubData, npmData: NPMData) {</span>
+<span class="cstat-no" title="statement not covered" >    super(githubData, npmData);</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  public calculateScore(): number {</span>
-    
-    
+<span class="cstat-no" title="statement not covered" >  public async calculateScore():Promise&lt;number&gt;{</span>
 <span class="cstat-no" title="statement not covered" >    const totalCommits = this.totalCommits();</span>
-  
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (totalCommits &lt;= 0) return 0; // Handle edge case where there are no commits</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    const hhi = this.HHI(totalCommits);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    const busFactor = 1 - hhi;</span>
-  
+    
+<span class="cstat-no" title="statement not covered" >    const busFactor = Math.max(0, 1 - hhi);</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    return busFactor;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  public totalCommits():number{</span>
+<span class="cstat-no" title="statement not covered" >  public totalCommits(): number {</span>
 <span class="cstat-no" title="statement not covered" >    let totalCommits = 0;</span>
-<span class="cstat-no" title="statement not covered" >    if(this.githubData.contributions?.length){</span>
+<span class="cstat-no" title="statement not covered" >    if (this.githubData.contributions?.length) {</span>
 <span class="cstat-no" title="statement not covered" >      for (let i = 0; i &lt; this.githubData.contributions.length; i++) {</span>
 <span class="cstat-no" title="statement not covered" >        totalCommits += this.githubData.contributions[i].commits;</span>
 <span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" >      return totalCommits;</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >    return -1;</span>
+<span class="cstat-no" title="statement not covered" >    return totalCommits;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  public HHI(totalCommits:number):number{</span>
+<span class="cstat-no" title="statement not covered" >  public HHI(totalCommits: number): number {</span>
 <span class="cstat-no" title="statement not covered" >    let hhi = 0;</span>
-<span class="cstat-no" title="statement not covered" >    if(this.githubData.contributions?.length){</span>
+<span class="cstat-no" title="statement not covered" >    if (this.githubData.contributions?.length) {</span>
 <span class="cstat-no" title="statement not covered" >      for (let i = 0; i &lt; this.githubData.contributions.length; i++) {</span>
 <span class="cstat-no" title="statement not covered" >        const share = this.githubData.contributions[i].commits / totalCommits;</span>
-<span class="cstat-no" title="statement not covered" >        hhi += share * share;</span>
+<span class="cstat-no" title="statement not covered" >        hhi += share * share; // Sum of squared shares</span>
 <span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" >      return hhi;</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >    return -1;</span>
+<span class="cstat-no" title="statement not covered" >    return hhi; // Value is between 0 and 1</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  public calculateLatency():number{</span>
-&nbsp;
+<span class="cstat-no" title="statement not covered" >  public async calculateLatency(): Promise&lt;{ score: number; latency: number }&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    const start = performance.now();</span>
-<span class="cstat-no" title="statement not covered" >    this.calculateScore();  </span>
+<span class="cstat-no" title="statement not covered" >    const score=await this.calculateScore();</span>
 <span class="cstat-no" title="statement not covered" >    const end = performance.now();</span>
-<span class="cstat-no" title="statement not covered" >    return end - start;  </span>
+<span class="cstat-no" title="statement not covered" >    return {score,latency:end - start};</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
@@ -229,7 +223,7 @@ import { NPMData } from "./NPMData.js";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-09-21T17:25:43.830Z
+                at 2024-09-22T01:14:33.398Z
             </div>
         <script src="prettify.js"></script>
         <script>
