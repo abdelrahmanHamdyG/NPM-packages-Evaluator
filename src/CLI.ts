@@ -5,16 +5,7 @@ import {GitHubData } from "./GitHubData.js";
 import {NPMData } from "./NPMData.js";
 import {Logger} from "./logger.js";
 import fs from "fs/promises";
-import { ResponsivenessMetric } from "./ResponsivenessMetric.js";
-import { RampUpMetric } from "./RampUpMetric.js";
-import { BusFactorMetric } from "./BusFactorMetric.js";
-import { LicenseMetric } from "./LicenseMetric.js";
-import { CorrectnessMetric } from "./CorrectnessMetric.js";
-
-
-
-
-
+import {NetScore} from "./NetScore.js";
 
 
 
@@ -71,36 +62,33 @@ export class CLI {
                     logger.log(2, "\n\n\n**************************\n\n\n");
     
                     if (githubData && npmData) {
-                        const correctnessMetric = new CorrectnessMetric(githubData, npmData);
-                        const responsivenessMetric = new ResponsivenessMetric(githubData, npmData);
-                        const rampUpMetric = new RampUpMetric(githubData, npmData);
-                        const busFactorMetric = new BusFactorMetric(githubData, npmData);
-                        const licenseMetric = new LicenseMetric(githubData, npmData);
-    
-                        // Calculate all metrics in parallel using Promise.all
-                        const metricResults = await Promise.all([
-                            correctnessMetric.calculateLatency(),
-                            responsivenessMetric.calculateLatency(),
-                            rampUpMetric.calculateLatency(),
-                            busFactorMetric.calculateLatency(),
-                            licenseMetric.calculateLatency()
-                        ]);
-    
-                        const [correctness, responsiveness, rampUp, 
-                            busFactor, license] = metricResults;
-    
-                        // Log the results beautifully with structured output
-                        
-                        logger.log(2, `Correctness Score: 
-                            ${correctness.score}, \nLatency: ${correctness.latency/1000}`);
-                        logger.log(2, `Responsiveness Score:
-                             ${responsiveness.score}, \nLatency: ${responsiveness.latency/1000}`);
-                        logger.log(2, `Ramp-Up Score: 
-                            ${rampUp.score}, \nLatency: ${rampUp.latency/1000}`);
-                        logger.log(2, `Bus Factor Score:
-                             ${busFactor.score}, \nLatency: ${busFactor.latency/1000}`);
-                        logger.log(2, `License Score: 
-                            ${license.score}, \nLatency: ${license.latency/1000}`);
+
+                        const netScoreClass = new NetScore(githubData, npmData);
+                        const net=await netScoreClass.calculateLatency();
+                        const metrics = netScoreClass.getMetricResults();
+                        if (metrics) {
+                            const [correctness, responsiveness, rampUp, busFactor, license]
+                             = metrics;
+                            logger.log(2, `Correctness Score: 
+                                ${correctness.score}, 
+                                \nLatency: ${correctness.latency/1000}`);
+                            logger.log(2, `Responsiveness Score:
+                                ${responsiveness.score}, 
+                                \nLatency: ${responsiveness.latency/1000}`);
+                            logger.log(2, `Ramp-Up Score: 
+                                ${rampUp.score}, 
+                                \nLatency: ${rampUp.latency/1000}`);
+                            logger.log(2, `Bus Factor Score:
+                                ${busFactor.score}, 
+                                \nLatency: ${busFactor.latency/1000}`);
+                            logger.log(2, `License Score: 
+                                ${license.score}, 
+                                \nLatency: ${license.latency/1000}`);
+                            
+                             logger.log(2, `Net Score: 
+                                ${net.score}, 
+                                \nLatency: ${net.latency/1000}`);
+                        }
                         logger.log(1, "\n\n\n**************************\n\n\n");
                         logger.log(2, "\n\n\n**************************\n\n\n");
                     }

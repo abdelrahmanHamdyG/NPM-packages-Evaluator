@@ -23,7 +23,6 @@ export class Metrics{
 
 
     public async calculateScore():Promise<number>{
-        console.log("packageData.name");
         return 0;
     }
 

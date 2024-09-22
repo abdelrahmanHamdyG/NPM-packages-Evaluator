@@ -1,207 +1,76 @@
-2024-09-21T23:38:09.882Z [DEBUG]: rank modules is called with parameter =something.txt 
-2024-09-21T23:38:09.884Z [DEBUG]: rankModulesFunction is called and the path is something.txt
-2024-09-21T23:38:09.884Z [DEBUG]: total delay of fetching is 2.2536999999999807
-2024-09-21T23:38:09.886Z [DEBUG]: the url https://github.com/mrdoob/three.js/ has github url =
+2024-09-22T01:51:34.204Z [DEBUG]: rank modules is called with parameter =someThing.txt 
+2024-09-22T01:51:34.205Z [DEBUG]: rankModulesFunction is called and the path is someThing.txt
+2024-09-22T01:51:34.205Z [DEBUG]: total delay of fetching is 1.204100000000011
+2024-09-22T01:51:34.207Z [DEBUG]: the url https://github.com/mrdoob/three.js/ has github url =
                 https://github.com/mrdoob/three.js/ and npm url= empty
-2024-09-21T23:38:09.886Z [DEBUG]: the github user is mrdoob the github repo is three.js
-2024-09-21T23:38:09.887Z [DEBUG]: we are fetching data for the giturl:https://github.com/mrdoob/three.js/
+2024-09-22T01:51:34.207Z [DEBUG]: the github user is mrdoob the github repo is three.js
+2024-09-22T01:51:34.208Z [DEBUG]: we are fetching data for the giturl:https://github.com/mrdoob/three.js/
                 
  with username:mrdoob and reponame:three.js
-2024-09-21T23:38:09.890Z [DEBUG]: Fetching data for owner:
+2024-09-22T01:51:34.210Z [DEBUG]: Fetching data for owner:
                   mrdoob, repo: three.js
-2024-09-21T23:38:18.966Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T23:38:18.967Z [DEBUG]: 
+2024-09-22T01:51:44.697Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T01:51:44.698Z [DEBUG]: 
 
 The data fetched for each URL:
 
 
-2024-09-21T23:38:18.968Z [DEBUG]: Result 1:
-2024-09-21T23:38:18.968Z [DEBUG]: npm delay:0
+2024-09-22T01:51:44.698Z [DEBUG]: Result 1:
+2024-09-22T01:51:44.699Z [DEBUG]: npm delay:0
 
-2024-09-21T23:38:18.968Z [DEBUG]: github delay:9.0762065
+2024-09-22T01:51:44.699Z [DEBUG]: github delay:10.4868696
 
-2024-09-21T23:38:18.969Z [DEBUG]: NPM Data:
-2024-09-21T23:38:18.969Z [DEBUG]: License: empty
-2024-09-21T23:38:18.969Z [DEBUG]: GitHub URL: empty
-2024-09-21T23:38:18.970Z [DEBUG]: 
+2024-09-22T01:51:44.699Z [DEBUG]: NPM Data:
+2024-09-22T01:51:44.699Z [DEBUG]: License: empty
+2024-09-22T01:51:44.699Z [DEBUG]: GitHub URL: empty
+2024-09-22T01:51:44.700Z [DEBUG]: 
 **************************
 
-2024-09-21T23:38:18.970Z [DEBUG]: Readme Present: Yes
-2024-09-21T23:38:18.971Z [DEBUG]: Description Present: Yes
-2024-09-21T23:38:18.971Z [DEBUG]: Number of Forks: 
+2024-09-22T01:51:44.700Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:51:44.700Z [DEBUG]: Description Present: Yes
+2024-09-22T01:51:44.701Z [DEBUG]: Number of Forks: 
             35311
-2024-09-21T23:38:18.971Z [DEBUG]: Number of Stars: 
-            101825
-2024-09-21T23:38:18.972Z [DEBUG]: GitHub Data:
-2024-09-21T23:38:18.972Z [DEBUG]: Name: three.js
-2024-09-21T23:38:18.972Z [DEBUG]: License Name: MIT License
-2024-09-21T23:38:18.973Z [DEBUG]: Contributions Array: 18372
-2024-09-21T23:38:18.973Z [DEBUG]: Readme Present: Yes
-2024-09-21T23:38:18.973Z [DEBUG]: Description Present: Yes
-2024-09-21T23:38:18.974Z [DEBUG]: Number of Issues: 753
-2024-09-21T23:38:18.974Z [DEBUG]: 
+2024-09-22T01:51:44.701Z [DEBUG]: Number of Stars: 
+            101826
+2024-09-22T01:51:44.701Z [DEBUG]: GitHub Data:
+2024-09-22T01:51:44.701Z [DEBUG]: Name: three.js
+2024-09-22T01:51:44.701Z [DEBUG]: License Name: MIT License
+2024-09-22T01:51:44.702Z [DEBUG]: Contributions Array: 18372
+2024-09-22T01:51:44.702Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:51:44.702Z [DEBUG]: Description Present: Yes
+2024-09-22T01:51:44.702Z [DEBUG]: Number of Issues: 752
+2024-09-22T01:51:44.702Z [DEBUG]: 
 
 
 **************************
 
 
 
-2024-09-21T23:39:25.921Z [DEBUG]: Correctness Score: 
-                            1, 
-Latency: 66.9438338
-2024-09-21T23:39:25.921Z [DEBUG]: Responsiveness Score:
-                             1, 
-Latency: 0.005576600000000326
-2024-09-21T23:39:25.922Z [DEBUG]: Ramp-Up Score: 
-                            0.6502492652017945, 
-Latency: 0.0052569999999996075
-2024-09-21T23:39:25.922Z [DEBUG]: Bus Factor Score:
-                             0.7692751251384485, 
-Latency: 0.0006550000000006548
-2024-09-21T23:39:25.923Z [DEBUG]: License Score: 
-                            1, 
-Latency: 0.000360899999999674
-2024-09-21T23:39:25.923Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T23:42:46.501Z [DEBUG]: rank modules is called with parameter =something.txt 
-2024-09-21T23:42:46.506Z [DEBUG]: rankModulesFunction is called and the path is something.txt
-2024-09-21T23:42:46.506Z [DEBUG]: total delay of fetching is 5.215599999999995
-2024-09-21T23:42:46.508Z [DEBUG]: the url https://github.com/mrdoob/three.js/ has github url =
-                https://github.com/mrdoob/three.js/ and npm url= empty
-2024-09-21T23:42:46.509Z [DEBUG]: the github user is mrdoob the github repo is three.js
-2024-09-21T23:42:46.509Z [DEBUG]: we are fetching data for the giturl:https://github.com/mrdoob/three.js/
-                
- with username:mrdoob and reponame:three.js
-2024-09-21T23:42:46.512Z [DEBUG]: Fetching data for owner:
-                  mrdoob, repo: three.js
-2024-09-21T23:42:55.537Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T23:42:55.538Z [DEBUG]: 
-
-The data fetched for each URL:
-
-
-2024-09-21T23:42:55.538Z [DEBUG]: Result 1:
-2024-09-21T23:42:55.538Z [DEBUG]: npm delay:0
-
-2024-09-21T23:42:55.539Z [DEBUG]: github delay:9.0247031
-
-2024-09-21T23:42:55.539Z [DEBUG]: NPM Data:
-2024-09-21T23:42:55.539Z [DEBUG]: License: empty
-2024-09-21T23:42:55.540Z [DEBUG]: GitHub URL: empty
-2024-09-21T23:42:55.540Z [DEBUG]: 
-**************************
-
-2024-09-21T23:42:55.540Z [DEBUG]: Readme Present: Yes
-2024-09-21T23:42:55.540Z [DEBUG]: Description Present: Yes
-2024-09-21T23:42:55.541Z [DEBUG]: Number of Forks: 
-            35311
-2024-09-21T23:42:55.541Z [DEBUG]: Number of Stars: 
-            101825
-2024-09-21T23:42:55.541Z [DEBUG]: GitHub Data:
-2024-09-21T23:42:55.541Z [DEBUG]: Name: three.js
-2024-09-21T23:42:55.542Z [DEBUG]: License Name: MIT License
-2024-09-21T23:42:55.542Z [DEBUG]: Contributions Array: 18372
-2024-09-21T23:42:55.542Z [DEBUG]: Readme Present: Yes
-2024-09-21T23:42:55.542Z [DEBUG]: Description Present: Yes
-2024-09-21T23:42:55.542Z [DEBUG]: Number of Issues: 753
-2024-09-21T23:42:55.543Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T23:44:11.107Z [DEBUG]: Correctness Score: 
-                            1, 
-Latency: 75.5641034
-2024-09-21T23:44:11.107Z [DEBUG]: Responsiveness Score:
-                             1, 
-Latency: 0.0037763000000013563
-2024-09-21T23:44:11.108Z [DEBUG]: Ramp-Up Score: 
-                            0.6502492652017945, 
-Latency: 0.0034844999999986614
-2024-09-21T23:44:11.108Z [DEBUG]: Bus Factor Score:
-                             0.7692751251384485, 
-Latency: 0.00044999999999890863
-2024-09-21T23:44:11.108Z [DEBUG]: License Score: 
-                            1, 
-Latency: 0.00023300000000017464
-2024-09-21T23:44:11.108Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T23:44:39.921Z [DEBUG]: rank modules is called with parameter =something.txt 
-2024-09-21T23:44:39.923Z [DEBUG]: rankModulesFunction is called and the path is something.txt
-2024-09-21T23:44:39.923Z [DEBUG]: total delay of fetching is 2.1525000000000034
-2024-09-21T23:44:39.924Z [DEBUG]: the url https://github.com/mrdoob/three.js/ has github url =
-                https://github.com/mrdoob/three.js/ and npm url= empty
-2024-09-21T23:44:39.925Z [DEBUG]: the github user is mrdoob the github repo is three.js
-2024-09-21T23:44:39.926Z [DEBUG]: we are fetching data for the giturl:https://github.com/mrdoob/three.js/
-                
- with username:mrdoob and reponame:three.js
-2024-09-21T23:44:39.928Z [DEBUG]: Fetching data for owner:
-                  mrdoob, repo: three.js
-2024-09-21T23:44:50.664Z [DEBUG]: Successfully fetched data from GitHub API
-2024-09-21T23:44:50.665Z [DEBUG]: 
-
-The data fetched for each URL:
-
-
-2024-09-21T23:44:50.666Z [DEBUG]: Result 1:
-2024-09-21T23:44:50.667Z [DEBUG]: npm delay:0
-
-2024-09-21T23:44:50.668Z [DEBUG]: github delay:10.7353437
-
-2024-09-21T23:44:50.669Z [DEBUG]: NPM Data:
-2024-09-21T23:44:50.669Z [DEBUG]: License: empty
-2024-09-21T23:44:50.669Z [DEBUG]: GitHub URL: empty
-2024-09-21T23:44:50.670Z [DEBUG]: 
-**************************
-
-2024-09-21T23:44:50.670Z [DEBUG]: Readme Present: Yes
-2024-09-21T23:44:50.671Z [DEBUG]: Description Present: Yes
-2024-09-21T23:44:50.671Z [DEBUG]: Number of Forks: 
-            35311
-2024-09-21T23:44:50.671Z [DEBUG]: Number of Stars: 
-            101825
-2024-09-21T23:44:50.672Z [DEBUG]: GitHub Data:
-2024-09-21T23:44:50.672Z [DEBUG]: Name: three.js
-2024-09-21T23:44:50.672Z [DEBUG]: License Name: MIT License
-2024-09-21T23:44:50.672Z [DEBUG]: Contributions Array: 18372
-2024-09-21T23:44:50.673Z [DEBUG]: Readme Present: Yes
-2024-09-21T23:44:50.673Z [DEBUG]: Description Present: Yes
-2024-09-21T23:44:50.673Z [DEBUG]: Number of Issues: 753
-2024-09-21T23:44:50.674Z [DEBUG]: 
-
-
-**************************
-
-
-
-2024-09-21T23:45:57.725Z [DEBUG]: Correctness Score: 
-                            1, 
-Latency: 67.0402896
-2024-09-21T23:45:57.725Z [DEBUG]: Responsiveness Score:
-                             1, 
-Latency: 0.0049197000000003755
-2024-09-21T23:45:57.726Z [DEBUG]: Ramp-Up Score: 
-                            0.6502492652017945, 
-Latency: 0.0046237000000000986
-2024-09-21T23:45:57.726Z [DEBUG]: Bus Factor Score:
-                             0.7692751251384485, 
-Latency: 0.00036620000000039
-2024-09-21T23:45:57.726Z [DEBUG]: License Score: 
-                            1, 
-Latency: 0.0002021999999997206
-2024-09-21T23:45:57.726Z [DEBUG]: 
+2024-09-22T01:52:42.731Z [DEBUG]: Correctness Score: 
+                                1, 
+                                
+Latency: 58.0268032
+2024-09-22T01:52:42.732Z [DEBUG]: Responsiveness Score:
+                                1, 
+                                
+Latency: 0.0036784999999999856
+2024-09-22T01:52:42.732Z [DEBUG]: Ramp-Up Score: 
+                                0.6502492652017945, 
+                                
+Latency: 0.0034540999999990163
+2024-09-22T01:52:42.732Z [DEBUG]: Bus Factor Score:
+                                0.7692751251384485, 
+                                
+Latency: 0.0005555000000003929
+2024-09-22T01:52:42.732Z [DEBUG]: License Score: 
+                                1, 
+                                
+Latency: 0.0003311999999987165
+2024-09-22T01:52:42.732Z [DEBUG]: Net Score: 
+                                0.8839048780680487, 
+                                
+Latency: 58.027996200000004
+2024-09-22T01:52:42.732Z [DEBUG]: 
 
 
 **************************
