@@ -78,25 +78,16 @@ export class CLI {
         // Loop through results and process each module
         for (const [index, { npmData, githubData }] of results.entries()) {
           logger.log(1, `Processing result ${index + 1}:`);
-          logger.log(2, `npm delay: ${(npmData?.latency || 0) / 1000}s`);
-          logger.log(2, `github delay: ${(githubData?.latency || 0) / 1000}s`);
 
           if (npmData) {
-            logger.log(2, "NPM Data:");
             npmData.printMyData();
-          } else {
-            logger.log(1, "No NPM data available.");
-          }
-
-          logger.log(1, "\n**************************\n");
+          } 
 
           if (githubData) {
-            logger.log(2, "GitHub Data:");
             githubData.printMyData();
-          } else {
-            logger.log(1, "No GitHub data available.");
-          }
+          } 
 
+          
 
           if (githubData && npmData) {
             const netScoreClass = new NetScore(githubData, npmData);
@@ -105,6 +96,8 @@ export class CLI {
             if (metrics) {
               const [correctness, responsiveness, rampUp, busFactor, license] =
                 metrics;
+              
+              
               const formattedResult = {
                 URL: urls[index],
                 NetScore :Number(net.score.toFixed(3)) ,
@@ -128,10 +121,17 @@ export class CLI {
                 { URL: urls[index], error: "GitHub repo doesn't exist" }
                 );              
               }
-            } 
+
+              
+            }
+
+
           }
         }
       })
+      .catch((error) => {
+        logger.log(1, `Error in rankModules: ${error}`);
+      });
   }
 
   public async rankModulesTogether(
@@ -157,9 +157,9 @@ export class CLI {
       }
 
       const results = await Promise.all(promisesArray);
-      logger.log(2, "Successfully fetched data for all URLs.");
       return results;
     } catch (err) {
+      logger.log(1, `Error in rankModulesTogether: ${err}`);
       return [];
     }
   }
@@ -188,17 +188,16 @@ export class CLI {
       const npmAPI = new NpmAPI(npmObject);
 
       npmData = await npmAPI.fetchData();
-
+//a
       if (npmData.githubUrl && npmData.githubUrl !== "empty") {
         const githubObject = this.parseGitHubUrl(npmData.githubUrl);
+
         const gitHubAPI = new GitHubAPI(
           githubObject.username,
           githubObject.repoName
         );
-
         githubData = await gitHubAPI.fetchData();
-      } else {
-      }
+      } 
       return { npmData, githubData };
     }
   }

@@ -53,10 +53,22 @@ describe("RampUpMetric", () => {
     expect(score).toBeGreaterThan(0);
     expect(score).toBeLessThanOrEqual(1);
   });
-
   it("should calculate latency and score", async () => {
     const result = await rampUpMetric.calculateLatency();
     expect(result.score).toBeGreaterThan(0);
     expect(result.latency).toBeGreaterThan(0);
   });
+  it("should calculate latency and score", async () => {
+    githubData.readme=false;
+    const result = await rampUpMetric.calculateLatency();
+    expect(result.score).toBeGreaterThan(0);
+    expect(result.latency).toBeGreaterThan(0);
+  });
+  it("should calculate latency and score", async () => {
+    githubData.description=false;
+    const result = await rampUpMetric.calculateLatency();
+    expect(result.score).toBeGreaterThan(0);
+    expect(result.latency).toBeGreaterThan(0);
+  });
+  
 });

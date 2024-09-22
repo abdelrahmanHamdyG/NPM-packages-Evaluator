@@ -9,7 +9,7 @@ export default defineConfig({
       // Include all files for coverage, not just the ones tested
       include: ["src/**"],                       
       // Specify the files or directories to include in coverage
-      exclude: ["tests/**"],                      
+      exclude: ["tests/**","src/IssueInterface.ts","src/ContributorInterface.ts"],                      
       // Exclude test files from coverage
       reportsDirectory: "./coverage",             
       // Directory for saving coverage reports
