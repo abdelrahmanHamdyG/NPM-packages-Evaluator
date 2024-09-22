@@ -36,6 +36,10 @@ describe("RampUpMetric", () => {
     const score = rampUpMetric.calculateSizeProportion();
     expect(score).toBeGreaterThan(0); // Validate that the continuous score gives a positive value
   });
+  it("should calculate the repository size proportion score", () => {
+    const score = rampUpMetric.calculateSizeProportion();
+    expect(score).toBeGreaterThan(0); // Validate that the continuous score gives a positive value
+  });
 
   
 
