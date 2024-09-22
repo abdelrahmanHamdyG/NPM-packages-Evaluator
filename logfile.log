@@ -298,3 +298,75 @@ Latency: 58.027996200000004
 2024-09-22T01:54:51.451Z [DEBUG]: Readme Present: No
 2024-09-22T01:54:51.452Z [DEBUG]: Description Present: No
 2024-09-22T01:54:51.453Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:33:24.319Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:33:24.319Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:33:24.322Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:33:24.324Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:33:24.326Z [DEBUG]: NPM Data:
+2024-09-22T11:33:24.326Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:33:24.326Z [DEBUG]: License: MIT
+2024-09-22T11:33:24.327Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T11:33:24.327Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:33:24.329Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:33:24.329Z [DEBUG]: Description Present: Yes
+2024-09-22T11:33:24.330Z [DEBUG]: NPM Data:
+2024-09-22T11:33:24.330Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:33:24.330Z [DEBUG]: License: empty
+2024-09-22T11:33:24.330Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:33:24.330Z [DEBUG]: GitHub URL: empty
+2024-09-22T11:33:24.330Z [DEBUG]: GitHub Data:
+2024-09-22T11:33:24.331Z [DEBUG]: Name: test-repo
+2024-09-22T11:33:24.331Z [DEBUG]: License Name: MIT 
+2024-09-22T11:33:24.331Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:33:24.332Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:33:24.332Z [DEBUG]: Description Present: Yes
+2024-09-22T11:33:24.332Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:33:24.334Z [DEBUG]: Readme Present: No
+2024-09-22T11:33:24.335Z [DEBUG]: Description Present: No
+2024-09-22T11:33:24.335Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:33:24.335Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:33:24.336Z [DEBUG]: GitHub Data:
+2024-09-22T11:33:24.336Z [DEBUG]: Name: empty
+2024-09-22T11:33:24.337Z [DEBUG]: License Name: N/A 
+2024-09-22T11:33:24.337Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:33:24.337Z [DEBUG]: Readme Present: No
+2024-09-22T11:33:24.338Z [DEBUG]: Description Present: No
+2024-09-22T11:33:24.338Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:35:21.785Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:35:21.787Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:35:21.792Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:35:21.790Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:35:21.794Z [DEBUG]: NPM Data:
+2024-09-22T11:35:21.794Z [DEBUG]: License: MIT
+2024-09-22T11:35:21.795Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T11:35:21.797Z [DEBUG]: NPM Data:
+2024-09-22T11:35:21.795Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:35:21.798Z [DEBUG]: License: empty
+2024-09-22T11:35:21.798Z [DEBUG]: GitHub URL: empty
+2024-09-22T11:35:21.796Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:35:21.798Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:35:21.798Z [DEBUG]: Description Present: Yes
+2024-09-22T11:35:21.799Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:35:21.799Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:35:21.799Z [DEBUG]: GitHub Data:
+2024-09-22T11:35:21.800Z [DEBUG]: Name: test-repo
+2024-09-22T11:35:21.800Z [DEBUG]: License Name: MIT 
+2024-09-22T11:35:21.801Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:35:21.801Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:35:21.802Z [DEBUG]: Description Present: Yes
+2024-09-22T11:35:21.802Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:35:21.806Z [DEBUG]: Readme Present: No
+2024-09-22T11:35:21.806Z [DEBUG]: Description Present: No
+2024-09-22T11:35:21.806Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:35:21.807Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:35:21.807Z [DEBUG]: GitHub Data:
+2024-09-22T11:35:21.808Z [DEBUG]: Name: empty
+2024-09-22T11:35:21.808Z [DEBUG]: License Name: N/A 
+2024-09-22T11:35:21.808Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:35:21.808Z [DEBUG]: Readme Present: No
+2024-09-22T11:35:21.809Z [DEBUG]: Description Present: No
+2024-09-22T11:35:21.809Z [DEBUG]: Number of Issues: N/A

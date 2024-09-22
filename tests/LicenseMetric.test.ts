@@ -1,6 +1,6 @@
 import { GitHubData } from "../src/GitHubData";
 import { NPMData } from "../src/NPMData";
-import { describe, test, expect, beforeEach, vi } from "vitest";
+import { describe, test, expect, beforeEach } from "vitest";
 import {LicenseMetric} from"../src/LicenseMetric";
 describe("BusFactorMetric Tests", () => {
     let npmData: NPMData;
@@ -8,7 +8,7 @@ describe("BusFactorMetric Tests", () => {
     let githubData:GitHubData;
     beforeEach(() => {
       //mocking githubData and NpmData
-      githubData = new GitHubData()
+      githubData = new GitHubData();
       githubData.license="MIT";
       npmData = new NPMData();
       npmData.license="empty";
@@ -37,7 +37,7 @@ describe("BusFactorMetric Tests", () => {
     });
     test("should calculate latency and the license from npm ", async () => {
         githubData.license="empty";
-        npmData.license="MIT"
+        npmData.license="MIT";
         const { score, latency } = await licenseMetric.calculateLatency();
         expect(score).toBe(1);
         // Latency should be a positive number (time taken to calculate)
