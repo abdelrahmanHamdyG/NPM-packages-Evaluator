@@ -208,3 +208,188 @@ Latency: 0.0002021999999997206
 
 
 
+2024-09-22T01:08:06.039Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:08:06.041Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T01:08:06.048Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:08:06.049Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T01:08:06.052Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:08:06.053Z [DEBUG]: Description Present: Yes
+2024-09-22T01:08:06.054Z [DEBUG]: Number of Forks: 3
+2024-09-22T01:08:06.054Z [DEBUG]: Number of Stars: 15
+2024-09-22T01:08:06.055Z [DEBUG]: GitHub Data:
+2024-09-22T01:08:06.055Z [DEBUG]: Name: test-repo
+2024-09-22T01:08:06.056Z [DEBUG]: License Name: MIT 
+2024-09-22T01:08:06.056Z [DEBUG]: Contributions Array: 50
+2024-09-22T01:08:06.057Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:08:06.057Z [DEBUG]: Description Present: Yes
+2024-09-22T01:08:06.057Z [DEBUG]: Number of Issues: 5
+2024-09-22T01:08:57.693Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:08:57.696Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T01:08:57.702Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:08:57.703Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T01:08:57.705Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:08:57.706Z [DEBUG]: Description Present: Yes
+2024-09-22T01:08:57.706Z [DEBUG]: Number of Forks: 3
+2024-09-22T01:08:57.707Z [DEBUG]: Number of Stars: 15
+2024-09-22T01:08:57.707Z [DEBUG]: GitHub Data:
+2024-09-22T01:08:57.708Z [DEBUG]: Name: test-repo
+2024-09-22T01:08:57.708Z [DEBUG]: License Name: MIT 
+2024-09-22T01:08:57.709Z [DEBUG]: Contributions Array: 50
+2024-09-22T01:08:57.709Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:08:57.710Z [DEBUG]: Description Present: Yes
+2024-09-22T01:08:57.710Z [DEBUG]: Number of Issues: 5
+2024-09-22T01:09:25.524Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:09:25.526Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T01:09:25.531Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:09:25.533Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T01:09:25.536Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:09:25.537Z [DEBUG]: Description Present: Yes
+2024-09-22T01:09:25.537Z [DEBUG]: Number of Forks: 3
+2024-09-22T01:09:25.538Z [DEBUG]: Number of Stars: 15
+2024-09-22T01:09:25.538Z [DEBUG]: GitHub Data:
+2024-09-22T01:09:25.539Z [DEBUG]: Name: test-repo
+2024-09-22T01:09:25.540Z [DEBUG]: License Name: MIT 
+2024-09-22T01:09:25.540Z [DEBUG]: Contributions Array: 50
+2024-09-22T01:09:25.541Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:09:25.541Z [DEBUG]: Description Present: Yes
+2024-09-22T01:09:25.542Z [DEBUG]: Number of Issues: 5
+2024-09-22T01:10:00.549Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:10:00.553Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T01:10:00.560Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:10:00.561Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T01:10:00.566Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:10:00.566Z [DEBUG]: Description Present: Yes
+2024-09-22T01:10:00.567Z [DEBUG]: Number of Forks: 3
+2024-09-22T01:10:00.567Z [DEBUG]: Number of Stars: 15
+2024-09-22T01:10:00.568Z [DEBUG]: GitHub Data:
+2024-09-22T01:10:00.568Z [DEBUG]: Name: test-repo
+2024-09-22T01:10:00.569Z [DEBUG]: License Name: MIT 
+2024-09-22T01:10:00.570Z [DEBUG]: Contributions Array: 50
+2024-09-22T01:10:00.570Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:10:00.571Z [DEBUG]: Description Present: Yes
+2024-09-22T01:10:00.572Z [DEBUG]: Number of Issues: 5
+2024-09-22T01:10:21.266Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:10:21.269Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T01:10:21.276Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:10:21.277Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T01:10:21.279Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:10:21.280Z [DEBUG]: Description Present: Yes
+2024-09-22T01:10:21.280Z [DEBUG]: Number of Forks: 3
+2024-09-22T01:10:21.281Z [DEBUG]: Number of Stars: 15
+2024-09-22T01:10:21.282Z [DEBUG]: GitHub Data:
+2024-09-22T01:10:21.282Z [DEBUG]: Name: test-repo
+2024-09-22T01:10:21.283Z [DEBUG]: License Name: MIT 
+2024-09-22T01:10:21.283Z [DEBUG]: Contributions Array: 50
+2024-09-22T01:10:21.283Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:10:21.284Z [DEBUG]: Description Present: Yes
+2024-09-22T01:10:21.284Z [DEBUG]: Number of Issues: 5
+2024-09-22T01:12:07.825Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:12:07.828Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T01:12:07.835Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:12:07.835Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T01:12:07.839Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:12:07.839Z [DEBUG]: Description Present: Yes
+2024-09-22T01:12:07.840Z [DEBUG]: Number of Forks: 3
+2024-09-22T01:12:07.840Z [DEBUG]: Number of Stars: 15
+2024-09-22T01:12:07.841Z [DEBUG]: GitHub Data:
+2024-09-22T01:12:07.842Z [DEBUG]: Name: test-repo
+2024-09-22T01:12:07.842Z [DEBUG]: License Name: MIT 
+2024-09-22T01:12:07.843Z [DEBUG]: Contributions Array: 50
+2024-09-22T01:12:07.843Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:12:07.844Z [DEBUG]: Description Present: Yes
+2024-09-22T01:12:07.844Z [DEBUG]: Number of Issues: 5
+2024-09-22T01:12:07.849Z [DEBUG]: Readme Present: No
+2024-09-22T01:12:07.849Z [DEBUG]: Description Present: No
+2024-09-22T01:12:07.850Z [DEBUG]: Number of Forks: N/A
+2024-09-22T01:12:07.850Z [DEBUG]: Number of Stars: N/A
+2024-09-22T01:12:07.851Z [DEBUG]: GitHub Data:
+2024-09-22T01:12:07.851Z [DEBUG]: Name: empty
+2024-09-22T01:12:07.852Z [DEBUG]: License Name: N/A 
+2024-09-22T01:12:07.853Z [DEBUG]: Contributions Array: N/A
+2024-09-22T01:12:07.853Z [DEBUG]: Readme Present: No
+2024-09-22T01:12:07.854Z [DEBUG]: Description Present: No
+2024-09-22T01:12:07.854Z [DEBUG]: Number of Issues: N/A
+2024-09-22T01:13:08.093Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:13:08.097Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T01:13:08.096Z [DEBUG]: Fetching data for package: test
+2024-09-22T01:13:08.107Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:13:08.104Z [DEBUG]: Fetching data for package: test
+2024-09-22T01:13:08.108Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T01:13:08.108Z [DEBUG]: NPM Data:
+2024-09-22T01:13:08.111Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:13:08.109Z [DEBUG]: License: MIT
+2024-09-22T01:13:08.112Z [DEBUG]: Description Present: Yes
+2024-09-22T01:13:08.109Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T01:13:08.112Z [DEBUG]: Number of Forks: 3
+2024-09-22T01:13:08.113Z [DEBUG]: Number of Stars: 15
+2024-09-22T01:13:08.113Z [DEBUG]: GitHub Data:
+2024-09-22T01:13:08.114Z [DEBUG]: Name: test-repo
+2024-09-22T01:13:08.115Z [DEBUG]: License Name: MIT 
+2024-09-22T01:13:08.115Z [DEBUG]: Contributions Array: 50
+2024-09-22T01:13:08.116Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:13:08.116Z [DEBUG]: Description Present: Yes
+2024-09-22T01:13:08.117Z [DEBUG]: Number of Issues: 5
+2024-09-22T01:13:08.116Z [DEBUG]: NPM Data:
+2024-09-22T01:13:08.117Z [DEBUG]: License: empty
+2024-09-22T01:13:08.117Z [DEBUG]: GitHub URL: empty
+2024-09-22T01:13:08.124Z [DEBUG]: Readme Present: No
+2024-09-22T01:13:08.124Z [DEBUG]: Description Present: No
+2024-09-22T01:13:08.125Z [DEBUG]: Number of Forks: N/A
+2024-09-22T01:13:08.126Z [DEBUG]: Number of Stars: N/A
+2024-09-22T01:13:08.126Z [DEBUG]: GitHub Data:
+2024-09-22T01:13:08.127Z [DEBUG]: Name: empty
+2024-09-22T01:13:08.127Z [DEBUG]: License Name: N/A 
+2024-09-22T01:13:08.128Z [DEBUG]: Contributions Array: N/A
+2024-09-22T01:13:08.128Z [DEBUG]: Readme Present: No
+2024-09-22T01:13:08.129Z [DEBUG]: Description Present: No
+2024-09-22T01:13:08.129Z [DEBUG]: Number of Issues: N/A
+2024-09-22T01:14:32.180Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:14:32.182Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T01:14:32.181Z [DEBUG]: Fetching data for package: test
+2024-09-22T01:14:32.188Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T01:14:32.189Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T01:14:32.191Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:14:32.191Z [DEBUG]: Description Present: Yes
+2024-09-22T01:14:32.192Z [DEBUG]: Number of Forks: 3
+2024-09-22T01:14:32.192Z [DEBUG]: Number of Stars: 15
+2024-09-22T01:14:32.188Z [DEBUG]: Fetching data for package: test
+2024-09-22T01:14:32.192Z [DEBUG]: GitHub Data:
+2024-09-22T01:14:32.193Z [DEBUG]: Name: test-repo
+2024-09-22T01:14:32.193Z [DEBUG]: License Name: MIT 
+2024-09-22T01:14:32.193Z [DEBUG]: Contributions Array: 50
+2024-09-22T01:14:32.194Z [DEBUG]: Readme Present: Yes
+2024-09-22T01:14:32.194Z [DEBUG]: Description Present: Yes
+2024-09-22T01:14:32.194Z [DEBUG]: Number of Issues: 5
+2024-09-22T01:14:32.190Z [DEBUG]: NPM Data:
+2024-09-22T01:14:32.191Z [DEBUG]: License: MIT
+2024-09-22T01:14:32.191Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T01:14:32.198Z [DEBUG]: Readme Present: No
+2024-09-22T01:14:32.198Z [DEBUG]: Description Present: No
+2024-09-22T01:14:32.199Z [DEBUG]: Number of Forks: N/A
+2024-09-22T01:14:32.199Z [DEBUG]: Number of Stars: N/A
+2024-09-22T01:14:32.199Z [DEBUG]: GitHub Data:
+2024-09-22T01:14:32.200Z [DEBUG]: Name: empty
+2024-09-22T01:14:32.195Z [DEBUG]: NPM Data:
+2024-09-22T01:14:32.200Z [DEBUG]: License Name: N/A 
+2024-09-22T01:14:32.195Z [DEBUG]: License: empty
+2024-09-22T01:14:32.200Z [DEBUG]: Contributions Array: N/A
+2024-09-22T01:14:32.196Z [DEBUG]: GitHub URL: empty
+2024-09-22T01:14:32.200Z [DEBUG]: Readme Present: No
+2024-09-22T01:14:32.201Z [DEBUG]: Description Present: No
+2024-09-22T01:14:32.201Z [DEBUG]: Number of Issues: N/A
