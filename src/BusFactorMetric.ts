@@ -11,7 +11,7 @@ export class BusFactorMetric extends Metrics {
   public async calculateScore():Promise<number>{
     const totalCommits = this.totalCommits();
 
-    if (totalCommits <= 0) return 0; // Handle edge case where there are no commits
+    if (totalCommits <= 0) return 0; //handle case where there are no commits
 
     const hhi = this.HHI(totalCommits);
 
@@ -36,10 +36,10 @@ export class BusFactorMetric extends Metrics {
     if (this.githubData.contributions?.length) {
       for (let i = 0; i < this.githubData.contributions.length; i++) {
         const share = this.githubData.contributions[i].commits / totalCommits;
-        hhi += share * share; // Sum of squared shares
+        hhi += share * share; //sum of squared shares
       }
     }
-    return hhi; // Value is between 0 and 1
+    return hhi; //value is between 0 and 1
   }
 
   public async calculateLatency(): Promise<{ score: number; latency: number }> {
