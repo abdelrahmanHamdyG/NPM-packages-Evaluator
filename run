@@ -10,6 +10,7 @@ case "$mode" in
         # Check if npm install succeeded
         if [ $? -ne 0 ]; then
             echo "Error occurred during 'npm install'."
+            exit 1
         else
             dep_count=$(node -p "Object.keys(require('./package.json').dependencies || {}).length")
             echo "$dep_count dependencies installed..."
@@ -18,10 +19,13 @@ case "$mode" in
 
             if [ $? -ne 0 ]; then
                 echo "A problem occurred while compiling TypeScript."
+                exit 1
             fi
         fi
+        exit 0
         ;;
     test)
+        npx vitest --run --coverage --reporter=json > testResults.json
         npx tsc
         node ./dist/Index.js test
         ;;
@@ -29,8 +33,10 @@ case "$mode" in
         npx tsc
         if [ -f "$1" ]; then
             node ./dist/Index.js "$1"
+            exit 0
         else
             echo "file doesn't exist"
+            exit 1
         fi
         ;;
 esac

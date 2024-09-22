@@ -1,5 +1,6 @@
 // CLI.ts
 /* eslint-disable no-useless-escape */
+import { readFileSync, writeFileSync } from "fs";
 import { GitHubAPI } from "./GitHubAPI.js";
 import { NpmAPI } from "./NpmAPI.js";
 import { GitHubData } from "./GitHubData.js";
@@ -13,16 +14,50 @@ const logger = new Logger();
 export class CLI {
   public testSuites(): void {
     logger.log(1, "Starting test suites...");
-    // Implement test suites logic here
+    // reading the raw test-results file
+    const rawData = readFileSync("testResults.json", "utf-8");
+
+    // filtering out non-JSON lines and keep only the relevant ones
+    const cleanedData = rawData.split("\n").filter(line => {
+        // keeping lines that start with '{' or end with '}', which are parts of the JSON data
+        return line.trim().startsWith("{") || line.trim().endsWith("}");
+    }).join("\n");
+
+    // writing the cleaned data into a new file without parsing
+    writeFileSync("cleanTestResults.json", cleanedData);
+    
+    // reading cleanTestResults.json and coverage-summary.json files
+    const testResults = JSON.parse(readFileSync("cleanTestResults.json", "utf-8"));
+    const coverageSummary = JSON.parse(readFileSync("coverage/coverage-summary.json", "utf-8"));
+
+    // extracting test summary
+    const totalTests = testResults.numTotalTests;
+    const passedTests = testResults.numPassedTests;
+
+    // extracting coverage summary
+    const lineCoverage = coverageSummary.total.lines.pct;
+
+    // calculating coverage percentage
+    const coveragePercentage = lineCoverage.toFixed(2); // Percentage of lines covered
+
+    console.log(
+    `${passedTests}/${totalTests} test cases passed. ${coveragePercentage} line coverage achieved.`); 
+    
+    
+    
+    
     logger.log(1, "Test suites completed.");
   }
-
   private async readFromFile(path: string): Promise<Array<string>> {
     logger.log(2, `Attempting to read from file: ${path}`);
     try {
       const data = await fs.readFile(path, "utf8");
 
       const urls: Array<string> = data.split("\n").map((v) => v.trim());
+      if(urls[urls.length-1]===""||urls[urls.length-1].length<=2){
+
+        urls.pop();
+      }
       logger.log(2, `Successfully read ${urls.length} URLs from file.`);
       return urls;
     } catch (err) {
@@ -107,25 +142,29 @@ export class CLI {
                 1,
                 `Net Score: ${net.score}, Latency: ${net.latency / 1000}s`
               );
+              
               const formattedResult = {
                 URL: urls[index],
-                NetScore: net.score.toFixed(3),
-                NetScore_Latency: (net.latency / 1000).toFixed(3),
-                RampUp: rampUp.score.toFixed(3),
-                RampUp_Latency: (rampUp.latency / 1000).toFixed(3),
-                Correctness: correctness.score.toFixed(3),
-                Correctness_Latency: (correctness.latency / 1000).toFixed(3),
-                BusFactor: busFactor.score.toFixed(3),
-                BusFactor_Latency: (busFactor.latency / 1000).toFixed(3),
-                ResponsiveMaintainer: responsiveness.score.toFixed(3),
-                ResponsiveMaintainer_Latency: (responsiveness.latency / 1000).toFixed(3),
-                License: license.score.toFixed(3),
-                License_Latency: (license.latency / 1000).toFixed(3)
-              };
+                NetScore :Number(net.score.toFixed(3)) ,
+                NetScore_Latency: Number((net.latency / 1000).toFixed(3)), // Convert to number
+                RampUp: Number(rampUp.score.toFixed(3)),
+                RampUp_Latency: Number((rampUp.latency / 1000).toFixed(3)), // Convert to number
+                Correctness: Number(correctness.score.toFixed(3)),
+                Correctness_Latency: Number((correctness.latency / 1000).toFixed(3)), // Convert to number
+                BusFactor: Number(busFactor.score.toFixed(3)),
+                BusFactor_Latency: Number((busFactor.latency / 1000).toFixed(3)), // Convert to number
+                ResponsiveMaintainer: Number(responsiveness.score.toFixed(3)),
+                ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
+                License: Number(license.score.toFixed(3)),
+                License_Latency: Number((license.latency / 1000).toFixed(3)) // Convert to number
+            };
+            
               if(githubData.name!=="empty"){
                 console.log(JSON.stringify(formattedResult));
               }else{
-                console.log(`URL:${urls[index]} Error github repo doesn't exist`);
+                console.log(
+                { URL: urls[index], error: "GitHub repo doesn't exist" }
+                );              
               }
 
               

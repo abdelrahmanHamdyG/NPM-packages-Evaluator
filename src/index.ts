@@ -17,6 +17,8 @@ switch (mode) {
         break;
 
     default: {
+        if(!process.env.LOG_FILE){
+            process.exit(1);        }
         const start = performance.now();
         logger.log(1, "We are going to rank the modules now.");
         logger.log(2, `Rank modules is called with parameter = ${mode}`);
