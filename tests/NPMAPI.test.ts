@@ -29,6 +29,28 @@ describe("NpmAPI Tests", () => {
           expect(data.license).toBe("MIT");
           expect(data.githubUrl).toBe("https://github.com/user/repo");
      });
+     test("fetches data successfully from NPM adding https:", async () => {
+      //mock the fetch function globally
+      global.fetch = vi.fn().mockResolvedValue({
+        json: vi.fn().mockResolvedValue({
+          "dist-tags": { latest: "1.0.0" },
+          versions: {
+            "1.0.0": {
+              license: "MIT",
+              repository: { url: "git+//github.com/user/repo.git" },
+            },
+          },
+        }),
+   });
+  
+        const data = await npmAPI.fetchData();
+        //check if the returned data is an instance of NPMData
+        expect(data).toBeInstanceOf(NPMData);
+  
+        //check if the extracted license and URL are correct
+        expect(data.license).toBe("MIT");
+        expect(data.githubUrl).toBe("https://github.com/user/repo");
+   });
     test("fetches data unsuccessfully from NPM", async () => {
         //mock the fetch function globally
         global.fetch = vi.fn().mockResolvedValue({
