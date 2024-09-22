@@ -25,7 +25,7 @@ export class NpmAPI extends API{
             const latency=end-start;
             const latestVersion = data["dist-tags"].latest;
             const versionData = data.versions[latestVersion];
-            this.logger.log(3,latestVersion);
+            this.logger.log(2,latestVersion);
             const license = versionData?.license ;
             const repository = versionData?.repository;
             const repoUrl = repository?.url;
@@ -42,7 +42,7 @@ export class NpmAPI extends API{
             
         } catch (error) {
             if(error)
-                this.logger.log(0, `Error fetching data: ${error}`);
+                this.logger.log(2, `Error fetching data: ${error}`);
         }
         return new NPMData();
     }

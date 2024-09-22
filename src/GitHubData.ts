@@ -58,33 +58,24 @@ export class   GitHubData{
     public printMyData():void{
         const logger=new Logger();
         logger.log(1, "GitHub Data:");
-        logger.log(1, `Name: ${this.name }`);
+        logger.log(1, `Name: ${this.name || "N/A"}`);
+        logger.log(1, `Number of Closed Issues: ${this.numberOfclosedIssues ?? "N/A"}`);
+        logger.log(1, `Number of Commits: ${this.numberOfCommits ?? "N/A"}`);
+        
+        if (this.contributions && this.contributions.length > 0) {
+            logger.log(1, `First Contributor: ${this.contributions[0].contributor}`);
+        } else {
+            logger.log(1, "No contributions data available.");
+        }
 
-        logger.log(1, `Number of Issues: ${this.name !== "empty" 
-        ? this.numberOfclosedIssues : "N/A"}`);
-        logger.log(1, `Number of Commits: ${this.name !== "empty" 
-        ? this.numberOfCommits : "N/A"}`);
-
-        if(this.contributions)
-            logger.log(1, `Contributions Array: ${this.name !== "empty" 
-            ? this.contributions[0].contributor : "N/A"}`);
+        // Log level 2 (Debug)
         logger.log(2, `Readme Present: ${this.readme ? "Yes" : "No"}`);
         logger.log(2, `Description Present: ${this.description ? "Yes" : "No"}`);
-        logger.log(2, `Number of Forks: ${this.name !== "empty" 
-        ? this.numberOfForks : "N/A"}`);
-        logger.log(2, `Number of Stars: ${this.name !== "empty" 
-        ? this.numberOfStars : "N/A"}`);
-        logger.log(2, "GitHub Data:");
-        logger.log(2, `Name: ${this.name}`);
-        logger.log(2, `License Name: ${this.name !== "empty" ? this.
-        license: "N/A"} `);
-        if(this.contributions)
-            logger.log(2, `Contributions Array: ${this.contributions.length > 0 ?
-         this.contributions[0].commits : "N/A"}`);
-        logger.log(2, `Readme Present: ${this.readme ? "Yes" : "No"}`);
-        logger.log(2, `Description Present: ${this.description ? "Yes" : "No"}`);
-        logger.log(2, `Number of Issues: ${this.name !== "empty" ?
-         this.numberOfclosedIssues : "N/A"}`);
+        logger.log(2, `Number of Forks: ${this.numberOfForks ?? "N/A"}`);
+        logger.log(2, `Number of Stars: ${this.numberOfStars ?? "N/A"}`);
+        logger.log(2, `License: ${this.license || "N/A"}`);
+        if (this.contributions && this.contributions.length > 0) {
+            logger.log(2, `First Contributor Commits: ${this.contributions[0].commits}`);
     }
 
-}
+}}

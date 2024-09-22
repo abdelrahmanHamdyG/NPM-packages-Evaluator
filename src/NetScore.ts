@@ -6,6 +6,9 @@ import { ResponsivenessMetric } from "./ResponsivenessMetric.js";
 import { LicenseMetric } from "./LicenseMetric.js";
 import { NPMData } from "./NPMData.js";
 import { Metrics } from "./Metrics.js";
+import { Logger } from "./logger.js";
+
+const logger = new Logger();
 
 export class NetScore extends Metrics {
   private correctnessMetric: CorrectnessMetric;
@@ -13,17 +16,13 @@ export class NetScore extends Metrics {
   private responsivenessMetric: ResponsivenessMetric;
   private rampUpMetric: RampUpMetric;
   private licenseMetric: LicenseMetric;
-  // protected githubData: GitHubData;
-  // protected npmData: NPMData;
-
-  // New attribute to store metric results
   private metrics: [
     correctness: { score: number, latency: number },
     responsiveness: { score: number, latency: number },
     rampUp: { score: number, latency: number },
     busFactor: { score: number, latency: number },
     license: { score: number, latency: number },
-   ] | null = null;
+  ] | null = null;
 
   constructor(githubData: GitHubData, npmData: NPMData) {
     super(githubData, npmData);
@@ -32,10 +31,12 @@ export class NetScore extends Metrics {
     this.rampUpMetric = new RampUpMetric(githubData, npmData);
     this.busFactorMetric = new BusFactorMetric(githubData, npmData);
     this.licenseMetric = new LicenseMetric(githubData, npmData);
+    logger.log(1, "NetScore instance created with provided GitHub and NPM data.");
   }
 
-  // Method to calculate and store metric results
   public async calculateScore(): Promise<number> {
+    logger.log(1, "Calculating NetScore...");
+
     // Calculate all metrics in parallel using Promise.all
     const metricResults = await Promise.all([
       this.correctnessMetric.calculateLatency(),
@@ -46,9 +47,14 @@ export class NetScore extends Metrics {
     ]);
 
     const [correctness, responsiveness, rampUp, busFactor, license] = metricResults;
-
-    // Store the results in the class attribute
     this.metrics = metricResults;
+
+    logger.log(1, `Metrics calculated: 
+      Correctness: ${correctness.score}, 
+      Responsiveness: ${responsiveness.score}, 
+      Ramp-Up: ${rampUp.score}, 
+      Bus Factor: ${busFactor.score}, 
+      License: ${license.score}`);
 
     // Calculate NetScore based on the stored metric results
     const netScore = 
@@ -58,6 +64,7 @@ export class NetScore extends Metrics {
       0.2 * responsiveness.score + 
       0.2 * license.score;
 
+    logger.log(1, `NetScore calculated: ${netScore}`);
     return netScore;
   }
 
@@ -68,14 +75,17 @@ export class NetScore extends Metrics {
     busFactor: { score: number, latency: number },
     license: { score: number, latency: number },
   ] | null {
+    logger.log(1, "Retrieving stored metric results.");
     return this.metrics;
   }
 
   public async calculateLatency(): Promise<{ score: number; latency: number }> {
+    logger.log(1, "Calculating latency for NetScore computation...");
     const start = performance.now();
-    const score=await this.calculateScore();
+    const score = await this.calculateScore();
     const end = performance.now();
-    return {score,latency:end - start};
+    const latency = end - start;
+    logger.log(1, `NetScore calculation completed with latency: ${latency} ms`);
+    return { score, latency };
   }
-
 }
