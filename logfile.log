@@ -370,3 +370,1619 @@ Latency: 58.027996200000004
 2024-09-22T11:35:21.808Z [DEBUG]: Readme Present: No
 2024-09-22T11:35:21.809Z [DEBUG]: Description Present: No
 2024-09-22T11:35:21.809Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:37:58.167Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:37:58.168Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:37:58.170Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:37:58.172Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:37:58.175Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:37:58.175Z [DEBUG]: NPM Data:
+2024-09-22T11:37:58.175Z [DEBUG]: License: MIT
+2024-09-22T11:37:58.176Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:37:58.176Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T11:37:58.178Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:37:58.178Z [DEBUG]: Description Present: Yes
+2024-09-22T11:37:58.179Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:37:58.179Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:37:58.179Z [DEBUG]: NPM Data:
+2024-09-22T11:37:58.180Z [DEBUG]: GitHub Data:
+2024-09-22T11:37:58.180Z [DEBUG]: License: empty
+2024-09-22T11:37:58.180Z [DEBUG]: Name: test-repo
+2024-09-22T11:37:58.180Z [DEBUG]: GitHub URL: empty
+2024-09-22T11:37:58.181Z [DEBUG]: License Name: MIT 
+2024-09-22T11:37:58.181Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:37:58.181Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:37:58.182Z [DEBUG]: Description Present: Yes
+2024-09-22T11:37:58.182Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:37:58.184Z [DEBUG]: Readme Present: No
+2024-09-22T11:37:58.185Z [DEBUG]: Description Present: No
+2024-09-22T11:37:58.185Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:37:58.185Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:37:58.186Z [DEBUG]: GitHub Data:
+2024-09-22T11:37:58.186Z [DEBUG]: Name: empty
+2024-09-22T11:37:58.186Z [DEBUG]: License Name: N/A 
+2024-09-22T11:37:58.187Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:37:58.187Z [DEBUG]: Readme Present: No
+2024-09-22T11:37:58.187Z [DEBUG]: Description Present: No
+2024-09-22T11:37:58.188Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:38:23.592Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:38:23.594Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:38:23.597Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:38:23.598Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:38:23.601Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:38:23.602Z [DEBUG]: Description Present: Yes
+2024-09-22T11:38:23.602Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:38:23.602Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:38:23.603Z [DEBUG]: GitHub Data:
+2024-09-22T11:38:23.603Z [DEBUG]: Name: test-repo
+2024-09-22T11:38:23.603Z [DEBUG]: License Name: MIT 
+2024-09-22T11:38:23.604Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:38:23.604Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:38:23.604Z [DEBUG]: Description Present: Yes
+2024-09-22T11:38:23.605Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:38:23.607Z [DEBUG]: Readme Present: No
+2024-09-22T11:38:23.607Z [DEBUG]: Description Present: No
+2024-09-22T11:38:23.607Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:38:23.607Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:38:23.608Z [DEBUG]: GitHub Data:
+2024-09-22T11:38:23.608Z [DEBUG]: Name: empty
+2024-09-22T11:38:23.609Z [DEBUG]: License Name: N/A 
+2024-09-22T11:38:23.609Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:38:23.609Z [DEBUG]: Readme Present: No
+2024-09-22T11:38:23.610Z [DEBUG]: Description Present: No
+2024-09-22T11:38:23.610Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:38:28.396Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:38:28.398Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:38:28.401Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:38:28.401Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:38:28.404Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:38:28.404Z [DEBUG]: Description Present: Yes
+2024-09-22T11:38:28.404Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:38:28.405Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:38:28.406Z [DEBUG]: GitHub Data:
+2024-09-22T11:38:28.406Z [DEBUG]: Name: test-repo
+2024-09-22T11:38:28.407Z [DEBUG]: License Name: MIT 
+2024-09-22T11:38:28.407Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:38:28.407Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:38:28.408Z [DEBUG]: Description Present: Yes
+2024-09-22T11:38:28.408Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:38:28.410Z [DEBUG]: Readme Present: No
+2024-09-22T11:38:28.410Z [DEBUG]: Description Present: No
+2024-09-22T11:38:28.410Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:38:28.410Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:38:28.411Z [DEBUG]: GitHub Data:
+2024-09-22T11:38:28.411Z [DEBUG]: Name: empty
+2024-09-22T11:38:28.411Z [DEBUG]: License Name: N/A 
+2024-09-22T11:38:28.412Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:38:28.412Z [DEBUG]: Readme Present: No
+2024-09-22T11:38:28.412Z [DEBUG]: Description Present: No
+2024-09-22T11:38:28.413Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:38:54.270Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:38:54.270Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:38:54.274Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:38:54.277Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:38:54.278Z [DEBUG]: NPM Data:
+2024-09-22T11:38:54.279Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:38:54.279Z [DEBUG]: License: MIT
+2024-09-22T11:38:54.279Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T11:38:54.280Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:38:54.282Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:38:54.283Z [DEBUG]: Description Present: Yes
+2024-09-22T11:38:54.283Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:38:54.284Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:38:54.283Z [DEBUG]: NPM Data:
+2024-09-22T11:38:54.284Z [DEBUG]: GitHub Data:
+2024-09-22T11:38:54.284Z [DEBUG]: License: empty
+2024-09-22T11:38:54.285Z [DEBUG]: Name: test-repo
+2024-09-22T11:38:54.284Z [DEBUG]: GitHub URL: empty
+2024-09-22T11:38:54.285Z [DEBUG]: License Name: MIT 
+2024-09-22T11:38:54.285Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:38:54.286Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:38:54.286Z [DEBUG]: Description Present: Yes
+2024-09-22T11:38:54.287Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:38:54.289Z [DEBUG]: Readme Present: No
+2024-09-22T11:38:54.289Z [DEBUG]: Description Present: No
+2024-09-22T11:38:54.290Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:38:54.290Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:38:54.290Z [DEBUG]: GitHub Data:
+2024-09-22T11:38:54.290Z [DEBUG]: Name: empty
+2024-09-22T11:38:54.291Z [DEBUG]: License Name: N/A 
+2024-09-22T11:38:54.291Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:38:54.291Z [DEBUG]: Readme Present: No
+2024-09-22T11:38:54.292Z [DEBUG]: Description Present: No
+2024-09-22T11:38:54.292Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:39:29.866Z [DEBUG]: rank modules is called with parameter =something.txt 
+2024-09-22T11:39:29.868Z [DEBUG]: rankModulesFunction is called and the path is something.txt
+2024-09-22T11:39:29.868Z [DEBUG]: total delay of fetching is 1.9592000000000098
+2024-09-22T11:39:29.869Z [DEBUG]: the url https://github.com/mrdoob/three.js/ has github url =
+                https://github.com/mrdoob/three.js/ and npm url= empty
+2024-09-22T11:39:29.870Z [DEBUG]: the github user is mrdoob the github repo is three.js
+2024-09-22T11:39:29.870Z [DEBUG]: we are fetching data for the giturl:https://github.com/mrdoob/three.js/
+                
+ with username:mrdoob and reponame:three.js
+2024-09-22T11:39:29.873Z [DEBUG]: Fetching data for owner:
+                  mrdoob, repo: three.js
+2024-09-22T11:39:41.234Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:39:41.235Z [DEBUG]: 
+
+The data fetched for each URL:
+
+
+2024-09-22T11:39:41.235Z [DEBUG]: Result 1:
+2024-09-22T11:39:41.235Z [DEBUG]: npm delay:0
+
+2024-09-22T11:39:41.236Z [DEBUG]: github delay:11.3609977
+
+2024-09-22T11:39:41.236Z [DEBUG]: NPM Data:
+2024-09-22T11:39:41.236Z [DEBUG]: License: empty
+2024-09-22T11:39:41.236Z [DEBUG]: GitHub URL: empty
+2024-09-22T11:39:41.237Z [DEBUG]: 
+**************************
+
+2024-09-22T11:39:41.237Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:39:41.237Z [DEBUG]: Description Present: Yes
+2024-09-22T11:39:41.238Z [DEBUG]: Number of Forks: 35310
+2024-09-22T11:39:41.238Z [DEBUG]: Number of Stars: 101831
+2024-09-22T11:39:41.238Z [DEBUG]: GitHub Data:
+2024-09-22T11:39:41.238Z [DEBUG]: Name: three.js
+2024-09-22T11:39:41.239Z [DEBUG]: License Name: MIT License 
+2024-09-22T11:39:41.239Z [DEBUG]: Contributions Array: 18372
+2024-09-22T11:39:41.239Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:39:41.239Z [DEBUG]: Description Present: Yes
+2024-09-22T11:39:41.239Z [DEBUG]: Number of Issues: 750
+2024-09-22T11:39:41.240Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-22T11:40:46.892Z [DEBUG]: Correctness Score: 
+                                1, 
+                                
+Latency: 65.652921
+2024-09-22T11:40:46.892Z [DEBUG]: Responsiveness Score:
+                                1, 
+                                
+Latency: 0.005096000000001368
+2024-09-22T11:40:46.893Z [DEBUG]: Ramp-Up Score: 
+                                0.6502492652017945, 
+                                
+Latency: 0.0036895000000004073
+2024-09-22T11:40:46.893Z [DEBUG]: Bus Factor Score:
+                                0.7692751251384485, 
+                                
+Latency: 0.0003379999999997381
+2024-09-22T11:40:46.893Z [DEBUG]: License Score: 
+                                1, 
+                                
+Latency: 0.00019429999999920255
+2024-09-22T11:40:46.894Z [DEBUG]: Net Score: 
+                                0.8839048780680487, 
+                                
+Latency: 65.65303
+2024-09-22T11:40:46.894Z [DEBUG]: 
+
+
+**************************
+
+
+
+2024-09-22T11:42:02.479Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:42:02.482Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:42:02.487Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:42:02.488Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:42:02.491Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:42:02.491Z [DEBUG]: Description Present: Yes
+2024-09-22T11:42:02.492Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:42:02.492Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:42:02.493Z [DEBUG]: GitHub Data:
+2024-09-22T11:42:02.493Z [DEBUG]: Name: test-repo
+2024-09-22T11:42:02.493Z [DEBUG]: License Name: MIT 
+2024-09-22T11:42:02.494Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:42:02.494Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:42:02.494Z [DEBUG]: Description Present: Yes
+2024-09-22T11:42:02.495Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:42:02.499Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:42:02.497Z [DEBUG]: Readme Present: No
+2024-09-22T11:42:02.497Z [DEBUG]: Description Present: No
+2024-09-22T11:42:02.497Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:42:02.497Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:42:02.498Z [DEBUG]: GitHub Data:
+2024-09-22T11:42:02.503Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:42:02.498Z [DEBUG]: Name: empty
+2024-09-22T11:42:02.499Z [DEBUG]: License Name: N/A 
+2024-09-22T11:42:02.499Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:42:02.499Z [DEBUG]: Readme Present: No
+2024-09-22T11:42:02.500Z [DEBUG]: Description Present: No
+2024-09-22T11:42:02.500Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:42:02.505Z [DEBUG]: NPM Data:
+2024-09-22T11:42:02.506Z [DEBUG]: License: MIT
+2024-09-22T11:42:02.506Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T11:42:02.509Z [DEBUG]: NPM Data:
+2024-09-22T11:42:02.509Z [DEBUG]: License: empty
+2024-09-22T11:42:02.509Z [DEBUG]: GitHub URL: empty
+2024-09-22T11:42:02.556Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:42:02.558Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:42:02.560Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:42:02.561Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:42:02.561Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:42:02.562Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:42:02.563Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T11:42:02.563Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:42:02.563Z [DEBUG]: Total commits: 17
+2024-09-22T11:42:02.564Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:42:02.564Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T11:42:02.565Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:42:02.565Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:42:02.566Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:42:02.566Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:42:02.567Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T11:42:02.567Z [DEBUG]: Total commits calculated: 0
+2024-09-22T11:42:02.568Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:42:02.569Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-22T11:42:02.569Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T11:42:02.570Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:42:02.570Z [DEBUG]: Total commits: 17
+2024-09-22T11:42:02.570Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:42:02.571Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T11:42:02.571Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:42:02.572Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:44:53.385Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:44:53.389Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:44:53.387Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:44:53.392Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:44:53.394Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:44:53.395Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:44:53.394Z [DEBUG]: NPM Data:
+2024-09-22T11:44:53.394Z [DEBUG]: License: MIT
+2024-09-22T11:44:53.395Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T11:44:53.397Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:44:53.397Z [DEBUG]: Description Present: Yes
+2024-09-22T11:44:53.398Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:44:53.398Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:44:53.398Z [DEBUG]: GitHub Data:
+2024-09-22T11:44:53.399Z [DEBUG]: Name: test-repo
+2024-09-22T11:44:53.398Z [DEBUG]: NPM Data:
+2024-09-22T11:44:53.399Z [DEBUG]: License Name: MIT 
+2024-09-22T11:44:53.398Z [DEBUG]: License: empty
+2024-09-22T11:44:53.400Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:44:53.399Z [DEBUG]: GitHub URL: empty
+2024-09-22T11:44:53.400Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:44:53.401Z [DEBUG]: Description Present: Yes
+2024-09-22T11:44:53.401Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:44:53.404Z [DEBUG]: Readme Present: No
+2024-09-22T11:44:53.404Z [DEBUG]: Description Present: No
+2024-09-22T11:44:53.404Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:44:53.404Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:44:53.405Z [DEBUG]: GitHub Data:
+2024-09-22T11:44:53.405Z [DEBUG]: Name: empty
+2024-09-22T11:44:53.405Z [DEBUG]: License Name: N/A 
+2024-09-22T11:44:53.405Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:44:53.406Z [DEBUG]: Readme Present: No
+2024-09-22T11:44:53.406Z [DEBUG]: Description Present: No
+2024-09-22T11:44:53.406Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:44:53.458Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:44:53.460Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:44:53.463Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:44:53.464Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:44:53.464Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:44:53.465Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:44:53.465Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T11:44:53.466Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:44:53.466Z [DEBUG]: Total commits: 17
+2024-09-22T11:44:53.467Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:44:53.467Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T11:44:53.467Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:44:53.468Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:44:53.468Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:44:53.469Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:44:53.469Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T11:44:53.470Z [DEBUG]: Total commits calculated: 0
+2024-09-22T11:44:53.471Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:44:53.471Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-22T11:44:53.471Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T11:44:53.472Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:44:53.472Z [DEBUG]: Total commits: 17
+2024-09-22T11:44:53.472Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:44:53.473Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T11:44:53.473Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:44:53.473Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:47:16.699Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-22T11:47:16.704Z [DEBUG]: Getting latest commit in directory: test-repo
+2024-09-22T11:47:16.705Z [DEBUG]: Latest commit: latest-commit-oid
+2024-09-22T11:47:16.705Z [DEBUG]: Getting the commit 20 commits ago in directory: test-repo
+2024-09-22T11:47:16.706Z [DEBUG]: Commit 20 commits ago: commit-20
+2024-09-22T11:47:16.707Z [DEBUG]: Checking out commit some-commit-oid in directory: test-repo
+2024-09-22T11:47:16.707Z [DEBUG]: Checked out commit some-commit-oid
+2024-09-22T11:47:16.708Z [DEBUG]: Repository cloned. Starting analysis.
+2024-09-22T11:47:16.709Z [DEBUG]: Latest commit results: {"testfileCount":2,"testlineCount":20,"fileCount":10,"lineCount":100}
+2024-09-22T11:47:16.709Z [DEBUG]: Got commit 20 commits ago: commit-oid
+2024-09-22T11:47:16.710Z [DEBUG]: 20th commit results: {"testfileCount":1,"testlineCount":10,"fileCount":8,"lineCount":80}
+2024-09-22T11:47:16.710Z [DEBUG]: Latest commit - Files: 10, Lines: 100, Test Files: 2, Test Lines: 20
+2024-09-22T11:47:16.710Z [DEBUG]: 20th commit - Files: 8, Lines: 80, Test Files: 1, Test Lines: 10
+2024-09-22T11:47:16.710Z [DEBUG]: Differences - Test Files: 1, Test Lines: 10, Files: 2, Lines: 20
+2024-09-22T11:47:16.711Z [DEBUG]: Intermediate Scores - File Count Score: 0.2, Line Count Score: 0.2, File Diff Count Score: 0.5, Line Diff Count Score: 0.5
+2024-09-22T11:47:16.712Z [DEBUG]: Calculating latency for correctness score...
+2024-09-22T11:47:16.713Z [DEBUG]: Analyzing CorrectnessMetric...
+2024-09-22T11:47:23.067Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:47:23.070Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:47:23.075Z [DEBUG]: Fetching data for owner:
+                  owner, repo: repo
+2024-09-22T11:47:23.076Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:47:23.079Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:47:23.079Z [DEBUG]: Description Present: Yes
+2024-09-22T11:47:23.079Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:47:23.080Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:47:23.080Z [DEBUG]: GitHub Data:
+2024-09-22T11:47:23.080Z [DEBUG]: Name: test-repo
+2024-09-22T11:47:23.081Z [DEBUG]: License Name: MIT 
+2024-09-22T11:47:23.081Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:47:23.081Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:47:23.082Z [DEBUG]: Description Present: Yes
+2024-09-22T11:47:23.082Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:47:23.084Z [DEBUG]: Readme Present: No
+2024-09-22T11:47:23.085Z [DEBUG]: Description Present: No
+2024-09-22T11:47:23.085Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:47:23.085Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:47:23.086Z [DEBUG]: GitHub Data:
+2024-09-22T11:47:23.086Z [DEBUG]: Name: empty
+2024-09-22T11:47:23.086Z [DEBUG]: License Name: N/A 
+2024-09-22T11:47:23.087Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:47:23.087Z [DEBUG]: Readme Present: No
+2024-09-22T11:47:23.087Z [DEBUG]: Description Present: No
+2024-09-22T11:47:23.088Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:47:23.104Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:47:23.107Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:47:23.109Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:47:23.109Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:47:23.110Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:47:23.111Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:47:23.111Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T11:47:23.112Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:47:23.107Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:47:23.112Z [DEBUG]: Total commits: 17
+2024-09-22T11:47:23.113Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:47:23.113Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T11:47:23.114Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:47:23.114Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:47:23.115Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:47:23.115Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:47:23.112Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:47:23.116Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T11:47:23.116Z [DEBUG]: Total commits calculated: 0
+2024-09-22T11:47:23.117Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:47:23.117Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-22T11:47:23.118Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T11:47:23.114Z [DEBUG]: NPM Data:
+2024-09-22T11:47:23.118Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:47:23.115Z [DEBUG]: License: MIT
+2024-09-22T11:47:23.119Z [DEBUG]: Total commits: 17
+2024-09-22T11:47:23.115Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T11:47:23.119Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:47:23.120Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T11:47:23.120Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:47:23.120Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:47:23.118Z [DEBUG]: NPM Data:
+2024-09-22T11:47:23.119Z [DEBUG]: License: empty
+2024-09-22T11:47:23.119Z [DEBUG]: GitHub URL: empty
+2024-09-22T11:47:23.222Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-22T11:47:23.231Z [DEBUG]: Getting latest commit in directory: test-repo
+2024-09-22T11:47:23.232Z [DEBUG]: Latest commit: latest-commit-oid
+2024-09-22T11:47:23.234Z [DEBUG]: Getting the commit 20 commits ago in directory: test-repo
+2024-09-22T11:47:23.235Z [DEBUG]: Commit 20 commits ago: commit-20
+2024-09-22T11:47:23.236Z [DEBUG]: Checking out commit some-commit-oid in directory: test-repo
+2024-09-22T11:47:23.237Z [DEBUG]: Checked out commit some-commit-oid
+2024-09-22T11:47:23.240Z [DEBUG]: Repository cloned. Starting analysis.
+2024-09-22T11:47:23.240Z [DEBUG]: Latest commit results: {"testfileCount":2,"testlineCount":20,"fileCount":10,"lineCount":100}
+2024-09-22T11:47:23.241Z [DEBUG]: Got commit 20 commits ago: commit-oid
+2024-09-22T11:47:23.242Z [DEBUG]: 20th commit results: {"testfileCount":1,"testlineCount":10,"fileCount":8,"lineCount":80}
+2024-09-22T11:47:23.243Z [DEBUG]: Latest commit - Files: 10, Lines: 100, Test Files: 2, Test Lines: 20
+2024-09-22T11:47:23.243Z [DEBUG]: 20th commit - Files: 8, Lines: 80, Test Files: 1, Test Lines: 10
+2024-09-22T11:47:23.243Z [DEBUG]: Differences - Test Files: 1, Test Lines: 10, Files: 2, Lines: 20
+2024-09-22T11:47:23.244Z [DEBUG]: Intermediate Scores - File Count Score: 0.2, Line Count Score: 0.2, File Diff Count Score: 0.5, Line Diff Count Score: 0.5
+2024-09-22T11:47:23.246Z [DEBUG]: Calculating latency for correctness score...
+2024-09-22T11:47:23.247Z [DEBUG]: Analyzing CorrectnessMetric...
+2024-09-22T11:49:47.222Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:49:47.224Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:49:47.224Z [DEBUG]: Initializing API requests.
+2024-09-22T11:49:47.225Z [DEBUG]: Fetching closed issues since 2024-06-22T11:49:47.225Z
+2024-09-22T11:49:47.225Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:49:47.226Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:49:47.226Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-22T11:49:47.226Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-22T11:49:47.227Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-22T11:49:47.227Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-22T11:49:47.227Z [DEBUG]: Fetching open issues since 2024-06-22T11:49:47.225Z
+2024-09-22T11:49:47.227Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-22T11:49:47.228Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-22T11:49:47.228Z [DEBUG]: Returning fetched contributors.
+2024-09-22T11:49:47.228Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-22T11:49:47.229Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-22T11:49:47.229Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-22T11:49:47.229Z [DEBUG]: Returning fetched issues.
+2024-09-22T11:49:47.229Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-22T11:49:47.230Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-22T11:49:47.230Z [DEBUG]: Readme found: true, Description found: true
+2024-09-22T11:49:47.230Z [DEBUG]: License: MIT
+2024-09-22T11:49:47.231Z [DEBUG]: Data fetch latency: 6.961999999999534 ms.
+2024-09-22T11:49:47.231Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:49:47.231Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-22T11:49:47.231Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-22T11:49:47.234Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:49:47.234Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:49:47.235Z [DEBUG]: Initializing API requests.
+2024-09-22T11:49:47.235Z [DEBUG]: Fetching closed issues since 2024-06-22T11:49:47.235Z
+2024-09-22T11:49:47.236Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:49:47.236Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:49:47.236Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:49:47.238Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:49:47.238Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:49:47.239Z [DEBUG]: Description Present: Yes
+2024-09-22T11:49:47.239Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:49:47.240Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:49:47.240Z [DEBUG]: GitHub Data:
+2024-09-22T11:49:47.240Z [DEBUG]: Name: test-repo
+2024-09-22T11:49:47.241Z [DEBUG]: License Name: MIT 
+2024-09-22T11:49:47.241Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:49:47.241Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:49:47.241Z [DEBUG]: Description Present: Yes
+2024-09-22T11:49:47.242Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:49:47.243Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:49:47.243Z [DEBUG]: Readme Present: No
+2024-09-22T11:49:47.244Z [DEBUG]: Description Present: No
+2024-09-22T11:49:47.244Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:49:47.244Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:49:47.245Z [DEBUG]: GitHub Data:
+2024-09-22T11:49:47.245Z [DEBUG]: Name: empty
+2024-09-22T11:49:47.245Z [DEBUG]: License Name: N/A 
+2024-09-22T11:49:47.245Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:49:47.245Z [DEBUG]: Readme Present: No
+2024-09-22T11:49:47.246Z [DEBUG]: Description Present: No
+2024-09-22T11:49:47.246Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:49:53.671Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:49:53.675Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:49:53.676Z [DEBUG]: Initializing API requests.
+2024-09-22T11:49:53.674Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:49:53.676Z [DEBUG]: Fetching closed issues since 2024-06-22T11:49:53.676Z
+2024-09-22T11:49:53.677Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:49:53.677Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:49:53.678Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-22T11:49:53.679Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-22T11:49:53.679Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-22T11:49:53.680Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-22T11:49:53.679Z [DEBUG]: Fetching data for package: test
+2024-09-22T11:49:53.680Z [DEBUG]: Fetching open issues since 2024-06-22T11:49:53.676Z
+2024-09-22T11:49:53.680Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-22T11:49:53.681Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-22T11:49:53.681Z [DEBUG]: Returning fetched contributors.
+2024-09-22T11:49:53.681Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-22T11:49:53.682Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-22T11:49:53.682Z [DEBUG]: NPM Data:
+2024-09-22T11:49:53.682Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-22T11:49:53.682Z [DEBUG]: License: MIT
+2024-09-22T11:49:53.683Z [DEBUG]: Returning fetched issues.
+2024-09-22T11:49:53.683Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T11:49:53.683Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-22T11:49:53.684Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-22T11:49:53.684Z [DEBUG]: Readme found: true, Description found: true
+2024-09-22T11:49:53.684Z [DEBUG]: License: MIT
+2024-09-22T11:49:53.684Z [DEBUG]: Data fetch latency: 9.262900000000059 ms.
+2024-09-22T11:49:53.685Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:49:53.685Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-22T11:49:53.686Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-22T11:49:53.686Z [DEBUG]: NPM Data:
+2024-09-22T11:49:53.686Z [DEBUG]: License: empty
+2024-09-22T11:49:53.687Z [DEBUG]: GitHub URL: empty
+2024-09-22T11:49:53.689Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:49:53.689Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:49:53.690Z [DEBUG]: Initializing API requests.
+2024-09-22T11:49:53.690Z [DEBUG]: Fetching closed issues since 2024-06-22T11:49:53.690Z
+2024-09-22T11:49:53.691Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:49:53.691Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:49:53.692Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:49:53.693Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:49:53.694Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:49:53.694Z [DEBUG]: Description Present: Yes
+2024-09-22T11:49:53.695Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:49:53.695Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:49:53.695Z [DEBUG]: GitHub Data:
+2024-09-22T11:49:53.696Z [DEBUG]: Name: test-repo
+2024-09-22T11:49:53.696Z [DEBUG]: License Name: MIT 
+2024-09-22T11:49:53.696Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:49:53.697Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:49:53.697Z [DEBUG]: Description Present: Yes
+2024-09-22T11:49:53.697Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:49:53.699Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:49:53.700Z [DEBUG]: Readme Present: No
+2024-09-22T11:49:53.700Z [DEBUG]: Description Present: No
+2024-09-22T11:49:53.700Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:49:53.701Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:49:53.701Z [DEBUG]: GitHub Data:
+2024-09-22T11:49:53.702Z [DEBUG]: Name: empty
+2024-09-22T11:49:53.702Z [DEBUG]: License Name: N/A 
+2024-09-22T11:49:53.703Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:49:53.703Z [DEBUG]: Readme Present: No
+2024-09-22T11:49:53.703Z [DEBUG]: Description Present: No
+2024-09-22T11:49:53.704Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:49:53.746Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:49:53.748Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:49:53.750Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:49:53.750Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:49:53.751Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:49:53.751Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:49:53.752Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T11:49:53.752Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:49:53.753Z [DEBUG]: Total commits: 17
+2024-09-22T11:49:53.753Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:49:53.753Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T11:49:53.754Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:49:53.754Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:49:53.754Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:49:53.755Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:49:53.755Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T11:49:53.755Z [DEBUG]: Total commits calculated: 0
+2024-09-22T11:49:53.756Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T11:49:53.757Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-22T11:49:53.757Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T11:49:53.758Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:49:53.758Z [DEBUG]: Total commits: 17
+2024-09-22T11:49:53.758Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:49:53.759Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T11:49:53.759Z [DEBUG]: Total commits calculated: 17
+2024-09-22T11:49:53.760Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T11:49:53.822Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-22T11:49:53.831Z [DEBUG]: Getting latest commit in directory: test-repo
+2024-09-22T11:49:53.832Z [DEBUG]: Latest commit: latest-commit-oid
+2024-09-22T11:49:53.833Z [DEBUG]: Getting the commit 20 commits ago in directory: test-repo
+2024-09-22T11:49:53.834Z [DEBUG]: Commit 20 commits ago: commit-20
+2024-09-22T11:49:53.835Z [DEBUG]: Checking out commit some-commit-oid in directory: test-repo
+2024-09-22T11:49:53.835Z [DEBUG]: Checked out commit some-commit-oid
+2024-09-22T11:49:53.838Z [DEBUG]: Repository cloned. Starting analysis.
+2024-09-22T11:49:53.838Z [DEBUG]: Latest commit results: {"testfileCount":2,"testlineCount":20,"fileCount":10,"lineCount":100}
+2024-09-22T11:49:53.839Z [DEBUG]: Got commit 20 commits ago: commit-oid
+2024-09-22T11:49:53.840Z [DEBUG]: 20th commit results: {"testfileCount":1,"testlineCount":10,"fileCount":8,"lineCount":80}
+2024-09-22T11:49:53.840Z [DEBUG]: Latest commit - Files: 10, Lines: 100, Test Files: 2, Test Lines: 20
+2024-09-22T11:49:53.841Z [DEBUG]: 20th commit - Files: 8, Lines: 80, Test Files: 1, Test Lines: 10
+2024-09-22T11:49:53.841Z [DEBUG]: Differences - Test Files: 1, Test Lines: 10, Files: 2, Lines: 20
+2024-09-22T11:49:53.841Z [DEBUG]: Intermediate Scores - File Count Score: 0.2, Line Count Score: 0.2, File Diff Count Score: 0.5, Line Diff Count Score: 0.5
+2024-09-22T11:49:53.843Z [DEBUG]: Calculating latency for correctness score...
+2024-09-22T11:49:53.845Z [DEBUG]: Analyzing CorrectnessMetric...
+2024-09-22T11:50:30.026Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:50:30.028Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:50:30.028Z [DEBUG]: Initializing API requests.
+2024-09-22T11:50:30.029Z [DEBUG]: Fetching closed issues since 2024-06-22T11:50:30.029Z
+2024-09-22T11:50:30.029Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:50:30.029Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:50:30.030Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-22T11:50:30.030Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-22T11:50:30.031Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-22T11:50:30.031Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-22T11:50:30.032Z [DEBUG]: Fetching open issues since 2024-06-22T11:50:30.029Z
+2024-09-22T11:50:30.032Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-22T11:50:30.032Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-22T11:50:30.032Z [DEBUG]: Returning fetched contributors.
+2024-09-22T11:50:30.033Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-22T11:50:30.033Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-22T11:50:30.033Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-22T11:50:30.034Z [DEBUG]: Returning fetched issues.
+2024-09-22T11:50:30.034Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-22T11:50:30.034Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-22T11:50:30.034Z [DEBUG]: Readme found: true, Description found: true
+2024-09-22T11:50:30.035Z [DEBUG]: License: MIT
+2024-09-22T11:50:30.035Z [DEBUG]: Data fetch latency: 7.396999999997206 ms.
+2024-09-22T11:50:30.035Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:50:30.036Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-22T11:50:30.036Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-22T11:50:30.038Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:50:30.039Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:50:30.039Z [DEBUG]: Initializing API requests.
+2024-09-22T11:50:30.039Z [DEBUG]: Fetching closed issues since 2024-06-22T11:50:30.039Z
+2024-09-22T11:50:30.040Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:50:30.040Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:50:30.040Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:50:30.042Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:50:30.043Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:50:30.043Z [DEBUG]: Description Present: Yes
+2024-09-22T11:50:30.043Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:50:30.044Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:50:30.044Z [DEBUG]: GitHub Data:
+2024-09-22T11:50:30.044Z [DEBUG]: Name: test-repo
+2024-09-22T11:50:30.045Z [DEBUG]: License Name: MIT 
+2024-09-22T11:50:30.045Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:50:30.045Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:50:30.045Z [DEBUG]: Description Present: Yes
+2024-09-22T11:50:30.046Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:50:30.055Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:50:30.056Z [DEBUG]: Readme Present: No
+2024-09-22T11:50:30.056Z [DEBUG]: Description Present: No
+2024-09-22T11:50:30.056Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:50:30.056Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:50:30.057Z [DEBUG]: GitHub Data:
+2024-09-22T11:50:30.057Z [DEBUG]: Name: empty
+2024-09-22T11:50:30.057Z [DEBUG]: License Name: N/A 
+2024-09-22T11:50:30.057Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:50:30.057Z [DEBUG]: Readme Present: No
+2024-09-22T11:50:30.058Z [DEBUG]: Description Present: No
+2024-09-22T11:50:30.058Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:50:57.810Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:50:57.812Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:50:57.812Z [DEBUG]: Initializing API requests.
+2024-09-22T11:50:57.813Z [DEBUG]: Fetching closed issues since 2024-06-22T11:50:57.813Z
+2024-09-22T11:50:57.813Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:50:57.813Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:50:57.814Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-22T11:50:57.814Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-22T11:50:57.815Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-22T11:50:57.815Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-22T11:50:57.815Z [DEBUG]: Fetching open issues since 2024-06-22T11:50:57.813Z
+2024-09-22T11:50:57.815Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-22T11:50:57.816Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-22T11:50:57.816Z [DEBUG]: Returning fetched contributors.
+2024-09-22T11:50:57.816Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-22T11:50:57.817Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-22T11:50:57.817Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-22T11:50:57.817Z [DEBUG]: Returning fetched issues.
+2024-09-22T11:50:57.817Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-22T11:50:57.818Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-22T11:50:57.819Z [DEBUG]: Readme found: true, Description found: true
+2024-09-22T11:50:57.819Z [DEBUG]: License: MIT
+2024-09-22T11:50:57.819Z [DEBUG]: Data fetch latency: 7.736199999999371 ms.
+2024-09-22T11:50:57.820Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:50:57.820Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-22T11:50:57.820Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-22T11:50:57.823Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:50:57.824Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:50:57.825Z [DEBUG]: Initializing API requests.
+2024-09-22T11:50:57.825Z [DEBUG]: Fetching closed issues since 2024-06-22T11:50:57.825Z
+2024-09-22T11:50:57.826Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:50:57.826Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:50:57.827Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:50:57.829Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:50:57.830Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:50:57.830Z [DEBUG]: Description Present: Yes
+2024-09-22T11:50:57.830Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:50:57.831Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:50:57.831Z [DEBUG]: GitHub Data:
+2024-09-22T11:50:57.832Z [DEBUG]: Name: test-repo
+2024-09-22T11:50:57.832Z [DEBUG]: License Name: MIT 
+2024-09-22T11:50:57.832Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:50:57.832Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:50:57.833Z [DEBUG]: Description Present: Yes
+2024-09-22T11:50:57.833Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:50:57.842Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:50:57.843Z [DEBUG]: Readme Present: No
+2024-09-22T11:50:57.843Z [DEBUG]: Description Present: No
+2024-09-22T11:50:57.844Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:50:57.844Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:50:57.844Z [DEBUG]: GitHub Data:
+2024-09-22T11:50:57.844Z [DEBUG]: Name: empty
+2024-09-22T11:50:57.845Z [DEBUG]: License Name: N/A 
+2024-09-22T11:50:57.845Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:50:57.845Z [DEBUG]: Readme Present: No
+2024-09-22T11:50:57.846Z [DEBUG]: Description Present: No
+2024-09-22T11:50:57.846Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:52:53.246Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:52:53.248Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:52:53.249Z [DEBUG]: Initializing API requests.
+2024-09-22T11:52:53.249Z [DEBUG]: Fetching closed issues since 2024-06-22T11:52:53.249Z
+2024-09-22T11:52:53.249Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:52:53.250Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:52:53.250Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-22T11:52:53.250Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-22T11:52:53.251Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-22T11:52:53.251Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-22T11:52:53.251Z [DEBUG]: Fetching open issues since 2024-06-22T11:52:53.249Z
+2024-09-22T11:52:53.252Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-22T11:52:53.252Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-22T11:52:53.252Z [DEBUG]: Returning fetched contributors.
+2024-09-22T11:52:53.252Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-22T11:52:53.253Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-22T11:52:53.253Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-22T11:52:53.253Z [DEBUG]: Returning fetched issues.
+2024-09-22T11:52:53.254Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-22T11:52:53.254Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-22T11:52:53.254Z [DEBUG]: Readme found: true, Description found: true
+2024-09-22T11:52:53.255Z [DEBUG]: License: MIT
+2024-09-22T11:52:53.255Z [DEBUG]: Data fetch latency: 6.719900000025518 ms.
+2024-09-22T11:52:53.255Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:52:53.256Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-22T11:52:53.256Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-22T11:52:53.260Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:52:53.261Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:52:53.261Z [DEBUG]: Initializing API requests.
+2024-09-22T11:52:53.262Z [DEBUG]: Fetching closed issues since 2024-06-22T11:52:53.262Z
+2024-09-22T11:52:53.262Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:52:53.263Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:52:53.263Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:52:53.265Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:52:53.266Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:52:53.266Z [DEBUG]: Description Present: Yes
+2024-09-22T11:52:53.266Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:52:53.267Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:52:53.267Z [DEBUG]: GitHub Data:
+2024-09-22T11:52:53.267Z [DEBUG]: Name: test-repo
+2024-09-22T11:52:53.267Z [DEBUG]: License Name: MIT 
+2024-09-22T11:52:53.268Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:52:53.268Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:52:53.268Z [DEBUG]: Description Present: Yes
+2024-09-22T11:52:53.269Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:52:53.270Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:52:53.271Z [DEBUG]: Readme Present: No
+2024-09-22T11:52:53.271Z [DEBUG]: Description Present: No
+2024-09-22T11:52:53.272Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:52:53.272Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:52:53.272Z [DEBUG]: GitHub Data:
+2024-09-22T11:52:53.273Z [DEBUG]: Name: empty
+2024-09-22T11:52:53.273Z [DEBUG]: License Name: N/A 
+2024-09-22T11:52:53.273Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:52:53.273Z [DEBUG]: Readme Present: No
+2024-09-22T11:52:53.274Z [DEBUG]: Description Present: No
+2024-09-22T11:52:53.274Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:52:58.525Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:52:58.527Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:52:58.527Z [DEBUG]: Initializing API requests.
+2024-09-22T11:52:58.528Z [DEBUG]: Fetching closed issues since 2024-06-22T11:52:58.528Z
+2024-09-22T11:52:58.528Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:52:58.529Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:52:58.529Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-22T11:52:58.529Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-22T11:52:58.530Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-22T11:52:58.530Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-22T11:52:58.530Z [DEBUG]: Fetching open issues since 2024-06-22T11:52:58.528Z
+2024-09-22T11:52:58.531Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-22T11:52:58.531Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-22T11:52:58.531Z [DEBUG]: Returning fetched contributors.
+2024-09-22T11:52:58.532Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-22T11:52:58.532Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-22T11:52:58.532Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-22T11:52:58.533Z [DEBUG]: Returning fetched issues.
+2024-09-22T11:52:58.533Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-22T11:52:58.534Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-22T11:52:58.534Z [DEBUG]: Readme found: true, Description found: true
+2024-09-22T11:52:58.534Z [DEBUG]: License: MIT
+2024-09-22T11:52:58.535Z [DEBUG]: Data fetch latency: 7.853999999992084 ms.
+2024-09-22T11:52:58.535Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:52:58.535Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-22T11:52:58.536Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-22T11:52:58.539Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:52:58.539Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:52:58.539Z [DEBUG]: Initializing API requests.
+2024-09-22T11:52:58.540Z [DEBUG]: Fetching closed issues since 2024-06-22T11:52:58.540Z
+2024-09-22T11:52:58.540Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:52:58.540Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:52:58.541Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:52:58.542Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:52:58.543Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:52:58.543Z [DEBUG]: Description Present: Yes
+2024-09-22T11:52:58.544Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:52:58.544Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:52:58.544Z [DEBUG]: GitHub Data:
+2024-09-22T11:52:58.544Z [DEBUG]: Name: test-repo
+2024-09-22T11:52:58.545Z [DEBUG]: License Name: MIT 
+2024-09-22T11:52:58.545Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:52:58.545Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:52:58.546Z [DEBUG]: Description Present: Yes
+2024-09-22T11:52:58.546Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:52:58.547Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:52:58.548Z [DEBUG]: Readme Present: No
+2024-09-22T11:52:58.548Z [DEBUG]: Description Present: No
+2024-09-22T11:52:58.548Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:52:58.549Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:52:58.549Z [DEBUG]: GitHub Data:
+2024-09-22T11:52:58.550Z [DEBUG]: Name: empty
+2024-09-22T11:52:58.550Z [DEBUG]: License Name: N/A 
+2024-09-22T11:52:58.550Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:52:58.550Z [DEBUG]: Readme Present: No
+2024-09-22T11:52:58.551Z [DEBUG]: Description Present: No
+2024-09-22T11:52:58.551Z [DEBUG]: Number of Issues: N/A
+2024-09-22T11:53:02.890Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:53:02.892Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:53:02.892Z [DEBUG]: Initializing API requests.
+2024-09-22T11:53:02.893Z [DEBUG]: Fetching closed issues since 2024-06-22T11:53:02.893Z
+2024-09-22T11:53:02.894Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:53:02.894Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:53:02.895Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-22T11:53:02.895Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-22T11:53:02.895Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-22T11:53:02.896Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-22T11:53:02.896Z [DEBUG]: Fetching open issues since 2024-06-22T11:53:02.893Z
+2024-09-22T11:53:02.896Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-22T11:53:02.897Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-22T11:53:02.897Z [DEBUG]: Returning fetched contributors.
+2024-09-22T11:53:02.897Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-22T11:53:02.898Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-22T11:53:02.898Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-22T11:53:02.898Z [DEBUG]: Returning fetched issues.
+2024-09-22T11:53:02.899Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-22T11:53:02.899Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-22T11:53:02.899Z [DEBUG]: Readme found: true, Description found: true
+2024-09-22T11:53:02.900Z [DEBUG]: License: MIT
+2024-09-22T11:53:02.900Z [DEBUG]: Data fetch latency: 7.890099999989616 ms.
+2024-09-22T11:53:02.900Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T11:53:02.901Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-22T11:53:02.901Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-22T11:53:02.904Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:53:02.904Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T11:53:02.905Z [DEBUG]: Initializing API requests.
+2024-09-22T11:53:02.905Z [DEBUG]: Fetching closed issues since 2024-06-22T11:53:02.905Z
+2024-09-22T11:53:02.905Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T11:53:02.906Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T11:53:02.907Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T11:53:02.908Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:53:02.908Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:53:02.909Z [DEBUG]: Description Present: Yes
+2024-09-22T11:53:02.909Z [DEBUG]: Number of Forks: 3
+2024-09-22T11:53:02.909Z [DEBUG]: Number of Stars: 15
+2024-09-22T11:53:02.910Z [DEBUG]: GitHub Data:
+2024-09-22T11:53:02.910Z [DEBUG]: Name: test-repo
+2024-09-22T11:53:02.910Z [DEBUG]: License Name: MIT 
+2024-09-22T11:53:02.911Z [DEBUG]: Contributions Array: 50
+2024-09-22T11:53:02.911Z [DEBUG]: Readme Present: Yes
+2024-09-22T11:53:02.912Z [DEBUG]: Description Present: Yes
+2024-09-22T11:53:02.912Z [DEBUG]: Number of Issues: 5
+2024-09-22T11:53:02.913Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T11:53:02.914Z [DEBUG]: Readme Present: No
+2024-09-22T11:53:02.914Z [DEBUG]: Description Present: No
+2024-09-22T11:53:02.915Z [DEBUG]: Number of Forks: N/A
+2024-09-22T11:53:02.915Z [DEBUG]: Number of Stars: N/A
+2024-09-22T11:53:02.915Z [DEBUG]: GitHub Data:
+2024-09-22T11:53:02.915Z [DEBUG]: Name: empty
+2024-09-22T11:53:02.916Z [DEBUG]: License Name: N/A 
+2024-09-22T11:53:02.916Z [DEBUG]: Contributions Array: N/A
+2024-09-22T11:53:02.916Z [DEBUG]: Readme Present: No
+2024-09-22T11:53:02.917Z [DEBUG]: Description Present: No
+2024-09-22T11:53:02.917Z [DEBUG]: Number of Issues: N/A
+2024-09-22T12:01:24.134Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:01:24.136Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:01:24.136Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:01:24.138Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:01:24.150Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:01:24.139Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:01:24.142Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:01:24.139Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:01:24.153Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T12:01:24.140Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:01:24.153Z [DEBUG]: Initializing API requests.
+2024-09-22T12:01:24.141Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:01:24.154Z [DEBUG]: Fetching closed issues since 2024-06-22T12:01:24.154Z
+2024-09-22T12:01:24.141Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:01:24.142Z [DEBUG]: Total commits: 17
+2024-09-22T12:01:24.145Z [DEBUG]: NPM Data:
+2024-09-22T12:01:24.155Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T12:01:24.146Z [DEBUG]: License: MIT
+2024-09-22T12:01:24.142Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:01:24.155Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T12:01:24.146Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T12:01:24.143Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:01:24.156Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-22T12:01:24.143Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:01:24.156Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-22T12:01:24.144Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:01:24.157Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-22T12:01:24.157Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-22T12:01:24.157Z [DEBUG]: Fetching open issues since 2024-06-22T12:01:24.154Z
+2024-09-22T12:01:24.144Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:01:24.158Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-22T12:01:24.145Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:01:24.158Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-22T12:01:24.145Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:01:24.159Z [DEBUG]: Returning fetched contributors.
+2024-09-22T12:01:24.146Z [DEBUG]: Total commits calculated: 0
+2024-09-22T12:01:24.149Z [DEBUG]: NPM Data:
+2024-09-22T12:01:24.159Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-22T12:01:24.150Z [DEBUG]: License: empty
+2024-09-22T12:01:24.159Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-22T12:01:24.150Z [DEBUG]: GitHub URL: empty
+2024-09-22T12:01:24.147Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:01:24.160Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-22T12:01:24.160Z [DEBUG]: Returning fetched issues.
+2024-09-22T12:01:24.148Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-22T12:01:24.161Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-22T12:01:24.148Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:01:24.148Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:01:24.161Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-22T12:01:24.148Z [DEBUG]: Total commits: 17
+2024-09-22T12:01:24.162Z [DEBUG]: Readme found: true, Description found: true
+2024-09-22T12:01:24.149Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:01:24.162Z [DEBUG]: License: MIT
+2024-09-22T12:01:24.149Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:01:24.163Z [DEBUG]: Data fetch latency: 9.895599999988917 ms.
+2024-09-22T12:01:24.150Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:01:24.150Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:01:24.163Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T12:01:24.164Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-22T12:01:24.164Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-22T12:01:24.168Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:01:24.168Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T12:01:24.169Z [DEBUG]: Initializing API requests.
+2024-09-22T12:01:24.169Z [DEBUG]: Fetching closed issues since 2024-06-22T12:01:24.169Z
+2024-09-22T12:01:24.169Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T12:01:24.170Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T12:01:24.170Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T12:01:24.172Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:01:24.173Z [DEBUG]: Readme Present: Yes
+2024-09-22T12:01:24.173Z [DEBUG]: Description Present: Yes
+2024-09-22T12:01:24.173Z [DEBUG]: Number of Forks: 3
+2024-09-22T12:01:24.174Z [DEBUG]: Number of Stars: 15
+2024-09-22T12:01:24.174Z [DEBUG]: GitHub Data:
+2024-09-22T12:01:24.174Z [DEBUG]: Name: test-repo
+2024-09-22T12:01:24.175Z [DEBUG]: License Name: MIT 
+2024-09-22T12:01:24.175Z [DEBUG]: Contributions Array: 50
+2024-09-22T12:01:24.175Z [DEBUG]: Readme Present: Yes
+2024-09-22T12:01:24.175Z [DEBUG]: Description Present: Yes
+2024-09-22T12:01:24.176Z [DEBUG]: Number of Issues: 5
+2024-09-22T12:01:24.178Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:01:24.179Z [DEBUG]: Readme Present: No
+2024-09-22T12:01:24.179Z [DEBUG]: Description Present: No
+2024-09-22T12:01:24.179Z [DEBUG]: Number of Forks: N/A
+2024-09-22T12:01:24.180Z [DEBUG]: Number of Stars: N/A
+2024-09-22T12:01:24.180Z [DEBUG]: GitHub Data:
+2024-09-22T12:01:24.181Z [DEBUG]: Name: empty
+2024-09-22T12:01:24.181Z [DEBUG]: License Name: N/A 
+2024-09-22T12:01:24.181Z [DEBUG]: Contributions Array: N/A
+2024-09-22T12:01:24.182Z [DEBUG]: Readme Present: No
+2024-09-22T12:01:24.182Z [DEBUG]: Description Present: No
+2024-09-22T12:01:24.182Z [DEBUG]: Number of Issues: N/A
+2024-09-22T12:01:24.271Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-22T12:01:24.280Z [DEBUG]: Getting latest commit in directory: test-repo
+2024-09-22T12:01:24.280Z [DEBUG]: Latest commit: latest-commit-oid
+2024-09-22T12:01:24.282Z [DEBUG]: Getting the commit 20 commits ago in directory: test-repo
+2024-09-22T12:01:24.282Z [DEBUG]: Commit 20 commits ago: commit-20
+2024-09-22T12:01:24.284Z [DEBUG]: Checking out commit some-commit-oid in directory: test-repo
+2024-09-22T12:01:24.284Z [DEBUG]: Checked out commit some-commit-oid
+2024-09-22T12:01:24.287Z [DEBUG]: Repository cloned. Starting analysis.
+2024-09-22T12:01:24.287Z [DEBUG]: Latest commit results: {"testfileCount":2,"testlineCount":20,"fileCount":10,"lineCount":100}
+2024-09-22T12:01:24.288Z [DEBUG]: Got commit 20 commits ago: commit-oid
+2024-09-22T12:01:24.289Z [DEBUG]: 20th commit results: {"testfileCount":1,"testlineCount":10,"fileCount":8,"lineCount":80}
+2024-09-22T12:01:24.289Z [DEBUG]: Latest commit - Files: 10, Lines: 100, Test Files: 2, Test Lines: 20
+2024-09-22T12:01:24.290Z [DEBUG]: 20th commit - Files: 8, Lines: 80, Test Files: 1, Test Lines: 10
+2024-09-22T12:01:24.290Z [DEBUG]: Differences - Test Files: 1, Test Lines: 10, Files: 2, Lines: 20
+2024-09-22T12:01:24.290Z [DEBUG]: Intermediate Scores - File Count Score: 0.2, Line Count Score: 0.2, File Diff Count Score: 0.5, Line Diff Count Score: 0.5
+2024-09-22T12:01:24.292Z [DEBUG]: Calculating latency for correctness score...
+2024-09-22T12:01:24.294Z [DEBUG]: Analyzing CorrectnessMetric...
+2024-09-22T12:01:38.448Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:01:38.451Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T12:01:38.452Z [DEBUG]: Initializing API requests.
+2024-09-22T12:01:38.453Z [DEBUG]: Fetching closed issues since 2024-06-22T12:01:38.453Z
+2024-09-22T12:01:38.453Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T12:01:38.454Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T12:01:38.454Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-22T12:01:38.455Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-22T12:01:38.455Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-22T12:01:38.455Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-22T12:01:38.454Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:01:38.456Z [DEBUG]: Fetching open issues since 2024-06-22T12:01:38.453Z
+2024-09-22T12:01:38.456Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-22T12:01:38.457Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-22T12:01:38.457Z [DEBUG]: Returning fetched contributors.
+2024-09-22T12:01:38.458Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-22T12:01:38.458Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-22T12:01:38.458Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-22T12:01:38.459Z [DEBUG]: Returning fetched issues.
+2024-09-22T12:01:38.459Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-22T12:01:38.460Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:01:38.460Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-22T12:01:38.460Z [DEBUG]: Readme found: true, Description found: true
+2024-09-22T12:01:38.461Z [DEBUG]: License: MIT
+2024-09-22T12:01:38.461Z [DEBUG]: Data fetch latency: 9.53290000000004 ms.
+2024-09-22T12:01:38.461Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T12:01:38.462Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-22T12:01:38.462Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-22T12:01:38.462Z [DEBUG]: NPM Data:
+2024-09-22T12:01:38.463Z [DEBUG]: License: MIT
+2024-09-22T12:01:38.464Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T12:01:38.467Z [DEBUG]: NPM Data:
+2024-09-22T12:01:38.467Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:01:38.468Z [DEBUG]: License: empty
+2024-09-22T12:01:38.468Z [DEBUG]: GitHub URL: empty
+2024-09-22T12:01:38.468Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T12:01:38.469Z [DEBUG]: Initializing API requests.
+2024-09-22T12:01:38.469Z [DEBUG]: Fetching closed issues since 2024-06-22T12:01:38.469Z
+2024-09-22T12:01:38.470Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T12:01:38.470Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T12:01:38.471Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T12:01:38.473Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:01:38.474Z [DEBUG]: Readme Present: Yes
+2024-09-22T12:01:38.475Z [DEBUG]: Description Present: Yes
+2024-09-22T12:01:38.475Z [DEBUG]: Number of Forks: 3
+2024-09-22T12:01:38.476Z [DEBUG]: Number of Stars: 15
+2024-09-22T12:01:38.476Z [DEBUG]: GitHub Data:
+2024-09-22T12:01:38.476Z [DEBUG]: Name: test-repo
+2024-09-22T12:01:38.477Z [DEBUG]: License Name: MIT 
+2024-09-22T12:01:38.477Z [DEBUG]: Contributions Array: 50
+2024-09-22T12:01:38.477Z [DEBUG]: Readme Present: Yes
+2024-09-22T12:01:38.478Z [DEBUG]: Description Present: Yes
+2024-09-22T12:01:38.478Z [DEBUG]: Number of Issues: 5
+2024-09-22T12:01:38.481Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:01:38.482Z [DEBUG]: Readme Present: No
+2024-09-22T12:01:38.482Z [DEBUG]: Description Present: No
+2024-09-22T12:01:38.482Z [DEBUG]: Number of Forks: N/A
+2024-09-22T12:01:38.483Z [DEBUG]: Number of Stars: N/A
+2024-09-22T12:01:38.483Z [DEBUG]: GitHub Data:
+2024-09-22T12:01:38.484Z [DEBUG]: Name: empty
+2024-09-22T12:01:38.484Z [DEBUG]: License Name: N/A 
+2024-09-22T12:01:38.485Z [DEBUG]: Contributions Array: N/A
+2024-09-22T12:01:38.485Z [DEBUG]: Readme Present: No
+2024-09-22T12:01:38.485Z [DEBUG]: Description Present: No
+2024-09-22T12:01:38.486Z [DEBUG]: Number of Issues: N/A
+2024-09-22T12:01:38.514Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:01:38.517Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:01:38.518Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:01:38.519Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:01:38.520Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:01:38.520Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:01:38.521Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:01:38.521Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:01:38.522Z [DEBUG]: Total commits: 17
+2024-09-22T12:01:38.522Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:01:38.523Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:01:38.523Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:01:38.524Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:01:38.525Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:01:38.525Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:01:38.526Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:01:38.526Z [DEBUG]: Total commits calculated: 0
+2024-09-22T12:01:38.527Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:01:38.528Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-22T12:01:38.528Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:01:38.529Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:01:38.529Z [DEBUG]: Total commits: 17
+2024-09-22T12:01:38.530Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:01:38.530Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:01:38.530Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:01:38.531Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:01:38.612Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-22T12:01:38.623Z [DEBUG]: Getting latest commit in directory: test-repo
+2024-09-22T12:01:38.624Z [DEBUG]: Latest commit: latest-commit-oid
+2024-09-22T12:01:38.625Z [DEBUG]: Getting the commit 20 commits ago in directory: test-repo
+2024-09-22T12:01:38.626Z [DEBUG]: Commit 20 commits ago: commit-20
+2024-09-22T12:01:38.627Z [DEBUG]: Checking out commit some-commit-oid in directory: test-repo
+2024-09-22T12:01:38.628Z [DEBUG]: Checked out commit some-commit-oid
+2024-09-22T12:01:38.630Z [DEBUG]: Repository cloned. Starting analysis.
+2024-09-22T12:01:38.631Z [DEBUG]: Latest commit results: {"testfileCount":2,"testlineCount":20,"fileCount":10,"lineCount":100}
+2024-09-22T12:01:38.631Z [DEBUG]: Got commit 20 commits ago: commit-oid
+2024-09-22T12:01:38.632Z [DEBUG]: 20th commit results: {"testfileCount":1,"testlineCount":10,"fileCount":8,"lineCount":80}
+2024-09-22T12:01:38.633Z [DEBUG]: Latest commit - Files: 10, Lines: 100, Test Files: 2, Test Lines: 20
+2024-09-22T12:01:38.633Z [DEBUG]: 20th commit - Files: 8, Lines: 80, Test Files: 1, Test Lines: 10
+2024-09-22T12:01:38.634Z [DEBUG]: Differences - Test Files: 1, Test Lines: 10, Files: 2, Lines: 20
+2024-09-22T12:01:38.634Z [DEBUG]: Intermediate Scores - File Count Score: 0.2, Line Count Score: 0.2, File Diff Count Score: 0.5, Line Diff Count Score: 0.5
+2024-09-22T12:01:38.637Z [DEBUG]: Calculating latency for correctness score...
+2024-09-22T12:01:38.639Z [DEBUG]: Analyzing CorrectnessMetric...
+2024-09-22T12:02:31.439Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:02:31.441Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:02:31.443Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:02:31.443Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:02:31.444Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:02:31.445Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:02:31.445Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:02:31.446Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:02:31.446Z [DEBUG]: Total commits: 17
+2024-09-22T12:02:31.447Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:02:31.447Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:02:31.448Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:02:31.448Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:02:31.449Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:02:31.450Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:02:31.450Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:02:31.450Z [DEBUG]: Total commits calculated: 0
+2024-09-22T12:02:31.451Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:02:31.452Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-22T12:02:31.452Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:02:31.453Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:02:31.453Z [DEBUG]: Total commits: 17
+2024-09-22T12:02:31.454Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:02:31.455Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:02:31.455Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:02:31.456Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:02:31.576Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-22T12:02:31.585Z [DEBUG]: Getting latest commit in directory: test-repo
+2024-09-22T12:02:31.586Z [DEBUG]: Latest commit: latest-commit-oid
+2024-09-22T12:02:31.587Z [DEBUG]: Getting the commit 20 commits ago in directory: test-repo
+2024-09-22T12:02:31.587Z [DEBUG]: Commit 20 commits ago: commit-20
+2024-09-22T12:02:31.588Z [DEBUG]: Checking out commit some-commit-oid in directory: test-repo
+2024-09-22T12:02:31.589Z [DEBUG]: Checked out commit some-commit-oid
+2024-09-22T12:02:31.590Z [DEBUG]: Repository cloned. Starting analysis.
+2024-09-22T12:02:31.591Z [DEBUG]: Latest commit results: {"testfileCount":2,"testlineCount":20,"fileCount":10,"lineCount":100}
+2024-09-22T12:02:31.592Z [DEBUG]: Got commit 20 commits ago: commit-oid
+2024-09-22T12:02:31.593Z [DEBUG]: 20th commit results: {"testfileCount":1,"testlineCount":10,"fileCount":8,"lineCount":80}
+2024-09-22T12:02:31.593Z [DEBUG]: Latest commit - Files: 10, Lines: 100, Test Files: 2, Test Lines: 20
+2024-09-22T12:02:31.593Z [DEBUG]: 20th commit - Files: 8, Lines: 80, Test Files: 1, Test Lines: 10
+2024-09-22T12:02:31.594Z [DEBUG]: Differences - Test Files: 1, Test Lines: 10, Files: 2, Lines: 20
+2024-09-22T12:02:31.594Z [DEBUG]: Intermediate Scores - File Count Score: 0.2, Line Count Score: 0.2, File Diff Count Score: 0.5, Line Diff Count Score: 0.5
+2024-09-22T12:02:31.596Z [DEBUG]: Calculating latency for correctness score...
+2024-09-22T12:02:31.597Z [DEBUG]: Analyzing CorrectnessMetric...
+2024-09-22T12:08:47.507Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:08:47.508Z [DEBUG]: Latest version: 1.0.0
+2024-09-22T12:08:47.509Z [DEBUG]: License: MIT, Repository URL: git+https://github.com/user/repo.git
+2024-09-22T12:08:47.509Z [DEBUG]: Extracted repository URL: https://github.com/user/repo
+2024-09-22T12:08:47.511Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:08:47.512Z [DEBUG]: Latest version: undefined
+2024-09-22T12:08:47.512Z [DEBUG]: License: undefined, Repository URL: undefined
+2024-09-22T12:08:47.514Z [DEBUG]: NPM Data:
+2024-09-22T12:08:47.514Z [DEBUG]: License: MIT
+2024-09-22T12:08:47.514Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T12:08:47.518Z [DEBUG]: NPM Data:
+2024-09-22T12:08:47.518Z [DEBUG]: License: empty
+2024-09-22T12:08:47.518Z [DEBUG]: GitHub URL: empty
+2024-09-22T12:09:21.440Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:09:21.442Z [DEBUG]: Latest version: 1.0.0
+2024-09-22T12:09:21.442Z [DEBUG]: License: MIT, Repository URL: git+https://github.com/user/repo.git
+2024-09-22T12:09:21.443Z [DEBUG]: Extracted repository URL: https://github.com/user/repo
+2024-09-22T12:09:21.445Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:09:21.446Z [DEBUG]: Latest version: undefined
+2024-09-22T12:09:21.446Z [DEBUG]: License: undefined, Repository URL: undefined
+2024-09-22T12:09:21.439Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:09:21.442Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:09:21.448Z [DEBUG]: NPM Data:
+2024-09-22T12:09:21.443Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:09:21.448Z [DEBUG]: License: MIT
+2024-09-22T12:09:21.444Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:09:21.449Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T12:09:21.444Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:09:21.445Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:09:21.445Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:09:21.446Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:09:21.446Z [DEBUG]: Total commits: 17
+2024-09-22T12:09:21.446Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:09:21.447Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:09:21.447Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:09:21.447Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:09:21.448Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:09:21.449Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:09:21.449Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:09:21.449Z [DEBUG]: Total commits calculated: 0
+2024-09-22T12:09:21.450Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:09:21.450Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-22T12:09:21.451Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:09:21.451Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:09:21.452Z [DEBUG]: Total commits: 17
+2024-09-22T12:09:21.452Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:09:21.452Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:09:21.453Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:09:21.453Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:09:21.460Z [DEBUG]: NPM Data:
+2024-09-22T12:09:21.460Z [DEBUG]: License: empty
+2024-09-22T12:09:21.461Z [DEBUG]: GitHub URL: empty
+2024-09-22T12:10:27.243Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:10:27.245Z [DEBUG]: Latest version: 1.0.0
+2024-09-22T12:10:27.246Z [DEBUG]: License: MIT, Repository URL: git+https://github.com/user/repo.git
+2024-09-22T12:10:27.246Z [DEBUG]: Extracted repository URL: https://github.com/user/repo
+2024-09-22T12:10:27.248Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:10:27.248Z [DEBUG]: Latest version: undefined
+2024-09-22T12:10:27.249Z [DEBUG]: License: undefined, Repository URL: undefined
+2024-09-22T12:10:27.251Z [DEBUG]: NPM Data:
+2024-09-22T12:10:27.251Z [DEBUG]: License: MIT
+2024-09-22T12:10:27.252Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T12:10:27.260Z [DEBUG]: NPM Data:
+2024-09-22T12:10:27.260Z [DEBUG]: License: empty
+2024-09-22T12:10:27.260Z [DEBUG]: GitHub URL: empty
+2024-09-22T12:11:57.291Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:11:57.293Z [DEBUG]: Latest version: 1.0.0
+2024-09-22T12:11:57.293Z [DEBUG]: License: MIT, Repository URL: git+https://github.com/user/repo.git
+2024-09-22T12:11:57.294Z [DEBUG]: Extracted repository URL: https://github.com/user/repo
+2024-09-22T12:11:57.296Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:11:57.296Z [DEBUG]: Latest version: undefined
+2024-09-22T12:11:57.296Z [DEBUG]: License: undefined, Repository URL: undefined
+2024-09-22T12:11:57.298Z [DEBUG]: NPM Data:
+2024-09-22T12:11:57.298Z [DEBUG]: License: MIT
+2024-09-22T12:11:57.299Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T12:11:57.301Z [DEBUG]: NPM Data:
+2024-09-22T12:11:57.301Z [DEBUG]: License: empty
+2024-09-22T12:11:57.301Z [DEBUG]: GitHub URL: empty
+2024-09-22T12:12:05.248Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:12:05.249Z [DEBUG]: Latest version: 1.0.0
+2024-09-22T12:12:05.250Z [DEBUG]: License: MIT, Repository URL: git+https://github.com/user/repo.git
+2024-09-22T12:12:05.250Z [DEBUG]: Extracted repository URL: https://github.com/user/repo
+2024-09-22T12:12:05.254Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:12:05.248Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:12:05.254Z [DEBUG]: Latest version: undefined
+2024-09-22T12:12:05.255Z [DEBUG]: License: undefined, Repository URL: undefined
+2024-09-22T12:12:05.251Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:12:05.256Z [DEBUG]: NPM Data:
+2024-09-22T12:12:05.253Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:12:05.257Z [DEBUG]: License: MIT
+2024-09-22T12:12:05.254Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:12:05.257Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T12:12:05.254Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:12:05.255Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:12:05.256Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:12:05.256Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:12:05.257Z [DEBUG]: Total commits: 17
+2024-09-22T12:12:05.257Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:12:05.260Z [DEBUG]: NPM Data:
+2024-09-22T12:12:05.258Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:12:05.261Z [DEBUG]: License: empty
+2024-09-22T12:12:05.258Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:12:05.261Z [DEBUG]: GitHub URL: empty
+2024-09-22T12:12:05.258Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:12:05.259Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:12:05.260Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:12:05.260Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:12:05.260Z [DEBUG]: Total commits calculated: 0
+2024-09-22T12:12:05.261Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:12:05.262Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-22T12:12:05.262Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:12:05.263Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:12:05.263Z [DEBUG]: Total commits: 17
+2024-09-22T12:12:05.264Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:12:05.264Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:12:05.264Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:12:05.265Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:12:14.633Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:12:14.634Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:12:14.637Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T12:12:14.637Z [DEBUG]: Initializing API requests.
+2024-09-22T12:12:14.637Z [DEBUG]: Latest version: 1.0.0
+2024-09-22T12:12:14.637Z [DEBUG]: License: MIT, Repository URL: git+https://github.com/user/repo.git
+2024-09-22T12:12:14.638Z [DEBUG]: Fetching closed issues since 2024-06-22T12:12:14.638Z
+2024-09-22T12:12:14.638Z [DEBUG]: Extracted repository URL: https://github.com/user/repo
+2024-09-22T12:12:14.639Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T12:12:14.640Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T12:12:14.640Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-22T12:12:14.640Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-22T12:12:14.641Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-22T12:12:14.641Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-22T12:12:14.642Z [DEBUG]: Fetching open issues since 2024-06-22T12:12:14.638Z
+2024-09-22T12:12:14.642Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:12:14.642Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-22T12:12:14.642Z [DEBUG]: Latest version: undefined
+2024-09-22T12:12:14.643Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-22T12:12:14.643Z [DEBUG]: License: undefined, Repository URL: undefined
+2024-09-22T12:12:14.643Z [DEBUG]: Returning fetched contributors.
+2024-09-22T12:12:14.644Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-22T12:12:14.644Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-22T12:12:14.645Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-22T12:12:14.645Z [DEBUG]: Returning fetched issues.
+2024-09-22T12:12:14.645Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-22T12:12:14.645Z [DEBUG]: NPM Data:
+2024-09-22T12:12:14.646Z [DEBUG]: License: MIT
+2024-09-22T12:12:14.646Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-22T12:12:14.646Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T12:12:14.646Z [DEBUG]: Readme found: true, Description found: true
+2024-09-22T12:12:14.647Z [DEBUG]: License: MIT
+2024-09-22T12:12:14.647Z [DEBUG]: Data fetch latency: 10.371800000000007 ms.
+2024-09-22T12:12:14.647Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T12:12:14.648Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-22T12:12:14.648Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-22T12:12:14.650Z [DEBUG]: NPM Data:
+2024-09-22T12:12:14.650Z [DEBUG]: License: empty
+2024-09-22T12:12:14.651Z [DEBUG]: GitHub URL: empty
+2024-09-22T12:12:14.652Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:12:14.653Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T12:12:14.653Z [DEBUG]: Initializing API requests.
+2024-09-22T12:12:14.654Z [DEBUG]: Fetching closed issues since 2024-06-22T12:12:14.654Z
+2024-09-22T12:12:14.654Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T12:12:14.654Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T12:12:14.655Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T12:12:14.657Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:12:14.658Z [DEBUG]: Readme Present: Yes
+2024-09-22T12:12:14.658Z [DEBUG]: Description Present: Yes
+2024-09-22T12:12:14.659Z [DEBUG]: Number of Forks: 3
+2024-09-22T12:12:14.659Z [DEBUG]: Number of Stars: 15
+2024-09-22T12:12:14.659Z [DEBUG]: GitHub Data:
+2024-09-22T12:12:14.660Z [DEBUG]: Name: test-repo
+2024-09-22T12:12:14.660Z [DEBUG]: License Name: MIT 
+2024-09-22T12:12:14.661Z [DEBUG]: Contributions Array: 50
+2024-09-22T12:12:14.661Z [DEBUG]: Readme Present: Yes
+2024-09-22T12:12:14.662Z [DEBUG]: Description Present: Yes
+2024-09-22T12:12:14.662Z [DEBUG]: Number of Issues: 5
+2024-09-22T12:12:14.665Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:12:14.666Z [DEBUG]: Readme Present: No
+2024-09-22T12:12:14.666Z [DEBUG]: Description Present: No
+2024-09-22T12:12:14.666Z [DEBUG]: Number of Forks: N/A
+2024-09-22T12:12:14.667Z [DEBUG]: Number of Stars: N/A
+2024-09-22T12:12:14.667Z [DEBUG]: GitHub Data:
+2024-09-22T12:12:14.667Z [DEBUG]: Name: empty
+2024-09-22T12:12:14.667Z [DEBUG]: License Name: N/A 
+2024-09-22T12:12:14.668Z [DEBUG]: Contributions Array: N/A
+2024-09-22T12:12:14.668Z [DEBUG]: Readme Present: No
+2024-09-22T12:12:14.668Z [DEBUG]: Description Present: No
+2024-09-22T12:12:14.669Z [DEBUG]: Number of Issues: N/A
+2024-09-22T12:12:14.735Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:12:14.737Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:12:14.739Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:12:14.740Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:12:14.740Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:12:14.742Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:12:14.743Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:12:14.743Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:12:14.744Z [DEBUG]: Total commits: 17
+2024-09-22T12:12:14.744Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:12:14.745Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:12:14.745Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:12:14.745Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:12:14.746Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:12:14.746Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:12:14.747Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:12:14.747Z [DEBUG]: Total commits calculated: 0
+2024-09-22T12:12:14.748Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:12:14.749Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-22T12:12:14.750Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:12:14.750Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:12:14.751Z [DEBUG]: Total commits: 17
+2024-09-22T12:12:14.751Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:12:14.751Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:12:14.752Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:12:14.752Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:12:14.841Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-22T12:12:14.850Z [DEBUG]: Getting latest commit in directory: test-repo
+2024-09-22T12:12:14.851Z [DEBUG]: Latest commit: latest-commit-oid
+2024-09-22T12:12:14.852Z [DEBUG]: Getting the commit 20 commits ago in directory: test-repo
+2024-09-22T12:12:14.853Z [DEBUG]: Commit 20 commits ago: commit-20
+2024-09-22T12:12:14.854Z [DEBUG]: Checking out commit some-commit-oid in directory: test-repo
+2024-09-22T12:12:14.855Z [DEBUG]: Checked out commit some-commit-oid
+2024-09-22T12:12:14.857Z [DEBUG]: Repository cloned. Starting analysis.
+2024-09-22T12:12:14.858Z [DEBUG]: Latest commit results: {"testfileCount":2,"testlineCount":20,"fileCount":10,"lineCount":100}
+2024-09-22T12:12:14.859Z [DEBUG]: Got commit 20 commits ago: commit-oid
+2024-09-22T12:12:14.859Z [DEBUG]: 20th commit results: {"testfileCount":1,"testlineCount":10,"fileCount":8,"lineCount":80}
+2024-09-22T12:12:14.860Z [DEBUG]: Latest commit - Files: 10, Lines: 100, Test Files: 2, Test Lines: 20
+2024-09-22T12:12:14.860Z [DEBUG]: 20th commit - Files: 8, Lines: 80, Test Files: 1, Test Lines: 10
+2024-09-22T12:12:14.860Z [DEBUG]: Differences - Test Files: 1, Test Lines: 10, Files: 2, Lines: 20
+2024-09-22T12:12:14.861Z [DEBUG]: Intermediate Scores - File Count Score: 0.2, Line Count Score: 0.2, File Diff Count Score: 0.5, Line Diff Count Score: 0.5
+2024-09-22T12:12:14.863Z [DEBUG]: Calculating latency for correctness score...
+2024-09-22T12:12:14.865Z [DEBUG]: Analyzing CorrectnessMetric...
+2024-09-22T12:18:55.443Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:18:55.445Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T12:18:55.446Z [DEBUG]: Initializing API requests.
+2024-09-22T12:18:55.444Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:18:55.446Z [DEBUG]: Fetching closed issues since 2024-06-22T12:18:55.446Z
+2024-09-22T12:18:55.447Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T12:18:55.447Z [DEBUG]: Latest version: 1.0.0
+2024-09-22T12:18:55.447Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T12:18:55.447Z [DEBUG]: License: MIT, Repository URL: git+https://github.com/user/repo.git
+2024-09-22T12:18:55.448Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-22T12:18:55.448Z [DEBUG]: Extracted repository URL: https://github.com/user/repo
+2024-09-22T12:18:55.448Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-22T12:18:55.449Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-22T12:18:55.449Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-22T12:18:55.449Z [DEBUG]: Fetching open issues since 2024-06-22T12:18:55.446Z
+2024-09-22T12:18:55.449Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-22T12:18:55.450Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-22T12:18:55.450Z [DEBUG]: Returning fetched contributors.
+2024-09-22T12:18:55.450Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-22T12:18:55.450Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-22T12:18:55.451Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-22T12:18:55.450Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:18:55.451Z [DEBUG]: Returning fetched issues.
+2024-09-22T12:18:55.451Z [DEBUG]: Latest version: undefined
+2024-09-22T12:18:55.451Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-22T12:18:55.451Z [DEBUG]: License: undefined, Repository URL: undefined
+2024-09-22T12:18:55.452Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-22T12:18:55.452Z [DEBUG]: Readme found: true, Description found: true
+2024-09-22T12:18:55.452Z [DEBUG]: License: MIT
+2024-09-22T12:18:55.453Z [DEBUG]: Data fetch latency: 7.442100000000096 ms.
+2024-09-22T12:18:55.453Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T12:18:55.453Z [DEBUG]: NPM Data:
+2024-09-22T12:18:55.454Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-22T12:18:55.454Z [DEBUG]: License: MIT
+2024-09-22T12:18:55.454Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-22T12:18:55.454Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T12:18:55.457Z [DEBUG]: NPM Data:
+2024-09-22T12:18:55.457Z [DEBUG]: License: empty
+2024-09-22T12:18:55.458Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:18:55.457Z [DEBUG]: GitHub URL: empty
+2024-09-22T12:18:55.458Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T12:18:55.459Z [DEBUG]: Initializing API requests.
+2024-09-22T12:18:55.459Z [DEBUG]: Fetching closed issues since 2024-06-22T12:18:55.459Z
+2024-09-22T12:18:55.459Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T12:18:55.460Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T12:18:55.460Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T12:18:55.461Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:18:55.462Z [DEBUG]: Readme Present: Yes
+2024-09-22T12:18:55.462Z [DEBUG]: Description Present: Yes
+2024-09-22T12:18:55.462Z [DEBUG]: Number of Forks: 3
+2024-09-22T12:18:55.463Z [DEBUG]: Number of Stars: 15
+2024-09-22T12:18:55.463Z [DEBUG]: GitHub Data:
+2024-09-22T12:18:55.463Z [DEBUG]: Name: test-repo
+2024-09-22T12:18:55.463Z [DEBUG]: License Name: MIT 
+2024-09-22T12:18:55.464Z [DEBUG]: Contributions Array: 50
+2024-09-22T12:18:55.464Z [DEBUG]: Readme Present: Yes
+2024-09-22T12:18:55.464Z [DEBUG]: Description Present: Yes
+2024-09-22T12:18:55.464Z [DEBUG]: Number of Issues: 5
+2024-09-22T12:18:55.466Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:18:55.466Z [DEBUG]: Readme Present: No
+2024-09-22T12:18:55.467Z [DEBUG]: Description Present: No
+2024-09-22T12:18:55.467Z [DEBUG]: Number of Forks: N/A
+2024-09-22T12:18:55.467Z [DEBUG]: Number of Stars: N/A
+2024-09-22T12:18:55.467Z [DEBUG]: GitHub Data:
+2024-09-22T12:18:55.468Z [DEBUG]: Name: empty
+2024-09-22T12:18:55.468Z [DEBUG]: License Name: N/A 
+2024-09-22T12:18:55.468Z [DEBUG]: Contributions Array: N/A
+2024-09-22T12:18:55.468Z [DEBUG]: Readme Present: No
+2024-09-22T12:18:55.469Z [DEBUG]: Description Present: No
+2024-09-22T12:18:55.469Z [DEBUG]: Number of Issues: N/A
+2024-09-22T12:18:55.529Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:18:55.532Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:18:55.529Z [DEBUG]: Number of closed issues: 0
+2024-09-22T12:18:55.534Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:18:55.535Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:18:55.536Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:18:55.534Z [DEBUG]: Number of closed issues: 100
+2024-09-22T12:18:55.534Z [DEBUG]: Repository size (KB): 60000
+2024-09-22T12:18:55.536Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:18:55.535Z [DEBUG]: Repository size > 50MB, standard number of issues set to 90.
+2024-09-22T12:18:55.537Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:18:55.538Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:18:55.538Z [DEBUG]: Total commits: 17
+2024-09-22T12:18:55.536Z [DEBUG]: Number of closed issues: 80
+2024-09-22T12:18:55.538Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:18:55.537Z [DEBUG]: Repository size (KB): 110000
+2024-09-22T12:18:55.539Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:18:55.537Z [DEBUG]: Repository size > 100MB, standard number of issues set to 120.
+2024-09-22T12:18:55.539Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:18:55.537Z [DEBUG]: Calculated responsiveness score: 0.6666666666666666
+2024-09-22T12:18:55.540Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:18:55.540Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:18:55.539Z [DEBUG]: Number of closed issues: 70
+2024-09-22T12:18:55.539Z [DEBUG]: Repository size (KB): 40000
+2024-09-22T12:18:55.541Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:18:55.539Z [DEBUG]: Repository size <= 50MB, standard number of issues set to 80.
+2024-09-22T12:18:55.542Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:18:55.540Z [DEBUG]: Calculated responsiveness score: 0.875
+2024-09-22T12:18:55.542Z [DEBUG]: Total commits calculated: 0
+2024-09-22T12:18:55.540Z [DEBUG]: Score calculated: 0.875, Latency: 1.7887000000000626 ms
+2024-09-22T12:18:55.543Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:18:55.544Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-22T12:18:55.544Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:18:55.545Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:18:55.545Z [DEBUG]: Total commits: 17
+2024-09-22T12:18:55.545Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:18:55.546Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:18:55.546Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:18:55.546Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:18:55.625Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-22T12:18:55.635Z [DEBUG]: Getting latest commit in directory: test-repo
+2024-09-22T12:18:55.635Z [DEBUG]: Latest commit: latest-commit-oid
+2024-09-22T12:18:55.637Z [DEBUG]: Getting the commit 20 commits ago in directory: test-repo
+2024-09-22T12:18:55.637Z [DEBUG]: Commit 20 commits ago: commit-20
+2024-09-22T12:18:55.639Z [DEBUG]: Checking out commit some-commit-oid in directory: test-repo
+2024-09-22T12:18:55.639Z [DEBUG]: Checked out commit some-commit-oid
+2024-09-22T12:18:55.642Z [DEBUG]: Repository cloned. Starting analysis.
+2024-09-22T12:18:55.643Z [DEBUG]: Latest commit results: {"testfileCount":2,"testlineCount":20,"fileCount":10,"lineCount":100}
+2024-09-22T12:18:55.643Z [DEBUG]: Got commit 20 commits ago: commit-oid
+2024-09-22T12:18:55.644Z [DEBUG]: 20th commit results: {"testfileCount":1,"testlineCount":10,"fileCount":8,"lineCount":80}
+2024-09-22T12:18:55.644Z [DEBUG]: Latest commit - Files: 10, Lines: 100, Test Files: 2, Test Lines: 20
+2024-09-22T12:18:55.645Z [DEBUG]: 20th commit - Files: 8, Lines: 80, Test Files: 1, Test Lines: 10
+2024-09-22T12:18:55.645Z [DEBUG]: Differences - Test Files: 1, Test Lines: 10, Files: 2, Lines: 20
+2024-09-22T12:18:55.645Z [DEBUG]: Intermediate Scores - File Count Score: 0.2, Line Count Score: 0.2, File Diff Count Score: 0.5, Line Diff Count Score: 0.5
+2024-09-22T12:18:55.648Z [DEBUG]: Calculating latency for correctness score...
+2024-09-22T12:18:55.649Z [DEBUG]: Analyzing CorrectnessMetric...
+2024-09-22T12:19:18.461Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:19:18.461Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:19:18.465Z [DEBUG]: Latest version: 1.0.0
+2024-09-22T12:19:18.465Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T12:19:18.465Z [DEBUG]: License: MIT, Repository URL: git+https://github.com/user/repo.git
+2024-09-22T12:19:18.466Z [DEBUG]: Initializing API requests.
+2024-09-22T12:19:18.466Z [DEBUG]: Extracted repository URL: https://github.com/user/repo
+2024-09-22T12:19:18.467Z [DEBUG]: Fetching closed issues since 2024-06-22T12:19:18.467Z
+2024-09-22T12:19:18.467Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T12:19:18.468Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T12:19:18.468Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-22T12:19:18.469Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-22T12:19:18.469Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-22T12:19:18.469Z [DEBUG]: Fetching data for package: test
+2024-09-22T12:19:18.469Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-22T12:19:18.469Z [DEBUG]: Latest version: undefined
+2024-09-22T12:19:18.470Z [DEBUG]: Fetching open issues since 2024-06-22T12:19:18.467Z
+2024-09-22T12:19:18.470Z [DEBUG]: License: undefined, Repository URL: undefined
+2024-09-22T12:19:18.470Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-22T12:19:18.471Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-22T12:19:18.471Z [DEBUG]: Returning fetched contributors.
+2024-09-22T12:19:18.472Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-22T12:19:18.472Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-22T12:19:18.472Z [DEBUG]: NPM Data:
+2024-09-22T12:19:18.473Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-22T12:19:18.473Z [DEBUG]: License: MIT
+2024-09-22T12:19:18.473Z [DEBUG]: Returning fetched issues.
+2024-09-22T12:19:18.473Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-22T12:19:18.473Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-22T12:19:18.474Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-22T12:19:18.474Z [DEBUG]: Readme found: true, Description found: true
+2024-09-22T12:19:18.475Z [DEBUG]: License: MIT
+2024-09-22T12:19:18.475Z [DEBUG]: Data fetch latency: 9.865799999999922 ms.
+2024-09-22T12:19:18.475Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-22T12:19:18.476Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-22T12:19:18.476Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-22T12:19:18.477Z [DEBUG]: NPM Data:
+2024-09-22T12:19:18.477Z [DEBUG]: License: empty
+2024-09-22T12:19:18.477Z [DEBUG]: GitHub URL: empty
+2024-09-22T12:19:18.480Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:19:18.481Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-22T12:19:18.481Z [DEBUG]: Initializing API requests.
+2024-09-22T12:19:18.482Z [DEBUG]: Fetching closed issues since 2024-06-22T12:19:18.482Z
+2024-09-22T12:19:18.482Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-22T12:19:18.483Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-22T12:19:18.483Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-22T12:19:18.485Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:19:18.486Z [DEBUG]: Readme Present: Yes
+2024-09-22T12:19:18.486Z [DEBUG]: Description Present: Yes
+2024-09-22T12:19:18.486Z [DEBUG]: Number of Forks: 3
+2024-09-22T12:19:18.487Z [DEBUG]: Number of Stars: 15
+2024-09-22T12:19:18.487Z [DEBUG]: GitHub Data:
+2024-09-22T12:19:18.487Z [DEBUG]: Name: test-repo
+2024-09-22T12:19:18.488Z [DEBUG]: License Name: MIT 
+2024-09-22T12:19:18.488Z [DEBUG]: Contributions Array: 50
+2024-09-22T12:19:18.488Z [DEBUG]: Readme Present: Yes
+2024-09-22T12:19:18.488Z [DEBUG]: Description Present: Yes
+2024-09-22T12:19:18.489Z [DEBUG]: Number of Issues: 5
+2024-09-22T12:19:18.491Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-22T12:19:18.492Z [DEBUG]: Readme Present: No
+2024-09-22T12:19:18.493Z [DEBUG]: Description Present: No
+2024-09-22T12:19:18.493Z [DEBUG]: Number of Forks: N/A
+2024-09-22T12:19:18.493Z [DEBUG]: Number of Stars: N/A
+2024-09-22T12:19:18.494Z [DEBUG]: GitHub Data:
+2024-09-22T12:19:18.494Z [DEBUG]: Name: empty
+2024-09-22T12:19:18.494Z [DEBUG]: License Name: N/A 
+2024-09-22T12:19:18.495Z [DEBUG]: Contributions Array: N/A
+2024-09-22T12:19:18.495Z [DEBUG]: Readme Present: No
+2024-09-22T12:19:18.495Z [DEBUG]: Description Present: No
+2024-09-22T12:19:18.496Z [DEBUG]: Number of Issues: N/A
+2024-09-22T12:19:18.557Z [DEBUG]: Number of closed issues: 0
+2024-09-22T12:19:18.561Z [DEBUG]: Number of closed issues: 100
+2024-09-22T12:19:18.562Z [DEBUG]: Repository size (KB): 60000
+2024-09-22T12:19:18.557Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:19:18.563Z [DEBUG]: Repository size > 50MB, standard number of issues set to 90.
+2024-09-22T12:19:18.560Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:19:18.564Z [DEBUG]: Number of closed issues: 80
+2024-09-22T12:19:18.564Z [DEBUG]: Repository size (KB): 110000
+2024-09-22T12:19:18.565Z [DEBUG]: Repository size > 100MB, standard number of issues set to 120.
+2024-09-22T12:19:18.565Z [DEBUG]: Calculated responsiveness score: 0.6666666666666666
+2024-09-22T12:19:18.566Z [DEBUG]: Number of closed issues: 70
+2024-09-22T12:19:18.563Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:19:18.566Z [DEBUG]: Repository size (KB): 40000
+2024-09-22T12:19:18.566Z [DEBUG]: Repository size <= 50MB, standard number of issues set to 80.
+2024-09-22T12:19:18.563Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:19:18.567Z [DEBUG]: Calculated responsiveness score: 0.875
+2024-09-22T12:19:18.564Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:19:18.567Z [DEBUG]: Score calculated: 0.875, Latency: 1.3745999999999867 ms
+2024-09-22T12:19:18.564Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:19:18.565Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:19:18.565Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:19:18.566Z [DEBUG]: Total commits: 17
+2024-09-22T12:19:18.566Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:19:18.567Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:19:18.567Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:19:18.567Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:19:18.568Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:19:18.569Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:19:18.569Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:19:18.569Z [DEBUG]: Total commits calculated: 0
+2024-09-22T12:19:18.570Z [DEBUG]: BusFactorMetric initialized.
+2024-09-22T12:19:18.570Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-22T12:19:18.571Z [DEBUG]: Calculating BusFactor score...
+2024-09-22T12:19:18.571Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:19:18.571Z [DEBUG]: Total commits: 17
+2024-09-22T12:19:18.572Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:19:18.572Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4463667820069204
+2024-09-22T12:19:18.573Z [DEBUG]: Total commits calculated: 17
+2024-09-22T12:19:18.573Z [DEBUG]: HHI calculated: 0.4463667820069204
+2024-09-22T12:19:18.687Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-22T12:19:18.699Z [DEBUG]: Getting latest commit in directory: test-repo
+2024-09-22T12:19:18.699Z [DEBUG]: Latest commit: latest-commit-oid
+2024-09-22T12:19:18.701Z [DEBUG]: Getting the commit 20 commits ago in directory: test-repo
+2024-09-22T12:19:18.702Z [DEBUG]: Commit 20 commits ago: commit-20
+2024-09-22T12:19:18.703Z [DEBUG]: Checking out commit some-commit-oid in directory: test-repo
+2024-09-22T12:19:18.703Z [DEBUG]: Checked out commit some-commit-oid
+2024-09-22T12:19:18.705Z [DEBUG]: Repository cloned. Starting analysis.
+2024-09-22T12:19:18.706Z [DEBUG]: Latest commit results: {"testfileCount":2,"testlineCount":20,"fileCount":10,"lineCount":100}
+2024-09-22T12:19:18.706Z [DEBUG]: Got commit 20 commits ago: commit-oid
+2024-09-22T12:19:18.707Z [DEBUG]: 20th commit results: {"testfileCount":1,"testlineCount":10,"fileCount":8,"lineCount":80}
+2024-09-22T12:19:18.708Z [DEBUG]: Latest commit - Files: 10, Lines: 100, Test Files: 2, Test Lines: 20
+2024-09-22T12:19:18.708Z [DEBUG]: 20th commit - Files: 8, Lines: 80, Test Files: 1, Test Lines: 10
+2024-09-22T12:19:18.708Z [DEBUG]: Differences - Test Files: 1, Test Lines: 10, Files: 2, Lines: 20
+2024-09-22T12:19:18.709Z [DEBUG]: Intermediate Scores - File Count Score: 0.2, Line Count Score: 0.2, File Diff Count Score: 0.5, Line Diff Count Score: 0.5
+2024-09-22T12:19:18.711Z [DEBUG]: Calculating latency for correctness score...
+2024-09-22T12:19:18.712Z [DEBUG]: Analyzing CorrectnessMetric...

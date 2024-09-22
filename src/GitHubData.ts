@@ -57,17 +57,6 @@ export class   GitHubData{
     }
     public printMyData():void{
         const logger=new Logger();
-        logger.log(1, "GitHub Data:");
-        logger.log(1, `Name: ${this.name }`);
-
-        logger.log(1, `Number of Issues: ${this.name !== "empty" 
-        ? this.numberOfclosedIssues : "N/A"}`);
-        logger.log(1, `Number of Commits: ${this.name !== "empty" 
-        ? this.numberOfCommits : "N/A"}`);
-
-        if(this.contributions)
-            logger.log(1, `Contributions Array: ${this.name !== "empty" 
-            ? this.contributions[0].contributor : "N/A"}`);
         logger.log(2, `Readme Present: ${this.readme ? "Yes" : "No"}`);
         logger.log(2, `Description Present: ${this.description ? "Yes" : "No"}`);
         logger.log(2, `Number of Forks: ${this.name !== "empty" 

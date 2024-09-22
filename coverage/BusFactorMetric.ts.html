@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>39/39</span>
+                <span class='fraction'>54/54</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>39/39</span>
+                <span class='fraction'>54/54</span>
             </div>
         
             
@@ -114,24 +114,52 @@
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -146,6 +174,7 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -157,6 +186,7 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -164,26 +194,41 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// RampUpMetric.ts
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// BusFactorMetric.ts
 import { Metrics } from "./Metrics.js";
 import { GitHubData } from "./GitHubData.js";
 import { NPMData } from "./NPMData.js";
+import { Logger } from "./logger.js";
+&nbsp;
+const logger = new Logger();
 &nbsp;
 export class BusFactorMetric extends Metrics {
   constructor(githubData: GitHubData, npmData: NPMData) {
     super(githubData, npmData);
+    logger.log(2, "BusFactorMetric initialized.");
   }
 &nbsp;
-  public async calculateScore():Promise&lt;number&gt;{
+  public async calculateScore(): Promise&lt;number&gt; {
+    logger.log(2, "Calculating BusFactor score...");
     const totalCommits = this.totalCommits();
 &nbsp;
-    if (totalCommits &lt;= 0) return 0; // Handle edge case where there are no commits
+    if (totalCommits &lt;= 0) {
+      logger.log(1, "No commits found in the repository.");
+      return 0; // Handle case where there are no commits
+    }
+&nbsp;
+    logger.log(2, `Total commits: ${totalCommits}`);
 &nbsp;
     const hhi = this.HHI(totalCommits);
+    logger.log(2, `HHI (Herfindahl-Hirschman Index): ${hhi}`);
 &nbsp;
-    
     const busFactor = Math.max(0, 1 - hhi);
+    logger.log(1, `Calculated BusFactor: ${busFactor}`);
 &nbsp;
     return busFactor;
   }
@@ -195,6 +240,7 @@ export class BusFactorMetric extends Metrics {
         totalCommits += this.githubData.contributions[i].commits;
       }
     }
+    logger.log(2, `Total commits calculated: ${totalCommits}`);
     return totalCommits;
   }
 &nbsp;
@@ -206,14 +252,19 @@ export class BusFactorMetric extends Metrics {
         hhi += share * share; // Sum of squared shares
       }
     }
+    logger.log(2, `HHI calculated: ${hhi}`);
     return hhi; // Value is between 0 and 1
   }
 &nbsp;
   public async calculateLatency(): Promise&lt;{ score: number; latency: number }&gt; {
+    logger.log(2, "Measuring latency for BusFactor score calculation...");
     const start = performance.now();
-    const score=await this.calculateScore();
+    const score = await this.calculateScore();
     const end = performance.now();
-    return {score,latency:end - start};
+    const latency = end - start;
+&nbsp;
+    logger.log(1, `BusFactor score: ${score}, Latency: ${latency} ms`);
+    return { score, latency };
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -223,7 +274,7 @@ export class BusFactorMetric extends Metrics {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-09-22T01:54:53.331Z
+                at 2024-09-22T12:19:19.324Z
             </div>
         <script src="prettify.js"></script>
         <script>

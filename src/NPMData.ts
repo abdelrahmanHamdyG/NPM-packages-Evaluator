@@ -18,9 +18,7 @@ export class NPMData{
     public printMyData():void {
         
         const logger=new Logger();
-        logger.log(1, "NPM Data:");
-        logger.log(1, `License: ${this.license}`);
-        logger.log(1, `GitHub URL: ${this.githubUrl}`);
+
         logger.log(2, "NPM Data:");
         logger.log(2, `License: ${this.license}`);
         logger.log(2, `GitHub URL: ${this.githubUrl}`);

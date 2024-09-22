@@ -113,57 +113,70 @@ describe("GitHubAPI Tests", () => {
   A spy allows us to track the method calls without replacing the 
   actual implementation*/
   test("prints the correct data", () => {
-    //spy on the Logger's log method
+    // Spy on the Logger's log method
     const logSpy = vi.spyOn(Logger.prototype, "log");
 
-    //create an instance of GitHubData with specific values
+    // Create an instance of GitHubData with specific values
     const data = new GitHubData(
       "https://github.com/test/repo",
       "test-repo",
-      5,     
-      10,    
-      3,     
-      15,    
-      2,     
-      true,  
-      true,  
-      [{ contributor: "user1", commits: 50 }],
-      "MIT"  
+      5,      // Number of closed issues
+      10,     // Number of commits
+      3,      // Number of forks
+      15,     // Number of stars
+      2,      // Number of collaborators
+      true,   // Readme present
+      true,   // Description present
+      [{ contributor: "user1", commits: 50 }], // Contributions array
+      "MIT"   // License
     );
 
+    // Call the printMyData function
     data.printMyData();
 
-    //check if Logger.log was called with the correct arguments
-    expect(logSpy).toHaveBeenNthCalledWith(1, 1, "GitHub Data:");
-    expect(logSpy).toHaveBeenNthCalledWith(2, 1, "Name: test-repo");
-    expect(logSpy).toHaveBeenNthCalledWith(3, 1, "Number of Issues: 5");
-    expect(logSpy).toHaveBeenNthCalledWith(4, 1, "Number of Commits: 10");
-    expect(logSpy).toHaveBeenNthCalledWith(5, 1, "Contributions Array: user1");
-    expect(logSpy).toHaveBeenNthCalledWith(6, 2, "Readme Present: Yes");
-    expect(logSpy).toHaveBeenNthCalledWith(7, 2, "Description Present: Yes");
+    // Check if Logger.log was called with the correct arguments
+    expect(logSpy).toHaveBeenNthCalledWith(1, 2, "Readme Present: Yes");
+    expect(logSpy).toHaveBeenNthCalledWith(2, 2, "Description Present: Yes");
+    expect(logSpy).toHaveBeenNthCalledWith(3, 2, "Number of Forks: 3");
+    expect(logSpy).toHaveBeenNthCalledWith(4, 2, "Number of Stars: 15");
+    expect(logSpy).toHaveBeenNthCalledWith(5, 2, "GitHub Data:");
+    expect(logSpy).toHaveBeenNthCalledWith(6, 2, "Name: test-repo");
+    expect(logSpy).toHaveBeenNthCalledWith(7, 2, "License Name: MIT ");
+    expect(logSpy).toHaveBeenNthCalledWith(8, 2, "Contributions Array: 50");
+    expect(logSpy).toHaveBeenNthCalledWith(9, 2, "Readme Present: Yes");
+    expect(logSpy).toHaveBeenNthCalledWith(10, 2, "Description Present: Yes");
+    expect(logSpy).toHaveBeenNthCalledWith(11, 2, "Number of Issues: 5");
 
-    //restoring the spy
+    // Restore the spy
     logSpy.mockRestore();
-  });
-  test("prints the incorrect data", () => {
-    //spy on the Logger's log method
+});
+
+test("prints the incorrect data", () => {
+    // Spy on the Logger's log method
     const logSpy = vi.spyOn(Logger.prototype, "log");
 
-    //create an instance of GitHubData with specific values
+    // Create an instance of GitHubData with default (empty) values
     const data = new GitHubData();
-    data.printMyData();
-    //check if Logger.log was called with the correct arguments
-    expect(logSpy).toHaveBeenNthCalledWith(1, 1, "GitHub Data:");
-    expect(logSpy).toHaveBeenNthCalledWith(2, 1, "Name: empty");
-    expect(logSpy).toHaveBeenNthCalledWith(3, 1, "Number of Issues: N/A");
-    expect(logSpy).toHaveBeenNthCalledWith(4, 1, "Number of Commits: N/A");
-    expect(logSpy).toHaveBeenNthCalledWith(5, 1, "Contributions Array: N/A");
-    expect(logSpy).toHaveBeenNthCalledWith(6, 2, "Readme Present: No");
-    expect(logSpy).toHaveBeenNthCalledWith(7, 2, "Description Present: No");
-    //restoring the spy
-    logSpy.mockRestore();
-  });
 
+    // Call the printMyData function
+    data.printMyData();
+
+    // Check if Logger.log was called with the correct arguments
+    expect(logSpy).toHaveBeenNthCalledWith(1, 2, "Readme Present: No");
+    expect(logSpy).toHaveBeenNthCalledWith(2, 2, "Description Present: No");
+    expect(logSpy).toHaveBeenNthCalledWith(3, 2, "Number of Forks: N/A");
+    expect(logSpy).toHaveBeenNthCalledWith(4, 2, "Number of Stars: N/A");
+    expect(logSpy).toHaveBeenNthCalledWith(5, 2, "GitHub Data:");
+    expect(logSpy).toHaveBeenNthCalledWith(6, 2, "Name: empty");
+    expect(logSpy).toHaveBeenNthCalledWith(7, 2, "License Name: N/A ");
+    expect(logSpy).toHaveBeenNthCalledWith(8, 2, "Contributions Array: N/A");
+    expect(logSpy).toHaveBeenNthCalledWith(9, 2, "Readme Present: No");
+    expect(logSpy).toHaveBeenNthCalledWith(10, 2, "Description Present: No");
+    expect(logSpy).toHaveBeenNthCalledWith(11, 2, "Number of Issues: N/A");
+
+    // Restore the spy
+    logSpy.mockRestore();
+});
 
 });
 

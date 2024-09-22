@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "the script begins to run"
+
 mode=$1
 
 case "$mode" in

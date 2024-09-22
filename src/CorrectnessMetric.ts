@@ -1,3 +1,4 @@
+// CorrectnessMetric.ts
 /* eslint-disable no-console */
 import { Metrics } from "./Metrics.js";
 import { GitHubData } from "./GitHubData.js";
@@ -6,29 +7,38 @@ import git, { ReadCommitResult } from "isomorphic-git";
 import fs from "fs-extra";
 import path from "path";
 import http from "isomorphic-git/http/node/index.js";
+import { Logger } from "./logger.js";
+
+const logger = new Logger();
 
 export class CorrectnessMetric extends Metrics {
-  
   constructor(githubData: GitHubData, npmData: NPMData) {
     super(githubData, npmData);
+    logger.log(2, "CorrectnessMetric initialized.");
   }
 
   countLinesInFile(filePath: string): Promise<number> {
-    return fs.promises.readFile(filePath, "utf-8").then(data => {
+    logger.log(2, `Counting lines in file: ${filePath}`);
+    return fs.promises.readFile(filePath, "utf-8").then((data) => {
       const lines = data.split("\n");
+      logger.log(2, `File ${filePath} has ${lines.length} lines.`);
       return lines.length;
     });
   }
 
-  async countTotalLinesFilesAndTests(dir: string): Promise<{
+  async countTotalLinesFilesAndTests(
+    dir: string
+  ): Promise<{
     totalLines: number;
     totalFiles: number;
     testFileCount: number;
     testLineCount: number;
   }> {
+    logger.log(2, `Counting total lines, files, and tests in directory: ${dir}`);
     const files = await fs.promises.readdir(dir, { withFileTypes: true });
-  
+
     if (!files || files.length === 0) {
+      logger.log(1, `No files found in directory: ${dir}`);
       return {
         totalLines: 0,
         totalFiles: 0,
@@ -36,23 +46,29 @@ export class CorrectnessMetric extends Metrics {
         testLineCount: 0,
       };
     }
-  
+
     const results = await Promise.all(
       files.map(async (file) => {
         const filePath = path.join(dir, file.name);
-        console.log(filePath);
-  
+        logger.log(2, `Processing file or directory: ${filePath}`);
+
         if (file.isDirectory()) {
+          logger.log(2, `Entering subdirectory: ${filePath}`);
           // Recursively process the subdirectory
           return this.countTotalLinesFilesAndTests(filePath);
         } else {
+          logger.log(2, `Reading file: ${filePath}`);
           // Process the file
           const data = await fs.promises.readFile(filePath, "utf-8");
           const lines = data.split("\n").length;
           const isTestFile =
             /\.(test|spec)\.(js|ts)$/.test(file.name) ||
             /tests|__tests__|test/.test(filePath);
-  
+          logger.log(
+            2,
+            `File ${filePath} has ${lines} lines. Is test file: ${isTestFile}`
+          );
+
           return {
             totalLines: lines,
             totalFiles: 1,
@@ -62,13 +78,19 @@ export class CorrectnessMetric extends Metrics {
         }
       })
     );
-  
+
     // Aggregate the results
     const totalLines = results.reduce((sum, res) => sum + res.totalLines, 0);
     const totalFiles = results.reduce((sum, res) => sum + res.totalFiles, 0);
     const testFileCount = results.reduce((sum, res) => sum + res.testFileCount, 0);
     const testLineCount = results.reduce((sum, res) => sum + res.testLineCount, 0);
-  
+
+    logger.log(
+      2,
+      // eslint-disable-next-line max-len
+      `Aggregated results for directory ${dir}: totalLines=${totalLines}, totalFiles=${totalFiles}, testFileCount=${testFileCount}, testLineCount=${testLineCount}`
+    );
+
     return {
       totalLines,
       totalFiles,
@@ -76,54 +98,83 @@ export class CorrectnessMetric extends Metrics {
       testLineCount,
     };
   }
+
   cloneRepo(): Promise<void> {
     const repoName = this.githubData.name;
+    logger.log(
+      1,
+      `Cloning repository: ${this.githubData.url} into directory: ${repoName}`
+    );
 
-    return git.clone({
-      fs,
-      http,
-      dir: repoName as string,
-      url: this.githubData?.url as string,
-      singleBranch: true,
-      depth: 21,
-    }).then(() => {
-      console.log(`Repository cloned successfully to ${repoName}`);
-    }).catch(error => {
-      console.error("Error cloning repository:", error);
-    });
+    return git
+      .clone({
+        fs,
+        http,
+        dir: repoName as string,
+        url: this.githubData?.url as string,
+        singleBranch: true,
+        depth: 21,
+      })
+      .then(() => {
+        logger.log(1, `Repository cloned successfully to ${repoName}`);
+      })
+      .catch((error) => {
+        logger.log(1, `Error cloning repository: ${error}`);
+      });
   }
 
   public calculateScore(): Promise<number> {
+    logger.log(1, `Calculating Correctness Score for repository: ${this.githubData.name}`);
     const repoDir1 = `${this.githubData.name}`; // Directory for the latest commit
     if (repoDir1 === "empty") {
+      logger.log(1, "Repository name is empty. Returning score 0.");
       return Promise.resolve(0);
     }
 
-    let latestCommitResults: 
-    { testfileCount: number; testlineCount: number; fileCount: number; lineCount: number };  
-    let commit20AgoResults:
-    { testfileCount: number; testlineCount: number; fileCount: number; lineCount: number };
+    let latestCommitResults: {
+      testfileCount: number;
+      testlineCount: number;
+      fileCount: number;
+      lineCount: number;
+    };
+    let commit20AgoResults: {
+      testfileCount: number;
+      testlineCount: number;
+      fileCount: number;
+      lineCount: number;
+    };
 
     return this.cloneRepo()
-      .then(() => this.countTotalLinesFilesAndTests(repoDir1))
-      .then(result1 => {
+      .then(() => {
+        logger.log(2, "Repository cloned. Starting analysis.");
+        return this.countTotalLinesFilesAndTests(repoDir1);
+      })
+      .then((result1) => {
         latestCommitResults = {
           testfileCount: result1.testFileCount,
           testlineCount: result1.testLineCount,
           fileCount: result1.totalFiles,
-          lineCount: result1.totalLines
+          lineCount: result1.totalLines,
         };
+        logger.log(2, `Latest commit results: ${JSON.stringify(latestCommitResults)}`);
       })
       .then(() => this.getCommit20Ago(repoDir1))
-      .then(commit20Ago => this.checkoutCommit(repoDir1, commit20Ago.oid))
+      .then((commit20Ago) => {
+        logger.log(2, `Got commit 20 commits ago: ${commit20Ago.oid}`);
+        return this.checkoutCommit(repoDir1, commit20Ago.oid);
+      })
       .then(() => this.countTotalLinesFilesAndTests(repoDir1))
-      .then(result2 => {
+      .then((result2) => {
         commit20AgoResults = {
           testfileCount: result2.testFileCount,
           testlineCount: result2.testLineCount,
           fileCount: result2.totalFiles,
-          lineCount: result2.totalLines
+          lineCount: result2.totalLines,
         };
+        logger.log(
+          2,
+          `20th commit results: ${JSON.stringify(commit20AgoResults)}`
+        );
 
         const latestFileCount = latestCommitResults.fileCount;
         const latestLineCount = latestCommitResults.lineCount;
@@ -134,68 +185,126 @@ export class CorrectnessMetric extends Metrics {
         const firstTestFileCount = commit20AgoResults.testfileCount;
         const firstTestLineCount = commit20AgoResults.testlineCount;
 
-        const testFileCountDifference = Math.abs(latestTestFileCount - firstTestFileCount);
-        const testLineCountDifference = Math.abs(latestTestLineCount - firstTestLineCount);
+        // Log the counts
+        logger.log(
+          2,
+          // eslint-disable-next-line max-len
+          `Latest commit - Files: ${latestFileCount}, Lines: ${latestLineCount}, Test Files: ${latestTestFileCount}, Test Lines: ${latestTestLineCount}`
+        );
+        logger.log(
+          2,
+          // eslint-disable-next-line max-len
+          `20th commit - Files: ${firstFileCount}, Lines: ${firstLineCount}, Test Files: ${firstTestFileCount}, Test Lines: ${firstTestLineCount}`
+        );
+
+        const testFileCountDifference = Math.abs(
+          latestTestFileCount - firstTestFileCount
+        );
+        const testLineCountDifference = Math.abs(
+          latestTestLineCount - firstTestLineCount
+        );
         const FileCountDifference = Math.abs(latestFileCount - firstFileCount);
         const LineCountDifference = Math.abs(latestLineCount - firstLineCount);
 
-        const filediffCountScore = Math.max(0, Math.
-          min(1, testFileCountDifference / FileCountDifference));
-        const linediffCountScore = Math.max(
-          0, Math.min(1, testLineCountDifference / LineCountDifference));
-        const fileCountScore = Math.max(0, Math.min(1, latestTestFileCount / latestFileCount));
-        const lineCountScore = Math.max(0, Math.min(1, latestTestLineCount / latestLineCount));
-          console.log(latestTestFileCount);
-          console.log(firstTestFileCount);
-        // Calculate the final correctness score (weighted average)
-        const correctnessScore = 
-        Math.min(1, Math.max(fileCountScore, lineCountScore) 
-        + 0.5 * filediffCountScore + 0.5 * linediffCountScore+0.00005*(this
-          .githubData.numberOfStars||0));
+        // Log the differences
+        logger.log(
+          2,
+          // eslint-disable-next-line max-len
+          `Differences - Test Files: ${testFileCountDifference}, Test Lines: ${testLineCountDifference}, Files: ${FileCountDifference}, Lines: ${LineCountDifference}`
+        );
 
-        console.log(`Correctness score is ${correctnessScore}\n`);
+        const filediffCountScore = Math.max(
+          0,
+          Math.min(1, testFileCountDifference / FileCountDifference)
+        );
+        const linediffCountScore = Math.max(
+          0,
+          Math.min(1, testLineCountDifference / LineCountDifference)
+        );
+        const fileCountScore = Math.max(
+          0,
+          Math.min(1, latestTestFileCount / latestFileCount)
+        );
+        const lineCountScore = Math.max(
+          0,
+          Math.min(1, latestTestLineCount / latestLineCount)
+        );
+
+        // Log the intermediate scores
+        logger.log(
+          2,
+          // eslint-disable-next-line max-len
+          `Intermediate Scores - File Count Score: ${fileCountScore}, Line Count Score: ${lineCountScore}, File Diff Count Score: ${filediffCountScore}, Line Diff Count Score: ${linediffCountScore}`
+        );
+
+        // Calculate the final correctness score (weighted average)
+        const correctnessScore = Math.min(
+          1,
+          Math.max(fileCountScore, lineCountScore) +
+            0.5 * filediffCountScore +
+            0.5 * linediffCountScore +
+            0.00005 * (this.githubData.numberOfStars || 0)
+        );
+
+        logger.log(1, `Correctness score is ${correctnessScore}`);
         return correctnessScore;
       })
-      .then(correctnessScore => {
+      .then((correctnessScore) => {
         return fs.remove(repoDir1).then(() => {
-          console.log("Folder removed successfully");
+          logger.log(1, "Repository folder removed successfully");
           return correctnessScore;
         });
       })
-      .catch(error => {
-        console.error("Error calculating score:", error);
+      .catch((error) => {
+        logger.log(1, `Error calculating correctness score: ${error}`);
         return 0; // Return 0 if there is an error
       });
   }
 
   async getLatestCommit(dir: string): Promise<ReadCommitResult> {
+    logger.log(2, `Getting latest commit in directory: ${dir}`);
     const commits = await git.log({ fs, dir, depth: 1 });
+    logger.log(2, `Latest commit: ${commits[0].oid}`);
     return commits[0];
   }
 
   async getCommit20Ago(dir: string): Promise<ReadCommitResult> {
+    logger.log(2, `Getting the commit 20 commits ago in directory: ${dir}`);
     const commits = await git.log({ fs, dir, depth: 21 });
+    logger.log(2, `Commit 20 commits ago: ${commits[commits.length - 1].oid}`);
     return commits[commits.length - 1];
   }
 
   analyze(): Promise<number> {
+    logger.log(2, "Analyzing CorrectnessMetric...");
     return Promise.resolve(0);
   }
 
   public async calculateLatency(): Promise<{ score: number; latency: number }> {
-    const start=performance.now();
+    logger.log(2, "Calculating latency for correctness score...");
+    const start = performance.now();
 
-    const score=await this.calculateScore();
-    const end=performance.now();
+    const score = await this.calculateScore();
+    const end = performance.now();
+    const latency = end - start;
 
-    return {score,latency:end-start};
+    logger.log(1, `Correctness score: ${score}, Latency: ${latency} ms`);
+    return { score, latency };
   }
 
   checkoutCommit(dir: string, oid: string): Promise<void> {
-    return git.checkout({
-      fs,
-      dir,
-      ref: oid,  
-    });
+    logger.log(2, `Checking out commit ${oid} in directory: ${dir}`);
+    return git
+      .checkout({
+        fs,
+        dir,
+        ref: oid,
+      })
+      .then(() => {
+        logger.log(2, `Checked out commit ${oid}`);
+      })
+      .catch((error) => {
+        logger.log(1, `Error checking out commit ${oid}: ${error}`);
+      });
   }
 }
