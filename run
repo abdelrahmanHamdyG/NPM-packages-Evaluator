@@ -15,8 +15,10 @@ case "$mode" in
         fi
         ;;
     test)
+        npx vitest --run --coverage --reporter=json > testResults.json
         npx tsc
-        node ./dist/Index.js test
+        node dist/CleanTestResults.js
+        node dist/ProcessTestResults.js     
         ;;
     *)
         npx tsc
