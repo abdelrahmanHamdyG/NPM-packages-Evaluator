@@ -33,10 +33,13 @@ export class CLI {
 
   public rankModules(path: string): void {
     logger.log(1, `Starting to rank modules from path: ${path}`);
+
+    
     this.rankModulesTogether(path)
       .then(async (results) => {
         logger.log(1, "The data fetched for each URL:");
 
+        const urls=await this.readFromFile(path);
         // Loop through results and process each module
         for (const [index, { npmData, githubData }] of results.entries()) {
           logger.log(1, `Processing result ${index + 1}:`);
@@ -104,10 +107,34 @@ export class CLI {
                 1,
                 `Net Score: ${net.score}, Latency: ${net.latency / 1000}s`
               );
+              const formattedResult = {
+                URL: urls[index],
+                NetScore: net.score.toFixed(3),
+                NetScore_Latency: (net.latency / 1000).toFixed(3),
+                RampUp: rampUp.score.toFixed(3),
+                RampUp_Latency: (rampUp.latency / 1000).toFixed(3),
+                Correctness: correctness.score.toFixed(3),
+                Correctness_Latency: (correctness.latency / 1000).toFixed(3),
+                BusFactor: busFactor.score.toFixed(3),
+                BusFactor_Latency: (busFactor.latency / 1000).toFixed(3),
+                ResponsiveMaintainer: responsiveness.score.toFixed(3),
+                ResponsiveMaintainer_Latency: (responsiveness.latency / 1000).toFixed(3),
+                License: license.score.toFixed(3),
+                License_Latency: (license.latency / 1000).toFixed(3)
+              };
+              if(githubData.name!=="empty"){
+                console.log(JSON.stringify(formattedResult));
+              }else{
+                console.log(`URL:${urls[index]} Error github repo doesn't exist`);
+              }
+
+              
             } else {
               logger.log(1, "No metrics available.");
             }
             logger.log(1, "\n**************************\n");
+
+
           }
         }
         logger.log(1, "Completed ranking modules.");
@@ -119,7 +146,7 @@ export class CLI {
 
   public async rankModulesTogether(
     path: string
-  ): Promise<{ npmData: void | NPMData; githubData: void | GitHubData }[]> {
+  ): Promise<{ npmData: void | NPMData; githubData: void | GitHubData}[]> {
     logger.log(2, `rankModulesTogether is called with path: ${path}`);
 
     try {
@@ -203,7 +230,7 @@ export class CLI {
         const githubObject = this.parseGitHubUrl(npmData.githubUrl);
         logger.log(
           2,
-          // eslint-disable-next-line max-len
+          
           `Extracted GitHub URL from NPM data - Username: ${githubObject.username}, Repo: ${githubObject.repoName}`
         );
 

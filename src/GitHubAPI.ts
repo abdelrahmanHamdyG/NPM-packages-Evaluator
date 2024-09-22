@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+
 import { Octokit } from "octokit";
 import { GitHubData } from "./GitHubData.js";
 import { API } from "./API.js";

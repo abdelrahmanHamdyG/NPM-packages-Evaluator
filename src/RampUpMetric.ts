@@ -57,7 +57,7 @@ export class RampUpMetric extends Metrics {
     const stars = this.githubData.numberOfStars ?? 0;
     const totalForksStars = forks + stars;
 
-    // eslint-disable-next-line max-len
+    
     logger.log(1, `Total Forks: ${forks}, Total Stars: ${stars}, Total Forks + Stars: ${totalForksStars}`);
 
     let score = 0;
@@ -119,7 +119,7 @@ export class RampUpMetric extends Metrics {
 
     // Scale the contributors score using a normalized logistic function
     const standardNoOfContributors = this.contributorScalingNormalized(repoSizeKB);
-    // eslint-disable-next-line max-len
+    
     logger.log(1, `Contributors: ${contributors}, Standard No. of Contributors (Normalized): ${standardNoOfContributors}`);
 
     // Scale the contributors to a maximum score of 0.1

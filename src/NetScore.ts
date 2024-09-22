@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { GitHubData } from "./GitHubData.js";
 import { RampUpMetric } from "./RampUpMetric.js";
 import { CorrectnessMetric } from "./CorrectnessMetric.js";
@@ -61,11 +60,11 @@ export class NetScore extends Metrics {
 
     // Calculate NetScore based on the stored metric results
     const netScore = 
-      0.2 * rampUp.score + 
-      0.2 * correctness.score + 
-      0.2 * busFactor.score + 
-      0.2 * responsiveness.score + 
-      0.2 * license.score;
+      (1/11) * rampUp.score + 
+      (1/11) * correctness.score + 
+      (1/11) * busFactor.score + 
+      (5/11) * responsiveness.score + 
+      (3/11) * license.score;
 
     logger.log(1, `Calculated NetScore: ${netScore}`);
     return netScore;

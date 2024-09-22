@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { Metrics } from "./Metrics.js";
 import { GitHubData } from "./GitHubData.js";
 import { NPMData } from "./NPMData.js";

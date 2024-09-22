@@ -1,17 +1,24 @@
 #!/bin/bash
 
-
 mode=$1
 
 case "$mode" in
     install)
-        npm install
-        npx tsc
+        # Run npm install and suppress the extra output
+        npm install > /dev/null 2>&1
 
+        # Check if npm install succeeded
         if [ $? -ne 0 ]; then
-            echo "A problem in compiling typescript"
+            echo "Error occurred during 'npm install'."
         else
-            echo "Compiling typescript is done Successfully";
+            dep_count=$(node -p "Object.keys(require('./package.json').dependencies || {}).length")
+            echo "$dep_count dependencies installed..."
+
+            npx tsc
+
+            if [ $? -ne 0 ]; then
+                echo "A problem occurred while compiling TypeScript."
+            fi
         fi
         ;;
     test)
@@ -22,11 +29,8 @@ case "$mode" in
         npx tsc
         if [ -f "$1" ]; then
             node ./dist/Index.js "$1"
-        else 
+        else
             echo "file doesn't exist"
         fi
+        ;;
 esac
-
-
-
-
