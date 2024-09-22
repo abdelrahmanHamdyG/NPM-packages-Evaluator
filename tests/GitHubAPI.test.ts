@@ -100,10 +100,10 @@ describe("GitHubAPI Tests", () => {
     //testing the fetched data with the expected 
     expect(data).toBeInstanceOf(GitHubData);
     expect(data.name).toBe("empty");
-    expect(data.numberOfIssues).toBe(-1);
-    expect(data.numberOfCommits).toBe(-1);
-    expect(data.numberOfForks).toBe(-1);
-    expect(data.numberOfStars).toBe(-1);
+    expect(data.numberOfclosedIssues).toBe(0);
+    expect(data.numberOfCommits).toBe(0);
+    expect(data.numberOfForks).toBe(0);
+    expect(data.numberOfStars).toBe(0);
     expect(data.readme).toBe(false);
     expect(data.description).toBe(false);
     expect(data.license).toBe("empty");
@@ -145,4 +145,23 @@ describe("GitHubAPI Tests", () => {
     //restoring the spy
     logSpy.mockRestore();
   });
+  test("prints the incorrect data", () => {
+    //spy on the Logger's log method
+    const logSpy = vi.spyOn(Logger.prototype, "log");
+
+    //create an instance of GitHubData with specific values
+    const data = new GitHubData();
+    data.printMyData();
+    //check if Logger.log was called with the correct arguments
+    expect(logSpy).toHaveBeenNthCalledWith(1, 1, "GitHub Data:");
+    expect(logSpy).toHaveBeenNthCalledWith(2, 1, "Name: empty");
+    expect(logSpy).toHaveBeenNthCalledWith(3, 1, "Number of Issues: N/A");
+    expect(logSpy).toHaveBeenNthCalledWith(4, 1, "Number of Commits: N/A");
+    expect(logSpy).toHaveBeenNthCalledWith(5, 1, "Contributions Array: N/A");
+    expect(logSpy).toHaveBeenNthCalledWith(6, 2, "Readme Present: No");
+    expect(logSpy).toHaveBeenNthCalledWith(7, 2, "Description Present: No");
+    //restoring the spy
+    logSpy.mockRestore();
+  });
+
 });
