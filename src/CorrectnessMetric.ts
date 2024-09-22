@@ -10,6 +10,7 @@ import { Logger } from "./logger.js";
 
 export class CorrectnessMetric extends Metrics {
   private logger: Logger;
+
   constructor(githubData: GitHubData, npmData: NPMData) {
     super(githubData, npmData);
     this.logger = new Logger();
@@ -23,74 +24,78 @@ export class CorrectnessMetric extends Metrics {
   }
 
   async countTotalLinesFilesAndTests(dir: string): Promise<{
-    lineCount: number;
-    fileCount: number;
-    testfileCount: number;
-    testlineCount: number;
+    totalLines: number;
+    totalFiles: number;
+    testFileCount: number;
+    testLineCount: number;
   }> {
-    let totalLinesOfCode = 0;
-    let totalFilesCount = 0;
-    let testFileCount = 0;
-    let testLineCount = 0;
-
-    return fs.promises.readdir(dir, { withFileTypes: true }).then((files) => {
-      const promises = files.map((file) => {
+    const files = await fs.promises.readdir(dir, { withFileTypes: true });
+  
+    if (!files || files.length === 0) {
+      return {
+        totalLines: 0,
+        totalFiles: 0,
+        testFileCount: 0,
+        testLineCount: 0,
+      };
+    }
+  
+    const results = await Promise.all(
+      files.map(async (file) => {
         const filePath = path.join(dir, file.name);
-
         if (file.isDirectory()) {
-          return this.countTotalLinesFilesAndTests(filePath).then((result) => {
-            totalLinesOfCode += result.lineCount;
-            totalFilesCount += result.fileCount;
-            testFileCount += result.testfileCount;
-            testLineCount += result.testlineCount;
-          });
+          // Recursively process the subdirectory
+          return this.countTotalLinesFilesAndTests(filePath);
         } else {
-          totalFilesCount += 1; // Increment the file count
-
-          return fs.promises.readFile(filePath, "utf-8").then((data) => {
-            const lines = data.split("\n").length;
-            totalLinesOfCode += lines;
-
-            // Check if the file is a test file (by convention: test, spec, etc.)
-            if (
-              /\.(test|spec)\.(js|ts)$/.test(file.name) ||
-              /tests|__tests__|test/.test(filePath)
-            ) {
-              testFileCount += 1; // Increment test file count
-              testLineCount += lines; // Add test lines count
-            }
-          });
+          // Process the file
+          const data = await fs.promises.readFile(filePath, "utf-8");
+          const lines = data.split("\n").length;
+          const isTestFile =
+            /\.(test|spec)\.(js|ts)$/.test(file.name) ||
+            /tests|__tests__|test/.test(filePath);
+  
+          return {
+            totalLines: lines,
+            totalFiles: 1,
+            testFileCount: isTestFile ? 1 : 0,
+            testLineCount: isTestFile ? lines : 0,
+          };
         }
-      });
-
-      return Promise.all(promises).then(() => ({
-        lineCount: totalLinesOfCode,
-        fileCount: totalFilesCount,
-        testfileCount: testFileCount,
-        testlineCount: testLineCount,
-      }));
-    });
+      })
+    );
+  
+    // Aggregate the results
+    const totalLines = results.reduce((sum, res) => sum + res.totalLines, 0);
+    const totalFiles = results.reduce((sum, res) => sum + res.totalFiles, 0);
+    const testFileCount = results.reduce((sum, res) => sum + res.testFileCount, 0);
+    const testLineCount = results.reduce((sum, res) => sum + res.testLineCount, 0);
+  
+    return {
+      totalLines,
+      totalFiles,
+      testFileCount,
+      testLineCount,
+    };
   }
 
   cloneRepo(): Promise<void> {
     const repoName = this.githubData.name;
 
     this.logger.log(1, `Cloning repository: ${this.githubData?.url}`);
-    return git
-      .clone({
-        fs,
-        http,
-        dir: repoName as string,
-        url: this.githubData?.url as string,
-        singleBranch: true,
-        depth: 11,
-      })
-      .then(() => {
-        this.logger.log(1, `Repository cloned successfully to ${repoName}`);
-      })
-      .catch((error) => {
-        this.logger.log(1, `Error cloning repository: ${error}`);
-      });
+    return git.clone({
+      fs,
+      http,
+      dir: repoName as string,
+      url: this.githubData?.url as string,
+      singleBranch: true,
+      depth: 21,
+    })
+    .then(() => {
+      this.logger.log(1, `Repository cloned successfully to ${repoName}`);
+    })
+    .catch((error) => {
+      this.logger.log(1, `Error cloning repository: ${error}`);
+    });
   }
 
   public async calculateScore(): Promise<number> {
@@ -105,7 +110,7 @@ export class CorrectnessMetric extends Metrics {
       testlineCount: number;
       fileCount: number;
       lineCount: number;
-    };
+    };  
     let commit20AgoResults: {
       testfileCount: number;
       testlineCount: number;
@@ -117,7 +122,7 @@ export class CorrectnessMetric extends Metrics {
       // Clone the repository
       await this.cloneRepo();
 
-      // First, find test files and count lines in the current (latest) commit
+      // Count lines and files for the latest commit
       this.logger.log(1, "Counting lines and files for the latest commit...");
       latestCommitResults = await this.countTotalLinesFilesAndTests(repoDir1);
 
@@ -130,7 +135,7 @@ export class CorrectnessMetric extends Metrics {
       await this.checkoutCommit(repoDir1, commit20Ago.oid);
       commit20AgoResults = await this.countTotalLinesFilesAndTests(repoDir1);
 
-      // Calculating differences and correctness score
+      // Calculate differences and correctness score
       const latestFileCount = latestCommitResults.fileCount;
       const latestLineCount = latestCommitResults.lineCount;
       const firstFileCount = commit20AgoResults.fileCount;
@@ -146,16 +151,16 @@ export class CorrectnessMetric extends Metrics {
       const testLineCountDifference = Math.abs(
         latestTestLineCount - firstTestLineCount
       );
-      const FileCountDifference = Math.abs(latestFileCount - firstFileCount);
-      const LineCountDifference = Math.abs(latestLineCount - firstLineCount);
+      const fileCountDifference = Math.abs(latestFileCount - firstFileCount);
+      const lineCountDifference = Math.abs(latestLineCount - firstLineCount);
 
-      const filediffCountScore = Math.max(
+      const fileDiffCountScore = Math.max(
         0,
-        Math.min(1, testFileCountDifference / FileCountDifference)
+        Math.min(1, testFileCountDifference / fileCountDifference)
       );
-      const linediffCountScore = Math.max(
+      const lineDiffCountScore = Math.max(
         0,
-        Math.min(1, testLineCountDifference / LineCountDifference)
+        Math.min(1, testLineCountDifference / lineCountDifference)
       );
 
       const fileCountScore = Math.max(
@@ -171,9 +176,9 @@ export class CorrectnessMetric extends Metrics {
       const correctnessScore = Math.min(
         1,
         Math.max(fileCountScore, lineCountScore) +
-          0.5 * filediffCountScore +
-          0.5 * linediffCountScore +
-          0.2 * +0.00005 * (this.githubData.numberOfStars || 0)
+        0.5 * fileDiffCountScore +
+        0.5 * lineDiffCountScore +
+        0.00005 * (this.githubData.numberOfStars || 0)
       );
 
       this.logger.log(1, `Correctness score is ${correctnessScore}`);
@@ -198,7 +203,7 @@ export class CorrectnessMetric extends Metrics {
   }
 
   async getCommit20Ago(dir: string): Promise<ReadCommitResult> {
-    const commits = await git.log({ fs, dir, depth: 11 });
+    const commits = await git.log({ fs, dir, depth: 21 });
     return commits[commits.length - 1];
   }
 
@@ -216,7 +221,7 @@ export class CorrectnessMetric extends Metrics {
     const latency = end - start;
     this.logger.log(1, `Score Calculation Latency: ${latency} ms`);
 
-    return { score: score, latency };
+    return { score, latency };
   }
 
   checkoutCommit(dir: string, oid: string): Promise<void> {
