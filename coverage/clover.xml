@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1726967673462" clover="3.2.0">
-  <project timestamp="1726967673462" name="All files">
-    <metrics statements="967" coveredstatements="362" conditionals="86" coveredconditionals="71" methods="34" coveredmethods="27" elements="1087" coveredelements="460" complexity="0" loc="967" ncloc="967" packages="1" files="16" classes="16"/>
+<coverage generated="1726970093408" clover="3.2.0">
+  <project timestamp="1726970093409" name="All files">
+    <metrics statements="967" coveredstatements="411" conditionals="96" coveredconditionals="82" methods="41" coveredmethods="33" elements="1104" coveredelements="526" complexity="0" loc="967" ncloc="967" packages="1" files="16" classes="16"/>
     <file name="API.ts" path="C:\Users\ahmed\Documents\git\NPM-packages-Evaluator\src\API.ts">
       <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
       <line num="1" count="1" type="stmt"/>
@@ -13,46 +13,46 @@
       <line num="13" count="8" type="stmt"/>
     </file>
     <file name="BusFactorMetric.ts" path="C:\Users\ahmed\Documents\git\NPM-packages-Evaluator\src\BusFactorMetric.ts">
-      <metrics statements="39" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
-      <line num="2" count="0" type="stmt"/>
-      <line num="6" count="0" type="stmt"/>
-      <line num="7" count="0" type="stmt"/>
-      <line num="8" count="0" type="stmt"/>
-      <line num="9" count="0" type="stmt"/>
-      <line num="11" count="0" type="stmt"/>
-      <line num="12" count="0" type="stmt"/>
-      <line num="14" count="0" type="stmt"/>
-      <line num="16" count="0" type="stmt"/>
-      <line num="19" count="0" type="stmt"/>
-      <line num="21" count="0" type="stmt"/>
-      <line num="22" count="0" type="stmt"/>
-      <line num="24" count="0" type="stmt"/>
-      <line num="25" count="0" type="stmt"/>
-      <line num="26" count="0" type="stmt"/>
-      <line num="27" count="0" type="stmt"/>
-      <line num="28" count="0" type="stmt"/>
-      <line num="29" count="0" type="stmt"/>
-      <line num="30" count="0" type="stmt"/>
-      <line num="31" count="0" type="stmt"/>
-      <line num="32" count="0" type="stmt"/>
-      <line num="34" count="0" type="stmt"/>
-      <line num="35" count="0" type="stmt"/>
-      <line num="36" count="0" type="stmt"/>
-      <line num="37" count="0" type="stmt"/>
-      <line num="38" count="0" type="stmt"/>
-      <line num="39" count="0" type="stmt"/>
-      <line num="40" count="0" type="stmt"/>
-      <line num="41" count="0" type="stmt"/>
-      <line num="42" count="0" type="stmt"/>
-      <line num="43" count="0" type="stmt"/>
-      <line num="45" count="0" type="stmt"/>
-      <line num="46" count="0" type="stmt"/>
-      <line num="47" count="0" type="stmt"/>
-      <line num="48" count="0" type="stmt"/>
-      <line num="49" count="0" type="stmt"/>
-      <line num="50" count="0" type="stmt"/>
-      <line num="51" count="0" type="stmt"/>
+      <metrics statements="39" coveredstatements="39" conditionals="10" coveredconditionals="10" methods="5" coveredmethods="5"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="7" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="8" count="6" type="stmt"/>
+      <line num="9" count="6" type="stmt"/>
+      <line num="11" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="12" count="3" type="stmt"/>
+      <line num="14" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="16" count="2" type="stmt"/>
+      <line num="19" count="2" type="stmt"/>
+      <line num="21" count="2" type="stmt"/>
+      <line num="22" count="3" type="stmt"/>
+      <line num="24" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="25" count="7" type="stmt"/>
+      <line num="26" count="7" type="cond" truecount="1" falsecount="0"/>
+      <line num="27" count="6" type="cond" truecount="1" falsecount="0"/>
+      <line num="28" count="18" type="stmt"/>
+      <line num="29" count="18" type="stmt"/>
+      <line num="30" count="6" type="stmt"/>
+      <line num="31" count="7" type="stmt"/>
+      <line num="32" count="7" type="stmt"/>
+      <line num="34" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="35" count="5" type="stmt"/>
+      <line num="36" count="5" type="stmt"/>
+      <line num="37" count="5" type="cond" truecount="1" falsecount="0"/>
+      <line num="38" count="15" type="stmt"/>
+      <line num="39" count="15" type="stmt"/>
+      <line num="40" count="15" type="stmt"/>
+      <line num="41" count="5" type="stmt"/>
+      <line num="42" count="5" type="stmt"/>
+      <line num="43" count="5" type="stmt"/>
+      <line num="45" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="46" count="1" type="stmt"/>
+      <line num="47" count="1" type="stmt"/>
+      <line num="48" count="1" type="stmt"/>
+      <line num="49" count="1" type="stmt"/>
+      <line num="50" count="1" type="stmt"/>
+      <line num="51" count="1" type="stmt"/>
     </file>
     <file name="CLI.ts" path="C:\Users\ahmed\Documents\git\NPM-packages-Evaluator\src\CLI.ts">
       <metrics statements="158" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -727,39 +727,39 @@
       <line num="133" count="0" type="stmt"/>
     </file>
     <file name="Metrics.ts" path="C:\Users\ahmed\Documents\git\NPM-packages-Evaluator\src\Metrics.ts">
-      <metrics statements="17" coveredstatements="0" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
-      <line num="4" count="0" type="stmt"/>
-      <line num="6" count="0" type="stmt"/>
-      <line num="7" count="0" type="stmt"/>
-      <line num="11" count="0" type="stmt"/>
-      <line num="13" count="0" type="stmt"/>
-      <line num="14" count="0" type="stmt"/>
-      <line num="16" count="0" type="stmt"/>
-      <line num="18" count="0" type="stmt"/>
+      <metrics statements="17" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="2"/>
+      <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="6" count="6" type="stmt"/>
+      <line num="7" count="6" type="stmt"/>
+      <line num="11" count="6" type="cond" truecount="1" falsecount="0"/>
+      <line num="13" count="6" type="stmt"/>
+      <line num="14" count="6" type="stmt"/>
+      <line num="16" count="6" type="stmt"/>
+      <line num="18" count="6" type="stmt"/>
       <line num="19" count="0" type="stmt"/>
       <line num="20" count="0" type="stmt"/>
       <line num="21" count="0" type="stmt"/>
       <line num="22" count="0" type="stmt"/>
-      <line num="25" count="0" type="stmt"/>
+      <line num="25" count="6" type="stmt"/>
       <line num="26" count="0" type="stmt"/>
       <line num="27" count="0" type="stmt"/>
       <line num="28" count="0" type="stmt"/>
-      <line num="32" count="0" type="stmt"/>
+      <line num="32" count="6" type="stmt"/>
     </file>
     <file name="NPMData.ts" path="C:\Users\ahmed\Documents\git\NPM-packages-Evaluator\src\NPMData.ts">
       <metrics statements="21" coveredstatements="21" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
-      <line num="6" count="4" type="stmt"/>
-      <line num="7" count="4" type="stmt"/>
-      <line num="8" count="4" type="stmt"/>
-      <line num="11" count="4" type="cond" truecount="1" falsecount="0"/>
-      <line num="13" count="4" type="stmt"/>
-      <line num="14" count="4" type="stmt"/>
-      <line num="15" count="4" type="stmt"/>
-      <line num="17" count="4" type="stmt"/>
-      <line num="18" count="4" type="cond" truecount="1" falsecount="0"/>
+      <line num="6" count="9" type="stmt"/>
+      <line num="7" count="9" type="stmt"/>
+      <line num="8" count="9" type="stmt"/>
+      <line num="11" count="9" type="cond" truecount="1" falsecount="0"/>
+      <line num="13" count="9" type="stmt"/>
+      <line num="14" count="9" type="stmt"/>
+      <line num="15" count="9" type="stmt"/>
+      <line num="17" count="9" type="stmt"/>
+      <line num="18" count="9" type="cond" truecount="1" falsecount="0"/>
       <line num="20" count="2" type="stmt"/>
       <line num="21" count="2" type="stmt"/>
       <line num="22" count="2" type="stmt"/>
@@ -768,7 +768,7 @@
       <line num="25" count="2" type="stmt"/>
       <line num="26" count="2" type="stmt"/>
       <line num="29" count="2" type="stmt"/>
-      <line num="32" count="4" type="stmt"/>
+      <line num="32" count="9" type="stmt"/>
     </file>
     <file name="NpmAPI.ts" path="C:\Users\ahmed\Documents\git\NPM-packages-Evaluator\src\NpmAPI.ts">
       <metrics statements="39" coveredstatements="36" conditionals="10" coveredconditionals="8" methods="3" coveredmethods="3"/>
