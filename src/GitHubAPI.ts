@@ -1,15 +1,14 @@
+
 import { Octokit } from "octokit";
 import { GitHubData } from "./GitHubData.js";
 import { API } from "./API.js";
 import { Issue } from "./IssueInterface.js";
 import { Contributor } from "./ContributorInterface.js";
 
-// Fetching and managing GitHub repository data
 export class GitHubAPI extends API {
-    private owner: string; // Storing GitHub repository owner
-    private repoName: string; // Storing GitHub repository name
+    private owner: string;
+    private repoName: string;
 
-    // Setting up owner and repo name
     constructor(owner: string, repoName: string) {
         super();
         this.owner = owner;
@@ -17,27 +16,25 @@ export class GitHubAPI extends API {
         this.logger.log(2, "GitHubAPI initialized for owner: " + this.owner + ", repo: " + this.repoName);
     }
 
-    // Fetching data from GitHub API
     public async fetchData(): Promise<GitHubData> {
         const octokit = new Octokit({
-            auth: process.env.GITHUB_TOKEN // Authenticating using token
+            auth: process.env.GITHUB_TOKEN
         });
 
-        const start = performance.now(); // Measuring how long the request takes
-
+        const start = performance.now();
         try {
             this.logger.log(2, "Fetching data for owner: " + this.owner + ", repo: " + this.repoName);
 
-            // Making multiple API requests in parallel
-            // Fetching repository info
+            // Initialize API requests
+            this.logger.log(2, "Initializing API requests.");
             const reposRequest = octokit.request("GET /repos/{owner}/{repo}", {
                 owner: this.owner,
                 repo: this.repoName,
                 headers: {
-                    "X-GitHub-Api-Version": "2022-11-28" // Using specific API version
+                    "X-GitHub-Api-Version": "2022-11-28"
                 }
             });
-            // Fetching commits
+
             const commitsRequest = octokit.request("GET /repos/{owner}/{repo}/commits", {
                 owner: this.owner,
                 repo: this.repoName,
@@ -46,10 +43,10 @@ export class GitHubAPI extends API {
                 }
             });
 
-            // Fetching issues and contributors
+            // Fetch issues and contributors with pagination
             const issuesRequest = this.fetchIssues(octokit);
             const contributorsRequest = this.fetchContributors(octokit);
-            // Fetching readme
+
             const readmeRequest = octokit.request("GET /repos/{owner}/{repo}/readme", {
                 owner: this.owner,
                 repo: this.repoName,
@@ -59,40 +56,39 @@ export class GitHubAPI extends API {
             });
 
             this.logger.log(2, "Awaiting responses from GitHub API requests.");
-
-            // Waiting for all API requests to finish
+            // Wait for all data fetches to complete in parallel
             const [reposResponse, issuesResponse, commitsResponse, contributors, readmeResponse] = await Promise.all([
                 reposRequest,
                 issuesRequest,
                 commitsRequest,
                 contributorsRequest,
-                readmeRequest.catch(() => null) // Handling case where readme doesn't exist
+                readmeRequest.catch(() => null)
             ]);
 
             const closed_issues = issuesResponse.closedIssues;
             const openIssues = issuesResponse.openIssues;
             this.logger.log(2, "Fetched " + closed_issues.length + " closed issues and " + openIssues.length + " open issues.");
 
-            // Processing contributors
+            // Process contributors data
             const totalContributions = (contributors as Contributor[]).map((contributor: Contributor) => ({
                 contributor: contributor.login,
+                // totalLinesAdded: contributor.total,
                 commits: contributor.contributions
             }));
             this.logger.log(2, "Processed contributions from " + contributors.length + " contributors.");
 
-            const readmeFound = !!readmeResponse; // Checking if readme exists
-            const descriptionFound = !!reposResponse.data.description; // Checking if description exists
+            const readmeFound = !!readmeResponse;
+            const descriptionFound = !!reposResponse.data.description;
             this.logger.log(2, "Readme found: " + readmeFound + ", Description found: " + descriptionFound);
 
-            const license = reposResponse.data.license ? reposResponse.data.license.name : "empty"; // Getting license info
+            const license = reposResponse.data.license ? reposResponse.data.license.name : "empty";
             this.logger.log(2, "License: " + license);
 
-            const end = performance.now(); // Ending the latency timer
+            const end = performance.now();
             const latency = end - start;
             this.logger.log(2, "Data fetch latency: " + latency + " ms.");
             this.logger.log(2, "Successfully fetched data from GitHub API");
 
-            // Returning the fetched data
             return new GitHubData(
                 this.generateRepoUrl(this.owner, this.repoName),
                 reposResponse.data.name,
@@ -112,25 +108,24 @@ export class GitHubAPI extends API {
             );
         } catch (error) {
             this.logger.log(2, "Error fetching data: " + error + " for the repo " + this.repoName);
-            return new GitHubData(); // Returning empty data if there is an error
+            return new GitHubData(); // Return empty data on error
         }
     }
 
-    // Fetching issues from GitHub (both closed and open) using pagination
+    // Fetch issues with pagination
     private async fetchIssues(octokit: Octokit): Promise<{ closedIssues: Issue[], openIssues: Issue[] }> {
         const closedIssues: Issue[] = [];
         const openIssues: Issue[] = [];
         let page = 1;
-        const perPage = 100; // Setting number of issues to fetch per page
+        const perPage = 100;
         let moreIssues = true;
 
         const currentDate = new Date();
-        const threeMonthsAgo = new Date(); // Limiting fetch to issues from the last three months
+        const threeMonthsAgo = new Date();
         threeMonthsAgo.setMonth(currentDate.getMonth() - 3);
 
         this.logger.log(2, "Fetching closed issues since " + threeMonthsAgo.toISOString());
-
-        // Fetching closed issues in multiple pages
+        // Fetch closed issues
         while (moreIssues) {
             const issuesResponse = await octokit.request("GET /repos/{owner}/{repo}/issues", {
                 owner: this.owner,
@@ -140,23 +135,22 @@ export class GitHubAPI extends API {
                 },
                 page: page,
                 per_page: perPage,
-                state: "closed", // Getting closed issues
-                since: threeMonthsAgo.toISOString() // From three months ago
+                state: "closed",
+                since: threeMonthsAgo.toISOString()
             });
 
-            const fetchedIssues = issuesResponse.data as Issue[]; // Storing fetched issues
+            const fetchedIssues = issuesResponse.data as Issue[];
             this.logger.log(2, "Fetched " + fetchedIssues.length + " closed issues on page " + page);
             if (fetchedIssues.length === 0) {
-                moreIssues = false; // No more issues to fetch
+                moreIssues = false;
             } else {
-                closedIssues.push(...fetchedIssues); // Adding the issues to the list
+                closedIssues.push(...fetchedIssues);
                 page++;
             }
         }
-
         this.logger.log(2, "Finished fetching closed issues. Total closed issues: " + closedIssues.length);
 
-        // Now fetching open issues, similar to how closed issues are fetched
+        // Reset page counter and fetch open issues
         page = 1;
         moreIssues = true;
         this.logger.log(2, "Fetching open issues since " + threeMonthsAgo.toISOString());
@@ -169,35 +163,34 @@ export class GitHubAPI extends API {
                 },
                 page: page,
                 per_page: perPage,
-                state: "open", // Getting open issues
+                state: "open", // Fetch open issues
                 since: threeMonthsAgo.toISOString()
             });
 
             const fetchedIssues = issuesResponse.data as Issue[];
             this.logger.log(2, "Fetched " + fetchedIssues.length + " open issues on page " + page);
             if (fetchedIssues.length === 0) {
-                moreIssues = false; // No more open issues
+                moreIssues = false;
             } else {
-                openIssues.push(...fetchedIssues); // Adding open issues to the list
+                openIssues.push(...fetchedIssues);
                 page++;
             }
         }
-
         this.logger.log(2, "Finished fetching open issues. Total open issues: " + openIssues.length);
 
-        return { closedIssues, openIssues }; // Returning both closed and open issues
+        // Return both closed and open issues
+        this.logger.log(2, "Returning fetched issues.");
+        return { closedIssues, openIssues };
     }
 
-    // Fetching contributors from GitHub using pagination
+    // Fetch contributors with pagination
     private async fetchContributors(octokit: Octokit): Promise<Contributor[]> {
         const contributors: Contributor[] = [];
         let page = 1;
-        const perPage = 50; // Setting number of contributors to fetch per page
+        const perPage = 50;
         let moreContributors = true;
 
         this.logger.log(2, "Fetching contributors for repository: " + this.owner + "/" + this.repoName);
-        
-        // Fetching contributors in multiple pages
         while (moreContributors) {
             const contributorsResponse = await octokit.request("GET /repos/{owner}/{repo}/contributors", {
                 owner: this.owner,
@@ -209,24 +202,30 @@ export class GitHubAPI extends API {
                 per_page: perPage
             });
 
-            const fetchedContributors = contributorsResponse.data as Contributor[]; // Storing fetched contributors
+            const fetchedContributors = contributorsResponse.data as Contributor[];
             this.logger.log(2, "Fetched " + fetchedContributors.length + " contributors on page " + page);
             if (fetchedContributors.length === 0) {
-                moreContributors = false; // No more contributors to fetch
+                moreContributors = false;
             } else {
-                contributors.push(...fetchedContributors); // Adding contributors to the list
+                contributors.push(...fetchedContributors);
                 page++;
             }
         }
-
         this.logger.log(2, "Finished fetching contributors. Total contributors: " + contributors.length);
-        return contributors; // Returning all contributors
+        this.logger.log(2, "Returning fetched contributors.");
+        return contributors;
     }
 
-    // Generating the repository URL
     public generateRepoUrl(username: string, repoName: string): string {
         this.logger.log(2, "Generating repository URL for username: " + username + ", repoName: " + repoName);
-        if (!username || !repoName) return ""; // Returning empty string if either username or repoName is missing
-        return "https://github.com/" + username + "/" + repoName; // Formatting GitHub URL
+        // Ensure the username and repoName are trimmed and not empty
+        if (!username.trim() || !repoName.trim()) {
+            this.logger.log(1, "Username and repository name cannot be empty.");
+            throw new Error("Username and repository name cannot be empty.");
+        }
+        // Construct the GitHub repository URL
+        const repoUrl = `https://github.com/${username}/${repoName}`;
+        this.logger.log(2, "Generated repository URL: " + repoUrl);
+        return repoUrl;
     }
 }

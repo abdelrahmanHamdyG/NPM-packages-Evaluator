@@ -10,7 +10,6 @@ import { Logger } from "./logger.js";
 
 const logger = new Logger();
 
-// Defining the NetScore class to calculate a combined score from various metrics
 export class NetScore extends Metrics {
   private correctnessMetric: CorrectnessMetric;
   private busFactorMetric: BusFactorMetric;
@@ -27,7 +26,6 @@ export class NetScore extends Metrics {
     license: { score: number, latency: number },
   ] | null = null;
 
-  // Initializing with GitHub and NPM data and setting up metric instances
   constructor(githubData: GitHubData, npmData: NPMData) {
     super(githubData, npmData);
     logger.log(1, "NetScore instance created.");
@@ -41,7 +39,7 @@ export class NetScore extends Metrics {
   // Method to calculate and store metric results
   public async calculateScore(): Promise<number> {
     logger.log(1, "Calculating NetScore...");
-    // Calculating all metrics in parallel using Promise.all
+    // Calculate all metrics in parallel using Promise.all
     const metricResults = await Promise.all([
       this.correctnessMetric.calculateLatency(),
       this.responsivenessMetric.calculateLatency(),
@@ -50,7 +48,6 @@ export class NetScore extends Metrics {
       this.licenseMetric.calculateLatency()
     ]);
 
-    // Destructuring the results of the metrics
     const [correctness, responsiveness, rampUp, busFactor, license] = metricResults;
     logger.log(2, `Correctness score: ${correctness.score}, latency: ${correctness.latency}`);
     logger.log(2, `Responsiveness score: ${responsiveness.score}, latency: ${responsiveness.latency}`);
@@ -58,10 +55,10 @@ export class NetScore extends Metrics {
     logger.log(2, `BusFactor score: ${busFactor.score}, latency: ${busFactor.latency}`);
     logger.log(2, `License score: ${license.score}, latency: ${license.latency}`);
 
-    // Storing the results in the class attribute
+    // Store the results in the class attribute
     this.metrics = metricResults;
 
-    // Calculating NetScore based on the stored metric results and respective weights
+    // Calculate NetScore based on the stored metric results
     const netScore = 
       (1/11) * rampUp.score + 
       (1/11) * correctness.score + 
@@ -73,7 +70,6 @@ export class NetScore extends Metrics {
     return netScore;
   }
 
-  // Returning stored metric results
   public getMetricResults(): [
     correctness: { score: number, latency: number },
     responsiveness: { score: number, latency: number },
@@ -85,7 +81,6 @@ export class NetScore extends Metrics {
     return this.metrics;
   }
 
-  // Measuring the latency for NetScore calculation
   public async calculateLatency(): Promise<{ score: number; latency: number }> {
     logger.log(1, "Calculating latency for NetScore calculation...");
     const start = performance.now();

@@ -12,7 +12,7 @@ case "$mode" in
             echo "Error occurred during 'npm install'."
             exit 1
         else
-            dep_count=$(node -p "Object.keys(require('./package.json').dependencies || {}).length")
+            dep_count=$(node -p "Object.keys({...require('./package.json').dependencies, ...require('./package.json').devDependencies} || {}).length")
             echo "$dep_count dependencies installed..."
 
             npx tsc
