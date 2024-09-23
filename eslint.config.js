@@ -8,7 +8,7 @@ export default [
     rules: {
       "quotes": ["error", "double"],               // Enforce double quotes
       "semi": ["error", "always"],                 // Require semicolons
-      "max-len": ["error", { code: 300 }],         // Limit line length to 100 characters
+      "max-len": ["error", { code: 300 }],         // Limit line length to 300 characters
       "no-unused-vars": ["error"],                 // Disallow unused variables
       "eqeqeq": ["error", "always"],               // Enforce strict equality (=== and !==)
         

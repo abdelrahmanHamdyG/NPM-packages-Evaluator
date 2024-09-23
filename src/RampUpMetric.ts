@@ -5,11 +5,14 @@ import { Logger } from "./logger.js";
 
 const logger = new Logger();
 
+// Defining the RampUpMetric class to calculate the ramp-up score based on repository data
 export class RampUpMetric extends Metrics {
+  // Initializing with GitHub and NPM data
   constructor(githubData: GitHubData, npmData: NPMData) {
     super(githubData, npmData);
   }
 
+  // Calculating the total RampUp score
   public async calculateScore(): Promise<number> {
     logger.log(1, "Calculating RampUp Score...");
 
@@ -39,6 +42,7 @@ export class RampUpMetric extends Metrics {
     return RampUp;
   }
 
+  // Measuring the latency of score calculation
   public async calculateLatency(): Promise<{ score: number; latency: number }> {
     logger.log(1, "Measuring latency for score calculation...");
 
@@ -52,12 +56,12 @@ export class RampUpMetric extends Metrics {
     return { score, latency };
   }
 
+  // Calculating the percentage score for forks and stars
   public calculateForksStarsPercentage(): number {
     const forks = this.githubData.numberOfForks ?? 0;
     const stars = this.githubData.numberOfStars ?? 0;
     const totalForksStars = forks + stars;
 
-    
     logger.log(1, `Total Forks: ${forks}, Total Stars: ${stars}, Total Forks + Stars: ${totalForksStars}`);
 
     let score = 0;
@@ -71,6 +75,7 @@ export class RampUpMetric extends Metrics {
     return score;
   }
 
+  // Checking for README and description and calculating their score
   public calculateReadmeDescription(): number {
     const hasReadme = !!this.githubData.readme;
     const hasDescription = !!this.githubData.description;
@@ -85,6 +90,7 @@ export class RampUpMetric extends Metrics {
     return 0;
   }
 
+  // Calculating the repository size proportion score
   public calculateSizeProportion(): number {
     const repoSizeKB = (this.githubData.size ?? 0) / 1000;
     logger.log(1, `Repository Size (KB): ${repoSizeKB}`);
@@ -92,11 +98,12 @@ export class RampUpMetric extends Metrics {
     return this.continuousScore(repoSizeKB);
   }
 
+  // Generating a score using a continuous function for scaling size proportion
   public continuousScore(x: number): number {
-    // Generates a score using a continuous function, scales size proportion
     return (0.35 / (x + 10)) + 0.05;
   }
 
+  // Calculating the ratio between open and closed issues
   public calculateOpentoClosedIssueRatio(): number {
     const openIssues = this.githubData.openIssues?.length ?? 0;
     const closedIssues = this.githubData.Closed_Issues?.length ?? 0;
@@ -107,30 +114,31 @@ export class RampUpMetric extends Metrics {
       return 0.2;
     }
 
-    const issueRatio = (closedIssues / (openIssues + 1)) * 0.2; // Avoid division by 0
+    const issueRatio = (closedIssues / (openIssues + 1)) * 0.2; // Avoiding division by 0
     logger.log(1, `Open to Closed Issue Ratio Score: ${issueRatio}`);
 
     return issueRatio;
   }
 
+  // Calculating the score based on the number of contributors
   public calculateContributors(): number {
     const contributors = this.githubData.contributions?.length ?? 0;
     const repoSizeKB = (this.githubData.size ?? 0) / 1000;
 
-    // Scale the contributors score using a normalized logistic function
+    // Scaling the contributors score using a normalized logistic function
     const standardNoOfContributors = this.contributorScalingNormalized(repoSizeKB);
     
     logger.log(1, `Contributors: ${contributors}, Standard No. of Contributors (Normalized): ${standardNoOfContributors}`);
 
-    // Scale the contributors to a maximum score of 0.1
+    // Scaling the contributors to a maximum score of 0.1
     const score = Math.min(0.1, (contributors / standardNoOfContributors) * 0.1);
     logger.log(1, `Contributors Score: ${score}`);
 
     return score;
   }
 
+  // Normalizing the number of expected contributors using a logistic function
   public contributorScalingNormalized(repoSizeKB: number): number {
-    // Normalized logistic function to scale the expected number of contributors between 0 and 1
     return 1 / (1 + Math.exp(-0.1 * (repoSizeKB - 50)));
   }
 }
