@@ -73,70 +73,69 @@ export class CLI {
   // ranking the modules by reading the urls from a file
   public rankModules(path: string): void {
     logger.log(1, `starting to rank modules from path: ${path}`);
-  
+
     // ranking the modules together and then processing the results
     this.rankModulesTogether(path)
       .then(async (results) => {
         logger.log(1, "the data fetched for each url:");
-  
-        const urls = await this.readFromFile(path);
-  
-        // processing each module in parallel using Promise.all and map
-        await Promise.all(
-          results.map(async ({ npmData, githubData }, index) => {
-            logger.log(1, `processing result ${index + 1}:`);
-  
-            // printing npm data if available
-            if (npmData) {
-              npmData.printMyData();
-            }
-  
-            // printing github data if available
-            if (githubData) {
-              githubData.printMyData();
-            }
-  
-            // calculating netscore if both github and npm data are available
-            if (githubData && npmData) {
-              const netScoreClass = new NetScore(githubData, npmData);
-              const net = await netScoreClass.calculateLatency();
-              const metrics = netScoreClass.getMetricResults();
-              if (metrics) {
-                const [correctness, responsiveness, rampUp, busFactor, license] = metrics;
-  
-                // formatting the result into a readable format
-                const formattedResult = {
-                  URL: urls[index],
-                  NetScore: Number(net.score.toFixed(3)),
-                  NetScore_Latency: Number((net.latency / 1000).toFixed(3)), // convert to number
-                  RampUp: Number(rampUp.score.toFixed(3)),
-                  RampUp_Latency: Number((rampUp.latency / 1000).toFixed(3)), // convert to number
-                  Correctness: Number(correctness.score.toFixed(3)),
-                  Correctness_Latency: Number((correctness.latency / 1000).toFixed(3)), // convert to number
-                  BusFactor: Number(busFactor.score.toFixed(3)),
-                  BusFactor_Latency: Number((busFactor.latency / 1000).toFixed(3)), // convert to number
-                  ResponsiveMaintainer: Number(responsiveness.score.toFixed(3)),
-                  ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // convert to number
-                  License: Number(license.score.toFixed(3)),
-                  License_Latency: Number((license.latency / 1000).toFixed(3)) // convert to number
-                };
-  
-                // logging the result
-                if (githubData.name !== "empty") {
-                  console.log(JSON.stringify(formattedResult));
-                } else {
-                  console.log({ URL: urls[index], error: "github repo doesn't exist" });
-                }
+
+        const urls=await this.readFromFile(path);
+        // looping through results and processing each module
+        for (const [index, { npmData, githubData }] of results.entries()) {
+          logger.log(1, `processing result ${index + 1}:`);
+
+          // printing npm data if available
+          if (npmData) {
+            npmData.printMyData();
+          } 
+
+          // printing github data if available
+          if (githubData) {
+            githubData.printMyData();
+          } 
+
+          // calculating netscore if both github and npm data are available
+          if (githubData && npmData) {
+            const netScoreClass = new NetScore(githubData, npmData);
+            const net = await netScoreClass.calculateLatency();
+            const metrics = netScoreClass.getMetricResults();
+            if (metrics) {
+              const [correctness, responsiveness, rampUp, busFactor, license] =
+                metrics;
+              
+              // formatting the result into a readable format
+              const formattedResult = {
+                URL: urls[index],
+                NetScore :Number(net.score.toFixed(3)) ,
+                NetScore_Latency: Number((net.latency / 1000).toFixed(3)), // convert to number
+                RampUp: Number(rampUp.score.toFixed(3)),
+                RampUp_Latency: Number((rampUp.latency / 1000).toFixed(3)), // convert to number
+                Correctness: Number(correctness.score.toFixed(3)),
+                Correctness_Latency: Number((correctness.latency / 1000).toFixed(3)), // convert to number
+                BusFactor: Number(busFactor.score.toFixed(3)),
+                BusFactor_Latency: Number((busFactor.latency / 1000).toFixed(3)), // convert to number
+                ResponsiveMaintainer: Number(responsiveness.score.toFixed(3)),
+                ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // convert to number
+                License: Number(license.score.toFixed(3)),
+                License_Latency: Number((license.latency / 1000).toFixed(3)) // convert to number
+            };
+            
+              // logging the result
+              if(githubData.name!=="empty"){
+                console.log(JSON.stringify(formattedResult));
+              }else{
+                console.log(
+                { URL: urls[index], error: "github repo doesn't exist" }
+                );              
               }
             }
-          })
-        );
+          }
+        }
       })
       .catch((error) => {
         logger.log(1, `error in rankmodules: ${error}`);
       });
   }
-  
 
   // ranking modules by fetching both github and npm data
   public async rankModulesTogether(
