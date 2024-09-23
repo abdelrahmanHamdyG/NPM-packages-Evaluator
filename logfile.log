@@ -6910,3 +6910,481 @@
 2024-09-23T02:37:30.946Z [INFO]: Calculated NetScore: 0.14863540937718683
 2024-09-23T02:37:30.946Z [INFO]: NetScore: 0.14863540937718683, Latency: 225.32670000000508 ms
 2024-09-23T02:37:30.947Z [DEBUG]: Returning stored metric results.
+2024-09-23T02:54:01.261Z [INFO]: Has README: true, Has Description: true
+2024-09-23T02:54:01.261Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-23T02:54:01.264Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-23T02:54:01.264Z [INFO]: Total Forks: 500, Total Stars: 300, Total Forks + Stars: 800
+2024-09-23T02:54:01.264Z [DEBUG]: Initializing API requests.
+2024-09-23T02:54:01.264Z [INFO]: Forks and Stars Percentage Score: 0.08000000000000002
+2024-09-23T02:54:01.266Z [INFO]: Repository Size (KB): 5
+2024-09-23T02:54:01.267Z [INFO]: Repository Size (KB): 5
+2024-09-23T02:54:01.268Z [INFO]: Contributors: 0, Standard No. of Contributors (Normalized): 0.01098694263059318
+2024-09-23T02:54:01.268Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.268Z [INFO]: NpmAPI instance created for package: test
+2024-09-23T02:54:01.269Z [INFO]: Calculating RampUp Score...
+2024-09-23T02:54:01.269Z [INFO]: Has README: true, Has Description: true
+2024-09-23T02:54:01.270Z [INFO]: README Description Score: 0.2
+2024-09-23T02:54:01.271Z [INFO]: Fetching data from NPM
+2024-09-23T02:54:01.271Z [INFO]: Total Forks: 500, Total Stars: 300, Total Forks + Stars: 800
+2024-09-23T02:54:01.272Z [DEBUG]: Fetching data for package: test
+2024-09-23T02:54:01.274Z [INFO]: Data fetched successfully in 2.776399999999967 ms
+2024-09-23T02:54:01.265Z [DEBUG]: Fetching closed issues since 2024-06-23T02:54:01.265Z
+2024-09-23T02:54:01.274Z [INFO]: Forks and Stars Percentage Score: 0.08000000000000002
+2024-09-23T02:54:01.274Z [DEBUG]: Latest version: 1.0.0
+2024-09-23T02:54:01.274Z [INFO]: Forks and Stars Percentage Score: 0.08000000000000002
+2024-09-23T02:54:01.274Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-23T02:54:01.275Z [DEBUG]: License: MIT, Repository URL: git+https://github.com/user/repo.git
+2024-09-23T02:54:01.275Z [INFO]: Repository Size (KB): 5
+2024-09-23T02:54:01.275Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-23T02:54:01.275Z [DEBUG]: Extracted repository URL: https://github.com/user/repo
+2024-09-23T02:54:01.275Z [INFO]: Repository Size Proportion Score: 0.07333333333333333
+2024-09-23T02:54:01.275Z [DEBUG]: Fetched 3 closed issues on page 1
+2024-09-23T02:54:01.276Z [INFO]: Open Issues: 0, Closed Issues: 0
+2024-09-23T02:54:01.276Z [DEBUG]: Fetched 2 contributors on page 1
+2024-09-23T02:54:01.276Z [INFO]: Open to Closed Issue Ratio Score: 0
+2024-09-23T02:54:01.276Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-09-23T02:54:01.276Z [INFO]: Open to Closed Issue Ratio Score: 0
+2024-09-23T02:54:01.276Z [DEBUG]: Finished fetching closed issues. Total closed issues: 3
+2024-09-23T02:54:01.277Z [INFO]: Contributors: 0, Standard No. of Contributors (Normalized): 0.01098694263059318
+2024-09-23T02:54:01.277Z [DEBUG]: Fetching open issues since 2024-06-23T02:54:01.265Z
+2024-09-23T02:54:01.277Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.277Z [DEBUG]: Fetched 0 contributors on page 2
+2024-09-23T02:54:01.277Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.278Z [INFO]: NpmAPI instance created for package: test
+2024-09-23T02:54:01.278Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-09-23T02:54:01.278Z [INFO]: Total RampUp Score: 0.3533333333333334
+2024-09-23T02:54:01.278Z [DEBUG]: Returning fetched contributors.
+2024-09-23T02:54:01.279Z [INFO]: Fetching data from NPM
+2024-09-23T02:54:01.278Z [DEBUG]: Fetched 3 open issues on page 1
+2024-09-23T02:54:01.279Z [INFO]: Measuring latency for score calculation...
+2024-09-23T02:54:01.279Z [DEBUG]: Fetching data for package: test
+2024-09-23T02:54:01.279Z [DEBUG]: Fetched 0 open issues on page 2
+2024-09-23T02:54:01.279Z [INFO]: Calculating RampUp Score...
+2024-09-23T02:54:01.280Z [INFO]: Data fetched successfully in 1.293299999999931 ms
+2024-09-23T02:54:01.280Z [DEBUG]: Finished fetching open issues. Total open issues: 3
+2024-09-23T02:54:01.280Z [INFO]: Has README: true, Has Description: true
+2024-09-23T02:54:01.280Z [DEBUG]: Latest version: 1.0.0
+2024-09-23T02:54:01.280Z [DEBUG]: Returning fetched issues.
+2024-09-23T02:54:01.281Z [INFO]: README Description Score: 0.2
+2024-09-23T02:54:01.281Z [DEBUG]: License: MIT, Repository URL: git+//github.com/user/repo.git
+2024-09-23T02:54:01.281Z [INFO]: Total Forks: 500, Total Stars: 300, Total Forks + Stars: 800
+2024-09-23T02:54:01.281Z [DEBUG]: Extracted and formatted repository URL: https://github.com/user/repo
+2024-09-23T02:54:01.281Z [DEBUG]: Fetched 3 closed issues and 3 open issues.
+2024-09-23T02:54:01.281Z [INFO]: Forks and Stars Percentage Score: 0.08000000000000002
+2024-09-23T02:54:01.282Z [INFO]: Forks and Stars Percentage Score: 0.08000000000000002
+2024-09-23T02:54:01.282Z [DEBUG]: Processed contributions from 2 contributors.
+2024-09-23T02:54:01.282Z [INFO]: Repository Size (KB): 5
+2024-09-23T02:54:01.282Z [DEBUG]: Readme found: true, Description found: true
+2024-09-23T02:54:01.283Z [INFO]: NpmAPI instance created for package: test
+2024-09-23T02:54:01.283Z [DEBUG]: License: MIT
+2024-09-23T02:54:01.283Z [INFO]: Repository Size Proportion Score: 0.07333333333333333
+2024-09-23T02:54:01.283Z [INFO]: Open Issues: 0, Closed Issues: 0
+2024-09-23T02:54:01.283Z [DEBUG]: Data fetch latency: 19.510899999999992 ms.
+2024-09-23T02:54:01.284Z [INFO]: Fetching data from NPM
+2024-09-23T02:54:01.284Z [INFO]: Open to Closed Issue Ratio Score: 0
+2024-09-23T02:54:01.284Z [DEBUG]: Fetching data for package: test
+2024-09-23T02:54:01.284Z [DEBUG]: Successfully fetched data from GitHub API
+2024-09-23T02:54:01.284Z [INFO]: Open to Closed Issue Ratio Score: 0
+2024-09-23T02:54:01.285Z [INFO]: Data fetched successfully in 1.057700000000068 ms
+2024-09-23T02:54:01.284Z [INFO]: Contributors: 0, Standard No. of Contributors (Normalized): 0.01098694263059318
+2024-09-23T02:54:01.284Z [DEBUG]: Generating repository URL for username: owner, repoName: repo
+2024-09-23T02:54:01.285Z [DEBUG]: Latest version: undefined
+2024-09-23T02:54:01.285Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.285Z [DEBUG]: Generated repository URL: https://github.com/owner/repo
+2024-09-23T02:54:01.285Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.286Z [DEBUG]: License: undefined, Repository URL: undefined
+2024-09-23T02:54:01.286Z [INFO]: Total RampUp Score: 0.3533333333333334
+2024-09-23T02:54:01.286Z [INFO]: Score Calculation Latency: 6.689499999999953 ms
+2024-09-23T02:54:01.287Z [INFO]: Error fetching data: TypeError: Cannot read properties of undefined (reading 'slice')
+2024-09-23T02:54:01.287Z [INFO]: Measuring latency for score calculation...
+2024-09-23T02:54:01.288Z [INFO]: Calculating RampUp Score...
+2024-09-23T02:54:01.288Z [INFO]: NpmAPI instance created for package: test
+2024-09-23T02:54:01.288Z [INFO]: Has README: false, Has Description: true
+2024-09-23T02:54:01.288Z [INFO]: README Description Score: 0.1
+2024-09-23T02:54:01.289Z [INFO]: Total Forks: 500, Total Stars: 300, Total Forks + Stars: 800
+2024-09-23T02:54:01.289Z [DEBUG]: NPM Data:
+2024-09-23T02:54:01.289Z [INFO]: Forks and Stars Percentage Score: 0.08000000000000002
+2024-09-23T02:54:01.290Z [DEBUG]: License: MIT
+2024-09-23T02:54:01.289Z [INFO]: Forks and Stars Percentage Score: 0.08000000000000002
+2024-09-23T02:54:01.290Z [DEBUG]: GitHub URL: https://github.com/test/repo
+2024-09-23T02:54:01.290Z [INFO]: Repository Size (KB): 5
+2024-09-23T02:54:01.290Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-23T02:54:01.290Z [INFO]: Repository Size Proportion Score: 0.07333333333333333
+2024-09-23T02:54:01.291Z [DEBUG]: Fetching data for owner: owner, repo: repo
+2024-09-23T02:54:01.291Z [INFO]: Open Issues: 0, Closed Issues: 0
+2024-09-23T02:54:01.291Z [DEBUG]: Initializing API requests.
+2024-09-23T02:54:01.291Z [INFO]: Open to Closed Issue Ratio Score: 0
+2024-09-23T02:54:01.291Z [INFO]: Open to Closed Issue Ratio Score: 0
+2024-09-23T02:54:01.291Z [DEBUG]: Fetching closed issues since 2024-06-23T02:54:01.291Z
+2024-09-23T02:54:01.292Z [INFO]: Contributors: 0, Standard No. of Contributors (Normalized): 0.01098694263059318
+2024-09-23T02:54:01.292Z [DEBUG]: Fetching contributors for repository: owner/repo
+2024-09-23T02:54:01.292Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.293Z [INFO]: NpmAPI instance created for package: test
+2024-09-23T02:54:01.293Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-09-23T02:54:01.294Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.294Z [DEBUG]: Error fetching data: Error: fetcing Error for the repo repo
+2024-09-23T02:54:01.295Z [INFO]: Total RampUp Score: 0.25333333333333335
+2024-09-23T02:54:01.296Z [DEBUG]: NPM Data:
+2024-09-23T02:54:01.296Z [INFO]: Score Calculation Latency: 7.992900000000077 ms
+2024-09-23T02:54:01.297Z [DEBUG]: License: empty
+2024-09-23T02:54:01.297Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-23T02:54:01.297Z [INFO]: Measuring latency for score calculation...
+2024-09-23T02:54:01.297Z [DEBUG]: GitHub URL: empty
+2024-09-23T02:54:01.298Z [INFO]: Calculating RampUp Score...
+2024-09-23T02:54:01.298Z [INFO]: Has README: false, Has Description: false
+2024-09-23T02:54:01.298Z [INFO]: README Description Score: 0
+2024-09-23T02:54:01.298Z [DEBUG]: Readme Present: Yes
+2024-09-23T02:54:01.299Z [INFO]: Total Forks: 500, Total Stars: 300, Total Forks + Stars: 800
+2024-09-23T02:54:01.299Z [DEBUG]: Description Present: Yes
+2024-09-23T02:54:01.299Z [INFO]: Forks and Stars Percentage Score: 0.08000000000000002
+2024-09-23T02:54:01.299Z [DEBUG]: Number of Forks: 3
+2024-09-23T02:54:01.302Z [DEBUG]: Number of Stars: 15
+2024-09-23T02:54:01.301Z [INFO]: Forks and Stars Percentage Score: 0.08000000000000002
+2024-09-23T02:54:01.302Z [INFO]: Repository Size (KB): 5
+2024-09-23T02:54:01.302Z [DEBUG]: GitHub Data:
+2024-09-23T02:54:01.303Z [INFO]: Repository Size Proportion Score: 0.07333333333333333
+2024-09-23T02:54:01.304Z [DEBUG]: Name: test-repo
+2024-09-23T02:54:01.303Z [INFO]: LicenseMetric instance created.
+2024-09-23T02:54:01.303Z [DEBUG]: BusFactorMetric initialized.
+2024-09-23T02:54:01.304Z [INFO]: Open Issues: 0, Closed Issues: 0
+2024-09-23T02:54:01.303Z [INFO]: ResponsivenessMetric instance created.
+2024-09-23T02:54:01.304Z [DEBUG]: License Name: MIT 
+2024-09-23T02:54:01.305Z [INFO]: Open to Closed Issue Ratio Score: 0
+2024-09-23T02:54:01.305Z [INFO]: Calculating latency for license score calculation...
+2024-09-23T02:54:01.305Z [DEBUG]: Total commits calculated: 20
+2024-09-23T02:54:01.305Z [DEBUG]: Contributions Array: 50
+2024-09-23T02:54:01.305Z [INFO]: Open to Closed Issue Ratio Score: 0
+2024-09-23T02:54:01.305Z [INFO]: Calculating license compatibility score...
+2024-09-23T02:54:01.306Z [INFO]: Initial GitHub license: MIT
+2024-09-23T02:54:01.305Z [DEBUG]: Number of closed issues: 0
+2024-09-23T02:54:01.306Z [DEBUG]: Readme Present: Yes
+2024-09-23T02:54:01.306Z [INFO]: Contributors: 0, Standard No. of Contributors (Normalized): 0.01098694263059318
+2024-09-23T02:54:01.306Z [INFO]: License MIT is fully compatible.
+2024-09-23T02:54:01.306Z [INFO]: No closed issues found, returning default score: 0.25
+2024-09-23T02:54:01.307Z [INFO]: Calculated score: 1, Latency: 1.6408999999999878 ms
+2024-09-23T02:54:01.307Z [DEBUG]: Description Present: Yes
+2024-09-23T02:54:01.307Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.307Z [DEBUG]: BusFactorMetric initialized.
+2024-09-23T02:54:01.308Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.308Z [DEBUG]: Number of Issues: 5
+2024-09-23T02:54:01.308Z [DEBUG]: Total commits calculated: 20
+2024-09-23T02:54:01.308Z [INFO]: Total RampUp Score: 0.15333333333333335
+2024-09-23T02:54:01.308Z [DEBUG]: HHI calculated: 0.10000000000000003
+2024-09-23T02:54:01.309Z [INFO]: Score Calculation Latency: 11.372899999999959 ms
+2024-09-23T02:54:01.309Z [INFO]: ResponsivenessMetric instance created.
+2024-09-23T02:54:01.309Z [INFO]: LicenseMetric instance created.
+2024-09-23T02:54:01.309Z [DEBUG]: BusFactorMetric initialized.
+2024-09-23T02:54:01.310Z [DEBUG]: Number of closed issues: 100
+2024-09-23T02:54:01.310Z [INFO]: Calculating latency for license score calculation...
+2024-09-23T02:54:01.310Z [DEBUG]: Calculating BusFactor score...
+2024-09-23T02:54:01.310Z [DEBUG]: Repository size (KB): 60000
+2024-09-23T02:54:01.310Z [DEBUG]: GitHubAPI initialized for owner: owner, repo: repo
+2024-09-23T02:54:01.310Z [DEBUG]: Total commits calculated: 20
+2024-09-23T02:54:01.311Z [INFO]: Calculating license compatibility score...
+2024-09-23T02:54:01.311Z [DEBUG]: Repository size > 50MB, standard number of issues set to 90.
+2024-09-23T02:54:01.311Z [DEBUG]: Total commits: 20
+2024-09-23T02:54:01.311Z [INFO]: Initial GitHub license: MPL 2.0
+2024-09-23T02:54:01.311Z [INFO]: Number of closed issues exceeds standard, returning score: 1
+2024-09-23T02:54:01.312Z [DEBUG]: Readme Present: No
+2024-09-23T02:54:01.311Z [DEBUG]: HHI calculated: 0.10000000000000003
+2024-09-23T02:54:01.312Z [INFO]: License MPL 2.0 is partially compatible.
+2024-09-23T02:54:01.312Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.10000000000000003
+2024-09-23T02:54:01.312Z [DEBUG]: Description Present: No
+2024-09-23T02:54:01.312Z [INFO]: ResponsivenessMetric instance created.
+2024-09-23T02:54:01.313Z [INFO]: Calculated score: 0.5, Latency: 1.9686000000000377 ms
+2024-09-23T02:54:01.312Z [INFO]: Calculated BusFactor: 0.8999999999999999
+2024-09-23T02:54:01.313Z [DEBUG]: Number of Forks: N/A
+2024-09-23T02:54:01.313Z [DEBUG]: Number of closed issues: 80
+2024-09-23T02:54:01.313Z [DEBUG]: Total commits calculated: 20
+2024-09-23T02:54:01.314Z [INFO]: LicenseMetric instance created.
+2024-09-23T02:54:01.314Z [DEBUG]: Number of Stars: N/A
+2024-09-23T02:54:01.315Z [DEBUG]: HHI calculated: 0.10000000000000003
+2024-09-23T02:54:01.315Z [DEBUG]: Repository size (KB): 110000
+2024-09-23T02:54:01.315Z [DEBUG]: GitHub Data:
+2024-09-23T02:54:01.315Z [INFO]: Calculating latency for license score calculation...
+2024-09-23T02:54:01.316Z [DEBUG]: Repository size > 100MB, standard number of issues set to 120.
+2024-09-23T02:54:01.316Z [DEBUG]: BusFactorMetric initialized.
+2024-09-23T02:54:01.316Z [INFO]: Calculating license compatibility score...
+2024-09-23T02:54:01.316Z [DEBUG]: Name: empty
+2024-09-23T02:54:01.316Z [DEBUG]: Calculated responsiveness score: 0.6666666666666666
+2024-09-23T02:54:01.317Z [INFO]: Initial GitHub license: empty
+2024-09-23T02:54:01.317Z [DEBUG]: BusFactorMetric initialized.
+2024-09-23T02:54:01.317Z [DEBUG]: License Name: N/A 
+2024-09-23T02:54:01.317Z [INFO]: ResponsivenessMetric instance created.
+2024-09-23T02:54:01.317Z [INFO]: GitHub license not compatible; using NPM license: empty
+2024-09-23T02:54:01.317Z [DEBUG]: Calculating BusFactor score...
+2024-09-23T02:54:01.318Z [DEBUG]: Contributions Array: N/A
+2024-09-23T02:54:01.318Z [DEBUG]: Total commits calculated: 0
+2024-09-23T02:54:01.318Z [INFO]: License empty is incompatible.
+2024-09-23T02:54:01.318Z [INFO]: Calculating responsiveness score with latency...
+2024-09-23T02:54:01.318Z [DEBUG]: Readme Present: No
+2024-09-23T02:54:01.318Z [INFO]: No commits found in the repository.
+2024-09-23T02:54:01.319Z [INFO]: Calculated score: 0, Latency: 2.7012000000000853 ms
+2024-09-23T02:54:01.319Z [DEBUG]: Number of closed issues: 70
+2024-09-23T02:54:01.319Z [DEBUG]: Description Present: No
+2024-09-23T02:54:01.319Z [DEBUG]: BusFactorMetric initialized.
+2024-09-23T02:54:01.320Z [DEBUG]: Repository size (KB): 40000
+2024-09-23T02:54:01.320Z [INFO]: LicenseMetric instance created.
+2024-09-23T02:54:01.320Z [DEBUG]: Number of Issues: N/A
+2024-09-23T02:54:01.320Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-23T02:54:01.321Z [DEBUG]: Repository size <= 50MB, standard number of issues set to 80.
+2024-09-23T02:54:01.321Z [DEBUG]: Calculating BusFactor score...
+2024-09-23T02:54:01.321Z [INFO]: Calculating latency for license score calculation...
+2024-09-23T02:54:01.321Z [DEBUG]: Calculated responsiveness score: 0.875
+2024-09-23T02:54:01.322Z [DEBUG]: Total commits calculated: 20
+2024-09-23T02:54:01.322Z [INFO]: Calculating license compatibility score...
+2024-09-23T02:54:01.322Z [DEBUG]: Score calculated: 0.875, Latency: 4.319999999999936 ms
+2024-09-23T02:54:01.323Z [DEBUG]: Total commits: 20
+2024-09-23T02:54:01.323Z [INFO]: Initial GitHub license: empty
+2024-09-23T02:54:01.323Z [DEBUG]: HHI calculated: 0.10000000000000003
+2024-09-23T02:54:01.323Z [INFO]: GitHub license not compatible; using NPM license: MIT
+2024-09-23T02:54:01.323Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.10000000000000003
+2024-09-23T02:54:01.324Z [INFO]: License MIT is fully compatible.
+2024-09-23T02:54:01.324Z [INFO]: Calculated BusFactor: 0.8999999999999999
+2024-09-23T02:54:01.324Z [INFO]: Calculated score: 1, Latency: 2.0149999999999864 ms
+2024-09-23T02:54:01.324Z [INFO]: BusFactor score: 0.8999999999999999, Latency: 3.002499999999941 ms
+2024-09-23T02:54:01.325Z [DEBUG]: Total commits calculated: 20
+2024-09-23T02:54:01.325Z [DEBUG]: HHI calculated: 0.10000000000000003
+2024-09-23T02:54:01.435Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-23T02:54:01.439Z [INFO]: Cloning repository: https://github.com/user/test-repo.git into directory: test-repo
+2024-09-23T02:54:01.440Z [INFO]: Repository cloned successfully to test-repo
+2024-09-23T02:54:01.445Z [DEBUG]: Getting latest commit in directory: test-repo
+2024-09-23T02:54:01.446Z [DEBUG]: Latest commit: latest-commit-oid
+2024-09-23T02:54:01.443Z [INFO]: NetScore instance created.
+2024-09-23T02:54:01.447Z [DEBUG]: Getting the commit 20 commits ago in directory: test-repo
+2024-09-23T02:54:01.444Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-23T02:54:01.447Z [DEBUG]: Commit 20 commits ago: commit-20
+2024-09-23T02:54:01.445Z [INFO]: ResponsivenessMetric instance created.
+2024-09-23T02:54:01.445Z [DEBUG]: BusFactorMetric initialized.
+2024-09-23T02:54:01.446Z [INFO]: LicenseMetric instance created.
+2024-09-23T02:54:01.446Z [INFO]: ResponsivenessMetric instance created.
+2024-09-23T02:54:01.449Z [DEBUG]: Checking out commit some-commit-oid in directory: test-repo
+2024-09-23T02:54:01.447Z [INFO]: LicenseMetric instance created.
+2024-09-23T02:54:01.447Z [DEBUG]: BusFactorMetric initialized.
+2024-09-23T02:54:01.450Z [DEBUG]: Checked out commit some-commit-oid
+2024-09-23T02:54:01.448Z [INFO]: Calculating NetScore...
+2024-09-23T02:54:01.448Z [INFO]: Calculating responsiveness score with latency...
+2024-09-23T02:54:01.452Z [INFO]: Calculating Correctness Score for repository: test-repo
+2024-09-23T02:54:01.449Z [DEBUG]: Number of closed issues: 100
+2024-09-23T02:54:01.452Z [DEBUG]: Repository cloned. Starting analysis.
+2024-09-23T02:54:01.449Z [DEBUG]: Repository size (KB): 60000
+2024-09-23T02:54:01.453Z [DEBUG]: Latest commit results: {"testfileCount":2,"testlineCount":20,"fileCount":10,"lineCount":100}
+2024-09-23T02:54:01.450Z [DEBUG]: Repository size > 50MB, standard number of issues set to 90.
+2024-09-23T02:54:01.451Z [INFO]: Number of closed issues exceeds standard, returning score: 1
+2024-09-23T02:54:01.454Z [DEBUG]: Got commit 20 commits ago: commit-oid
+2024-09-23T02:54:01.452Z [INFO]: Measuring latency for score calculation...
+2024-09-23T02:54:01.455Z [DEBUG]: 20th commit results: {"testfileCount":1,"testlineCount":10,"fileCount":8,"lineCount":80}
+2024-09-23T02:54:01.452Z [INFO]: Calculating RampUp Score...
+2024-09-23T02:54:01.455Z [DEBUG]: Latest commit - Files: 10, Lines: 100, Test Files: 2, Test Lines: 20
+2024-09-23T02:54:01.453Z [INFO]: Has README: true, Has Description: true
+2024-09-23T02:54:01.456Z [DEBUG]: 20th commit - Files: 8, Lines: 80, Test Files: 1, Test Lines: 10
+2024-09-23T02:54:01.453Z [INFO]: README Description Score: 0.2
+2024-09-23T02:54:01.454Z [INFO]: Total Forks: 0, Total Stars: 0, Total Forks + Stars: 0
+2024-09-23T02:54:01.457Z [DEBUG]: Differences - Test Files: 1, Test Lines: 10, Files: 2, Lines: 20
+2024-09-23T02:54:01.454Z [INFO]: Forks and Stars Percentage Score: 0
+2024-09-23T02:54:01.457Z [DEBUG]: Intermediate Scores - File Count Score: 0.2, Line Count Score: 0.2, File Diff Count Score: 0.5, Line Diff Count Score: 0.5
+2024-09-23T02:54:01.455Z [INFO]: Forks and Stars Percentage Score: 0
+2024-09-23T02:54:01.458Z [INFO]: Correctness score is 0.7
+2024-09-23T02:54:01.455Z [INFO]: Repository Size (KB): 60
+2024-09-23T02:54:01.458Z [INFO]: Repository folder removed successfully
+2024-09-23T02:54:01.455Z [INFO]: Repository Size Proportion Score: 0.055
+2024-09-23T02:54:01.456Z [INFO]: Open Issues: 0, Closed Issues: 100
+2024-09-23T02:54:01.456Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-09-23T02:54:01.460Z [DEBUG]: Calculating latency for correctness score...
+2024-09-23T02:54:01.457Z [INFO]: Contributors: 0, Standard No. of Contributors (Normalized): 0.7310585786300049
+2024-09-23T02:54:01.458Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.461Z [INFO]: Correctness score: 0.75, Latency: 0.06759999999997035 ms
+2024-09-23T02:54:01.459Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.460Z [INFO]: Total RampUp Score: 0.455
+2024-09-23T02:54:01.460Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-23T02:54:01.463Z [DEBUG]: Analyzing CorrectnessMetric...
+2024-09-23T02:54:01.461Z [DEBUG]: Calculating BusFactor score...
+2024-09-23T02:54:01.461Z [DEBUG]: Total commits calculated: 0
+2024-09-23T02:54:01.462Z [INFO]: No commits found in the repository.
+2024-09-23T02:54:01.462Z [INFO]: Calculating latency for license score calculation...
+2024-09-23T02:54:01.463Z [INFO]: Calculating license compatibility score...
+2024-09-23T02:54:01.463Z [INFO]: Initial GitHub license: MIT
+2024-09-23T02:54:01.463Z [INFO]: License MIT is fully compatible.
+2024-09-23T02:54:01.466Z [DEBUG]: Score calculated: 1, Latency: 18.098799999999983 ms
+2024-09-23T02:54:01.467Z [INFO]: Score Calculation Latency: 14.775999999999954 ms
+2024-09-23T02:54:01.467Z [INFO]: BusFactor score: 0, Latency: 6.3197999999999865 ms
+2024-09-23T02:54:01.468Z [INFO]: Calculated score: 1, Latency: 5.4372999999999365 ms
+2024-09-23T02:54:01.468Z [DEBUG]: Correctness score: 0.5, latency: 0.7
+2024-09-23T02:54:01.469Z [DEBUG]: Responsiveness score: 1, latency: 18.098799999999983
+2024-09-23T02:54:01.469Z [DEBUG]: RampUp score: 0.455, latency: 14.775999999999954
+2024-09-23T02:54:01.473Z [DEBUG]: BusFactor score: 0, latency: 6.3197999999999865
+2024-09-23T02:54:01.473Z [DEBUG]: License score: 1, latency: 5.4372999999999365
+2024-09-23T02:54:01.474Z [INFO]: Calculated NetScore: 0.8140909090909091
+2024-09-23T02:54:01.474Z [DEBUG]: Calculating BusFactor score...
+2024-09-23T02:54:01.475Z [DEBUG]: Total commits calculated: 0
+2024-09-23T02:54:01.476Z [INFO]: No commits found in the repository.
+2024-09-23T02:54:01.476Z [INFO]: Calculating RampUp Score...
+2024-09-23T02:54:01.477Z [INFO]: Has README: true, Has Description: true
+2024-09-23T02:54:01.477Z [INFO]: README Description Score: 0.2
+2024-09-23T02:54:01.478Z [INFO]: Total Forks: 0, Total Stars: 0, Total Forks + Stars: 0
+2024-09-23T02:54:01.479Z [INFO]: Forks and Stars Percentage Score: 0
+2024-09-23T02:54:01.481Z [INFO]: Forks and Stars Percentage Score: 0
+2024-09-23T02:54:01.481Z [INFO]: Repository Size (KB): 60
+2024-09-23T02:54:01.482Z [INFO]: Repository Size Proportion Score: 0.055
+2024-09-23T02:54:01.482Z [INFO]: Open Issues: 0, Closed Issues: 100
+2024-09-23T02:54:01.483Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-09-23T02:54:01.483Z [INFO]: Contributors: 0, Standard No. of Contributors (Normalized): 0.7310585786300049
+2024-09-23T02:54:01.484Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.485Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.486Z [INFO]: Total RampUp Score: 0.455
+2024-09-23T02:54:01.487Z [DEBUG]: Number of closed issues: 100
+2024-09-23T02:54:01.490Z [DEBUG]: Repository size (KB): 60000
+2024-09-23T02:54:01.491Z [DEBUG]: Repository size > 50MB, standard number of issues set to 90.
+2024-09-23T02:54:01.495Z [INFO]: Number of closed issues exceeds standard, returning score: 1
+2024-09-23T02:54:01.495Z [INFO]: Calculating license compatibility score...
+2024-09-23T02:54:01.495Z [INFO]: Initial GitHub license: MIT
+2024-09-23T02:54:01.496Z [INFO]: License MIT is fully compatible.
+2024-09-23T02:54:01.498Z [INFO]: NetScore instance created.
+2024-09-23T02:54:01.499Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-23T02:54:01.499Z [INFO]: ResponsivenessMetric instance created.
+2024-09-23T02:54:01.499Z [DEBUG]: BusFactorMetric initialized.
+2024-09-23T02:54:01.500Z [INFO]: LicenseMetric instance created.
+2024-09-23T02:54:01.501Z [INFO]: ResponsivenessMetric instance created.
+2024-09-23T02:54:01.501Z [INFO]: LicenseMetric instance created.
+2024-09-23T02:54:01.502Z [DEBUG]: BusFactorMetric initialized.
+2024-09-23T02:54:01.502Z [INFO]: Calculating NetScore...
+2024-09-23T02:54:01.503Z [INFO]: Calculating responsiveness score with latency...
+2024-09-23T02:54:01.503Z [DEBUG]: Number of closed issues: 100
+2024-09-23T02:54:01.504Z [DEBUG]: Repository size (KB): 60000
+2024-09-23T02:54:01.504Z [DEBUG]: Repository size > 50MB, standard number of issues set to 90.
+2024-09-23T02:54:01.505Z [INFO]: Number of closed issues exceeds standard, returning score: 1
+2024-09-23T02:54:01.506Z [INFO]: Measuring latency for score calculation...
+2024-09-23T02:54:01.507Z [INFO]: Calculating RampUp Score...
+2024-09-23T02:54:01.507Z [INFO]: Has README: true, Has Description: true
+2024-09-23T02:54:01.507Z [INFO]: README Description Score: 0.2
+2024-09-23T02:54:01.508Z [INFO]: Total Forks: 0, Total Stars: 0, Total Forks + Stars: 0
+2024-09-23T02:54:01.508Z [INFO]: Forks and Stars Percentage Score: 0
+2024-09-23T02:54:01.508Z [INFO]: Forks and Stars Percentage Score: 0
+2024-09-23T02:54:01.508Z [INFO]: Repository Size (KB): 60
+2024-09-23T02:54:01.509Z [INFO]: Repository Size Proportion Score: 0.055
+2024-09-23T02:54:01.509Z [INFO]: Open Issues: 0, Closed Issues: 100
+2024-09-23T02:54:01.509Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-09-23T02:54:01.510Z [INFO]: Contributors: 0, Standard No. of Contributors (Normalized): 0.7310585786300049
+2024-09-23T02:54:01.510Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.510Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.511Z [INFO]: Total RampUp Score: 0.455
+2024-09-23T02:54:01.511Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-23T02:54:01.511Z [DEBUG]: Calculating BusFactor score...
+2024-09-23T02:54:01.511Z [DEBUG]: Total commits calculated: 0
+2024-09-23T02:54:01.512Z [INFO]: No commits found in the repository.
+2024-09-23T02:54:01.512Z [INFO]: Calculating latency for license score calculation...
+2024-09-23T02:54:01.512Z [INFO]: Calculating license compatibility score...
+2024-09-23T02:54:01.513Z [INFO]: Initial GitHub license: MIT
+2024-09-23T02:54:01.514Z [INFO]: License MIT is fully compatible.
+2024-09-23T02:54:01.514Z [DEBUG]: Score calculated: 1, Latency: 11.055900000000065 ms
+2024-09-23T02:54:01.514Z [INFO]: Score Calculation Latency: 7.477399999999989 ms
+2024-09-23T02:54:01.514Z [INFO]: BusFactor score: 0, Latency: 3.284400000000005 ms
+2024-09-23T02:54:01.515Z [INFO]: Calculated score: 1, Latency: 2.23720000000003 ms
+2024-09-23T02:54:01.515Z [DEBUG]: Correctness score: 0.5, latency: 0.7
+2024-09-23T02:54:01.515Z [DEBUG]: Responsiveness score: 1, latency: 11.055900000000065
+2024-09-23T02:54:01.516Z [DEBUG]: RampUp score: 0.455, latency: 7.477399999999989
+2024-09-23T02:54:01.516Z [DEBUG]: BusFactor score: 0, latency: 3.284400000000005
+2024-09-23T02:54:01.516Z [DEBUG]: License score: 1, latency: 2.23720000000003
+2024-09-23T02:54:01.516Z [INFO]: Calculated NetScore: 0.8140909090909091
+2024-09-23T02:54:01.517Z [DEBUG]: Returning stored metric results.
+2024-09-23T02:54:01.517Z [INFO]: NetScore instance created.
+2024-09-23T02:54:01.518Z [DEBUG]: CorrectnessMetric initialized.
+2024-09-23T02:54:01.518Z [INFO]: ResponsivenessMetric instance created.
+2024-09-23T02:54:01.518Z [DEBUG]: BusFactorMetric initialized.
+2024-09-23T02:54:01.518Z [INFO]: LicenseMetric instance created.
+2024-09-23T02:54:01.519Z [INFO]: ResponsivenessMetric instance created.
+2024-09-23T02:54:01.519Z [INFO]: LicenseMetric instance created.
+2024-09-23T02:54:01.520Z [DEBUG]: BusFactorMetric initialized.
+2024-09-23T02:54:01.521Z [INFO]: Calculating latency for NetScore calculation...
+2024-09-23T02:54:01.521Z [INFO]: Calculating NetScore...
+2024-09-23T02:54:01.522Z [INFO]: Calculating responsiveness score with latency...
+2024-09-23T02:54:01.522Z [DEBUG]: Number of closed issues: 100
+2024-09-23T02:54:01.522Z [DEBUG]: Repository size (KB): 60000
+2024-09-23T02:54:01.523Z [DEBUG]: Repository size > 50MB, standard number of issues set to 90.
+2024-09-23T02:54:01.523Z [INFO]: Number of closed issues exceeds standard, returning score: 1
+2024-09-23T02:54:01.523Z [INFO]: Measuring latency for score calculation...
+2024-09-23T02:54:01.523Z [INFO]: Calculating RampUp Score...
+2024-09-23T02:54:01.524Z [INFO]: Has README: true, Has Description: true
+2024-09-23T02:54:01.524Z [INFO]: README Description Score: 0.2
+2024-09-23T02:54:01.524Z [INFO]: Total Forks: 0, Total Stars: 0, Total Forks + Stars: 0
+2024-09-23T02:54:01.525Z [INFO]: Forks and Stars Percentage Score: 0
+2024-09-23T02:54:01.527Z [INFO]: Forks and Stars Percentage Score: 0
+2024-09-23T02:54:01.528Z [INFO]: Repository Size (KB): 60
+2024-09-23T02:54:01.528Z [INFO]: Repository Size Proportion Score: 0.055
+2024-09-23T02:54:01.528Z [INFO]: Open Issues: 0, Closed Issues: 100
+2024-09-23T02:54:01.529Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-09-23T02:54:01.529Z [INFO]: Contributors: 0, Standard No. of Contributors (Normalized): 0.7310585786300049
+2024-09-23T02:54:01.529Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.530Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.530Z [INFO]: Total RampUp Score: 0.455
+2024-09-23T02:54:01.530Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-09-23T02:54:01.531Z [DEBUG]: Calculating BusFactor score...
+2024-09-23T02:54:01.531Z [DEBUG]: Total commits calculated: 0
+2024-09-23T02:54:01.531Z [INFO]: No commits found in the repository.
+2024-09-23T02:54:01.532Z [INFO]: Calculating latency for license score calculation...
+2024-09-23T02:54:01.533Z [INFO]: Calculating license compatibility score...
+2024-09-23T02:54:01.533Z [INFO]: Initial GitHub license: MIT
+2024-09-23T02:54:01.533Z [INFO]: License MIT is fully compatible.
+2024-09-23T02:54:01.534Z [DEBUG]: Score calculated: 1, Latency: 11.728999999999928 ms
+2024-09-23T02:54:01.534Z [INFO]: Score Calculation Latency: 10.38390000000004 ms
+2024-09-23T02:54:01.534Z [INFO]: BusFactor score: 0, Latency: 3.4273999999999205 ms
+2024-09-23T02:54:01.534Z [INFO]: Calculated score: 1, Latency: 1.8179000000000087 ms
+2024-09-23T02:54:01.535Z [DEBUG]: Correctness score: 0.5, latency: 0.7
+2024-09-23T02:54:01.535Z [DEBUG]: Responsiveness score: 1, latency: 11.728999999999928
+2024-09-23T02:54:01.535Z [DEBUG]: RampUp score: 0.455, latency: 10.38390000000004
+2024-09-23T02:54:01.536Z [DEBUG]: BusFactor score: 0, latency: 3.4273999999999205
+2024-09-23T02:54:01.536Z [DEBUG]: License score: 1, latency: 1.8179000000000087
+2024-09-23T02:54:01.536Z [INFO]: Calculated NetScore: 0.8140909090909091
+2024-09-23T02:54:01.536Z [INFO]: NetScore: 0.8140909090909091, Latency: 15.072700000000054 ms
+2024-09-23T02:54:01.537Z [DEBUG]: Calculating BusFactor score...
+2024-09-23T02:54:01.537Z [DEBUG]: Total commits calculated: 0
+2024-09-23T02:54:01.537Z [INFO]: No commits found in the repository.
+2024-09-23T02:54:01.538Z [INFO]: Calculating RampUp Score...
+2024-09-23T02:54:01.538Z [INFO]: Has README: true, Has Description: true
+2024-09-23T02:54:01.538Z [INFO]: README Description Score: 0.2
+2024-09-23T02:54:01.539Z [INFO]: Total Forks: 0, Total Stars: 0, Total Forks + Stars: 0
+2024-09-23T02:54:01.539Z [INFO]: Forks and Stars Percentage Score: 0
+2024-09-23T02:54:01.540Z [INFO]: Forks and Stars Percentage Score: 0
+2024-09-23T02:54:01.540Z [INFO]: Repository Size (KB): 60
+2024-09-23T02:54:01.541Z [INFO]: Repository Size Proportion Score: 0.055
+2024-09-23T02:54:01.542Z [INFO]: Open Issues: 0, Closed Issues: 100
+2024-09-23T02:54:01.542Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-09-23T02:54:01.543Z [INFO]: Contributors: 0, Standard No. of Contributors (Normalized): 0.7310585786300049
+2024-09-23T02:54:01.543Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.543Z [INFO]: Contributors Score: 0
+2024-09-23T02:54:01.544Z [INFO]: Total RampUp Score: 0.455
+2024-09-23T02:54:01.546Z [DEBUG]: Number of closed issues: 100
+2024-09-23T02:54:01.548Z [DEBUG]: Repository size (KB): 60000
+2024-09-23T02:54:01.548Z [DEBUG]: Repository size > 50MB, standard number of issues set to 90.
+2024-09-23T02:54:01.549Z [INFO]: Number of closed issues exceeds standard, returning score: 1
+2024-09-23T02:54:01.549Z [INFO]: Calculating license compatibility score...
+2024-09-23T02:54:01.550Z [INFO]: Initial GitHub license: MIT
+2024-09-23T02:54:01.550Z [INFO]: License MIT is fully compatible.
+2024-09-23T02:54:01.554Z [DEBUG]: Attempting to read from file: test-file.txt
+2024-09-23T02:54:01.555Z [DEBUG]: Successfully read 2 URLs from file.
+2024-09-23T02:54:01.561Z [DEBUG]: Attempting to read from file: missing-file.txt
+2024-09-23T02:54:01.561Z [INFO]: Error reading from file missing-file.txt: Error: File not found
+2024-09-23T02:54:01.562Z [INFO]: Starting to rank modules from path: test-file.txt
+2024-09-23T02:54:01.563Z [INFO]: The data fetched for each URL:
+2024-09-23T02:54:01.564Z [INFO]: Processing result 1:
+2024-09-23T02:54:01.564Z [INFO]: Error in rankModules: TypeError: npmData.printMyData is not a function
+2024-09-23T02:54:06.477Z [INFO]: 
+
+
+********************************************
+
+
+
+2024-09-23T02:54:06.479Z [DEBUG]: Script started with mode: test
+2024-09-23T02:54:06.479Z [INFO]: We are running the tests now.
+2024-09-23T02:54:06.479Z [INFO]: Starting test suites...
+2024-09-23T02:54:06.484Z [INFO]: Test suites completed.
+2024-09-23T02:54:06.485Z [DEBUG]: Test suites execution finished.
+2024-09-23T02:54:06.485Z [DEBUG]: Script execution finished.
+2024-09-23T02:54:06.485Z [INFO]: 
+
+
+********************************************
+
+
+

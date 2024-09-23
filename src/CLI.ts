@@ -38,12 +38,13 @@ export class CLI {
     const lineCoverage = coverageSummary.total.lines.pct;
 
     // calculating coverage percentage
-    const coveragePercentage = lineCoverage.toFixed(2); // Percentage of lines covered
+   const coveragePercentage = Math.round(lineCoverage); // Percentage of lines covered
 
+    //console.log(
+    //`${passedTests}/${totalTests} test cases passed. ${coveragePercentage}% line coverage achieved.`); 
+    
     console.log(
-    `${passedTests}/${totalTests} test cases passed. ${coveragePercentage} line coverage achieved.`); 
-    
-    
+      `${passedTests}/${totalTests} test cases passed. ${coveragePercentage}% line coverage achieved.`); 
     
     
     logger.log(1, "Test suites completed.");
