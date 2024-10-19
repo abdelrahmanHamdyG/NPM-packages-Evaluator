@@ -1,3 +1,0 @@
-*.html linguist-detectable=false
-*.ts linguist-detectable=true
-coverage/* linguist-vendored
