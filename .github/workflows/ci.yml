@@ -23,12 +23,11 @@ jobs:
         with:
           node-version: '16'
 
-
       # Step 3: Cache npm dependencies
       - name: Cache node modules
         uses: actions/cache@v3
         with:
-          path: node_modules
+          path: part1/node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
@@ -48,6 +47,7 @@ jobs:
       # Step 6: Run tests and collect coverage
       - name: Run tests and generate coverage
         run: |
+          cd part1
           npx vitest --run --coverage --reporter=json > testResults.json
 
       # Step 7: Upload test coverage report
@@ -60,4 +60,5 @@ jobs:
       # Step 8: Display test results summary
       - name: Display test results
         run: |
+          cd part1
           cat testResults.json
