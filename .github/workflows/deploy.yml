@@ -3,7 +3,7 @@ name: Reboot EC2 on Push
 on:
   push:
     branches:
-      - main  # Change to your desired branch, e.g., 'master'
+      - master
 
 jobs:
   reboot-ec2:
@@ -22,6 +22,6 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: us-east-1  # Set your region, e.g., 'us-west-2'
+        AWS_DEFAULT_REGION: us-east-2 
       run: |
         aws ec2 reboot-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}
