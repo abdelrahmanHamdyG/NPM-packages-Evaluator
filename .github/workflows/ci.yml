@@ -47,7 +47,6 @@ jobs:
       # Step 6: Run tests and collect coverage
       - name: Run tests and generate coverage
         run: |
-          cd part1
           npx vitest --run --coverage --reporter=json > testResults.json
 
       # Step 7: Upload test coverage report
@@ -60,5 +59,4 @@ jobs:
       # Step 8: Display test results summary
       - name: Display test results
         run: |
-          cd part1
           cat testResults.json

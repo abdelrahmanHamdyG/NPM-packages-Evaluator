@@ -27,12 +27,12 @@ case "$mode" in
     test)
         npx vitest --run --coverage --reporter=json > testResults.json
         npx tsc
-        node ./dist/index.js test
+        node ./dist/phase-1/index.js test
         ;;
     *)
         npx tsc
         if [ -f "$1" ]; then
-            node ./dist/index.js "$1"
+            node ./dist/phase-1/index.js "$1"
             exit 0
         else
             echo "file doesn't exist"

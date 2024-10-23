@@ -2,11 +2,11 @@
   "name": "package-registrar",
   "version": "1.0.0",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/phase-1/index.js",
   "scripts": {
     "build": "tsc",
     "test": "vitest",
-    "start": "node dist/index.js"
+    "start": "node dist/phase-1/index.js"
   },
   "author": "Ghania,Zeyad,Omar,Shebl",
   "license": "ISC",
