@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 // import packagesRouter from './routes/packages';
 // import metricsRouter from './routes/metrics';
-import { uploadFile, downloadFile } from './services/s3Service.js';
+import { uploadFile, downloadFile } from './services/s3service.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
