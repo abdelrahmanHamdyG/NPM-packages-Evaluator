@@ -32,7 +32,7 @@ export const addModuleToDynamoDB = async (module: Module) => {
 
 export const getPackageFromDynamoDB = async (id: string) => {
     const command = new GetItemCommand({
-        TableName: 'Modules',
+        TableName: 'Packages',
         Key: {
             id: { S: id }
         }
