@@ -35,13 +35,7 @@ jobs:
       # Step 4: Install dependencies
       - name: Install dependencies
         run: |
-          npm install typescript ts-node @types/node --save-dev
-          npm install node-fetch
-          npm install axios 
-          npm install fs
-          npm install path
-          npm install --save-dev jest nock
-          npm install isomorphic-git
+          npm install
 
       # Step 5: Compile TypeScript
       - name: Compile TypeScript
@@ -53,7 +47,9 @@ jobs:
       # Step 6: Run tests and collect coverage
       - name: Run tests and generate coverage
         run: |
-            npx jest --coverage --verbose
+              npx vitest --run --coverage --reporter=json > testResults.json
+              npx tsc
+              node ./dist/phase-1/index.js test
         shell: bash
 
       # Step 7: Upload test coverage report
@@ -63,4 +59,7 @@ jobs:
           name: coverage-report
           path: ./coverage
 
- 
+      # Step 8: Display test results summary
+      - name: Display test results
+        run: |
+          cat testResults.json
