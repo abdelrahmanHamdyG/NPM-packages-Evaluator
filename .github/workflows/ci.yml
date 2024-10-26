@@ -36,7 +36,6 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npm install vitest --save-dev
 
 
       # Step 5: Compile TypeScript
@@ -50,9 +49,9 @@ jobs:
       # Step 6: Run tests and collect coverage
       - name: Run tests and generate coverage
         run: |
-              npx vitest --run --coverage --reporter=json > testResults.json
-              npx tsc
-              node ./dist/phase-1/index.js test
+              npx vitest --run --coverage --reporter=json > testResults.json || { echo "Vitest failed"; exit 1; }
+              npx tsc || { echo "TypeScript compilation failed"; exit 1; }
+              node ./dist/phase-1/index.js test || { echo "Running JavaScript failed"; exit 1; }
         shell: bash
 
       # Step 7: Upload test coverage report
