@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.61% </span>
+                <span class="strong">55.55% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>44/47</span>
+                <span class='fraction'>25/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/12</span>
+                <span class='fraction'>5/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>5/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.61% </span>
+                <span class="strong">55.55% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>44/47</span>
+                <span class='fraction'>25/45</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -121,8 +121,8 @@
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,33 +148,33 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-yes">458x</span>
-<span class="cline-any cline-yes">458x</span>
-<span class="cline-any cline-yes">458x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-yes">458x</span>
-<span class="cline-any cline-yes">458x</span>
-<span class="cline-any cline-yes">458x</span>
-<span class="cline-any cline-yes">458x</span>
-<span class="cline-any cline-yes">458x</span>
-<span class="cline-any cline-yes">458x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">31x</span>
-<span class="cline-any cline-yes">458x</span>
-<span class="cline-any cline-yes">458x</span>
-<span class="cline-any cline-yes">269x</span>
-<span class="cline-any cline-yes">458x</span>
-<span class="cline-any cline-yes">189x</span>
 <span class="cline-any cline-yes">458x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">458x</span>
-<span class="cline-any cline-yes">458x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import fs from "fs";
@@ -204,34 +204,34 @@ export class Logger {
     if (!fs.existsSync(dir)) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >      fs.mkdirSync(dir, { recursive: true });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-    if (!fs.existsSync(this.logFilePath)) {
-      fs.writeFileSync(this.logFilePath, "", "utf-8");
-    }
+    if (!fs.existsSync(this.logFilePath)) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      fs.writeFileSync(this.logFilePath, "", "utf-8");</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
   }
 &nbsp;
-  private formatMessage(level: string, message: string): string {
-    const timestamp = new Date().toISOString();
-    return `${timestamp} [${level}]: ${message}\n`;
-  }
+  private <span class="fstat-no" title="function not covered" >formatMessage(level: string, message: string): string {</span>
+<span class="cstat-no" title="statement not covered" >    const timestamp = new Date().toISOString();</span>
+<span class="cstat-no" title="statement not covered" >    return `${timestamp} [${level}]: ${message}\n`;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
   public log(level: number, message: string):void {
-    if (level&lt;= this.logLevel) {
-      const levelString = this.getLevelString(level);
-      const formattedMessage = this.formatMessage(levelString, message);
-      fs.appendFileSync(this.logFilePath, formattedMessage, "utf-8");
-    }
+    if (level&lt;= this.logLevel) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      const levelString = this.getLevelString(level);</span>
+<span class="cstat-no" title="statement not covered" >      const formattedMessage = this.formatMessage(levelString, message);</span>
+<span class="cstat-no" title="statement not covered" >      fs.appendFileSync(this.logFilePath, formattedMessage, "utf-8");</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
   }
 &nbsp;
-  private getLevelString(level: number): string {
-    switch (level) {
-      case 1:
-        return "INFO";
-      case 2:
-        return "DEBUG";
-<span class="branch-0 cbranch-no" title="branch not covered" >      default:</span>
+  private <span class="fstat-no" title="function not covered" >getLevelString(level: number): string {</span>
+<span class="cstat-no" title="statement not covered" >    switch (level) {</span>
+<span class="cstat-no" title="statement not covered" >      case 1:</span>
+<span class="cstat-no" title="statement not covered" >        return "INFO";</span>
+<span class="cstat-no" title="statement not covered" >      case 2:</span>
+<span class="cstat-no" title="statement not covered" >        return "DEBUG";</span>
+<span class="cstat-no" title="statement not covered" >      default:</span>
 <span class="cstat-no" title="statement not covered" >        return "SILENT";</span>
-    }
-  }
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 }
 &nbsp;
 &nbsp;</pre></td></tr></table></pre>
@@ -241,7 +241,7 @@ export class Logger {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-10-23T22:08:49.885Z
+                at 2024-10-26T19:28:47.149Z
             </div>
         <script src="../prettify.js"></script>
         <script>
