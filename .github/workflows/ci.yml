@@ -49,7 +49,7 @@ jobs:
       # Step 6: Run tests and collect coverage
       - name: Run tests and generate coverage
         run: |
-              npx vitest --run --coverage --reporter=json > testResults.json || { echo "Vitest failed"; exit 1; }
+              npx vitest --run --coverage --reporter=json --verbose > testResults.json || { echo "Vitest failed"; exit 1; }
               npx tsc || { echo "TypeScript compilation failed"; exit 1; }
               node ./dist/phase-1/index.js test || { echo "Running JavaScript failed"; exit 1; }
         shell: bash
