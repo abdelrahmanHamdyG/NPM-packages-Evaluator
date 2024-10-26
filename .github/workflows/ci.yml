@@ -35,7 +35,13 @@ jobs:
       # Step 4: Install dependencies
       - name: Install dependencies
         run: |
-          npm install
+          npm install typescript ts-node @types/node --save-dev
+          npm install node-fetch
+          npm install axios 
+          npm install fs
+          npm install path
+          npm install --save-dev jest nock
+          npm install isomorphic-git
 
       # Step 5: Compile TypeScript
       - name: Compile TypeScript
