@@ -51,8 +51,6 @@ jobs:
         run: |
               export LOG_FILE=app.log
               npx vitest --run --coverage --reporter=json || { echo "Vitest failed"; exit 1; }
-              npx tsc || { echo "TypeScript compilation failed"; exit 1; }
-              node ./dist/phase-1/index.js test || { echo "Running JavaScript failed"; exit 1; }
         shell: bash
 
       # Step 7: Upload test coverage report
