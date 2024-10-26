@@ -36,11 +36,14 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
+          npm install vitest --save-dev
+
 
       # Step 5: Compile TypeScript
       - name: Compile TypeScript
         run: |
           npx tsc
+
         env:
           CI: true
 
