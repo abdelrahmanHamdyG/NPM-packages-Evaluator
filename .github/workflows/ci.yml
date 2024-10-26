@@ -47,7 +47,7 @@ jobs:
       # Step 6: Run tests and collect coverage
       - name: Run tests and generate coverage
         run: |
-          npx vitest --run --coverage --reporter=json > testResults.json
+            npx jest --coverage --verbose
         shell: bash
 
       # Step 7: Upload test coverage report
@@ -57,7 +57,4 @@ jobs:
           name: coverage-report
           path: ./coverage
 
-      # Step 8: Display test results summary
-      - name: Display test results
-        run: |
-          cat testResults.json
+ 
