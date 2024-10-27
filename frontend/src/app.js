@@ -1,5 +1,5 @@
 "use strict";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './app.css';
 import axios from 'axios';
 
@@ -11,21 +11,7 @@ const App = () => {
   const [packageVersion, setPackageVersion] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [downloadHistory, setDownloadHistory] = useState([]);
-
-  const [publicIp, setPublicIp] = useState(''); // New state for public IP
-
-  useEffect(() => {
-    const fetchPublicIp = async () => {
-      try {
-        const response = await axios.get('http://ifconfig.me');
-        setPublicIp(response.data.trim()); // Store the public IP
-      } catch (error) {
-        console.error('Error fetching public IP:', error);
-      }
-    };
-
-    fetchPublicIp(); // Fetch the public IP when the component mounts
-  }, []);
+  const publicIp = "3.133.11.61";
 
   const handleFileChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
