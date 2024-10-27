@@ -12,6 +12,21 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [downloadHistory, setDownloadHistory] = useState([]);
 
+  const [publicIp, setPublicIp] = useState(''); // New state for public IP
+
+  useEffect(() => {
+    const fetchPublicIp = async () => {
+      try {
+        const response = await axios.get('http://ifconfig.me');
+        setPublicIp(response.data.trim()); // Store the public IP
+      } catch (error) {
+        console.error('Error fetching public IP:', error);
+      }
+    };
+
+    fetchPublicIp(); // Fetch the public IP when the component mounts
+  }, []);
+
   const handleFileChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
       const selectedFile = event.target.files[0];
@@ -56,7 +71,7 @@ const App = () => {
 
     try {
       // Call REST API to download the package
-      const response = await axios.get(`http://localhost:3000/package/${packageName}`, {
+      const response = await axios.get(`http://${publicIp}:3000/package/${packageName}`, {
         headers: {
           'X-Authorization': `Bearer <your-token-here>`, // Add your token here
         },
