@@ -11,7 +11,7 @@ const App = () => {
   const [packageVersion, setPackageVersion] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [downloadHistory, setDownloadHistory] = useState([]);
-  const publicIp = "3.133.11.61";
+  const publicIp = "3.15.13.78";
 
   const handleFileChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
