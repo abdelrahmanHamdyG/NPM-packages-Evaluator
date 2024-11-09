@@ -4,10 +4,11 @@ import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand } from '@aw
 const dynamo = new DynamoDBClient({ region: 'us-east-2' });
 
 interface Module {
-    id: string;
+    id: string ;
     name: string;
     version: string;
     s3Key: string;
+    cost: number;
 }
 
 export const addModuleToDynamoDB = async (module: Module) => {
@@ -18,7 +19,8 @@ export const addModuleToDynamoDB = async (module: Module) => {
             name: { S: module.name },
             version: { S: module.version },
             s3Key: { S: module.s3Key },
-        },
+            cost: { N: module.cost.toString()},
+        }
     });
 
     try {
@@ -46,7 +48,8 @@ export const getPackageFromDynamoDB = async (id: string) => {
             id: response.Item.id.S,
             name: response.Item.name.S,
             version: response.Item.version.S,
-            s3Key: response.Item.s3Key.S
+            s3Key: response.Item.s3Key.S,
+            cost: parseFloat(response.Item.cost.N as string)
         };
     } catch (error) {
         console.error('Error fetching package from DynamoDB:', error);
