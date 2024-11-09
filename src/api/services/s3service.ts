@@ -1,11 +1,11 @@
 import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
-import { GetObjectCommandOutput } from '@aws-sdk/client-s3'; // For typing
 import { Readable } from 'stream';
 
-// Create S3 client instance
-const s3 = new S3Client({ region: 'us-east-2' }); 
+// Initialize S3 client
+const s3 = new S3Client({ region: 'us-east-2' });
 
-export const uploadZipToS3 = async (bucketName: string, key: string, fileContent: Buffer) => {
+// Function to upload a zip file to S3
+export const uploadZipToS3 = async (bucketName: string, key: string, fileContent: Buffer): Promise<void> => {
     const command = new PutObjectCommand({
         Bucket: bucketName,
         Key: key,
@@ -22,17 +22,18 @@ export const uploadZipToS3 = async (bucketName: string, key: string, fileContent
     }
 };
 
-export const downloadFileFromS3 = async (key: string): Promise<Buffer> => {
+// Function to download a file from S3 as a Buffer
+export const downloadFileFromS3 = async (bucketName: string, key: string): Promise<Buffer> => {
     const command = new GetObjectCommand({
-        Bucket: 'ece461storage',
-        Key: key
+        Bucket: bucketName,
+        Key: key,
     });
 
     try {
         const response = await s3.send(command);
         const stream = response.Body as Readable;
 
-        const chunks: Buffer[] = [];
+        const chunks: Uint8Array[] = [];
         for await (const chunk of stream) {
             chunks.push(chunk);
         }
