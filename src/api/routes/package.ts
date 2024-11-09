@@ -66,7 +66,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     }
 });
 
-// GET /packages/:id/rate - Retrieve rating for a package by its ID
+// GET /package/:id/rate - Retrieve rating for a package by its ID
 router.get('/:id/rate', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     const authToken = req.header('X-Authorization');
@@ -105,9 +105,15 @@ router.get('/:id/rate', async (req: Request, res: Response): Promise<void> => {
             capturedOutput += message + '\n';
         };
         // Calculate metrics
-        cli.rankModules(tempURLFile.name)
+        const rcode = await cli.rankModules(tempURLFile.name);
         // Restore the original console.log
         console.log = originalConsoleLog;
+
+        if (!rcode) {
+            // TODO: make sure this is the right status
+            res.status(500).json({ error: 'The package rating system choked on at least one of the metrics.' });
+            return;
+        }
         
         // Fetch the package rating
         const rating = await getPackageRating(id);
