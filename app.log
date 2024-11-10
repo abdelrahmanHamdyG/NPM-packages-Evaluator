@@ -476,3 +476,815 @@
 
 
 
+2024-11-10T01:56:25.534Z [INFO]: Starting to rank modules from path: C:\Users\parth\AppData\Local\Temp\tempURLFile_-4324-aE1rAp5Ghy6K-.txt
+2024-11-10T01:56:25.535Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-4324-aE1rAp5Ghy6K-.txt
+2024-11-10T01:56:25.535Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T01:56:25.536Z [DEBUG]: GitHubAPI initialized for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T01:56:25.538Z [DEBUG]: Fetching data for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T01:56:25.539Z [DEBUG]: Initializing API requests.
+2024-11-10T01:56:25.539Z [DEBUG]: Fetching closed issues since 2024-08-10T00:56:25.539Z
+2024-11-10T01:56:25.540Z [DEBUG]: Fetching contributors for repository: parthivshaji/ECE-46100-Project
+2024-11-10T01:56:25.540Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-11-10T01:56:25.863Z [DEBUG]: Fetched 4 contributors on page 1
+2024-11-10T01:56:25.985Z [DEBUG]: Fetched 25 closed issues on page 1
+2024-11-10T01:56:26.078Z [DEBUG]: Fetched 0 contributors on page 2
+2024-11-10T01:56:26.079Z [DEBUG]: Finished fetching contributors. Total contributors: 4
+2024-11-10T01:56:26.079Z [DEBUG]: Returning fetched contributors.
+2024-11-10T01:56:26.219Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-11-10T01:56:26.220Z [DEBUG]: Finished fetching closed issues. Total closed issues: 25
+2024-11-10T01:56:26.220Z [DEBUG]: Fetching open issues since 2024-08-10T00:56:25.539Z
+2024-11-10T01:56:26.451Z [DEBUG]: Fetched 0 open issues on page 1
+2024-11-10T01:56:26.452Z [DEBUG]: Finished fetching open issues. Total open issues: 0
+2024-11-10T01:56:26.452Z [DEBUG]: Returning fetched issues.
+2024-11-10T01:56:26.452Z [DEBUG]: Fetched 25 closed issues and 0 open issues.
+2024-11-10T01:56:26.453Z [DEBUG]: Processed contributions from 4 contributors.
+2024-11-10T01:56:26.453Z [DEBUG]: Readme found: true, Description found: false
+2024-11-10T01:56:26.453Z [DEBUG]: License: empty
+2024-11-10T01:56:26.453Z [DEBUG]: Data fetch latency: 914.8131999999996 ms.
+2024-11-10T01:56:26.453Z [DEBUG]: Successfully fetched data from GitHub API
+2024-11-10T01:56:26.453Z [DEBUG]: Generating repository URL for username: parthivshaji, repoName: ECE-46100-Project
+2024-11-10T01:56:26.454Z [DEBUG]: Generated repository URL: https://github.com/parthivshaji/ECE-46100-Project
+2024-11-10T01:56:26.454Z [INFO]: The data fetched for each URL:
+2024-11-10T01:56:26.454Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-4324-aE1rAp5Ghy6K-.txt
+2024-11-10T01:56:26.454Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T01:56:26.455Z [INFO]: Processing result 1:
+2024-11-10T01:56:26.455Z [DEBUG]: NPM Data:
+2024-11-10T01:56:26.455Z [DEBUG]: License: empty
+2024-11-10T01:56:26.455Z [DEBUG]: GitHub URL: empty
+2024-11-10T01:56:26.456Z [DEBUG]: Readme Present: Yes
+2024-11-10T01:56:26.456Z [DEBUG]: Description Present: No
+2024-11-10T01:56:26.456Z [DEBUG]: Number of Forks: 0
+2024-11-10T01:56:26.456Z [DEBUG]: Number of Stars: 0
+2024-11-10T01:56:26.456Z [DEBUG]: GitHub Data:
+2024-11-10T01:56:26.456Z [DEBUG]: Name: ECE-46100-Project
+2024-11-10T01:56:26.457Z [DEBUG]: License Name: empty 
+2024-11-10T01:56:26.457Z [DEBUG]: Contributions Array: 52
+2024-11-10T01:56:26.457Z [DEBUG]: Readme Present: Yes
+2024-11-10T01:56:26.457Z [DEBUG]: Description Present: No
+2024-11-10T01:56:26.457Z [DEBUG]: Number of Issues: 25
+2024-11-10T01:56:26.457Z [INFO]: NetScore instance created.
+2024-11-10T01:56:26.458Z [DEBUG]: CorrectnessMetric initialized.
+2024-11-10T01:56:26.458Z [INFO]: ResponsivenessMetric instance created.
+2024-11-10T01:56:26.458Z [DEBUG]: BusFactorMetric initialized.
+2024-11-10T01:56:26.458Z [INFO]: LicenseMetric instance created.
+2024-11-10T01:56:26.458Z [INFO]: Calculating latency for NetScore calculation...
+2024-11-10T01:56:26.459Z [INFO]: Calculating NetScore...
+2024-11-10T01:56:26.459Z [DEBUG]: Calculating latency for correctness score...
+2024-11-10T01:56:26.459Z [INFO]: Calculating Correctness Score for repository: ECE-46100-Project
+2024-11-10T01:56:26.459Z [INFO]: Cloning repository: https://github.com/parthivshaji/ECE-46100-Project into directory: ECE-46100-Project
+2024-11-10T01:56:26.461Z [INFO]: Calculating responsiveness score with latency...
+2024-11-10T01:56:26.461Z [DEBUG]: Number of closed issues: 25
+2024-11-10T01:56:26.461Z [DEBUG]: Repository size (KB): 13078
+2024-11-10T01:56:26.461Z [DEBUG]: Repository size <= 50MB, standard number of issues set to 80.
+2024-11-10T01:56:26.461Z [DEBUG]: Calculated responsiveness score: 0.3125
+2024-11-10T01:56:26.462Z [INFO]: Measuring latency for score calculation...
+2024-11-10T01:56:26.462Z [INFO]: Calculating RampUp Score...
+2024-11-10T01:56:26.462Z [INFO]: Has README: true, Has Description: false
+2024-11-10T01:56:26.462Z [INFO]: README Description Score: 0.1
+2024-11-10T01:56:26.462Z [INFO]: Total Forks: 0, Total Stars: 0, Total Forks + Stars: 0
+2024-11-10T01:56:26.462Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T01:56:26.463Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T01:56:26.463Z [INFO]: Repository Size (KB): 13.078
+2024-11-10T01:56:26.463Z [INFO]: Repository Size Proportion Score: 0.06516595892191698
+2024-11-10T01:56:26.463Z [INFO]: Open Issues: 0, Closed Issues: 25
+2024-11-10T01:56:26.463Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-11-10T01:56:26.464Z [INFO]: Contributors: 4, Standard No. of Contributors (Normalized): 0.024311354978502453
+2024-11-10T01:56:26.464Z [INFO]: Contributors Score: 0.1
+2024-11-10T01:56:26.465Z [INFO]: Contributors Score: 0.1
+2024-11-10T01:56:26.465Z [INFO]: Total RampUp Score: 0.46516595892191703
+2024-11-10T01:56:26.465Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-11-10T01:56:26.465Z [DEBUG]: Calculating BusFactor score...
+2024-11-10T01:56:26.465Z [DEBUG]: Total commits calculated: 96
+2024-11-10T01:56:26.465Z [DEBUG]: Total commits: 96
+2024-11-10T01:56:26.466Z [DEBUG]: HHI calculated: 0.3648003472222222
+2024-11-10T01:56:26.466Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.3648003472222222
+2024-11-10T01:56:26.466Z [INFO]: Calculated BusFactor: 0.6351996527777778
+2024-11-10T01:56:26.466Z [INFO]: Calculating latency for license score calculation...
+2024-11-10T01:56:26.466Z [INFO]: Calculating license compatibility score...
+2024-11-10T01:56:26.467Z [INFO]: Initial GitHub license: empty
+2024-11-10T01:56:26.467Z [INFO]: GitHub license not compatible; using NPM license: empty
+2024-11-10T01:56:26.467Z [INFO]: License empty is incompatible.
+2024-11-10T01:56:26.467Z [DEBUG]: Score calculated: 0.3125, Latency: 6.42910000000029 ms
+2024-11-10T01:56:26.467Z [INFO]: Score Calculation Latency: 5.589199999999437 ms
+2024-11-10T01:56:26.468Z [INFO]: BusFactor score: 0.6351996527777778, Latency: 2.5392000000001644 ms
+2024-11-10T01:56:26.468Z [INFO]: Calculated score: 0, Latency: 1.4233000000003813 ms
+2024-11-10T01:56:32.914Z [INFO]: Repository cloned successfully to ECE-46100-Project
+2024-11-10T01:56:32.914Z [DEBUG]: Repository cloned. Starting analysis.
+2024-11-10T01:56:33.926Z [DEBUG]: Latest commit results: {"testfileCount":207,"testlineCount":20392,"fileCount":5768,"lineCount":1188694}
+2024-11-10T01:56:33.926Z [DEBUG]: Getting the commit 20 commits ago in directory: ECE-46100-Project
+2024-11-10T01:56:33.973Z [DEBUG]: Commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T01:56:33.973Z [DEBUG]: Got commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T01:56:33.973Z [DEBUG]: Checking out commit 76d8946a45d361382374ac447838978ccb364927 in directory: ECE-46100-Project
+2024-11-10T01:56:34.689Z [DEBUG]: Checked out commit 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T01:56:35.510Z [DEBUG]: 20th commit results: {"testfileCount":183,"testlineCount":18798,"fileCount":5539,"lineCount":1108287}
+2024-11-10T01:56:35.511Z [DEBUG]: Latest commit - Files: 5768, Lines: 1188694, Test Files: 207, Test Lines: 20392
+2024-11-10T01:56:35.511Z [DEBUG]: 20th commit - Files: 5539, Lines: 1108287, Test Files: 183, Test Lines: 18798
+2024-11-10T01:56:35.511Z [DEBUG]: Differences - Test Files: 24, Test Lines: 1594, Files: 229, Lines: 80407
+2024-11-10T01:56:35.511Z [DEBUG]: Intermediate Scores - File Count Score: 0.0358876560332871, Line Count Score: 0.017154961663809188, File Diff Count Score: 0.10480349344978165, Line Diff Count Score: 0.01982414466402179
+2024-11-10T01:56:35.511Z [INFO]: Correctness score is 0.09820147509018883
+2024-11-10T01:56:35.889Z [INFO]: Repository folder removed successfully
+2024-11-10T01:56:35.889Z [INFO]: Correctness score: 0.09820147509018883, Latency: 9430.1244 ms
+2024-11-10T01:56:35.889Z [DEBUG]: Correctness score: 0.09820147509018883, latency: 9430.1244
+2024-11-10T01:56:35.889Z [DEBUG]: Responsiveness score: 0.3125, latency: 6.42910000000029
+2024-11-10T01:56:35.890Z [DEBUG]: RampUp score: 0.46516595892191703, latency: 5.589199999999437
+2024-11-10T01:56:35.890Z [DEBUG]: BusFactor score: 0.6351996527777778, latency: 2.5392000000001644
+2024-11-10T01:56:35.890Z [DEBUG]: License score: 0, latency: 1.4233000000003813
+2024-11-10T01:56:35.890Z [INFO]: Calculated NetScore: 0.2510060987990803
+2024-11-10T01:56:35.890Z [INFO]: NetScore: 0.2510060987990803, Latency: 9431.718100000002 ms
+2024-11-10T01:56:35.890Z [DEBUG]: Returning stored metric results.
+2024-11-10T01:58:37.495Z [INFO]: Starting to rank modules from path: C:\Users\parth\AppData\Local\Temp\tempURLFile_-32496-uvQ3Zd46r3kN-.txt
+2024-11-10T01:58:37.495Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-32496-uvQ3Zd46r3kN-.txt
+2024-11-10T01:58:37.496Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T01:58:37.496Z [DEBUG]: GitHubAPI initialized for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T01:58:37.498Z [DEBUG]: Fetching data for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T01:58:37.499Z [DEBUG]: Initializing API requests.
+2024-11-10T01:58:37.499Z [DEBUG]: Fetching closed issues since 2024-08-10T00:58:37.499Z
+2024-11-10T01:58:37.499Z [DEBUG]: Fetching contributors for repository: parthivshaji/ECE-46100-Project
+2024-11-10T01:58:37.500Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-11-10T01:58:37.866Z [DEBUG]: Fetched 4 contributors on page 1
+2024-11-10T01:58:37.931Z [DEBUG]: Fetched 25 closed issues on page 1
+2024-11-10T01:58:38.054Z [DEBUG]: Fetched 0 contributors on page 2
+2024-11-10T01:58:38.055Z [DEBUG]: Finished fetching contributors. Total contributors: 4
+2024-11-10T01:58:38.055Z [DEBUG]: Returning fetched contributors.
+2024-11-10T01:58:38.114Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-11-10T01:58:38.115Z [DEBUG]: Finished fetching closed issues. Total closed issues: 25
+2024-11-10T01:58:38.115Z [DEBUG]: Fetching open issues since 2024-08-10T00:58:37.499Z
+2024-11-10T01:58:38.389Z [DEBUG]: Fetched 0 open issues on page 1
+2024-11-10T01:58:38.390Z [DEBUG]: Finished fetching open issues. Total open issues: 0
+2024-11-10T01:58:38.390Z [DEBUG]: Returning fetched issues.
+2024-11-10T01:58:38.390Z [DEBUG]: Fetched 25 closed issues and 0 open issues.
+2024-11-10T01:58:38.391Z [DEBUG]: Processed contributions from 4 contributors.
+2024-11-10T01:58:38.391Z [DEBUG]: Readme found: true, Description found: false
+2024-11-10T01:58:38.391Z [DEBUG]: License: empty
+2024-11-10T01:58:38.391Z [DEBUG]: Data fetch latency: 892.6916999999994 ms.
+2024-11-10T01:58:38.391Z [DEBUG]: Successfully fetched data from GitHub API
+2024-11-10T01:58:38.391Z [DEBUG]: Generating repository URL for username: parthivshaji, repoName: ECE-46100-Project
+2024-11-10T01:58:38.392Z [DEBUG]: Generated repository URL: https://github.com/parthivshaji/ECE-46100-Project
+2024-11-10T01:58:38.392Z [INFO]: The data fetched for each URL:
+2024-11-10T01:58:38.392Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-32496-uvQ3Zd46r3kN-.txt
+2024-11-10T01:58:38.392Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T01:58:38.393Z [INFO]: Processing result 1:
+2024-11-10T01:58:38.393Z [DEBUG]: NPM Data:
+2024-11-10T01:58:38.393Z [DEBUG]: License: empty
+2024-11-10T01:58:38.393Z [DEBUG]: GitHub URL: empty
+2024-11-10T01:58:38.394Z [DEBUG]: Readme Present: Yes
+2024-11-10T01:58:38.394Z [DEBUG]: Description Present: No
+2024-11-10T01:58:38.394Z [DEBUG]: Number of Forks: 0
+2024-11-10T01:58:38.394Z [DEBUG]: Number of Stars: 0
+2024-11-10T01:58:38.395Z [DEBUG]: GitHub Data:
+2024-11-10T01:58:38.395Z [DEBUG]: Name: ECE-46100-Project
+2024-11-10T01:58:38.395Z [DEBUG]: License Name: empty 
+2024-11-10T01:58:38.395Z [DEBUG]: Contributions Array: 52
+2024-11-10T01:58:38.395Z [DEBUG]: Readme Present: Yes
+2024-11-10T01:58:38.396Z [DEBUG]: Description Present: No
+2024-11-10T01:58:38.396Z [DEBUG]: Number of Issues: 25
+2024-11-10T01:58:38.396Z [INFO]: NetScore instance created.
+2024-11-10T01:58:38.396Z [DEBUG]: CorrectnessMetric initialized.
+2024-11-10T01:58:38.396Z [INFO]: ResponsivenessMetric instance created.
+2024-11-10T01:58:38.397Z [DEBUG]: BusFactorMetric initialized.
+2024-11-10T01:58:38.397Z [INFO]: LicenseMetric instance created.
+2024-11-10T01:58:38.397Z [INFO]: Calculating latency for NetScore calculation...
+2024-11-10T01:58:38.397Z [INFO]: Calculating NetScore...
+2024-11-10T01:58:38.398Z [DEBUG]: Calculating latency for correctness score...
+2024-11-10T01:58:38.398Z [INFO]: Calculating Correctness Score for repository: ECE-46100-Project
+2024-11-10T01:58:38.398Z [INFO]: Cloning repository: https://github.com/parthivshaji/ECE-46100-Project into directory: ECE-46100-Project
+2024-11-10T01:58:38.399Z [INFO]: Calculating responsiveness score with latency...
+2024-11-10T01:58:38.400Z [DEBUG]: Number of closed issues: 25
+2024-11-10T01:58:38.400Z [DEBUG]: Repository size (KB): 13078
+2024-11-10T01:58:38.400Z [DEBUG]: Repository size <= 50MB, standard number of issues set to 80.
+2024-11-10T01:58:38.400Z [DEBUG]: Calculated responsiveness score: 0.3125
+2024-11-10T01:58:38.400Z [INFO]: Measuring latency for score calculation...
+2024-11-10T01:58:38.401Z [INFO]: Calculating RampUp Score...
+2024-11-10T01:58:38.401Z [INFO]: Has README: true, Has Description: false
+2024-11-10T01:58:38.401Z [INFO]: README Description Score: 0.1
+2024-11-10T01:58:38.401Z [INFO]: Total Forks: 0, Total Stars: 0, Total Forks + Stars: 0
+2024-11-10T01:58:38.401Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T01:58:38.402Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T01:58:38.402Z [INFO]: Repository Size (KB): 13.078
+2024-11-10T01:58:38.402Z [INFO]: Repository Size Proportion Score: 0.06516595892191698
+2024-11-10T01:58:38.402Z [INFO]: Open Issues: 0, Closed Issues: 25
+2024-11-10T01:58:38.402Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-11-10T01:58:38.403Z [INFO]: Contributors: 4, Standard No. of Contributors (Normalized): 0.024311354978502453
+2024-11-10T01:58:38.403Z [INFO]: Contributors Score: 0.1
+2024-11-10T01:58:38.403Z [INFO]: Contributors Score: 0.1
+2024-11-10T01:58:38.403Z [INFO]: Total RampUp Score: 0.46516595892191703
+2024-11-10T01:58:38.403Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-11-10T01:58:38.403Z [DEBUG]: Calculating BusFactor score...
+2024-11-10T01:58:38.404Z [DEBUG]: Total commits calculated: 96
+2024-11-10T01:58:38.404Z [DEBUG]: Total commits: 96
+2024-11-10T01:58:38.404Z [DEBUG]: HHI calculated: 0.3648003472222222
+2024-11-10T01:58:38.404Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.3648003472222222
+2024-11-10T01:58:38.404Z [INFO]: Calculated BusFactor: 0.6351996527777778
+2024-11-10T01:58:38.405Z [INFO]: Calculating latency for license score calculation...
+2024-11-10T01:58:38.405Z [INFO]: Calculating license compatibility score...
+2024-11-10T01:58:38.405Z [INFO]: Initial GitHub license: empty
+2024-11-10T01:58:38.405Z [INFO]: GitHub license not compatible; using NPM license: empty
+2024-11-10T01:58:38.406Z [INFO]: License empty is incompatible.
+2024-11-10T01:58:38.406Z [DEBUG]: Score calculated: 0.3125, Latency: 6.575300000000425 ms
+2024-11-10T01:58:38.406Z [INFO]: Score Calculation Latency: 5.555899999999383 ms
+2024-11-10T01:58:38.406Z [INFO]: BusFactor score: 0.6351996527777778, Latency: 2.8735999999998967 ms
+2024-11-10T01:58:38.406Z [INFO]: Calculated score: 0, Latency: 1.5114999999996144 ms
+2024-11-10T01:58:45.325Z [INFO]: Repository cloned successfully to ECE-46100-Project
+2024-11-10T01:58:45.325Z [DEBUG]: Repository cloned. Starting analysis.
+2024-11-10T01:58:46.097Z [DEBUG]: Latest commit results: {"testfileCount":207,"testlineCount":20392,"fileCount":5768,"lineCount":1188610}
+2024-11-10T01:58:46.098Z [DEBUG]: Getting the commit 20 commits ago in directory: ECE-46100-Project
+2024-11-10T01:58:46.119Z [DEBUG]: Commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T01:58:46.119Z [DEBUG]: Got commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T01:58:46.120Z [DEBUG]: Checking out commit 76d8946a45d361382374ac447838978ccb364927 in directory: ECE-46100-Project
+2024-11-10T01:58:46.784Z [DEBUG]: Checked out commit 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T01:58:47.503Z [DEBUG]: 20th commit results: {"testfileCount":183,"testlineCount":18798,"fileCount":5539,"lineCount":1108194}
+2024-11-10T01:58:47.504Z [DEBUG]: Latest commit - Files: 5768, Lines: 1188610, Test Files: 207, Test Lines: 20392
+2024-11-10T01:58:47.504Z [DEBUG]: 20th commit - Files: 5539, Lines: 1108194, Test Files: 183, Test Lines: 18798
+2024-11-10T01:58:47.504Z [DEBUG]: Differences - Test Files: 24, Test Lines: 1594, Files: 229, Lines: 80416
+2024-11-10T01:58:47.504Z [DEBUG]: Intermediate Scores - File Count Score: 0.0358876560332871, Line Count Score: 0.01715617401839123, File Diff Count Score: 0.10480349344978165, Line Diff Count Score: 0.01982192598487863
+2024-11-10T01:58:47.504Z [INFO]: Correctness score is 0.09820036575061725
+2024-11-10T01:58:47.894Z [INFO]: Repository folder removed successfully
+2024-11-10T01:58:47.895Z [INFO]: Correctness score: 0.09820036575061725, Latency: 9496.966499999999 ms
+2024-11-10T01:58:47.895Z [DEBUG]: Correctness score: 0.09820036575061725, latency: 9496.966499999999
+2024-11-10T01:58:47.895Z [DEBUG]: Responsiveness score: 0.3125, latency: 6.575300000000425
+2024-11-10T01:58:47.895Z [DEBUG]: RampUp score: 0.46516595892191703, latency: 5.555899999999383
+2024-11-10T01:58:47.895Z [DEBUG]: BusFactor score: 0.6351996527777778, latency: 2.8735999999998967
+2024-11-10T01:58:47.896Z [DEBUG]: License score: 0, latency: 1.5114999999996144
+2024-11-10T01:58:47.896Z [INFO]: Calculated NetScore: 0.25100599795002837
+2024-11-10T01:58:47.896Z [INFO]: NetScore: 0.25100599795002837, Latency: 9498.8187 ms
+2024-11-10T01:58:47.896Z [DEBUG]: Returning stored metric results.
+2024-11-10T02:02:15.123Z [INFO]: Starting to rank modules from path: C:\Users\parth\AppData\Local\Temp\tempURLFile_-22272-M2F4sj64THkA-.txt
+2024-11-10T02:02:15.123Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-22272-M2F4sj64THkA-.txt
+2024-11-10T02:02:15.124Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T02:02:15.124Z [DEBUG]: GitHubAPI initialized for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T02:02:15.126Z [DEBUG]: Fetching data for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T02:02:15.127Z [DEBUG]: Initializing API requests.
+2024-11-10T02:02:15.127Z [DEBUG]: Fetching closed issues since 2024-08-10T01:02:15.127Z
+2024-11-10T02:02:15.127Z [DEBUG]: Fetching contributors for repository: parthivshaji/ECE-46100-Project
+2024-11-10T02:02:15.128Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-11-10T02:02:15.510Z [DEBUG]: Fetched 4 contributors on page 1
+2024-11-10T02:02:15.591Z [DEBUG]: Fetched 25 closed issues on page 1
+2024-11-10T02:02:15.653Z [DEBUG]: Fetched 0 contributors on page 2
+2024-11-10T02:02:15.654Z [DEBUG]: Finished fetching contributors. Total contributors: 4
+2024-11-10T02:02:15.654Z [DEBUG]: Returning fetched contributors.
+2024-11-10T02:02:15.792Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-11-10T02:02:15.793Z [DEBUG]: Finished fetching closed issues. Total closed issues: 25
+2024-11-10T02:02:15.793Z [DEBUG]: Fetching open issues since 2024-08-10T01:02:15.127Z
+2024-11-10T02:02:16.056Z [DEBUG]: Fetched 0 open issues on page 1
+2024-11-10T02:02:16.057Z [DEBUG]: Finished fetching open issues. Total open issues: 0
+2024-11-10T02:02:16.057Z [DEBUG]: Returning fetched issues.
+2024-11-10T02:02:16.057Z [DEBUG]: Fetched 25 closed issues and 0 open issues.
+2024-11-10T02:02:16.058Z [DEBUG]: Processed contributions from 4 contributors.
+2024-11-10T02:02:16.058Z [DEBUG]: Readme found: true, Description found: false
+2024-11-10T02:02:16.058Z [DEBUG]: License: empty
+2024-11-10T02:02:16.058Z [DEBUG]: Data fetch latency: 931.9588000000003 ms.
+2024-11-10T02:02:16.058Z [DEBUG]: Successfully fetched data from GitHub API
+2024-11-10T02:02:16.059Z [DEBUG]: Generating repository URL for username: parthivshaji, repoName: ECE-46100-Project
+2024-11-10T02:02:16.059Z [DEBUG]: Generated repository URL: https://github.com/parthivshaji/ECE-46100-Project
+2024-11-10T02:02:16.059Z [INFO]: The data fetched for each URL:
+2024-11-10T02:02:16.059Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-22272-M2F4sj64THkA-.txt
+2024-11-10T02:02:16.060Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T02:02:16.060Z [INFO]: Processing result 1:
+2024-11-10T02:02:16.060Z [DEBUG]: NPM Data:
+2024-11-10T02:02:16.060Z [DEBUG]: License: empty
+2024-11-10T02:02:16.061Z [DEBUG]: GitHub URL: empty
+2024-11-10T02:02:16.061Z [DEBUG]: Readme Present: Yes
+2024-11-10T02:02:16.061Z [DEBUG]: Description Present: No
+2024-11-10T02:02:16.061Z [DEBUG]: Number of Forks: 0
+2024-11-10T02:02:16.062Z [DEBUG]: Number of Stars: 0
+2024-11-10T02:02:16.062Z [DEBUG]: GitHub Data:
+2024-11-10T02:02:16.062Z [DEBUG]: Name: ECE-46100-Project
+2024-11-10T02:02:16.062Z [DEBUG]: License Name: empty 
+2024-11-10T02:02:16.062Z [DEBUG]: Contributions Array: 52
+2024-11-10T02:02:16.062Z [DEBUG]: Readme Present: Yes
+2024-11-10T02:02:16.062Z [DEBUG]: Description Present: No
+2024-11-10T02:02:16.063Z [DEBUG]: Number of Issues: 25
+2024-11-10T02:02:16.063Z [INFO]: NetScore instance created.
+2024-11-10T02:02:16.063Z [DEBUG]: CorrectnessMetric initialized.
+2024-11-10T02:02:16.063Z [INFO]: ResponsivenessMetric instance created.
+2024-11-10T02:02:16.064Z [DEBUG]: BusFactorMetric initialized.
+2024-11-10T02:02:16.064Z [INFO]: LicenseMetric instance created.
+2024-11-10T02:02:16.064Z [INFO]: Calculating latency for NetScore calculation...
+2024-11-10T02:02:16.064Z [INFO]: Calculating NetScore...
+2024-11-10T02:02:16.065Z [DEBUG]: Calculating latency for correctness score...
+2024-11-10T02:02:16.065Z [INFO]: Calculating Correctness Score for repository: ECE-46100-Project
+2024-11-10T02:02:16.065Z [INFO]: Cloning repository: https://github.com/parthivshaji/ECE-46100-Project into directory: ECE-46100-Project
+2024-11-10T02:02:16.069Z [INFO]: Calculating responsiveness score with latency...
+2024-11-10T02:02:16.070Z [DEBUG]: Number of closed issues: 25
+2024-11-10T02:02:16.070Z [DEBUG]: Repository size (KB): 13078
+2024-11-10T02:02:16.070Z [DEBUG]: Repository size <= 50MB, standard number of issues set to 80.
+2024-11-10T02:02:16.071Z [DEBUG]: Calculated responsiveness score: 0.3125
+2024-11-10T02:02:16.071Z [INFO]: Measuring latency for score calculation...
+2024-11-10T02:02:16.071Z [INFO]: Calculating RampUp Score...
+2024-11-10T02:02:16.071Z [INFO]: Has README: true, Has Description: false
+2024-11-10T02:02:16.072Z [INFO]: README Description Score: 0.1
+2024-11-10T02:02:16.072Z [INFO]: Total Forks: 0, Total Stars: 0, Total Forks + Stars: 0
+2024-11-10T02:02:16.072Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T02:02:16.072Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T02:02:16.072Z [INFO]: Repository Size (KB): 13.078
+2024-11-10T02:02:16.073Z [INFO]: Repository Size Proportion Score: 0.06516595892191698
+2024-11-10T02:02:16.073Z [INFO]: Open Issues: 0, Closed Issues: 25
+2024-11-10T02:02:16.073Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-11-10T02:02:16.073Z [INFO]: Contributors: 4, Standard No. of Contributors (Normalized): 0.024311354978502453
+2024-11-10T02:02:16.073Z [INFO]: Contributors Score: 0.1
+2024-11-10T02:02:16.074Z [INFO]: Contributors Score: 0.1
+2024-11-10T02:02:16.074Z [INFO]: Total RampUp Score: 0.46516595892191703
+2024-11-10T02:02:16.074Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-11-10T02:02:16.074Z [DEBUG]: Calculating BusFactor score...
+2024-11-10T02:02:16.074Z [DEBUG]: Total commits calculated: 96
+2024-11-10T02:02:16.074Z [DEBUG]: Total commits: 96
+2024-11-10T02:02:16.075Z [DEBUG]: HHI calculated: 0.3648003472222222
+2024-11-10T02:02:16.075Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.3648003472222222
+2024-11-10T02:02:16.075Z [INFO]: Calculated BusFactor: 0.6351996527777778
+2024-11-10T02:02:16.075Z [INFO]: Calculating latency for license score calculation...
+2024-11-10T02:02:16.075Z [INFO]: Calculating license compatibility score...
+2024-11-10T02:02:16.076Z [INFO]: Initial GitHub license: empty
+2024-11-10T02:02:16.076Z [INFO]: GitHub license not compatible; using NPM license: empty
+2024-11-10T02:02:16.076Z [INFO]: License empty is incompatible.
+2024-11-10T02:02:16.076Z [DEBUG]: Score calculated: 0.3125, Latency: 6.722200000000157 ms
+2024-11-10T02:02:16.076Z [INFO]: Score Calculation Latency: 5.255000000000109 ms
+2024-11-10T02:02:16.077Z [INFO]: BusFactor score: 0.6351996527777778, Latency: 2.4954999999999927 ms
+2024-11-10T02:02:16.077Z [INFO]: Calculated score: 0, Latency: 1.4049000000004526 ms
+2024-11-10T02:02:21.962Z [INFO]: Repository cloned successfully to ECE-46100-Project
+2024-11-10T02:02:21.962Z [DEBUG]: Repository cloned. Starting analysis.
+2024-11-10T02:02:22.690Z [DEBUG]: Latest commit results: {"testfileCount":207,"testlineCount":20392,"fileCount":5771,"lineCount":1188755}
+2024-11-10T02:02:22.691Z [DEBUG]: Getting the commit 20 commits ago in directory: ECE-46100-Project
+2024-11-10T02:02:22.716Z [DEBUG]: Commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:02:22.716Z [DEBUG]: Got commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:02:22.717Z [DEBUG]: Checking out commit 76d8946a45d361382374ac447838978ccb364927 in directory: ECE-46100-Project
+2024-11-10T02:02:23.425Z [DEBUG]: Checked out commit 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:02:24.154Z [DEBUG]: 20th commit results: {"testfileCount":183,"testlineCount":18798,"fileCount":5539,"lineCount":1108158}
+2024-11-10T02:02:24.154Z [DEBUG]: Latest commit - Files: 5771, Lines: 1188755, Test Files: 207, Test Lines: 20392
+2024-11-10T02:02:24.154Z [DEBUG]: 20th commit - Files: 5539, Lines: 1108158, Test Files: 183, Test Lines: 18798
+2024-11-10T02:02:24.155Z [DEBUG]: Differences - Test Files: 24, Test Lines: 1594, Files: 232, Lines: 80597
+2024-11-10T02:02:24.155Z [DEBUG]: Intermediate Scores - File Count Score: 0.035869000173280194, Line Count Score: 0.01715408137084597, File Diff Count Score: 0.10344827586206896, Line Diff Count Score: 0.01977741106989094
+2024-11-10T02:02:24.155Z [INFO]: Correctness score is 0.09748184363926016
+2024-11-10T02:02:24.521Z [INFO]: Repository folder removed successfully
+2024-11-10T02:02:24.522Z [INFO]: Correctness score: 0.09748184363926016, Latency: 8456.8008 ms
+2024-11-10T02:02:24.522Z [DEBUG]: Correctness score: 0.09748184363926016, latency: 8456.8008
+2024-11-10T02:02:24.522Z [DEBUG]: Responsiveness score: 0.3125, latency: 6.722200000000157
+2024-11-10T02:02:24.522Z [DEBUG]: RampUp score: 0.46516595892191703, latency: 5.255000000000109
+2024-11-10T02:02:24.522Z [DEBUG]: BusFactor score: 0.6351996527777778, latency: 2.4954999999999927
+2024-11-10T02:02:24.522Z [DEBUG]: License score: 0, latency: 1.4049000000004526
+2024-11-10T02:02:24.522Z [INFO]: Calculated NetScore: 0.2509406777580868
+2024-11-10T02:02:24.523Z [INFO]: NetScore: 0.2509406777580868, Latency: 8458.4 ms
+2024-11-10T02:02:24.523Z [DEBUG]: Returning stored metric results.
+2024-11-10T02:03:21.926Z [INFO]: Starting to rank modules from path: C:\Users\parth\AppData\Local\Temp\tempURLFile_-24952-h8jaail7DPWY-.txt
+2024-11-10T02:03:21.926Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-24952-h8jaail7DPWY-.txt
+2024-11-10T02:03:21.927Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T02:03:21.928Z [DEBUG]: GitHubAPI initialized for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T02:03:21.930Z [DEBUG]: Fetching data for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T02:03:21.930Z [DEBUG]: Initializing API requests.
+2024-11-10T02:03:21.931Z [DEBUG]: Fetching closed issues since 2024-08-10T01:03:21.931Z
+2024-11-10T02:03:21.931Z [DEBUG]: Fetching contributors for repository: parthivshaji/ECE-46100-Project
+2024-11-10T02:03:21.931Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-11-10T02:03:22.289Z [DEBUG]: Fetched 4 contributors on page 1
+2024-11-10T02:03:22.428Z [DEBUG]: Fetched 25 closed issues on page 1
+2024-11-10T02:03:22.489Z [DEBUG]: Fetched 0 contributors on page 2
+2024-11-10T02:03:22.490Z [DEBUG]: Finished fetching contributors. Total contributors: 4
+2024-11-10T02:03:22.490Z [DEBUG]: Returning fetched contributors.
+2024-11-10T02:03:22.644Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-11-10T02:03:22.644Z [DEBUG]: Finished fetching closed issues. Total closed issues: 25
+2024-11-10T02:03:22.645Z [DEBUG]: Fetching open issues since 2024-08-10T01:03:21.931Z
+2024-11-10T02:03:22.892Z [DEBUG]: Fetched 0 open issues on page 1
+2024-11-10T02:03:22.892Z [DEBUG]: Finished fetching open issues. Total open issues: 0
+2024-11-10T02:03:22.892Z [DEBUG]: Returning fetched issues.
+2024-11-10T02:03:22.893Z [DEBUG]: Fetched 25 closed issues and 0 open issues.
+2024-11-10T02:03:22.893Z [DEBUG]: Processed contributions from 4 contributors.
+2024-11-10T02:03:22.893Z [DEBUG]: Readme found: true, Description found: false
+2024-11-10T02:03:22.893Z [DEBUG]: License: empty
+2024-11-10T02:03:22.893Z [DEBUG]: Data fetch latency: 963.3546999999999 ms.
+2024-11-10T02:03:22.893Z [DEBUG]: Successfully fetched data from GitHub API
+2024-11-10T02:03:22.894Z [DEBUG]: Generating repository URL for username: parthivshaji, repoName: ECE-46100-Project
+2024-11-10T02:03:22.894Z [DEBUG]: Generated repository URL: https://github.com/parthivshaji/ECE-46100-Project
+2024-11-10T02:03:22.894Z [INFO]: The data fetched for each URL:
+2024-11-10T02:03:22.894Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-24952-h8jaail7DPWY-.txt
+2024-11-10T02:03:22.895Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T02:03:22.895Z [INFO]: Processing result 1:
+2024-11-10T02:03:22.895Z [DEBUG]: NPM Data:
+2024-11-10T02:03:22.895Z [DEBUG]: License: empty
+2024-11-10T02:03:22.895Z [DEBUG]: GitHub URL: empty
+2024-11-10T02:03:22.896Z [DEBUG]: Readme Present: Yes
+2024-11-10T02:03:22.896Z [DEBUG]: Description Present: No
+2024-11-10T02:03:22.896Z [DEBUG]: Number of Forks: 0
+2024-11-10T02:03:22.896Z [DEBUG]: Number of Stars: 0
+2024-11-10T02:03:22.896Z [DEBUG]: GitHub Data:
+2024-11-10T02:03:22.897Z [DEBUG]: Name: ECE-46100-Project
+2024-11-10T02:03:22.897Z [DEBUG]: License Name: empty 
+2024-11-10T02:03:22.897Z [DEBUG]: Contributions Array: 52
+2024-11-10T02:03:22.897Z [DEBUG]: Readme Present: Yes
+2024-11-10T02:03:22.897Z [DEBUG]: Description Present: No
+2024-11-10T02:03:22.897Z [DEBUG]: Number of Issues: 25
+2024-11-10T02:03:22.898Z [INFO]: NetScore instance created.
+2024-11-10T02:03:22.898Z [DEBUG]: CorrectnessMetric initialized.
+2024-11-10T02:03:22.898Z [INFO]: ResponsivenessMetric instance created.
+2024-11-10T02:03:22.898Z [DEBUG]: BusFactorMetric initialized.
+2024-11-10T02:03:22.898Z [INFO]: LicenseMetric instance created.
+2024-11-10T02:03:22.899Z [INFO]: Calculating latency for NetScore calculation...
+2024-11-10T02:03:22.899Z [INFO]: Calculating NetScore...
+2024-11-10T02:03:22.899Z [DEBUG]: Calculating latency for correctness score...
+2024-11-10T02:03:22.900Z [INFO]: Calculating Correctness Score for repository: ECE-46100-Project
+2024-11-10T02:03:22.900Z [INFO]: Cloning repository: https://github.com/parthivshaji/ECE-46100-Project into directory: ECE-46100-Project
+2024-11-10T02:03:22.901Z [INFO]: Calculating responsiveness score with latency...
+2024-11-10T02:03:22.901Z [DEBUG]: Number of closed issues: 25
+2024-11-10T02:03:22.902Z [DEBUG]: Repository size (KB): 13078
+2024-11-10T02:03:22.902Z [DEBUG]: Repository size <= 50MB, standard number of issues set to 80.
+2024-11-10T02:03:22.902Z [DEBUG]: Calculated responsiveness score: 0.3125
+2024-11-10T02:03:22.902Z [INFO]: Measuring latency for score calculation...
+2024-11-10T02:03:22.902Z [INFO]: Calculating RampUp Score...
+2024-11-10T02:03:22.902Z [INFO]: Has README: true, Has Description: false
+2024-11-10T02:03:22.903Z [INFO]: README Description Score: 0.1
+2024-11-10T02:03:22.903Z [INFO]: Total Forks: 0, Total Stars: 0, Total Forks + Stars: 0
+2024-11-10T02:03:22.903Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T02:03:22.903Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T02:03:22.903Z [INFO]: Repository Size (KB): 13.078
+2024-11-10T02:03:22.903Z [INFO]: Repository Size Proportion Score: 0.06516595892191698
+2024-11-10T02:03:22.904Z [INFO]: Open Issues: 0, Closed Issues: 25
+2024-11-10T02:03:22.904Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-11-10T02:03:22.904Z [INFO]: Contributors: 4, Standard No. of Contributors (Normalized): 0.024311354978502453
+2024-11-10T02:03:22.904Z [INFO]: Contributors Score: 0.1
+2024-11-10T02:03:22.904Z [INFO]: Contributors Score: 0.1
+2024-11-10T02:03:22.905Z [INFO]: Total RampUp Score: 0.46516595892191703
+2024-11-10T02:03:22.905Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-11-10T02:03:22.905Z [DEBUG]: Calculating BusFactor score...
+2024-11-10T02:03:22.905Z [DEBUG]: Total commits calculated: 96
+2024-11-10T02:03:22.905Z [DEBUG]: Total commits: 96
+2024-11-10T02:03:22.906Z [DEBUG]: HHI calculated: 0.3648003472222222
+2024-11-10T02:03:22.906Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.3648003472222222
+2024-11-10T02:03:22.906Z [INFO]: Calculated BusFactor: 0.6351996527777778
+2024-11-10T02:03:22.906Z [INFO]: Calculating latency for license score calculation...
+2024-11-10T02:03:22.906Z [INFO]: Calculating license compatibility score...
+2024-11-10T02:03:22.907Z [INFO]: Initial GitHub license: empty
+2024-11-10T02:03:22.907Z [INFO]: GitHub license not compatible; using NPM license: empty
+2024-11-10T02:03:22.907Z [INFO]: License empty is incompatible.
+2024-11-10T02:03:22.907Z [DEBUG]: Score calculated: 0.3125, Latency: 5.906199999999444 ms
+2024-11-10T02:03:22.907Z [INFO]: Score Calculation Latency: 5.0252999999993335 ms
+2024-11-10T02:03:22.907Z [INFO]: BusFactor score: 0.6351996527777778, Latency: 2.4070000000010623 ms
+2024-11-10T02:03:22.908Z [INFO]: Calculated score: 0, Latency: 1.2093000000004395 ms
+2024-11-10T02:03:28.343Z [INFO]: Repository cloned successfully to ECE-46100-Project
+2024-11-10T02:03:28.343Z [DEBUG]: Repository cloned. Starting analysis.
+2024-11-10T02:03:29.109Z [DEBUG]: Latest commit results: {"testfileCount":207,"testlineCount":20392,"fileCount":5771,"lineCount":1188875}
+2024-11-10T02:03:29.109Z [DEBUG]: Getting the commit 20 commits ago in directory: ECE-46100-Project
+2024-11-10T02:03:29.144Z [DEBUG]: Commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:03:29.144Z [DEBUG]: Got commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:03:29.145Z [DEBUG]: Checking out commit 76d8946a45d361382374ac447838978ccb364927 in directory: ECE-46100-Project
+2024-11-10T02:03:29.892Z [DEBUG]: Checked out commit 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:03:30.604Z [DEBUG]: 20th commit results: {"testfileCount":183,"testlineCount":18798,"fileCount":5539,"lineCount":1108276}
+2024-11-10T02:03:30.605Z [DEBUG]: Latest commit - Files: 5771, Lines: 1188875, Test Files: 207, Test Lines: 20392
+2024-11-10T02:03:30.605Z [DEBUG]: 20th commit - Files: 5539, Lines: 1108276, Test Files: 183, Test Lines: 18798
+2024-11-10T02:03:30.605Z [DEBUG]: Differences - Test Files: 24, Test Lines: 1594, Files: 232, Lines: 80599
+2024-11-10T02:03:30.605Z [DEBUG]: Intermediate Scores - File Count Score: 0.035869000173280194, Line Count Score: 0.017152349910629798, File Diff Count Score: 0.10344827586206896, Line Diff Count Score: 0.019776920309184976
+2024-11-10T02:03:30.605Z [INFO]: Correctness score is 0.09748159825890718
+2024-11-10T02:03:30.969Z [INFO]: Repository folder removed successfully
+2024-11-10T02:03:30.969Z [INFO]: Correctness score: 0.09748159825890718, Latency: 8069.7489000000005 ms
+2024-11-10T02:03:30.969Z [DEBUG]: Correctness score: 0.09748159825890718, latency: 8069.7489000000005
+2024-11-10T02:03:30.970Z [DEBUG]: Responsiveness score: 0.3125, latency: 5.906199999999444
+2024-11-10T02:03:30.970Z [DEBUG]: RampUp score: 0.46516595892191703, latency: 5.0252999999993335
+2024-11-10T02:03:30.970Z [DEBUG]: BusFactor score: 0.6351996527777778, latency: 2.4070000000010623
+2024-11-10T02:03:30.970Z [DEBUG]: License score: 0, latency: 1.2093000000004395
+2024-11-10T02:03:30.970Z [INFO]: Calculated NetScore: 0.250940655450782
+2024-11-10T02:03:30.970Z [INFO]: NetScore: 0.250940655450782, Latency: 8071.382800000001 ms
+2024-11-10T02:03:30.970Z [DEBUG]: Returning stored metric results.
+2024-11-10T02:15:22.671Z [INFO]: Starting to rank modules from path: C:\Users\parth\AppData\Local\Temp\tempURLFile_-25708-t3Vjo5JadaQA-.txt
+2024-11-10T02:15:22.671Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-25708-t3Vjo5JadaQA-.txt
+2024-11-10T02:15:22.672Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T02:15:22.672Z [DEBUG]: GitHubAPI initialized for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T02:15:22.674Z [DEBUG]: Fetching data for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T02:15:22.675Z [DEBUG]: Initializing API requests.
+2024-11-10T02:15:22.675Z [DEBUG]: Fetching closed issues since 2024-08-10T01:15:22.675Z
+2024-11-10T02:15:22.675Z [DEBUG]: Fetching contributors for repository: parthivshaji/ECE-46100-Project
+2024-11-10T02:15:22.676Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-11-10T02:15:23.012Z [DEBUG]: Fetched 4 contributors on page 1
+2024-11-10T02:15:23.075Z [DEBUG]: Fetched 25 closed issues on page 1
+2024-11-10T02:15:23.201Z [DEBUG]: Fetched 0 contributors on page 2
+2024-11-10T02:15:23.202Z [DEBUG]: Finished fetching contributors. Total contributors: 4
+2024-11-10T02:15:23.202Z [DEBUG]: Returning fetched contributors.
+2024-11-10T02:15:23.311Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-11-10T02:15:23.311Z [DEBUG]: Finished fetching closed issues. Total closed issues: 25
+2024-11-10T02:15:23.311Z [DEBUG]: Fetching open issues since 2024-08-10T01:15:22.675Z
+2024-11-10T02:15:23.605Z [DEBUG]: Fetched 0 open issues on page 1
+2024-11-10T02:15:23.605Z [DEBUG]: Finished fetching open issues. Total open issues: 0
+2024-11-10T02:15:23.605Z [DEBUG]: Returning fetched issues.
+2024-11-10T02:15:23.606Z [DEBUG]: Fetched 25 closed issues and 0 open issues.
+2024-11-10T02:15:23.606Z [DEBUG]: Processed contributions from 4 contributors.
+2024-11-10T02:15:23.606Z [DEBUG]: Readme found: true, Description found: false
+2024-11-10T02:15:23.606Z [DEBUG]: License: empty
+2024-11-10T02:15:23.606Z [DEBUG]: Data fetch latency: 932.197900000001 ms.
+2024-11-10T02:15:23.607Z [DEBUG]: Successfully fetched data from GitHub API
+2024-11-10T02:15:23.607Z [DEBUG]: Generating repository URL for username: parthivshaji, repoName: ECE-46100-Project
+2024-11-10T02:15:23.607Z [DEBUG]: Generated repository URL: https://github.com/parthivshaji/ECE-46100-Project
+2024-11-10T02:15:23.607Z [INFO]: The data fetched for each URL:
+2024-11-10T02:15:23.608Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-25708-t3Vjo5JadaQA-.txt
+2024-11-10T02:15:23.608Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T02:15:23.608Z [INFO]: Processing result 1:
+2024-11-10T02:15:23.609Z [DEBUG]: NPM Data:
+2024-11-10T02:15:23.609Z [DEBUG]: License: empty
+2024-11-10T02:15:23.609Z [DEBUG]: GitHub URL: empty
+2024-11-10T02:15:23.609Z [DEBUG]: Readme Present: Yes
+2024-11-10T02:15:23.609Z [DEBUG]: Description Present: No
+2024-11-10T02:15:23.610Z [DEBUG]: Number of Forks: 0
+2024-11-10T02:15:23.610Z [DEBUG]: Number of Stars: 0
+2024-11-10T02:15:23.610Z [DEBUG]: GitHub Data:
+2024-11-10T02:15:23.610Z [DEBUG]: Name: ECE-46100-Project
+2024-11-10T02:15:23.610Z [DEBUG]: License Name: empty 
+2024-11-10T02:15:23.610Z [DEBUG]: Contributions Array: 52
+2024-11-10T02:15:23.611Z [DEBUG]: Readme Present: Yes
+2024-11-10T02:15:23.611Z [DEBUG]: Description Present: No
+2024-11-10T02:15:23.611Z [DEBUG]: Number of Issues: 25
+2024-11-10T02:15:23.611Z [INFO]: NetScore instance created.
+2024-11-10T02:15:23.611Z [DEBUG]: CorrectnessMetric initialized.
+2024-11-10T02:15:23.611Z [INFO]: ResponsivenessMetric instance created.
+2024-11-10T02:15:23.612Z [DEBUG]: BusFactorMetric initialized.
+2024-11-10T02:15:23.612Z [INFO]: LicenseMetric instance created.
+2024-11-10T02:15:23.612Z [INFO]: Calculating latency for NetScore calculation...
+2024-11-10T02:15:23.612Z [INFO]: Calculating NetScore...
+2024-11-10T02:15:23.613Z [DEBUG]: Calculating latency for correctness score...
+2024-11-10T02:15:23.613Z [INFO]: Calculating Correctness Score for repository: ECE-46100-Project
+2024-11-10T02:15:23.613Z [INFO]: Cloning repository: https://github.com/parthivshaji/ECE-46100-Project into directory: ECE-46100-Project
+2024-11-10T02:15:23.614Z [INFO]: Calculating responsiveness score with latency...
+2024-11-10T02:15:23.615Z [DEBUG]: Number of closed issues: 25
+2024-11-10T02:15:23.615Z [DEBUG]: Repository size (KB): 13078
+2024-11-10T02:15:23.615Z [DEBUG]: Repository size <= 50MB, standard number of issues set to 80.
+2024-11-10T02:15:23.615Z [DEBUG]: Calculated responsiveness score: 0.3125
+2024-11-10T02:15:23.615Z [INFO]: Measuring latency for score calculation...
+2024-11-10T02:15:23.616Z [INFO]: Calculating RampUp Score...
+2024-11-10T02:15:23.616Z [INFO]: Has README: true, Has Description: false
+2024-11-10T02:15:23.616Z [INFO]: README Description Score: 0.1
+2024-11-10T02:15:23.616Z [INFO]: Total Forks: 0, Total Stars: 0, Total Forks + Stars: 0
+2024-11-10T02:15:23.616Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T02:15:23.616Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T02:15:23.617Z [INFO]: Repository Size (KB): 13.078
+2024-11-10T02:15:23.617Z [INFO]: Repository Size Proportion Score: 0.06516595892191698
+2024-11-10T02:15:23.617Z [INFO]: Open Issues: 0, Closed Issues: 25
+2024-11-10T02:15:23.617Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-11-10T02:15:23.617Z [INFO]: Contributors: 4, Standard No. of Contributors (Normalized): 0.024311354978502453
+2024-11-10T02:15:23.618Z [INFO]: Contributors Score: 0.1
+2024-11-10T02:15:23.618Z [INFO]: Contributors Score: 0.1
+2024-11-10T02:15:23.618Z [INFO]: Total RampUp Score: 0.46516595892191703
+2024-11-10T02:15:23.618Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-11-10T02:15:23.618Z [DEBUG]: Calculating BusFactor score...
+2024-11-10T02:15:23.618Z [DEBUG]: Total commits calculated: 96
+2024-11-10T02:15:23.619Z [DEBUG]: Total commits: 96
+2024-11-10T02:15:23.619Z [DEBUG]: HHI calculated: 0.3648003472222222
+2024-11-10T02:15:23.619Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.3648003472222222
+2024-11-10T02:15:23.619Z [INFO]: Calculated BusFactor: 0.6351996527777778
+2024-11-10T02:15:23.619Z [INFO]: Calculating latency for license score calculation...
+2024-11-10T02:15:23.620Z [INFO]: Calculating license compatibility score...
+2024-11-10T02:15:23.620Z [INFO]: Initial GitHub license: empty
+2024-11-10T02:15:23.620Z [INFO]: GitHub license not compatible; using NPM license: empty
+2024-11-10T02:15:23.620Z [INFO]: License empty is incompatible.
+2024-11-10T02:15:23.621Z [DEBUG]: Score calculated: 0.3125, Latency: 6.1943000000028405 ms
+2024-11-10T02:15:23.621Z [INFO]: Score Calculation Latency: 5.277099999999336 ms
+2024-11-10T02:15:23.621Z [INFO]: BusFactor score: 0.6351996527777778, Latency: 2.74199999999837 ms
+2024-11-10T02:15:23.621Z [INFO]: Calculated score: 0, Latency: 1.557699999997567 ms
+2024-11-10T02:15:28.888Z [INFO]: Repository cloned successfully to ECE-46100-Project
+2024-11-10T02:15:28.888Z [DEBUG]: Repository cloned. Starting analysis.
+2024-11-10T02:15:29.643Z [DEBUG]: Latest commit results: {"testfileCount":207,"testlineCount":20392,"fileCount":5771,"lineCount":1188980}
+2024-11-10T02:15:29.643Z [DEBUG]: Getting the commit 20 commits ago in directory: ECE-46100-Project
+2024-11-10T02:15:29.678Z [DEBUG]: Commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:15:29.678Z [DEBUG]: Got commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:15:29.679Z [DEBUG]: Checking out commit 76d8946a45d361382374ac447838978ccb364927 in directory: ECE-46100-Project
+2024-11-10T02:15:30.351Z [DEBUG]: Checked out commit 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:15:31.005Z [DEBUG]: 20th commit results: {"testfileCount":183,"testlineCount":18798,"fileCount":5539,"lineCount":1108378}
+2024-11-10T02:15:31.005Z [DEBUG]: Latest commit - Files: 5771, Lines: 1188980, Test Files: 207, Test Lines: 20392
+2024-11-10T02:15:31.005Z [DEBUG]: 20th commit - Files: 5539, Lines: 1108378, Test Files: 183, Test Lines: 18798
+2024-11-10T02:15:31.006Z [DEBUG]: Differences - Test Files: 24, Test Lines: 1594, Files: 232, Lines: 80602
+2024-11-10T02:15:31.006Z [DEBUG]: Intermediate Scores - File Count Score: 0.035869000173280194, Line Count Score: 0.017150835169641204, File Diff Count Score: 0.10344827586206896, Line Diff Count Score: 0.01977618421379122
+2024-11-10T02:15:31.006Z [INFO]: Correctness score is 0.09748123021121029
+2024-11-10T02:15:31.360Z [INFO]: Repository folder removed successfully
+2024-11-10T02:15:31.360Z [INFO]: Correctness score: 0.09748123021121029, Latency: 7747.3249 ms
+2024-11-10T02:15:31.360Z [DEBUG]: Correctness score: 0.09748123021121029, latency: 7747.3249
+2024-11-10T02:15:31.360Z [DEBUG]: Responsiveness score: 0.3125, latency: 6.1943000000028405
+2024-11-10T02:15:31.361Z [DEBUG]: RampUp score: 0.46516595892191703, latency: 5.277099999999336
+2024-11-10T02:15:31.361Z [DEBUG]: BusFactor score: 0.6351996527777778, latency: 2.74199999999837
+2024-11-10T02:15:31.361Z [DEBUG]: License score: 0, latency: 1.557699999997567
+2024-11-10T02:15:31.361Z [INFO]: Calculated NetScore: 0.2509406219919005
+2024-11-10T02:15:31.361Z [INFO]: NetScore: 0.2509406219919005, Latency: 7748.982599999999 ms
+2024-11-10T02:15:31.361Z [DEBUG]: Returning stored metric results.
+2024-11-10T02:17:43.828Z [INFO]: Starting to rank modules from path: C:\Users\parth\AppData\Local\Temp\tempURLFile_-30260-6vMgnPtuuPI2-.txt
+2024-11-10T02:17:43.829Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-30260-6vMgnPtuuPI2-.txt
+2024-11-10T02:17:43.829Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T02:17:43.830Z [DEBUG]: GitHubAPI initialized for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T02:17:43.832Z [DEBUG]: Fetching data for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T02:17:43.832Z [DEBUG]: Initializing API requests.
+2024-11-10T02:17:43.832Z [DEBUG]: Fetching closed issues since 2024-08-10T01:17:43.832Z
+2024-11-10T02:17:43.833Z [DEBUG]: Fetching contributors for repository: parthivshaji/ECE-46100-Project
+2024-11-10T02:17:43.833Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-11-10T02:17:44.140Z [DEBUG]: Fetched 4 contributors on page 1
+2024-11-10T02:17:44.302Z [DEBUG]: Fetched 25 closed issues on page 1
+2024-11-10T02:17:44.320Z [DEBUG]: Fetched 0 contributors on page 2
+2024-11-10T02:17:44.320Z [DEBUG]: Finished fetching contributors. Total contributors: 4
+2024-11-10T02:17:44.320Z [DEBUG]: Returning fetched contributors.
+2024-11-10T02:17:44.506Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-11-10T02:17:44.506Z [DEBUG]: Finished fetching closed issues. Total closed issues: 25
+2024-11-10T02:17:44.506Z [DEBUG]: Fetching open issues since 2024-08-10T01:17:43.832Z
+2024-11-10T02:17:44.787Z [DEBUG]: Fetched 0 open issues on page 1
+2024-11-10T02:17:44.788Z [DEBUG]: Finished fetching open issues. Total open issues: 0
+2024-11-10T02:17:44.788Z [DEBUG]: Returning fetched issues.
+2024-11-10T02:17:44.788Z [DEBUG]: Fetched 25 closed issues and 0 open issues.
+2024-11-10T02:17:44.789Z [DEBUG]: Processed contributions from 4 contributors.
+2024-11-10T02:17:44.789Z [DEBUG]: Readme found: true, Description found: false
+2024-11-10T02:17:44.789Z [DEBUG]: License: empty
+2024-11-10T02:17:44.789Z [DEBUG]: Data fetch latency: 957.4049000000005 ms.
+2024-11-10T02:17:44.789Z [DEBUG]: Successfully fetched data from GitHub API
+2024-11-10T02:17:44.789Z [DEBUG]: Generating repository URL for username: parthivshaji, repoName: ECE-46100-Project
+2024-11-10T02:17:44.790Z [DEBUG]: Generated repository URL: https://github.com/parthivshaji/ECE-46100-Project
+2024-11-10T02:17:44.790Z [INFO]: The data fetched for each URL:
+2024-11-10T02:17:44.790Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-30260-6vMgnPtuuPI2-.txt
+2024-11-10T02:17:44.790Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T02:17:44.791Z [INFO]: Processing result 1:
+2024-11-10T02:17:44.791Z [DEBUG]: NPM Data:
+2024-11-10T02:17:44.791Z [DEBUG]: License: empty
+2024-11-10T02:17:44.791Z [DEBUG]: GitHub URL: empty
+2024-11-10T02:17:44.791Z [DEBUG]: Readme Present: Yes
+2024-11-10T02:17:44.792Z [DEBUG]: Description Present: No
+2024-11-10T02:17:44.792Z [DEBUG]: Number of Forks: 0
+2024-11-10T02:17:44.792Z [DEBUG]: Number of Stars: 0
+2024-11-10T02:17:44.792Z [DEBUG]: GitHub Data:
+2024-11-10T02:17:44.792Z [DEBUG]: Name: ECE-46100-Project
+2024-11-10T02:17:44.792Z [DEBUG]: License Name: empty 
+2024-11-10T02:17:44.793Z [DEBUG]: Contributions Array: 52
+2024-11-10T02:17:44.793Z [DEBUG]: Readme Present: Yes
+2024-11-10T02:17:44.793Z [DEBUG]: Description Present: No
+2024-11-10T02:17:44.793Z [DEBUG]: Number of Issues: 25
+2024-11-10T02:17:44.793Z [INFO]: NetScore instance created.
+2024-11-10T02:17:44.793Z [DEBUG]: CorrectnessMetric initialized.
+2024-11-10T02:17:44.794Z [INFO]: ResponsivenessMetric instance created.
+2024-11-10T02:17:44.794Z [DEBUG]: BusFactorMetric initialized.
+2024-11-10T02:17:44.794Z [INFO]: LicenseMetric instance created.
+2024-11-10T02:17:44.794Z [INFO]: Calculating latency for NetScore calculation...
+2024-11-10T02:17:44.794Z [INFO]: Calculating NetScore...
+2024-11-10T02:17:44.795Z [DEBUG]: Calculating latency for correctness score...
+2024-11-10T02:17:44.795Z [INFO]: Calculating Correctness Score for repository: ECE-46100-Project
+2024-11-10T02:17:44.795Z [INFO]: Cloning repository: https://github.com/parthivshaji/ECE-46100-Project into directory: ECE-46100-Project
+2024-11-10T02:17:44.797Z [INFO]: Calculating responsiveness score with latency...
+2024-11-10T02:17:44.797Z [DEBUG]: Number of closed issues: 25
+2024-11-10T02:17:44.797Z [DEBUG]: Repository size (KB): 13078
+2024-11-10T02:17:44.797Z [DEBUG]: Repository size <= 50MB, standard number of issues set to 80.
+2024-11-10T02:17:44.798Z [DEBUG]: Calculated responsiveness score: 0.3125
+2024-11-10T02:17:44.798Z [INFO]: Measuring latency for score calculation...
+2024-11-10T02:17:44.798Z [INFO]: Calculating RampUp Score...
+2024-11-10T02:17:44.798Z [INFO]: Has README: true, Has Description: false
+2024-11-10T02:17:44.798Z [INFO]: README Description Score: 0.1
+2024-11-10T02:17:44.799Z [INFO]: Total Forks: 0, Total Stars: 0, Total Forks + Stars: 0
+2024-11-10T02:17:44.799Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T02:17:44.799Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T02:17:44.799Z [INFO]: Repository Size (KB): 13.078
+2024-11-10T02:17:44.799Z [INFO]: Repository Size Proportion Score: 0.06516595892191698
+2024-11-10T02:17:44.800Z [INFO]: Open Issues: 0, Closed Issues: 25
+2024-11-10T02:17:44.800Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-11-10T02:17:44.800Z [INFO]: Contributors: 4, Standard No. of Contributors (Normalized): 0.024311354978502453
+2024-11-10T02:17:44.800Z [INFO]: Contributors Score: 0.1
+2024-11-10T02:17:44.800Z [INFO]: Contributors Score: 0.1
+2024-11-10T02:17:44.800Z [INFO]: Total RampUp Score: 0.46516595892191703
+2024-11-10T02:17:44.801Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-11-10T02:17:44.801Z [DEBUG]: Calculating BusFactor score...
+2024-11-10T02:17:44.801Z [DEBUG]: Total commits calculated: 96
+2024-11-10T02:17:44.801Z [DEBUG]: Total commits: 96
+2024-11-10T02:17:44.801Z [DEBUG]: HHI calculated: 0.3648003472222222
+2024-11-10T02:17:44.802Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.3648003472222222
+2024-11-10T02:17:44.802Z [INFO]: Calculated BusFactor: 0.6351996527777778
+2024-11-10T02:17:44.802Z [INFO]: Calculating latency for license score calculation...
+2024-11-10T02:17:44.802Z [INFO]: Calculating license compatibility score...
+2024-11-10T02:17:44.802Z [INFO]: Initial GitHub license: empty
+2024-11-10T02:17:44.802Z [INFO]: GitHub license not compatible; using NPM license: empty
+2024-11-10T02:17:44.803Z [INFO]: License empty is incompatible.
+2024-11-10T02:17:44.803Z [DEBUG]: Score calculated: 0.3125, Latency: 5.984300000000076 ms
+2024-11-10T02:17:44.803Z [INFO]: Score Calculation Latency: 5.1260999999994965 ms
+2024-11-10T02:17:44.803Z [INFO]: BusFactor score: 0.6351996527777778, Latency: 2.533900000000358 ms
+2024-11-10T02:17:44.804Z [INFO]: Calculated score: 0, Latency: 1.4390999999995984 ms
+2024-11-10T02:17:50.073Z [INFO]: Repository cloned successfully to ECE-46100-Project
+2024-11-10T02:17:50.074Z [DEBUG]: Repository cloned. Starting analysis.
+2024-11-10T02:17:50.794Z [DEBUG]: Latest commit results: {"testfileCount":207,"testlineCount":20392,"fileCount":5771,"lineCount":1188900}
+2024-11-10T02:17:50.795Z [DEBUG]: Getting the commit 20 commits ago in directory: ECE-46100-Project
+2024-11-10T02:17:50.814Z [DEBUG]: Commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:17:50.814Z [DEBUG]: Got commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:17:50.815Z [DEBUG]: Checking out commit 76d8946a45d361382374ac447838978ccb364927 in directory: ECE-46100-Project
+2024-11-10T02:17:51.393Z [DEBUG]: Checked out commit 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:17:52.121Z [DEBUG]: 20th commit results: {"testfileCount":183,"testlineCount":18798,"fileCount":5539,"lineCount":1108276}
+2024-11-10T02:17:52.121Z [DEBUG]: Latest commit - Files: 5771, Lines: 1188900, Test Files: 207, Test Lines: 20392
+2024-11-10T02:17:52.122Z [DEBUG]: 20th commit - Files: 5539, Lines: 1108276, Test Files: 183, Test Lines: 18798
+2024-11-10T02:17:52.122Z [DEBUG]: Differences - Test Files: 24, Test Lines: 1594, Files: 232, Lines: 80624
+2024-11-10T02:17:52.122Z [DEBUG]: Intermediate Scores - File Count Score: 0.035869000173280194, Line Count Score: 0.01715198923374548, File Diff Count Score: 0.10344827586206896, Line Diff Count Score: 0.01977078785473308
+2024-11-10T02:17:52.122Z [INFO]: Correctness score is 0.09747853203168122
+2024-11-10T02:17:52.478Z [INFO]: Repository folder removed successfully
+2024-11-10T02:17:52.479Z [INFO]: Correctness score: 0.09747853203168122, Latency: 7683.8809 ms
+2024-11-10T02:17:52.479Z [DEBUG]: Correctness score: 0.09747853203168122, latency: 7683.8809
+2024-11-10T02:17:52.479Z [DEBUG]: Responsiveness score: 0.3125, latency: 5.984300000000076
+2024-11-10T02:17:52.479Z [DEBUG]: RampUp score: 0.46516595892191703, latency: 5.1260999999994965
+2024-11-10T02:17:52.479Z [DEBUG]: BusFactor score: 0.6351996527777778, latency: 2.533900000000358
+2024-11-10T02:17:52.479Z [DEBUG]: License score: 0, latency: 1.4390999999995984
+2024-11-10T02:17:52.480Z [INFO]: Calculated NetScore: 0.25094037670285235
+2024-11-10T02:17:52.480Z [INFO]: NetScore: 0.25094037670285235, Latency: 7685.503900000001 ms
+2024-11-10T02:17:52.480Z [DEBUG]: Returning stored metric results.
+2024-11-10T02:18:25.848Z [INFO]: Starting to rank modules from path: C:\Users\parth\AppData\Local\Temp\tempURLFile_-22152-W4SsXmaiKyXC-.txt
+2024-11-10T02:18:25.849Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-22152-W4SsXmaiKyXC-.txt
+2024-11-10T02:18:25.849Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T02:18:25.850Z [DEBUG]: GitHubAPI initialized for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T02:18:25.852Z [DEBUG]: Fetching data for owner: parthivshaji, repo: ECE-46100-Project
+2024-11-10T02:18:25.852Z [DEBUG]: Initializing API requests.
+2024-11-10T02:18:25.853Z [DEBUG]: Fetching closed issues since 2024-08-10T01:18:25.853Z
+2024-11-10T02:18:25.853Z [DEBUG]: Fetching contributors for repository: parthivshaji/ECE-46100-Project
+2024-11-10T02:18:25.853Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-11-10T02:18:26.174Z [DEBUG]: Fetched 4 contributors on page 1
+2024-11-10T02:18:26.303Z [DEBUG]: Fetched 25 closed issues on page 1
+2024-11-10T02:18:26.335Z [DEBUG]: Fetched 0 contributors on page 2
+2024-11-10T02:18:26.336Z [DEBUG]: Finished fetching contributors. Total contributors: 4
+2024-11-10T02:18:26.336Z [DEBUG]: Returning fetched contributors.
+2024-11-10T02:18:26.553Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-11-10T02:18:26.554Z [DEBUG]: Finished fetching closed issues. Total closed issues: 25
+2024-11-10T02:18:26.554Z [DEBUG]: Fetching open issues since 2024-08-10T01:18:25.853Z
+2024-11-10T02:18:26.723Z [DEBUG]: Fetched 0 open issues on page 1
+2024-11-10T02:18:26.724Z [DEBUG]: Finished fetching open issues. Total open issues: 0
+2024-11-10T02:18:26.724Z [DEBUG]: Returning fetched issues.
+2024-11-10T02:18:26.724Z [DEBUG]: Fetched 25 closed issues and 0 open issues.
+2024-11-10T02:18:26.724Z [DEBUG]: Processed contributions from 4 contributors.
+2024-11-10T02:18:26.725Z [DEBUG]: Readme found: true, Description found: false
+2024-11-10T02:18:26.725Z [DEBUG]: License: empty
+2024-11-10T02:18:26.725Z [DEBUG]: Data fetch latency: 872.9610000000002 ms.
+2024-11-10T02:18:26.725Z [DEBUG]: Successfully fetched data from GitHub API
+2024-11-10T02:18:26.725Z [DEBUG]: Generating repository URL for username: parthivshaji, repoName: ECE-46100-Project
+2024-11-10T02:18:26.725Z [DEBUG]: Generated repository URL: https://github.com/parthivshaji/ECE-46100-Project
+2024-11-10T02:18:26.726Z [INFO]: The data fetched for each URL:
+2024-11-10T02:18:26.726Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-22152-W4SsXmaiKyXC-.txt
+2024-11-10T02:18:26.726Z [DEBUG]: Successfully read 1 URLs from file.
+2024-11-10T02:18:26.726Z [INFO]: Processing result 1:
+2024-11-10T02:18:26.727Z [DEBUG]: NPM Data:
+2024-11-10T02:18:26.727Z [DEBUG]: License: empty
+2024-11-10T02:18:26.727Z [DEBUG]: GitHub URL: empty
+2024-11-10T02:18:26.727Z [DEBUG]: Readme Present: Yes
+2024-11-10T02:18:26.728Z [DEBUG]: Description Present: No
+2024-11-10T02:18:26.728Z [DEBUG]: Number of Forks: 0
+2024-11-10T02:18:26.728Z [DEBUG]: Number of Stars: 0
+2024-11-10T02:18:26.728Z [DEBUG]: GitHub Data:
+2024-11-10T02:18:26.728Z [DEBUG]: Name: ECE-46100-Project
+2024-11-10T02:18:26.728Z [DEBUG]: License Name: empty 
+2024-11-10T02:18:26.728Z [DEBUG]: Contributions Array: 52
+2024-11-10T02:18:26.729Z [DEBUG]: Readme Present: Yes
+2024-11-10T02:18:26.729Z [DEBUG]: Description Present: No
+2024-11-10T02:18:26.729Z [DEBUG]: Number of Issues: 25
+2024-11-10T02:18:26.729Z [INFO]: NetScore instance created.
+2024-11-10T02:18:26.729Z [DEBUG]: CorrectnessMetric initialized.
+2024-11-10T02:18:26.729Z [INFO]: ResponsivenessMetric instance created.
+2024-11-10T02:18:26.730Z [DEBUG]: BusFactorMetric initialized.
+2024-11-10T02:18:26.730Z [INFO]: LicenseMetric instance created.
+2024-11-10T02:18:26.730Z [INFO]: Calculating latency for NetScore calculation...
+2024-11-10T02:18:26.730Z [INFO]: Calculating NetScore...
+2024-11-10T02:18:26.731Z [DEBUG]: Calculating latency for correctness score...
+2024-11-10T02:18:26.731Z [INFO]: Calculating Correctness Score for repository: ECE-46100-Project
+2024-11-10T02:18:26.731Z [INFO]: Cloning repository: https://github.com/parthivshaji/ECE-46100-Project into directory: ECE-46100-Project
+2024-11-10T02:18:26.733Z [INFO]: Calculating responsiveness score with latency...
+2024-11-10T02:18:26.733Z [DEBUG]: Number of closed issues: 25
+2024-11-10T02:18:26.733Z [DEBUG]: Repository size (KB): 13078
+2024-11-10T02:18:26.733Z [DEBUG]: Repository size <= 50MB, standard number of issues set to 80.
+2024-11-10T02:18:26.733Z [DEBUG]: Calculated responsiveness score: 0.3125
+2024-11-10T02:18:26.733Z [INFO]: Measuring latency for score calculation...
+2024-11-10T02:18:26.734Z [INFO]: Calculating RampUp Score...
+2024-11-10T02:18:26.734Z [INFO]: Has README: true, Has Description: false
+2024-11-10T02:18:26.734Z [INFO]: README Description Score: 0.1
+2024-11-10T02:18:26.734Z [INFO]: Total Forks: 0, Total Stars: 0, Total Forks + Stars: 0
+2024-11-10T02:18:26.734Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T02:18:26.735Z [INFO]: Forks and Stars Percentage Score: 0
+2024-11-10T02:18:26.735Z [INFO]: Repository Size (KB): 13.078
+2024-11-10T02:18:26.735Z [INFO]: Repository Size Proportion Score: 0.06516595892191698
+2024-11-10T02:18:26.735Z [INFO]: Open Issues: 0, Closed Issues: 25
+2024-11-10T02:18:26.735Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-11-10T02:18:26.735Z [INFO]: Contributors: 4, Standard No. of Contributors (Normalized): 0.024311354978502453
+2024-11-10T02:18:26.736Z [INFO]: Contributors Score: 0.1
+2024-11-10T02:18:26.736Z [INFO]: Contributors Score: 0.1
+2024-11-10T02:18:26.736Z [INFO]: Total RampUp Score: 0.46516595892191703
+2024-11-10T02:18:26.736Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-11-10T02:18:26.736Z [DEBUG]: Calculating BusFactor score...
+2024-11-10T02:18:26.737Z [DEBUG]: Total commits calculated: 96
+2024-11-10T02:18:26.737Z [DEBUG]: Total commits: 96
+2024-11-10T02:18:26.737Z [DEBUG]: HHI calculated: 0.3648003472222222
+2024-11-10T02:18:26.737Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.3648003472222222
+2024-11-10T02:18:26.737Z [INFO]: Calculated BusFactor: 0.6351996527777778
+2024-11-10T02:18:26.738Z [INFO]: Calculating latency for license score calculation...
+2024-11-10T02:18:26.738Z [INFO]: Calculating license compatibility score...
+2024-11-10T02:18:26.738Z [INFO]: Initial GitHub license: empty
+2024-11-10T02:18:26.738Z [INFO]: GitHub license not compatible; using NPM license: empty
+2024-11-10T02:18:26.738Z [INFO]: License empty is incompatible.
+2024-11-10T02:18:26.738Z [DEBUG]: Score calculated: 0.3125, Latency: 5.898699999999735 ms
+2024-11-10T02:18:26.739Z [INFO]: Score Calculation Latency: 5.011899999999514 ms
+2024-11-10T02:18:26.739Z [INFO]: BusFactor score: 0.6351996527777778, Latency: 2.541900000000169 ms
+2024-11-10T02:18:26.739Z [INFO]: Calculated score: 0, Latency: 1.2981999999992695 ms
+2024-11-10T02:18:32.404Z [INFO]: Repository cloned successfully to ECE-46100-Project
+2024-11-10T02:18:32.404Z [DEBUG]: Repository cloned. Starting analysis.
+2024-11-10T02:18:33.178Z [DEBUG]: Latest commit results: {"testfileCount":207,"testlineCount":20392,"fileCount":5771,"lineCount":1188910}
+2024-11-10T02:18:33.178Z [DEBUG]: Getting the commit 20 commits ago in directory: ECE-46100-Project
+2024-11-10T02:18:33.213Z [DEBUG]: Commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:18:33.213Z [DEBUG]: Got commit 20 commits ago: 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:18:33.214Z [DEBUG]: Checking out commit 76d8946a45d361382374ac447838978ccb364927 in directory: ECE-46100-Project
+2024-11-10T02:18:33.905Z [DEBUG]: Checked out commit 76d8946a45d361382374ac447838978ccb364927
+2024-11-10T02:18:34.586Z [DEBUG]: 20th commit results: {"testfileCount":183,"testlineCount":18798,"fileCount":5539,"lineCount":1108311}
+2024-11-10T02:18:34.586Z [DEBUG]: Latest commit - Files: 5771, Lines: 1188910, Test Files: 207, Test Lines: 20392
+2024-11-10T02:18:34.586Z [DEBUG]: 20th commit - Files: 5539, Lines: 1108311, Test Files: 183, Test Lines: 18798
+2024-11-10T02:18:34.586Z [DEBUG]: Differences - Test Files: 24, Test Lines: 1594, Files: 232, Lines: 80599
+2024-11-10T02:18:34.586Z [DEBUG]: Intermediate Scores - File Count Score: 0.035869000173280194, Line Count Score: 0.0171518449672389, File Diff Count Score: 0.10344827586206896, Line Diff Count Score: 0.019776920309184976
+2024-11-10T02:18:34.587Z [INFO]: Correctness score is 0.09748159825890718
+2024-11-10T02:18:34.935Z [INFO]: Repository folder removed successfully
+2024-11-10T02:18:34.936Z [INFO]: Correctness score: 0.09748159825890718, Latency: 8204.892899999999 ms
+2024-11-10T02:18:34.936Z [DEBUG]: Correctness score: 0.09748159825890718, latency: 8204.892899999999
+2024-11-10T02:18:34.936Z [DEBUG]: Responsiveness score: 0.3125, latency: 5.898699999999735
+2024-11-10T02:18:34.936Z [DEBUG]: RampUp score: 0.46516595892191703, latency: 5.011899999999514
+2024-11-10T02:18:34.936Z [DEBUG]: BusFactor score: 0.6351996527777778, latency: 2.541900000000169
+2024-11-10T02:18:34.937Z [DEBUG]: License score: 0, latency: 1.2981999999992695
+2024-11-10T02:18:34.937Z [INFO]: Calculated NetScore: 0.250940655450782
+2024-11-10T02:18:34.937Z [INFO]: NetScore: 0.250940655450782, Latency: 8206.669800000001 ms
+2024-11-10T02:18:34.937Z [DEBUG]: Returning stored metric results.
