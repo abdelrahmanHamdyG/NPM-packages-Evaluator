@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20.17.0'
 
       # Step 3: Cache npm dependencies
       - name: Cache node modules
@@ -36,18 +36,22 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
+          npm install crypto-browserify
 
       # Step 5: Compile TypeScript
       - name: Compile TypeScript
         run: |
           npx tsc
+
         env:
           CI: true
 
       # Step 6: Run tests and collect coverage
       - name: Run tests and generate coverage
         run: |
-          npx vitest --run --coverage --reporter=json > testResults.json
+              export LOG_FILE=app.log
+              npx vitest --run --coverage --reporter=json || { echo "Vitest failed"; exit 1; }
+        shell: bash
 
       # Step 7: Upload test coverage report
       - name: Upload test coverage
