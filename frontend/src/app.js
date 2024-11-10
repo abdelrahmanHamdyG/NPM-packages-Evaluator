@@ -7,11 +7,18 @@ const App = () => {
   const [file, setFile] = useState(null);
   const [urls, setUrls] = useState([]);
   const [results, setResults] = useState(null);
-  const [packageName, setPackageName] = useState('');
-  const [packageVersion, setPackageVersion] = useState('');
+  const [uploadPackageName, setUploadPackageName] = useState('');
+  const [uploadPackageVersion, setUploadPackageVersion] = useState('');
+  const [updatePackageName, setUpdatePackageName] = useState('');
+  const [updatePackageVersion, setUpdatePackageVersion] = useState('');
+  const [ratingPackageId, setRatingPackageId] = useState('');
+  const [downloadPackageId, setDownloadPackageId] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [downloadHistory, setDownloadHistory] = useState([]);
+  const [ratingResult, setRatingResult] = useState(null);
+  const publicIp = "3.15.13.78"; // Replace with your EC2 instance's public IP address
 
+  // Handle file input change
   const handleFileChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
       const selectedFile = event.target.files[0];
@@ -19,6 +26,7 @@ const App = () => {
     }
   };
 
+  // Read URLs from file and update URLs state
   const handleFileRead = () => {
     if (file) {
       const reader = new FileReader();
@@ -31,63 +39,55 @@ const App = () => {
     }
   };
 
-  const calculateMetrics = async () => {
-    // Placeholder for calculating metrics
-  };
-
-  const handleUpload = () => {
-    // Placeholder for upload functionality
-  };
-
-  const handleUpdate = () => {
-    // Placeholder for update functionality
-  };
-
-  const handleCheckRating = () => {
-    // Placeholder for check rating functionality
-  };
-
-  const handleDownload = async () => {
-    // Placeholder for download functionality
-    if (!packageName) {
-      alert('Please enter a valid package ID to download.');
+  // Check package rating
+  const handleCheckRating = async () => {
+    if (!ratingPackageId) {
+      alert('Please enter a package ID to check the rating.');
       return;
     }
 
     try {
-      // Call REST API to download the package
-      const response = await axios.get(`http://localhost:3000/package/${packageName}`, {
+      const response = await axios.get(`http://${publicIp}:3000/package/${ratingPackageId}/rate`, {
         headers: {
-          'X-Authorization': `Bearer <your-token-here>`, // Add your token here
+          'X-Authorization': `Bearer <your-token-here>`, // Replace with your token
         },
       });
 
-       // Extract the Base64 content from the API response
-      const base64Content = response.data.data.Content;
+      setRatingResult(response.data); // Set rating result to display in output box
+    } catch (error) {
+      console.error('Error fetching package rating:', error);
+      alert('Failed to fetch the package rating. Please try again.');
+    }
+  };
 
-      // Decode the Base64 string to a binary buffer
-      const binaryContent = atob(base64Content); // Decodes Base64 to binary string
+  // Download a package as a ZIP file
+  const handleDownload = async () => {
+    if (!downloadPackageId) {
+      alert('Please enter a package ID to download.');
+      return;
+    }
+
+    try {
+      const response = await axios.get(`http://${publicIp}:3000/package/${downloadPackageId}`, {
+        headers: {
+          'X-Authorization': `Bearer <your-token-here>`, // Replace with your token
+        },
+      });
+
+      const base64Content = response.data.data.Content;
+      const binaryContent = atob(base64Content);
       const buffer = new Uint8Array(binaryContent.length);
       for (let i = 0; i < binaryContent.length; i++) {
         buffer[i] = binaryContent.charCodeAt(i);
       }
 
-      // Create a Blob from the binary data
       const blob = new Blob([buffer], { type: 'application/zip' });
-
-      // Create a blob URL and a link element to initiate download
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-
-      // Set filename for download (default to <packageName>.zip)
-      link.setAttribute('download', `${packageName}.zip`);
+      link.setAttribute('download', `${downloadPackageId}.zip`);
       document.body.appendChild(link);
-
-      // Trigger the download
       link.click();
-
-      // Cleanup after download
       link.remove();
       window.URL.revokeObjectURL(url);
 
@@ -98,27 +98,15 @@ const App = () => {
     }
   };
 
-  const handleSearch = () => {
-    // Placeholder for search functionality
-  };
-
-  const handleFetchVersions = () => {
-    // Placeholder for fetching package versions functionality
-  };
-
-  const handleFetchDownloadHistory = () => {
-    // Placeholder for fetching download history functionality
-  };
-
   return (
     <div className="App">
       <h1>Trustworthy Module Registry</h1>
-      
+
       {/* Upload URL File Section */}
       <h2>Upload URL File</h2>
       <input type="file" accept=".txt" onChange={handleFileChange} />
       <button onClick={handleFileRead}>Read File</button>
-      
+
       {urls.length > 0 && (
         <div>
           <h2>URLs:</h2>
@@ -127,14 +115,6 @@ const App = () => {
               <li key={index}>{url}</li>
             ))}
           </ul>
-          <button onClick={calculateMetrics}>Calculate Metrics</button>
-        </div>
-      )}
-
-      {results && (
-        <div>
-          <h2>Metrics Results:</h2>
-          <pre>{JSON.stringify(results, null, 2)}</pre>
         </div>
       )}
 
@@ -142,45 +122,95 @@ const App = () => {
       <h2>Package Management</h2>
       <div>
         <h3>Upload Package</h3>
-        <input type="text" placeholder="Package Name" value={packageName} onChange={(e) => setPackageName(e.target.value)} />
-        <input type="text" placeholder="Package Version" value={packageVersion} onChange={(e) => setPackageVersion(e.target.value)} />
-        <button onClick={handleUpload}>Upload</button>
+        <input
+          type="text"
+          placeholder="Package Name"
+          value={uploadPackageName}
+          onChange={(e) => setUploadPackageName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Package Version"
+          value={uploadPackageVersion}
+          onChange={(e) => setUploadPackageVersion(e.target.value)}
+        />
+        <button onClick={() => console.log("Upload function goes here")}>Upload</button>
       </div>
 
       <div>
         <h3>Update Package</h3>
-        <input type="text" placeholder="Package Name" value={packageName} onChange={(e) => setPackageName(e.target.value)} />
-        <input type="text" placeholder="New Version" value={packageVersion} onChange={(e) => setPackageVersion(e.target.value)} />
-        <button onClick={handleUpdate}>Update</button>
+        <input
+          type="text"
+          placeholder="Package Name"
+          value={updatePackageName}
+          onChange={(e) => setUpdatePackageName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="New Version"
+          value={updatePackageVersion}
+          onChange={(e) => setUpdatePackageVersion(e.target.value)}
+        />
+        <button onClick={() => console.log("Update function goes here")}>Update</button>
       </div>
 
+      {/* Check Package Rating Section */}
       <div>
         <h3>Check Package Rating</h3>
-        <input type="text" placeholder="Package Name" value={packageName} onChange={(e) => setPackageName(e.target.value)} />
+        <input
+          type="text"
+          placeholder="Package ID"
+          value={ratingPackageId}
+          onChange={(e) => setRatingPackageId(e.target.value)}
+        />
         <button onClick={handleCheckRating}>Check Rating</button>
       </div>
 
+      {/* Display Rating Results */}
+      {ratingResult && (
+        <div>
+          <h2>Package Rating Results:</h2>
+          <pre>{JSON.stringify(ratingResult, null, 2)}</pre>
+        </div>
+      )}
+
+      {/* Download Package Section */}
       <div>
         <h3>Download Package</h3>
-        <input type="text" placeholder="Package ID" value={packageName} onChange={(e) => setPackageName(e.target.value)} />
+        <input
+          type="text"
+          placeholder="Package ID"
+          value={downloadPackageId}
+          onChange={(e) => setDownloadPackageId(e.target.value)}
+        />
         <button onClick={handleDownload}>Download</button>
       </div>
 
       {/* Search Packages Section */}
       <h2>Search Packages</h2>
       <div>
-      <input type="text" placeholder="Search Term" value={searchTerm} onChange={(e) => setPackageName(e.target.value)} />
-      <button onClick={handleSearch}>Search</button>
+        <input
+          type="text"
+          placeholder="Search Term"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button onClick={() => console.log("Search function goes here")}>Search</button>
       </div>
-        {/* Fetch Package Versions Section */}  
-              {/* Fetch Package Versions Section */}
+
+      {/* Fetch Package Versions Section */}
       <h2>Fetch Package Versions</h2>
-      <input type="text" placeholder="Package Name" value={packageName} onChange={(e) => setPackageName(e.target.value)} />
-      <button onClick={handleFetchVersions}>Get Versions</button>
+      <input
+        type="text"
+        placeholder="Package Name"
+        value={updatePackageName}
+        onChange={(e) => setUpdatePackageName(e.target.value)}
+      />
+      <button onClick={() => console.log("Fetch versions function goes here")}>Get Versions</button>
 
       {/* Download History Section */}
       <h2>Download History</h2>
-      <button onClick={handleFetchDownloadHistory}>View Download History</button>
+      <button onClick={() => console.log("Fetch download history function goes here")}>View Download History</button>
       {downloadHistory.length > 0 && (
         <div>
           <h3>Download History:</h3>
@@ -189,14 +219,6 @@ const App = () => {
               <li key={index}>{entry}</li>
             ))}
           </ul>
-        </div>
-      )}
-
-      {/* Metrics Results Section */}
-      {results && (
-        <div>
-          <h2>Metrics Results:</h2>
-          <pre>{JSON.stringify(results, null, 2)}</pre>
         </div>
       )}
     </div>
