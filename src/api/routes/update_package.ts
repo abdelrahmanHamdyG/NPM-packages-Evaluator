@@ -3,7 +3,12 @@ import { getPackageFromDynamoDB, updatePackageInDynamoDB } from '../services/dyn
 import { updatePackageInS3 } from '../services/s3service.js';
 
 const router = Router();
-
+interface Module {
+    id: string;
+    name: string;
+    version: string;
+    s3Key: string;
+}
 // PUT /package/:id - Update a package's content by its ID
 router.put('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
@@ -41,10 +46,12 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
         // Update the package content in S3
         await updatePackageInS3(s3Key, bufferContent);
 
-        // Prepare the update data for DynamoDB, including lastUpdated timestamp
-        const updateData = {
-            lastUpdated: new Date().toISOString(),  // Ensure 'lastUpdated' is a valid ISO string
-            // Add any additional fields to update, if needed
+        // Prepare the update data for DynamoDB (no 'lastUpdated' field)
+        const updateData: Partial<Module> = {
+            // Only fields that exist in the Module interface should be updated.
+            version: packageData.version,  // For example, version could be updated, if needed.
+            s3Key: packageData.s3Key,  // Ensure s3Key is part of the update, but don't modify it unnecessarily
+            name: packageData.name,  // Same for name, modify only if needed.
         };
 
         // Update the package metadata in DynamoDB
