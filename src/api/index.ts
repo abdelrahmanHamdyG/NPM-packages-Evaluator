@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import packageRouter from './routes/package.js';
-import packageRouter from './routes/packageCost.js';
 
 
 const app = express();
