@@ -3,7 +3,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import packageRouter from './routes/package.js';
 import resetRouter from './routes/reset.js';  // Import the reset router
-import updateRouter from './routes/update_package.js'
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -14,7 +13,6 @@ app.use(bodyParser.json());
 // Routes
 app.use('/package', packageRouter);
 app.use('/reset', resetRouter);  // Add the reset endpoint
-app.use('/update', updateRouter)
 
 // Start server
 app.listen(PORT, () => {
