@@ -14,11 +14,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.use('/package', packageRouter);
-<<<<<<< Updated upstream
-app.use('/packages', packageRouter);
-=======
 app.use('/packages', packagesRouter);
->>>>>>> Stashed changes
 
 // Start server
 app.listen(PORT, () => {
