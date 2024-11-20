@@ -9,7 +9,6 @@ export interface Module {
     name: string;
     version: string;
     s3Key: string;
-    cost: number;
 }
 
 export const addModuleToDynamoDB = async (module: Module) => {
@@ -20,8 +19,7 @@ export const addModuleToDynamoDB = async (module: Module) => {
             name: { S: module.name },
             version: { S: module.version },
             s3Key: { S: module.s3Key },
-            cost: { N: module.cost.toString()},
-        }
+        },
     });
 
     try {
