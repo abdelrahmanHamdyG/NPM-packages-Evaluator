@@ -118,10 +118,7 @@ export class CLI {
                 const metrics = netScoreClass.getMetricResults();
 
                 if (metrics) {
-                    const [correctness, responsiveness, rampUp, busFactor, license] = metrics;
-                    const dependencyPinningScore = this.calculateDependencyPinningMetric(
-                    npmData.dependencies
-                  );
+                    const [correctness, responsiveness, rampUp, busFactor, license, dependencyPinning] = metrics;
 
                     const formattedResult = {
                         URL: urls[index],
@@ -137,7 +134,8 @@ export class CLI {
                         ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
                         License: Number(license.score.toFixed(3)),
                         License_Latency: Number((license.latency / 1000).toFixed(3)), // Convert to number
-                        DependencyPinning: Number(dependencyPinningScore.toFixed(3)), // New metric
+                        DependencyPinning: Number(dependencyPinning.score.toFixed(3)), // New metric
+                        DependencyPinning_Latency: Number((dependencyPinning.latency / 1000).toFixed(3)), // New metric
                     };
 
                     if (githubData.name !== "empty") {
