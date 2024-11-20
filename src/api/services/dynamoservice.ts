@@ -4,13 +4,8 @@ import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand } from '@aw
 // Initialize DynamoDB client
 const dynamo = new DynamoDBClient({ region: 'us-east-2' });
 
-<<<<<<< Updated upstream
-interface Module {
-    id: string ;
-=======
 export interface Module {
     id: string;
->>>>>>> Stashed changes
     name: string;
     version: string;
     s3Key: string;
