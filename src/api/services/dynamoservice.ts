@@ -46,7 +46,8 @@ export const getPackageFromDynamoDB = async (id: string) => {
             id: response.Item.id.S,
             name: response.Item.name.S,
             version: response.Item.version.S,
-            s3Key: response.Item.s3Key.S
+            s3Key: response.Item.s3Key.S,
+            packageUrl: response.Item.url.S
         };
     } catch (error) {
         console.error('Error fetching package from DynamoDB:', error);
