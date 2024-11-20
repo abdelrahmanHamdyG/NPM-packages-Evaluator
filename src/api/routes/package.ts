@@ -96,7 +96,6 @@ router.get('/:id/rate', async (req: Request, res: Response): Promise<void> => {
             res.status(500).json({ error: 'The package rating system choked on at least one of the metrics.' });
             return;
         }
-        console.log(capturedOutput)
         
         // Respond with the rating data if successful
         res.status(200).json(JSON.parse(capturedOutput));
