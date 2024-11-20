@@ -67,73 +67,141 @@ export class CLI {
     }
   }
 
-  public rankModules(path: string): void {
-    logger.log(1, `Starting to rank modules from path: ${path}`);
+  // public rankModules(path: string): void {
+  //   logger.log(1, `Starting to rank modules from path: ${path}`);
 
     
-    this.rankModulesTogether(path)
-      .then(async (results) => {
-        logger.log(1, "The data fetched for each URL:");
+  //   this.rankModulesTogether(path)
+  //     .then(async (results) => {
+  //       logger.log(1, "The data fetched for each URL:");
 
-        const urls=await this.readFromFile(path);
-        // Loop through results and process each module
-        for (const [index, { npmData, githubData }] of results.entries()) {
-          logger.log(1, `Processing result ${index + 1}:`);
+  //       const urls=await this.readFromFile(path);
+  //       // Loop through results and process each module
+  //       for (const [index, { npmData, githubData }] of results.entries()) {
+  //         logger.log(1, `Processing result ${index + 1}:`);
 
-          if (npmData) {
-            npmData.printMyData();
-          } 
+  //         if (npmData) {
+  //           npmData.printMyData();
+  //         } 
 
-          if (githubData) {
-            githubData.printMyData();
-          } 
+  //         if (githubData) {
+  //           githubData.printMyData();
+  //         } 
 
           
 
-          if (githubData && npmData) {
-            const netScoreClass = new NetScore(githubData, npmData);
-            const net = await netScoreClass.calculateLatency();
-            const metrics = netScoreClass.getMetricResults();
-            if (metrics) {
-              const [correctness, responsiveness, rampUp, busFactor, license] =
-                metrics;
+  //         if (githubData && npmData) {
+  //           const netScoreClass = new NetScore(githubData, npmData);
+  //           const net = await netScoreClass.calculateLatency();
+  //           const metrics = netScoreClass.getMetricResults();
+  //           if (metrics) {
+  //             const [correctness, responsiveness, rampUp, busFactor, license] =
+  //               metrics;
               
               
-              const formattedResult = {
-                URL: urls[index],
-                NetScore :Number(net.score.toFixed(3)) ,
-                NetScore_Latency: Number((net.latency / 1000).toFixed(3)), // Convert to number
-                RampUp: Number(rampUp.score.toFixed(3)),
-                RampUp_Latency: Number((rampUp.latency / 1000).toFixed(3)), // Convert to number
-                Correctness: Number(correctness.score.toFixed(3)),
-                Correctness_Latency: Number((correctness.latency / 1000).toFixed(3)), // Convert to number
-                BusFactor: Number(busFactor.score.toFixed(3)),
-                BusFactor_Latency: Number((busFactor.latency / 1000).toFixed(3)), // Convert to number
-                ResponsiveMaintainer: Number(responsiveness.score.toFixed(3)),
-                ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
-                License: Number(license.score.toFixed(3)),
-                License_Latency: Number((license.latency / 1000).toFixed(3)) // Convert to number
-            };
+  //             const formattedResult = {
+  //               URL: urls[index],
+  //               NetScore :Number(net.score.toFixed(3)) ,
+  //               NetScore_Latency: Number((net.latency / 1000).toFixed(3)), // Convert to number
+  //               RampUp: Number(rampUp.score.toFixed(3)),
+  //               RampUp_Latency: Number((rampUp.latency / 1000).toFixed(3)), // Convert to number
+  //               Correctness: Number(correctness.score.toFixed(3)),
+  //               Correctness_Latency: Number((correctness.latency / 1000).toFixed(3)), // Convert to number
+  //               BusFactor: Number(busFactor.score.toFixed(3)),
+  //               BusFactor_Latency: Number((busFactor.latency / 1000).toFixed(3)), // Convert to number
+  //               ResponsiveMaintainer: Number(responsiveness.score.toFixed(3)),
+  //               ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
+  //               License: Number(license.score.toFixed(3)),
+  //               License_Latency: Number((license.latency / 1000).toFixed(3)) // Convert to number
+  //           };
             
-              if(githubData.name!=="empty"){
-                console.log(JSON.stringify(formattedResult));
-              }else{
-                console.log(
-                { URL: urls[index], error: "GitHub repo doesn't exist" }
-                );              
-              }
+  //             if(githubData.name!=="empty"){
+  //               console.log(JSON.stringify(formattedResult));
+  //             }else{
+  //               console.log(
+  //               { URL: urls[index], error: "GitHub repo doesn't exist" }
+  //               );              
+  //             }
 
               
+  //           }
+
+
+  //         }
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       logger.log(1, `Error in rankModules: ${error}`);
+  //     });
+  // }
+
+  public async rankModules(path: string): Promise<number> {
+    logger.log(1, `Starting to rank modules from path: ${path}`);
+
+    try {
+        const results = await this.rankModulesTogether(path);
+        logger.log(1, "The data fetched for each URL:");
+
+        const urls = await this.readFromFile(path);
+
+        // Loop through results and process each module
+        for (const [index, { npmData, githubData }] of results.entries()) {
+            logger.log(1, `Processing result ${index + 1}:`);
+
+            if (npmData) {
+                npmData.printMyData();
             }
 
+            if (githubData) {
+                githubData.printMyData();
+            }
 
-          }
+            if (githubData && npmData) {
+                const netScoreClass = new NetScore(githubData, npmData);
+                const net = await netScoreClass.calculateLatency();
+                const metrics = netScoreClass.getMetricResults();
+
+                if (metrics) {
+                    const [correctness, responsiveness, rampUp, busFactor, license] = metrics;
+
+                    const formattedResult = {
+                        URL: urls[index],
+                        NetScore: Number(net.score.toFixed(3)),
+                        NetScore_Latency: Number((net.latency / 1000).toFixed(3)), // Convert to number
+                        RampUp: Number(rampUp.score.toFixed(3)),
+                        RampUp_Latency: Number((rampUp.latency / 1000).toFixed(3)), // Convert to number
+                        Correctness: Number(correctness.score.toFixed(3)),
+                        Correctness_Latency: Number((correctness.latency / 1000).toFixed(3)), // Convert to number
+                        BusFactor: Number(busFactor.score.toFixed(3)),
+                        BusFactor_Latency: Number((busFactor.latency / 1000).toFixed(3)), // Convert to number
+                        ResponsiveMaintainer: Number(responsiveness.score.toFixed(3)),
+                        ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
+                        License: Number(license.score.toFixed(3)),
+                        License_Latency: Number((license.latency / 1000).toFixed(3)) // Convert to number
+                    };
+
+                    if (githubData.name !== "empty") {
+                        console.log(JSON.stringify(formattedResult));
+                    } else {
+                        console.log({
+                            URL: urls[index],
+                            error: "GitHub repo doesn't exist"
+                        });
+                    }
+                }
+            }
         }
-      })
-      .catch((error) => {
+
+        // Return success code 0 wrapped in a Promise
+        return Promise.resolve(0);
+
+    } catch (error) {
         logger.log(1, `Error in rankModules: ${error}`);
-      });
-  }
+        // Return error code 1 wrapped in a Promise
+        return Promise.resolve(1);
+    }
+}
+
 
   public async rankModulesTogether(
     path: string
