@@ -67,73 +67,29 @@ export class CLI {
     }
   }
 
-  // public rankModules(path: string): void {
-  //   logger.log(1, `Starting to rank modules from path: ${path}`);
+   private calculateDependencyPinningMetric(dependencies: Record<string, string>): number {
+    if (!dependencies || Object.keys(dependencies).length === 0) {
+      return 1.0; // Score 1.0 if there are no dependencies
+    }
 
-    
-  //   this.rankModulesTogether(path)
-  //     .then(async (results) => {
-  //       logger.log(1, "The data fetched for each URL:");
+    let pinnedCount = 0;
+    let totalDependencies = 0;
 
-  //       const urls=await this.readFromFile(path);
-  //       // Loop through results and process each module
-  //       for (const [index, { npmData, githubData }] of results.entries()) {
-  //         logger.log(1, `Processing result ${index + 1}:`);
+    for (const [_, version] of Object.entries(dependencies)) {
+      if (typeof version === "string") {
+        // Check if the dependency is pinned to a major+minor version
+        if (/^\d+\.\d+\.\d+$|^\d+\.\d+\.x$|^~\d+\.\d+\.\d+$/.test(version)) {
+          pinnedCount++;
+        }
+      }
+      totalDependencies++;
+    }
 
-  //         if (npmData) {
-  //           npmData.printMyData();
-  //         } 
+    const pinningScore = pinnedCount / totalDependencies;
+    logger.log(2, `Dependency Pinning Score: ${pinningScore}`);
+    return pinningScore;
+  }
 
-  //         if (githubData) {
-  //           githubData.printMyData();
-  //         } 
-
-          
-
-  //         if (githubData && npmData) {
-  //           const netScoreClass = new NetScore(githubData, npmData);
-  //           const net = await netScoreClass.calculateLatency();
-  //           const metrics = netScoreClass.getMetricResults();
-  //           if (metrics) {
-  //             const [correctness, responsiveness, rampUp, busFactor, license] =
-  //               metrics;
-              
-              
-  //             const formattedResult = {
-  //               URL: urls[index],
-  //               NetScore :Number(net.score.toFixed(3)) ,
-  //               NetScore_Latency: Number((net.latency / 1000).toFixed(3)), // Convert to number
-  //               RampUp: Number(rampUp.score.toFixed(3)),
-  //               RampUp_Latency: Number((rampUp.latency / 1000).toFixed(3)), // Convert to number
-  //               Correctness: Number(correctness.score.toFixed(3)),
-  //               Correctness_Latency: Number((correctness.latency / 1000).toFixed(3)), // Convert to number
-  //               BusFactor: Number(busFactor.score.toFixed(3)),
-  //               BusFactor_Latency: Number((busFactor.latency / 1000).toFixed(3)), // Convert to number
-  //               ResponsiveMaintainer: Number(responsiveness.score.toFixed(3)),
-  //               ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
-  //               License: Number(license.score.toFixed(3)),
-  //               License_Latency: Number((license.latency / 1000).toFixed(3)) // Convert to number
-  //           };
-            
-  //             if(githubData.name!=="empty"){
-  //               console.log(JSON.stringify(formattedResult));
-  //             }else{
-  //               console.log(
-  //               { URL: urls[index], error: "GitHub repo doesn't exist" }
-  //               );              
-  //             }
-
-              
-  //           }
-
-
-  //         }
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       logger.log(1, `Error in rankModules: ${error}`);
-  //     });
-  // }
 
   public async rankModules(path: string): Promise<number> {
     logger.log(1, `Starting to rank modules from path: ${path}`);
@@ -163,6 +119,9 @@ export class CLI {
 
                 if (metrics) {
                     const [correctness, responsiveness, rampUp, busFactor, license] = metrics;
+                    const dependencyPinningScore = this.calculateDependencyPinningMetric(
+                    npmData.dependencies
+                  );
 
                     const formattedResult = {
                         URL: urls[index],
@@ -177,7 +136,8 @@ export class CLI {
                         ResponsiveMaintainer: Number(responsiveness.score.toFixed(3)),
                         ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
                         License: Number(license.score.toFixed(3)),
-                        License_Latency: Number((license.latency / 1000).toFixed(3)) // Convert to number
+                        License_Latency: Number((license.latency / 1000).toFixed(3)), // Convert to number
+                        DependencyPinning: Number(dependencyPinningScore.toFixed(3)), // New metric
                     };
 
                     if (githubData.name !== "empty") {
