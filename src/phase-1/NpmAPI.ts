@@ -1,4 +1,5 @@
 import { API } from "./API.js";
+import { DependencyPinningMetric } from "./DependencyPinningMetric.js";
 import { NPMData } from "./NPMData.js";
 
 export class NpmAPI extends API {
@@ -32,16 +33,18 @@ export class NpmAPI extends API {
       const license = versionData?.license;
       const repository = versionData?.repository;
       const repoUrl = repository?.url;
+      const dependencies = versionData?.dependencies || {};
       this.logger.log(2, `License: ${license}, Repository URL: ${repoUrl}`);
+      this.logger.log(2, `Dependencies: ${JSON.stringify(dependencies)}`);
 
       let extractedUrl = repoUrl.slice(4, -4);
       if (!extractedUrl.startsWith("https") && extractedUrl.length !== 0) {
         extractedUrl = `https:${extractedUrl}`;
         this.logger.log(2, `Extracted and formatted repository URL: ${extractedUrl}`);
-        return new NPMData(license, extractedUrl, latency);
+        return new NPMData(license, extractedUrl, latency, dependencies);
       } else {
         this.logger.log(2, `Extracted repository URL: ${extractedUrl}`);
-        return new NPMData(license, extractedUrl, latency);
+        return new NPMData(license, extractedUrl, latency, dependencies);
       }
 
     } catch (error) {
