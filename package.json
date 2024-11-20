@@ -13,6 +13,7 @@
   "description": "CLI tool for evaluating npm modules",
   "devDependencies": {
     "@eslint/js": "^9.10.0",
+    "@types/aws-sdk": "^0.0.42",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/fs-extra": "^11.0.4",
@@ -36,6 +37,7 @@
     "@aws-sdk/client-dynamodb": "^3.679.0",
     "@aws-sdk/client-s3": "^3.679.0",
     "@aws-sdk/lib-storage": "^3.678.0",
+    "aws-sdk": "^2.1692.0",
     "axios": "^1.7.7",
     "body-parser": "^1.20.3",
     "commander": "^12.1.0",
