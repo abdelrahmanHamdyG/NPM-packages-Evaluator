@@ -257,7 +257,7 @@ export class CLI {
       const npmAPI = new NpmAPI(npmObject);
 
       npmData = await npmAPI.fetchData();
-//a
+
       if (npmData.githubUrl && npmData.githubUrl !== "empty") {
         const githubObject = this.parseGitHubUrl(npmData.githubUrl);
 
