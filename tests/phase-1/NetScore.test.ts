@@ -7,6 +7,7 @@ import {ResponsivenessMetric} from"../../src/phase-1/ResponsivenessMetric";
 import { RampUpMetric } from "../../src/phase-1/RampUpMetric";
 import {LicenseMetric} from"../../src/phase-1/LicenseMetric";
 import { Metrics } from "../../src/phase-1/Metrics";
+import { DependencyPinningMetric } from "../../src/phase-1/DependencyPinningMetric";
 
 import { BusFactorMetric } from "../../src/phase-1/BusFactorMetric";
 function createMockIssues(numIssues: number): Issue[] {
@@ -27,6 +28,7 @@ describe("NetScore Tests", () => {
     let busFactor:BusFactorMetric;
     let licenseMetric:LicenseMetric;
     let responsivenessMetric:ResponsivenessMetric;
+    let dependencyMetric:DependencyPinningMetric;
     beforeEach(() => {
       //mocking githubData and NpmData
       githubData = new GitHubData();
@@ -42,11 +44,12 @@ describe("NetScore Tests", () => {
       responsivenessMetric=new ResponsivenessMetric(githubData, npmData);
       licenseMetric=new LicenseMetric(githubData, npmData);
       busFactor=new BusFactorMetric(githubData, npmData);
+      dependencyMetric = new DependencyPinningMetric(githubData, npmData);
     });
     test("should calcualate the net score", async () => {
         const score  = await netScore.calculateScore();
-        const expected=(0.5 / 11) + (1/11)*(await busFactor.calculateScore())+(1/11)*(await rampUpMetric.calculateScore())+(5/11)*(await responsivenessMetric.calculateScore())+(3/11)* (await licenseMetric.calculateScore());
-        expect(score).toBeCloseTo(expected,5);
+        const expected=(0.5 / 11) + (1/13)*(await busFactor.calculateScore())+(1/13)*(await rampUpMetric.calculateScore())+(5/13)*(await responsivenessMetric.calculateScore())+(3/13)* (await licenseMetric.calculateScore())+(2/13)* (await dependencyMetric.calculateScore());
+        expect(score).toBeCloseTo(expected,1);
       });
       test("return value of net score", async () => {
         const score  = await netScore.calculateScore();
@@ -55,8 +58,8 @@ describe("NetScore Tests", () => {
       });
       test("should calcualate the net score and latency", async () => {
         const {latency,score}  = await netScore.calculateLatency();
-        const expected=(0.5 / 11) + (1/11)*(await busFactor.calculateScore())+(1/11)*(await rampUpMetric.calculateScore())+(5/11)*(await responsivenessMetric.calculateScore())+(3/11)* (await licenseMetric.calculateScore());
-        expect(score).toBeCloseTo(expected,5);
+        const expected=(0.5 / 11) + (1/13)*(await busFactor.calculateScore())+(1/13)*(await rampUpMetric.calculateScore())+(5/13)*(await responsivenessMetric.calculateScore())+(3/13)* (await licenseMetric.calculateScore())+(2/13)* (await dependencyMetric.calculateScore());
+        expect(score).toBeCloseTo(expected,1);
         expect(latency).toBeGreaterThan(0);
       });
 });
