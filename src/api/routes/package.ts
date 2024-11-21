@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { getPackageFromDynamoDB, updateDynamoPackagedata } from '../services/dynamoservice.js';
 import { downloadFileFromS3,uploadPackage} from '../services/s3service.js';
-import {getNPMPackageName, checkNPMOpenSource, getGithubInfo, cloneRepo, zipDirectory, generateId} from '../routes/package_helper.js'
+import {getNPMPackageName, checkNPMOpenSource,debloatZippedFile, getGithubInfo, cloneRepo, zipDirectory, generateId} from '../routes/package_helper.js'
 import * as fsExtra from 'fs-extra';
 import { execSync } from 'child_process';
 import * as path from 'path';
@@ -192,10 +192,10 @@ function extractRepoInfo(zipFilePath: string): Promise<RepoInfo> {
     });
 }
 
-// PUT /package/:id - Update a package's content by its ID
-router.put('/:id', async (req: Request, res: Response): Promise<void> => {
-  //TODO: if db succeeds to upload but S3 fails, remove the corresponding db entry
-    const authenticationToken = req.get('X-Authorization');
+// POST /package/:id - Update a package's content by its ID
+router.post('/:id', async (req: Request, res: Response): Promise<void> => {
+    const { id } = req.params;
+    const authenticationToken = req.header('X-Authorization');
     console.info(`XAuth: ${authenticationToken}`)
     if(!authenticationToken) {
       res.status(400).json('Auth not given');
@@ -257,23 +257,12 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
   
         let username: string = ""; 
         let repo: string = ""; 
-        const gitInfo = getGithubInfo(gitUrl);
+        const gitInfo = getGithubInfo(gitUrl); 
         username = gitInfo.username;
         repo = gitInfo.repo;
         console.info(`username and repo found successfully: ${username}, ${repo}`);
-        let gitDetails = [{username: username, repo: repo}];
-        // let scores = await get_metric_info(gitDetails);
-        // //let scores = {BusFactor: 1, RampUp: 1, LicenseScore: 1, Correctness: 1, ResponsiveMaintainer: 1, PullRequest: 1, GoodPinningPractice: 1, NetScore: 1};
-        // console.info(`retrieved scores from score calculator: ${scores.BusFactor}, ${scores.RampUp}, ${scores.LicenseScore}, ${scores.Correctness}, ${scores.ResponsiveMaintainer}, ${scores.PullRequest}, ${scores.GoodPinningPractice}, ${scores.NetScore}`);
-        
-        // // We check if the rating is sufficient and return if it is not
-        // if(scores.NetScore < 0.5) {
-        //   console.info(`Upload aborted, insufficient rating of ${scores.NetScore}`);
-        //   res.status(424).send("Package is not uploaded due to the disqualified rating.");
-        // }
-  
+      
         // Now we start the upload
-        //TODO: add in the support for different versions
         const info : RepoInfo = {
           version: version,
           url: repo
@@ -299,6 +288,7 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
         // Upload the actual package to s3
         // Read the zipped file content
         const zippedFileContent = fs.readFileSync(zipFilePath);
+        const zippedDebloatContent = await debloatZippedFile(zippedFileContent)
         console.debug(`got zipped file content`)
   
         // Create Express.Multer.File object
@@ -307,7 +297,7 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
             originalname: 'zipped_directory.zip',
             encoding: '7bit',
             mimetype: 'application/zip',
-            buffer: zippedFileContent // Buffer of the zipped file content
+            buffer: zippedDebloatContent // Buffer of the zipped file content
         };
   
         const s3_response = await uploadPackage(package_id, zippedFile); // Call your S3 upload function here\
@@ -317,7 +307,7 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
           console.error("Error uploading package to S3")
          
           res.status(400).send('Could not add package data');
-          return
+          return;
         }
   
         // If you get to this point, the file has been successfully uploaded
@@ -325,7 +315,7 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
         await fsExtra.remove(cloneRepoOut[1]);
         console.debug(`removed clone repo`)
   
-        const base64EncodedData = (zippedFileContent).toString('base64');
+        const base64EncodedData = (zippedDebloatContent).toString('base64');
         
         let response: Package = {
           metadata: metadata,
@@ -335,9 +325,7 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
           },
         }
         
-        // Old return value
-        //{"metadata": {"Name": repo, "Version": "Not Implementing", "ID": package_id}, "data": {"Content": zippedFile.buffer, "JSProgram": "Not Implementing"}};
-        
+      
         res.status(201).json(response);
       } catch (error) {
         console.error('Could not ingest package', error);
@@ -348,7 +336,6 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
       // zip file
     } else if(!req.body.URL && req.body.Content) {
       try {
-        console.info("\n-----------------------------------------");
         console.info('Uploading package (POST /package)')
   
         const binaryData = Buffer.from(req.body.Content, 'base64');
@@ -390,7 +377,6 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
             console.info(`username and repo found successfully: ${username}, ${repo}`);
             let gitDetails = [{username: username, repo: repo}];
             // let scores = await get_metric_info(gitDetails);
-            // //let scores = {BusFactor: 1, RampUp: 1, LicenseScore: 1, Correctness: 1, ResponsiveMaintainer: 1, PullRequest: 1, GoodPinningPractice: 1, NetScore: 1};
             // console.info(`retrieved scores from score calculator: ${scores.BusFactor}, ${scores.RampUp}, ${scores.LicenseScore}, ${scores.Correctness}, ${scores.ResponsiveMaintainer}, ${scores.PullRequest}, ${scores.GoodPinningPractice}, ${scores.NetScore}`);
   
             fs.unlinkSync(zipFilePath);
@@ -405,7 +391,8 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
             // Check to see if package metadata was upladed to db
             if (package_id === null) { //  happens when package exists already
               console.error("Could not upload package data to db")
-              return res.status(409).send('Package exists already.');
+              res.status(409).send('Package exists already.');
+              return;
             }
             console.debug(`Uploaded package to db with id: ${package_id}`)
   

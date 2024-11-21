@@ -5,7 +5,9 @@ import { execSync } from 'child_process'; // to execute shell cmds
 import * as fs from 'fs';
 import * as path from 'path';
 import { promisify } from 'util';
-
+import AdmZip from "adm-zip";
+import { minify as minifyJs } from "terser"; // JavaScript minification
+import { minify as minifyHtml } from "html-minifier";
 const BlueBirdPromise = require('bluebird')
 const tar = require('tar');
 import axios from 'axios';
@@ -160,3 +162,62 @@ export const getGithubInfo = (gitUrl: string): { username: string, repo: string}
 export function generateId(name: string, version: string) {
     return name + version
 }
+export async function debloatZippedFile(zippedData: Buffer): Promise<Buffer> {
+    const zip = new AdmZip(zippedData);
+    const entries = zip.getEntries();
+    const cleanedZip = new AdmZip();
+  
+    for (const entry of entries) {
+      if (entry.isDirectory) {
+        console.debug(`Skipping directory: ${entry.entryName}`);
+        continue; // Skip directories entirely
+      }
+  
+      const fileName = entry.entryName;
+      const fileContent = entry.getData().toString();
+  
+      // Remove unnecessary files
+      if (
+        fileName.endsWith(".md") || // Remove markdown files
+        fileName.startsWith("test/") || // Remove test files
+        fileName.endsWith(".log") // Remove log files
+      ) {
+        console.debug(`Excluding unnecessary file: ${fileName}`);
+        continue; // Skip adding this file
+      }
+  
+      let optimizedContent: Buffer = entry.getData(); // Default to original content
+  
+      // Minify JavaScript files
+      if (fileName.endsWith(".js")) {
+        try {
+          const result = await minifyJs(fileContent);
+          if (result.code) {
+            optimizedContent = Buffer.from(result.code);
+          }
+        } catch (error) {
+          console.error(`Failed to minify JavaScript file: ${fileName}`, error);
+        }
+      }
+  
+      // Minify HTML files
+      if (fileName.endsWith(".html")) {
+        try {
+          const minified = minifyHtml(fileContent, {
+            collapseWhitespace: true,
+            removeComments: true,
+            minifyJS: true, // Will minify embedded JS within HTML
+          });
+          optimizedContent = Buffer.from(minified);
+        } catch (error) {
+          console.error(`Failed to minify HTML file: ${fileName}`, error);
+        }
+      }
+  
+      // Add the optimized or original file to the new zip
+      cleanedZip.addFile(fileName, optimizedContent);
+    }
+  
+    // Return the debloated zip as a buffer
+    return cleanedZip.toBuffer();
+  }
