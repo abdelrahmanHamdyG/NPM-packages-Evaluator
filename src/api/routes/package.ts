@@ -193,7 +193,7 @@ function extractRepoInfo(zipFilePath: string): Promise<RepoInfo> {
 }
 
 // POST /package/:id - Update a package's content by its ID
-router.post('/:id', async (req: Request, res: Response): Promise<void> => {
+router.put('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     const authenticationToken = req.header('X-Authorization');
     console.info(`XAuth: ${authenticationToken}`)

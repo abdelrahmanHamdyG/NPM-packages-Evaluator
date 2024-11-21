@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { getPackagesFromDynamoDB, Module } from '../services/dynamoservice.js';  // Assuming you have a DynamoDB service
+import { format } from 'path';
 
 const router = Router();
 
@@ -7,7 +8,8 @@ const router = Router();
 router.post('/', async (req: Request, res: Response): Promise<void> => {
     const authToken = req.header('X-Authorization');
     const offset = req.query.offset as string || '0';  // Default to '0' if no offset is provided
-    const queries: Module[] = req.body;
+    // const queries: Module[] = req.body;
+    const queries: { Name: string, Version: string }[] = req.body;
 
     // Validate authentication token
     if (!authToken) {
@@ -16,7 +18,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
     }
 
     // Validate request body
-    if (!Array.isArray(queries) || queries.some(query => !query.name || !query.version)) {
+    if (!Array.isArray(queries) || queries.some(query => !query.Name || !query.Version)) {
         res.status(400).json({ error: 'There are missing field(s) in the PackageQuery or it is malformed.' });
         return;
     }
@@ -34,7 +36,15 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
         res.setHeader('offset', nextOffset);
 
         // Respond with the list of packages
-        res.status(200).json(packages);
+        // res.status(200).json("ID":packages.id);
+        const packageMetadata = packages.map((pkg) => ({
+            Name: pkg.name,
+            Version: pkg.version,
+            ID: pkg.id
+        }));
+        
+        // Send the metadata response
+        res.status(200).json(packageMetadata);
     } catch (error:unknown) {
         // Custom error handling for specific cases like too many items
         if (error instanceof Error) {
