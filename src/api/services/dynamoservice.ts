@@ -38,29 +38,33 @@ export const addModuleToDynamoDB = async (module: Module) => {
 
 export const getPackageFromDynamoDB = async (id: string) => {
     const command = new GetItemCommand({
-        TableName: 'Packages',
+        TableName: 'Packages', // Replace with your actual DynamoDB table name
         Key: {
-            id: { S: id }
-        }
+            id: { S: id },
+        },
     });
 
     try {
         const response = await dynamo.send(command);
-        if (!response.Item) return null;
 
+        if (!response.Item) {
+            console.error('Package not found in DynamoDB.');
+            return null; // Return null if the item doesn't exist
+        }
+
+        // Safely access attributes and provide default values if missing
         return {
-            id: response.Item.id.S,
-            name: response.Item.name.S,
-            version: response.Item.version.S,
-            s3Key: response.Item.s3Key.S,
-            packageUrl: response.Item.url.S
+            id: response.Item.id?.S || null,
+            name: response.Item.name?.S || null,
+            version: response.Item.version?.S || null,
+            s3Key: response.Item.s3Key?.S || null,
+            packageUrl: response.Item.packageUrl?.S || null,
         };
     } catch (error) {
         console.error('Error fetching package from DynamoDB:', error);
-        throw error;
+        throw error; // Re-throw the error for higher-level handling
     }
 };
-
 export const getPackagesFromDynamoDB = async (
     queries: Module[],
     offset: string = '0',
