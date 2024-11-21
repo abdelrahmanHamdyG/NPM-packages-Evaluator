@@ -1,9 +1,10 @@
 import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb';
 
+
+// Initialize DynamoDB client
 const dynamo = new DynamoDBClient({ region: 'us-east-2' });
 
-// Define TypeScript interfaces for type safety
-interface Module {
+export interface Module {
     id: string;
     name: string;
     version: string;
@@ -45,10 +46,11 @@ export const getPackageFromDynamoDB = async (id: string) => {
         if (!response.Item) return null;
 
         return {
-            id: response.Item.id.S!,
-            name: response.Item.name.S!,
-            version: response.Item.version.S!,
-            s3Key: response.Item.s3Key.S!
+            id: response.Item.id.S,
+            name: response.Item.name.S,
+            version: response.Item.version.S,
+            s3Key: response.Item.s3Key.S,
+            packageUrl: response.Item.url.S
         };
     } catch (error) {
         console.error('Error fetching package from DynamoDB:', error);
@@ -56,48 +58,75 @@ export const getPackageFromDynamoDB = async (id: string) => {
     }
 };
 
-// Save a package (alternative implementation of addModuleToDynamoDB)
-export const savePackageToDynamoDB = async (packageData: Module): Promise<Module> => {
-    const command = new PutItemCommand({
-        TableName: 'Packages',
-        Item: {
-            id: { S: packageData.id },
-            name: { S: packageData.name },
-            version: { S: packageData.version },
-            s3Key: { S: packageData.s3Key },
-        }
+export const getPackagesFromDynamoDB = async (
+    queries: Module[],
+    offset: string = '0',
+    limit: number = 10
+) => {
+    // Convert offset to an integer and set a default value if it's invalid
+    const startIndex = parseInt(offset, 10) || 0;
+    const pageSize = limit;
+
+    // Construct filter expressions for the DynamoDB scan query
+    const filterExpressions = queries
+        .map((query, idx) => {
+            return `#name${idx} = :name${idx} AND #version${idx} = :version${idx}`;
+        })
+        .join(' OR ');
+
+    // Dynamically create the expression attribute values and names
+    let expressionValues: { [key: string]: { S: string } } = {};
+    let expressionNames: { [key: string]: string } = {};
+
+    queries.forEach((query, idx) => {
+        expressionValues[`:name${idx}`] = { S: query.name };
+        expressionValues[`:version${idx}`] = { S: query.version };
+        expressionNames[`#name${idx}`] = 'name';
+        expressionNames[`#version${idx}`] = 'version';
     });
 
-    try {
-        await dynamo.send(command);
-        console.log('Package saved to DynamoDB:', packageData);
-        return packageData;
-    } catch (error) {
-        console.error('Error saving package to DynamoDB:', error);
-        throw error;
-    }
-};
-
-// Optional: Scan DynamoDB by regex (for a simple regex-like search)
-export const searchPackagesByRegEx = async (pattern: RegExp): Promise<Module[]> => {
+    // Command to scan DynamoDB
     const command = new ScanCommand({
-        TableName: 'Packages'
+        TableName: 'Packages',
+        FilterExpression: filterExpressions,
+        ExpressionAttributeValues: expressionValues,
+        ExpressionAttributeNames: expressionNames,
+        ExclusiveStartKey: startIndex ? { id: { S: startIndex.toString() } } : undefined,
     });
 
     try {
         const response = await dynamo.send(command);
-        const items = response.Items || [];
 
-        return items
-            .map(item => ({
-                id: item.id.S!,
-                name: item.name.S!,
-                version: item.version.S!,
-                s3Key: item.s3Key.S!
-            }))
-            .filter(item => pattern.test(item.name) || pattern.test(item.version));
-    } catch (error) {
-        console.error('Error scanning packages by regex:', error);
+        if (!response.Items || response.Items.length === 0) {
+            return { packages: [], nextOffset: '' };
+        }
+
+        // Paginate the results by slicing the array to the page size
+        const paginatedPackages = response.Items.slice(startIndex, startIndex + pageSize);
+
+        // Set the next offset for pagination (this would be the id of the last item in the page)
+        const nextOffset =
+            paginatedPackages.length < pageSize ? '' : (startIndex + pageSize).toString();
+
+        // Map the results to match the expected format
+        const packages = paginatedPackages.map((pkg) => ({
+            id: pkg.id.S,
+            name: pkg.name.S,
+            version: pkg.version.S,
+            s3Key: pkg.s3Key.S,
+        }));
+
+        return {
+            packages,
+            nextOffset,
+        };
+    } catch (error: unknown) {
+        // Type narrowing for error
+        if (error instanceof Error) {
+            console.error('Error scanning packages from DynamoDB:', error.message);
+        } else {
+            console.error('Unknown error scanning packages:', error);
+        }
         throw error;
     }
 };

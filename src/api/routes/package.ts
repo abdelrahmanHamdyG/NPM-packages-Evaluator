@@ -1,13 +1,16 @@
 import { Router, Request, Response } from 'express';
-import { getPackageFromDynamoDB, savePackageToDynamoDB, searchPackagesByRegEx } from '../services/dynamoservice.js';
-import { downloadFileFromS3, uploadZipToS3 } from '../services/s3service.js';
-import { v4 as uuidv4 } from 'uuid';
+import { addModuleToDynamoDB, getPackageFromDynamoDB } from '../services/dynamoservice.js';
+import { uploadZipToS3, downloadFileFromS3 } from '../services/s3service.js';
+import { CLI } from "../../phase-1/CLI.js";
+import * as fs from 'fs';
+import * as tmp from 'tmp';
+import path from 'path';
+import AdmZip from 'adm-zip';
 
+const BUCKET_NAME = 'ece461storage'; // Replace with your actual S3 bucket name
 
 const router = Router();
-
-// Define your S3 bucket name here (replace 'ece461storage' with your actual bucket name)
-const BUCKET_NAME = 'ece461storage';
+const cli = new CLI();
 
 // GET /package/:id - Retrieve a package by its ID
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
@@ -48,86 +51,176 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     }
 });
 
-
-// POST /package - Create a new package
-router.post('/', async (req: Request, res: Response): Promise<void> => {
+// GET /package/:id/rate - Retrieve rating for a package by its ID
+router.get('/:id/rate', async (req: Request, res: Response): Promise<void> => {
+    const { id } = req.params;
     const authToken = req.header('X-Authorization');
-    const { name, version, content } = req.body;
 
-    if (!authToken) {
-        res.status(403).json({ error: 'Authentication token is missing.' });
+    // Check if the package ID is missing or malformed
+    if (!id) {
+        res.status(400).json({ error: 'There is missing field(s) in the PackageID.' });
         return;
     }
 
-    if (!name || !version || !content) {
-        res.status(400).json({ error: 'Name, version, or content is missing.' });
+    // Check for authorization token
+    if (!authToken) {
+        res.status(403).json({ error: 'Authentication failed due to invalid or missing AuthenticationToken.' });
         return;
     }
 
     try {
-        const packageId = uuidv4();
-        const s3Key = `packages/${packageId}`;
+        // Fetch metadata from DynamoDB
+        const packageData = await getPackageFromDynamoDB(id);
 
-        // Upload content to S3 with all required parameters
-        await uploadZipToS3(BUCKET_NAME, s3Key, Buffer.from(content, 'base64'));
+        if (!packageData) {
+            res.status(404).json({ error: 'Package does not exist.' });
+            return;
+        }
 
-        // Save metadata to DynamoDB
-        const packageData = {
-            id: packageId,
-            name,
-            version,
-            s3Key
+        const tempURLFile = tmp.fileSync({ prefix: 'tempURLFile_', postfix: '.txt' });
+        fs.writeFileSync(tempURLFile.name, packageData.packageUrl || '');
+
+        // Run CLI tool, capture CLI output to string
+        let capturedOutput = '';
+        // Backup the original console.log
+        const originalConsoleLog = console.log;
+
+        // Override console.log to capture output
+        console.log = (message: any) => {
+            capturedOutput += message + '\n';
         };
-        await savePackageToDynamoDB(packageData);
+        // Calculate metrics
+        const rcode = await cli.rankModules(tempURLFile.name);
+        // Restore the original console.log
+        console.log = originalConsoleLog;
 
-        res.status(201).json({
-            message: 'Package created successfully.',
-            packageId,
-            metadata: {
-                name,
-                version,
-                id: packageId
-            }
-        });
+        if (rcode) {
+            res.status(500).json({ error: 'The package rating system choked on at least one of the metrics.' });
+            return;
+        }
+        
+        // Respond with the rating data if successful
+        res.status(200).json(JSON.parse(capturedOutput));
+
     } catch (error) {
-        console.error('Error creating package:', error);
+        console.error('Error retrieving package rating:', error);
         res.status(500).json({ error: 'Internal server error.' });
     }
 });
 
-// POST /package/byRegEx - Search packages by regular expression
-router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
+router.post('/', async (req: Request, res: Response): Promise<void> => {
     const authToken = req.header('X-Authorization');
-    const { pattern } = req.body;
+    const { Content, URL, JSProgram, debloat } = req.body;
 
     if (!authToken) {
-        res.status(403).json({ error: 'Authentication token is missing.' });
+        res.status(403).json({ error: 'Authentication failed due to invalid or missing AuthenticationToken.' });
         return;
     }
 
-    if (!pattern) {
-        res.status(400).json({ error: 'Pattern is missing.' });
+    if (!Content && !URL) {
+        res.status(400).json({ error: 'URL or Content is required for this operation.' });
+        return;
+    }
+    
+    if (Content && URL) {
+        res.status(400).json({ error: 'URL and Content are mutually exclusive.' });
         return;
     }
 
     try {
-        // Search for packages matching the regular expression
-        const regex = new RegExp(pattern, 'i');
-        const matchedPackages = await searchPackagesByRegEx(regex);
+        let zipBuffer: Buffer;
+        let packageData: any = {};
+        const tempDir = tmp.dirSync({ unsafeCleanup: true }).name;
 
-        if (matchedPackages.length === 0) {
-            res.status(404).json({ message: 'No packages matched the pattern.' });
+        if (Content) {
+            // Decode Base64 Content and save it to a ZIP file
+            zipBuffer = Buffer.from(Content, 'base64');
+            const zip = new AdmZip(zipBuffer);
+            zip.extractAllTo(tempDir, true);
+            console.log(fs.readdirSync(tempDir));
+ // Extract the content
+        } else {
+            // Clone repository from the given URL
+            await cloneRepository(URL, tempDir);
+        }
+
+        // Extract metadata from the repository/package content
+        const metadata = extractMetadataFromRepo(tempDir);
+        if (!metadata) {
+            res.status(400).json({ error: 'Failed to extract metadata from the repository or uploaded content.' });
             return;
         }
 
-        res.status(200).json({
-            message: 'Packages matched successfully.',
-            matchedPackages
+        const { name, version, id } = metadata;
+        const s3Key = `packages/${id}.zip`;
+
+        // Recreate ZIP buffer from the extracted content
+        const zip = new AdmZip();
+        zip.addLocalFolder(tempDir);
+        zipBuffer = zip.toBuffer();
+
+        // Upload to S3
+        await uploadZipToS3(BUCKET_NAME, s3Key, zipBuffer);
+
+        // Save metadata to DynamoDB
+        packageData = {
+            id,
+            name,
+            version,
+            s3Key,
+            packageUrl: URL || null,
+            createdAt: new Date().toISOString(),
+            jsProgram: JSProgram || null,
+            debloat: debloat || false,
+        };
+
+        await addModuleToDynamoDB(packageData);
+
+        res.status(201).json({
+            metadata: {
+                Name: name,
+                Version: version,
+                ID: id,
+            },
+            data: {
+                Content: zipBuffer.toString('base64'),
+                URL,
+                JSProgram: JSProgram || null,
+            },
         });
     } catch (error) {
-        console.error('Error searching packages by regex:', error);
+        console.error('Error handling package upload:', error);
         res.status(500).json({ error: 'Internal server error.' });
     }
 });
 
 export default router;
+
+import { exec } from 'child_process';
+import util from 'util';
+
+const execAsync = util.promisify(exec);
+
+export async function cloneRepository(repoUrl: string, destDir: string): Promise<void> {
+    if (repoUrl.includes('github.com')) {
+        await execAsync(`git clone ${repoUrl} ${destDir}`);
+    } else {
+        throw new Error('Unsupported repository URL');
+    }
+}
+
+export function extractMetadataFromRepo(repoDir: string): { name: string; version: string; id: string } | null {
+    const packageJsonPath = path.join(repoDir, 'package.json');
+    if (!fs.existsSync(packageJsonPath)) {
+        return null;
+    }
+
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+    const { name, version } = packageJson;
+
+    return {
+        name,
+        version,
+        id: `${name}-${version}`.replace(/[^a-zA-Z0-9_-]/g, '_'), // Generate a valid ID
+    };
+}
