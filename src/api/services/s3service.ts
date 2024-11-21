@@ -74,22 +74,24 @@ export const clearRegistryInS3 = async (): Promise<void> => {
     }
 };
 
-// Function to update a package in S3 by replacing the content
-export const updatePackageInS3 = async ( key: string, newFileContent: Buffer) => {
-    const bucketName = 'ece461storage';  // Specify your bucket name here
+export const uploadPackage = async (packageId: string, file: any): Promise<string | null> => {
+    const fileContent = file.buffer;
 
     const command = new PutObjectCommand({
-        Bucket: bucketName,
-        Key: key,
-        Body: newFileContent,
-        ContentType: 'application/zip',  // Assuming the content is a zip file
+        Bucket: 'ece461storage',  // Replace with your actual bucket name
+        Key: packageId,
+        Body: fileContent,
+        ContentType: file.mimetype || 'application/octet-stream', // Optional: to set content type from file
     });
 
     try {
         const response = await s3.send(command);
-        console.log(`Package updated in S3: ${key}. ETag: ${response.ETag}`);
+        const fileUrl = `https://${'ece461storage'}.s3.${'us-east-2'}.amazonaws.com/${packageId}`; // Replace bucket and region accordingly
+        console.log(`File uploaded successfully to S3. URL: ${fileUrl}`);
+
+        return fileUrl;
     } catch (error) {
-        console.error('Error updating package in S3:', error);
-        throw error;
+        console.error('Error uploading file to S3:', error);
+        return null;
     }
 };

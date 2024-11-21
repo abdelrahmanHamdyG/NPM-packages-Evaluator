@@ -10,6 +10,11 @@ export interface Module {
     version: string;
     s3Key: string;
 }
+export interface PackageMetadata {
+    Name: string;
+    Version: string;
+    ID: string;
+}
 
 export const addModuleToDynamoDB = async (module: Module) => {
     const command = new PutItemCommand({
@@ -158,46 +163,32 @@ export const clearRegistryInDynamoDB = async () => {
     }
 };
 
-// Update package metadata in DynamoDB (e.g., update version or s3Key)
-export const updatePackageInDynamoDB = async (id: string, updatedFields: Partial<Module>) => {
-    const updateExpression = Object.keys(updatedFields)
-        .map((key, index) => `#${key} = :value${index}`)
-        .join(', ');
 
-    const expressionAttributeNames: { [key: string]: string } = Object.keys(updatedFields).reduce((acc, key) => {
-        acc[`#${key}`] = key;
-        return acc;
-    }, {} as { [key: string]: string });
+// Function to add data to DynamoDB
+export const updateDynamoPackagedata = async (
+    metadata: PackageMetadata): Promise<string | null> => {
+    // The table name should match your DynamoDB table's name
+    const tableName = 'Packages';
 
-    // Explicitly cast to string to ensure the correct type for DynamoDB
-    const expressionAttributeValues: { [key: string]: { S: string } } = Object.keys(updatedFields).reduce((acc, key, index) => {
-        const value = updatedFields[key as keyof Module];  // Get the value from updatedFields
-
-        // Ensure that the value is a string, because DynamoDB expects { S: string }
-        if (typeof value === 'string') {
-            acc[`:value${index}`] = { S: value };
-        } else {
-            console.error(`Invalid value for ${key}: expected string, but got ${typeof value}`);
-        }
-
-        return acc;
-    }, {} as { [key: string]: { S: string } });
-
-    const command = new UpdateItemCommand({
-        TableName: 'Packages',
-        Key: {
-            id: { S: id }
+    // Create the PutItemCommand with metadata and rating
+    const command = new PutItemCommand({
+        TableName: tableName,
+        Item: {
+            id: { S: metadata.ID },  // ID as string
+            name: { S: metadata.Name },  // Name as string
+            version: { S: metadata.Version },  // Version as string
         },
-        UpdateExpression: `SET ${updateExpression}`,
-        ExpressionAttributeNames: expressionAttributeNames,
-        ExpressionAttributeValues: expressionAttributeValues,
     });
 
     try {
+        // Send the command to DynamoDB to insert the item
         await dynamo.send(command);
-        console.log('Package metadata updated in DynamoDB:', id, updatedFields);
+        console.log('Package metadata added to DynamoDB:', metadata);
+
+        // Return the package ID
+        return metadata.ID;
     } catch (error) {
-        console.error('Error updating package in DynamoDB:', error);
-        throw error;
+        console.error('Error adding package to DynamoDB:', error);
+        return null;
     }
 };

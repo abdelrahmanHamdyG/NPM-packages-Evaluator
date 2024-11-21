@@ -54,6 +54,7 @@
     "node-fetch": "^3.3.2",
     "octokit": "^4.0.2",
     "unzipper": "^0.12.3",
-    "winston": "^3.14.2"
+    "winston": "^3.14.2",
+    "yauzl": "^3.2.0"
   }
 }
