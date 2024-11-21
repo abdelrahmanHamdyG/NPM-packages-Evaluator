@@ -1,88 +1,175 @@
-import * as path from "path";
-import * as fs from "fs/promises";
-import AdmZip from "adm-zip";
+import * as fsExtra from 'fs-extra';
+import { Octokit, App } from "octokit"; // Octokit v17
+import { execSync } from 'child_process'; // to execute shell cmds
+import * as fs from 'fs';
+import * as path from 'path';
+import BluebirdPromise from 'bluebird';
+import { promisify } from 'util';
+import { fileURLToPath } from 'url';
+import * as tar from 'tar';
+import axios from 'axios';
 
-// Logger (stub for demonstration; replace with your logger)
-const logger = {
-  info: console.log,
-  debug: console.debug,
-  error: console.error,
-};
+import ESLint from 'eslint';
+import archiver from 'archiver';
 
-// Helper: Unzip Base64 Content
-async function unzipContent(content: string): Promise<string> {
-  logger.info("unzipContent: Unzipping content");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-  try {
-    const buffer = Buffer.from(content, "base64");
-    const zip = new AdmZip(buffer);
 
-    const tempDir = path.join(__dirname, "..", "artifacts", "unzipped");
-    await fs.mkdir(tempDir, { recursive: true });
-
-    // Extract files
-    zip.extractAllTo(tempDir, true);
-    logger.info("unzipContent: Content unzipped to: " + tempDir);
-
-    return tempDir;
-  } catch (err) {
-    logger.error("unzipContent: Error unzipping content", err);
-    throw err;
-  }
-}
-
-// Helper: Get package.json
-async function getPackageJSON(basePath: string): Promise<any> {
-  logger.info("getPackageJSON: Retrieving package.json from basePath: " + basePath);
-
-  try {
-    const packageJsonPath = path.join(basePath, "package.json");
-    const packageJsonContent = await fs.readFile(packageJsonPath, "utf-8");
-    logger.info("getPackageJSON: Successfully read package.json");
-
-    return JSON.parse(packageJsonContent);
-  } catch (err) {
-    logger.error("getPackageJSON: Error reading package.json", err);
-    throw new Error("package.json not found or invalid.");
-  }
-}
-
-// Helper: Delete Unzipped Folder
-export async function deleteUnzippedFolder(basePath: string): Promise<void> {
-  logger.info("deleteUnzippedFolder: Deleting unzipped folder: " + basePath);
-
-  try {
-    await fs.rm(basePath, { recursive: true, force: true });
-    logger.info("deleteUnzippedFolder: Successfully deleted folder");
-  } catch (err) {
-    logger.error("deleteUnzippedFolder: Error deleting folder", err);
-  }
-}
-
-// Main Function: Get URL From Content
-export async function getUrlFromContent(
-  content: string
-): Promise<{ url: string; } | null> {
-  logger.info("getUrlFromContent: Processing content");
-
-  let basePath = await unzipContent(content);
-  logger.info("getUrlFromContent: Unzipped to basePath: " + basePath);
-
-  try {
-    const package_json = await getPackageJSON(basePath);
-
-    let url = package_json["homepage"];
-    if (!url) {
-      logger.debug("getUrlFromContent: No homepage field in package.json");
-      await deleteUnzippedFolder(basePath);
-      return null;
+const writeFile = promisify(fs.writeFile);
+export const getNPMPackageName = (npmUrl: string): string  => { 
+    const npmRegex = /https:\/\/www\.npmjs\.com\/package\/([\w-]+)/i; // regex to get package name from npm url
+    const npm_match = npmUrl.match(npmRegex);
+    if (npm_match) { // if url is found with proper regex (package identifier)
+        return npm_match[1]; // return this package name
     }
+    return "";  
+}
+async function downloadFile(url: string, destination: string) {
+    const response = await axios.get(url, { responseType: 'stream' });
+    response.data.pipe(fs.createWriteStream(destination));
 
-    logger.info("getUrlFromContent: Extracted URL: " + url);
-    return { url};
-  } catch (error) {
-    logger.debug("getUrlFromContent: Error processing content or no package.json");
-    await deleteUnzippedFolder(basePath);
-    return null;
+    await new Promise((resolve, reject) => {
+        response.data.on('end', resolve);
+        response.data.on('error', reject);
+    });
+}
+async function extractTarball(tarballPath: string, targetDir: any) {
+    return new Promise((resolve, reject) => {
+        fs.createReadStream(tarballPath)
+            .pipe(tar.extract({ cwd: targetDir, strip: 1 }))
+            .on('error', reject)
+            .on('end', resolve);
+    });
+}
+export async function cloneRepo(repoUrl: string, destinationPath: string): Promise<[number, string]> {
+    try {
+      const cloneDir = path.isAbsolute(destinationPath)
+        ? destinationPath
+        : path.join(__dirname, destinationPath);
+  
+      if (!fs.existsSync(cloneDir)) {
+        fs.mkdirSync(cloneDir, { recursive: true });
+      }
+  
+      // Fetch the default branch name dynamically
+      const apiRepoUrl = repoUrl.replace('https://github.com/', 'https://api.github.com/repos/');
+      const response = await axios.get(apiRepoUrl, {
+        headers: { Accept: 'application/vnd.github.v3+json' },
+      });
+  
+      const defaultBranch = response.data.default_branch || 'main'; // Use default branch or fallback to 'main'
+      const tarballUrl = `${repoUrl}/archive/refs/heads/${defaultBranch}.tar.gz`;
+      const tarballPath = path.join(__dirname, 'temp.tar.gz');
+  
+      // Download and extract the tarball
+      await downloadFile(tarballUrl, tarballPath);
+      await extractTarball(tarballPath, cloneDir);
+  
+      console.info('Tarball extracted successfully');
+      const score = 1;
+  
+      fs.unlinkSync(tarballPath); // Cleanup temporary tarball
+      return [score, cloneDir];
+    } catch (error) {
+      console.error('An error occurred when cloning the repo:', error);
+      return [0, ''];
+    }
   }
+  
+  export async function zipDirectory(directoryPath: string, outputZipPath: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+        const output = fs.createWriteStream(outputZipPath);
+        const archive = archiver('zip', { zlib: { level: 9 } });
+
+        // On successful completion, resolve with the output zip file path
+        output.on('close', () => {
+            console.info('Directory has been zipped successfully.');
+            resolve(outputZipPath); // Return the zip file path
+        });
+
+        // Handle errors during zipping
+        archive.on('error', (err: any) => {
+            console.error('Error zipping directory:', err);
+            reject(err); // Reject the promise with the error
+        });
+
+        // Pipe the archive to the output stream
+        archive.pipe(output);
+
+        // Add the directory to the zip archive (false means no base folder in the archive)
+        archive.directory(directoryPath, false);
+
+        // Finalize the archive (this triggers the actual zipping)
+        archive.finalize();
+    });
+}
+const readJSON = (jsonPath: string, callback: (data: Record<string, unknown> | null) => void) => {
+    fs.readFile(jsonPath, 'utf-8', async (err, data) => {
+        if (err) {
+        callback(null); // Pass null to the callback to indicate an error
+        return;
+        }
+    
+        try {
+        const jsonData = JSON.parse(data);
+        callback(jsonData); // Pass the parsed JSON data to the callback
+        }catch (parseError) {
+        callback(null); // Pass null to the callback to indicate an error
+        }
+    });
+    };
+export async function checkNPMOpenSource(filePath: string): Promise<string> {
+    return new Promise((resolve) => {
+        readJSON(filePath, async (jsonData) => {
+        if (jsonData !== null) {
+            console.info(`reading json (not null)...`);
+            const repository = jsonData.repository as Record<string, unknown>;
+            if (repository.type == 'git') {
+                console.info(`repo is git`);
+                let gitUrl: string = repository.url as string;
+                if (gitUrl.startsWith('git+ssh://git@')) {
+                    // Convert SSH URL to HTTPS URL
+                    gitUrl = gitUrl.replace('git+ssh://git@', 'https://');
+                } else if (gitUrl.startsWith('git+https://')) {
+                    gitUrl = gitUrl.replace('git+https://', 'https://');
+                } else if (gitUrl.startsWith('git')) {
+                    gitUrl = gitUrl.replace('git', 'https');
+                }
+
+                if (gitUrl.endsWith('.git')) { 
+                    gitUrl = gitUrl.substring(0, gitUrl.length - 4);
+                }
+                    
+                console.info(`made gitUrl: ${gitUrl}`);
+                resolve(gitUrl);
+            } else {
+                console.info('No git repository found.');
+                resolve("Invalid");
+            }
+        } else {
+            console.info('Failed to read or parse JSON.');
+            return "";
+        }
+        });
+
+    });
+}
+
+export const getGithubInfo = (gitUrl: string): { username: string, repo: string}  => {
+    const gitRegex = /https:\/\/github\.com\/([^/]+)\/([^/]+)/i; // regex to get user/repo name  from git url
+    const gitMatch = gitUrl.match(gitRegex);
+    if (gitMatch) { 
+        return {
+            username: gitMatch[1],
+            repo: gitMatch[2]
+        };
+    }
+    return {
+        username: "",
+        repo: ""
+    };
+}
+export function generateId(name: string, version: string) {
+    return name + version
 }
