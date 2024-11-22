@@ -8,7 +8,13 @@ import * as path from 'path';
 import { CLI } from "../../phase-1/CLI.js";
 import * as fs from 'fs';
 import * as tmp from 'tmp';
-const yauzl = require('yauzl');
+import yauzl from 'yauzl';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const versionRegex = /^(\d+)\.(\d+)\.(\d+)$/; // Regular expression to match Semantic Versioning (Major.Minor.Patch)
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const router = Router();
 const cli = new CLI();
@@ -192,8 +198,24 @@ function extractRepoInfo(zipFilePath: string): Promise<RepoInfo> {
     });
 }
 
+
+const validateVersion = (version: string) => {
+    return versionRegex.test(version);  // Returns true if the version matches the regex
+};
+
+const validatePatchVersionSequence = (existingVersion: string, newVersion: string) => {
+    const [existingMajor, existingMinor, existingPatch] = existingVersion.split('.').map(Number);
+    const [newMajor, newMinor, newPatch] = newVersion.split('.').map(Number);
+
+    if (newMajor < existingMajor) return false; // Major version cannot be decreased
+    if (newMajor === existingMajor && newMinor < existingMinor) return false; // Minor version cannot be decreased
+    if (newMajor === existingMajor && newMinor === existingMinor && newPatch <= existingPatch) return false; // Patch version must be strictly greater than the existing patch version
+
+    return true;
+};
+
 // POST /package/:id - Update a package's content by its ID
-router.put('/:id', async (req: Request, res: Response): Promise<void> => {
+router.post('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     const authenticationToken = req.header('X-Authorization');
     console.info(`XAuth: ${authenticationToken}`)
@@ -201,21 +223,55 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
       res.status(400).json('Auth not given');
       return 
     }
-    let JSProgram: string | null;
-    if(req.body.JSProgram === undefined) {
-      JSProgram = null;
-    } else {
-      JSProgram = req.body.JSProgram;
-    }
-  
+    const { metadata, data } = req.body;
+    const {Name, Version, Id} = metadata;
+    try {
+        // Fetch metadata for the given package ID from DynamoDB
+        const packageData = await getPackageFromDynamoDB(id);
+
+        if (!packageData) {
+            res.status(404).json({ error: 'Package not found.' });
+            return;
+        }
+
+        // Check if the package name matches
+        if (packageData.name !== Name) {
+             res.status(400).json({ error: 'Package name mismatch.' });
+             return;
+        }
+
+        // Validate the version format (Major.Minor.Patch)
+        if (!validateVersion(Version)) {
+            res.status(400).json({ error: 'Invalid version format. Version must follow Major.Minor.Patch format.' });
+            return;
+        }
+
+        // Validate that the patch version is uploaded sequentially
+        if (packageData.version && !validatePatchVersionSequence(packageData.version, Version)) {
+            res.status(400).json({ error: 'Patch version must be uploaded sequentially.' });
+            return;
+        }
+
+        // // Check if the package was ingested via Content or URL
+        // if (packageData.ingestedVia === 'Content' && data?.ingestedVia === 'URL') {
+        //     res.status(400).json({
+        //         error: 'A package ingested via Content cannot be updated via URL.',
+        //     });
+        //     return;
+        // }
+        } catch (error) {
+            console.error('Error processing package update:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     // NPM ingest
-    if(req.body.URL && !req.body.Content) {
+    if(data.URL && !data.Content) {
       try {
         console.info('Ingesting package (POST /package)')
+        // await handleURLBasedUpload( res, data.URL, data.JSProgram);
+
+        let url = data.URL;
   
-        let url = req.body.URL;
-  
-        console.info(`req: ${JSON.stringify(req.body)}`);
+        console.info(`req: ${JSON.stringify(data)}`);
   
         if(url.includes("github")) {
           const parts = url.split('/');
@@ -229,50 +285,52 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
         console.info(`package name: ${npmPackageName}`);
   
         const output = execSync(`npm view ${npmPackageName} --json --silent`, { encoding: 'utf8' }); // shell cmd to get json
-        fs.writeFileSync(`./temp_npm_json/${npmPackageName}_info.json`, output); // write json to file
+        fs.writeFileSync(`${npmPackageName}_info.json`, output); // write json to file
         console.info(`wrote json file`);
-        const file = `./temp_npm_json/${npmPackageName}_info.json`; // file path
+        const file = `${npmPackageName}_info.json`; // file path
         const gitUrl:string = await checkNPMOpenSource(file);
         console.info(`gitUrl: ${gitUrl}`);
-        let destinationPath = 'temp_linter_test';
+        let destinationPath = 'temp';
         const cloneRepoOut = await cloneRepo(gitUrl, destinationPath);
         console.info(`finished cloning`);
         const zipFilePath = await zipDirectory(cloneRepoOut[1], `./tempZip.zip`);
   
-        let version = "";
-        fs.readFile(path.join('./src/assets/temp_linter_test', 'package.json'), 'utf8', async (err : any, data : any) => {
-          if (err) {
-            console.error('Error reading file:', err);
-            return;
-          }
         
-          try {
-            const packageJson = JSON.parse(data);
-            version = packageJson.version;
-            console.info(`version found: ${version}`);
-          } catch (error) {
-            console.info(`error searching version: ${error}`);
-          }
-        });
-  
+        let version = "";
+        
+        try {
+          // Use fs.promises.readFile to return a Promise
+          const data = await fs.promises.readFile(path.join(__dirname, './temp', 'package.json'), 'utf8');
+          
+          // Parse the JSON data and get the version
+          const packageJson = JSON.parse(data);
+          version = packageJson.version;
+          console.info(`Version found: ${version}`);
+        } catch (err) {
+          console.error('Error reading file:', err);
+        }
+        
         let username: string = ""; 
         let repo: string = ""; 
-        const gitInfo = getGithubInfo(gitUrl); 
+        const gitInfo = await getGithubInfo(gitUrl); 
         username = gitInfo.username;
         repo = gitInfo.repo;
-        console.info(`username and repo found successfully: ${username}, ${repo}`);
-      
+        console.info(`Username and repo found successfully: ${username}, ${repo}`);
+        
         // Now we start the upload
-        const info : RepoInfo = {
+        const info: RepoInfo = {
           version: version,
           url: repo
-        }
+        };
         const package_version = info.version;
+        console.info(`Version: ${package_version}`);
+        
         const metadata: PackageMetadata = {
           Name: npmPackageName,
           Version: package_version,
           ID: generateId(npmPackageName, package_version)
-        }
+        };
+        
   
         const package_id = await updateDynamoPackagedata(metadata);
   
@@ -307,7 +365,7 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
           console.error("Error uploading package to S3")
          
           res.status(400).send('Could not add package data');
-          return;
+          return
         }
   
         // If you get to this point, the file has been successfully uploaded
@@ -334,11 +392,11 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
       }
   
       // zip file
-    } else if(!req.body.URL && req.body.Content) {
+    } else if(!data.URL && data.Content) {
       try {
         console.info('Uploading package (POST /package)')
   
-        const binaryData = Buffer.from(req.body.Content, 'base64');
+        const binaryData = Buffer.from(data.Content, 'base64');
         console.info(`Got buffer/binary data`);
         const uploadDir = './uploads';
   
@@ -391,8 +449,7 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
             // Check to see if package metadata was upladed to db
             if (package_id === null) { //  happens when package exists already
               console.error("Could not upload package data to db")
-              res.status(409).send('Package exists already.');
-              return;
+              return res.status(409).send('Package exists already.');
             }
             console.debug(`Uploaded package to db with id: ${package_id}`)
   
@@ -409,7 +466,7 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
             let response: Package = {
               metadata: metadata,
               data: {
-                Content: String(req.body.Content),
+                Content: String(data.Content),
                 //JSProgram: req.body.JSProgram,
               },
             }
@@ -431,5 +488,5 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
     }
   });
 
-
+ 
 export default router;

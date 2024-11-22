@@ -1,6 +1,6 @@
 import * as fsExtra from 'fs-extra';
 import { Octokit, App } from "octokit"; // Octokit v17
-const { exec } = require('child_process'); // to execute shell cmds async version
+import { exec } from 'child_process'; // Import exec from child_process
 import { execSync } from 'child_process'; // to execute shell cmds
 import * as fs from 'fs';
 import * as path from 'path';
@@ -8,14 +8,15 @@ import { promisify } from 'util';
 import AdmZip from "adm-zip";
 import { minify as minifyJs } from "terser"; // JavaScript minification
 import { minify as minifyHtml } from "html-minifier";
-const BlueBirdPromise = require('bluebird')
-const tar = require('tar');
+import * as tar from 'tar';
 import axios from 'axios';
+import archiver from 'archiver';
+// Get the directory name of the current module (like __dirname in CommonJS)
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const { ESLint } = require('eslint');
-const archiver = require('archiver');
-
-const writeFile = promisify(fs.writeFile);
 export const getNPMPackageName = (npmUrl: string): string  => { 
     const npmRegex = /https:\/\/www\.npmjs\.com\/package\/([\w-]+)/i; // regex to get package name from npm url
     const npm_match = npmUrl.match(npmRegex);
@@ -111,7 +112,7 @@ const readJSON = (jsonPath: string, callback: (data: Record<string, unknown> | n
 export async function checkNPMOpenSource(filePath: string): Promise<string> {
     return new Promise((resolve) => {
         readJSON(filePath, async (jsonData) => {
-        if (jsonData !== null) {
+        if (jsonData != null) {
             console.info(`reading json (not null)...`);
             const repository = jsonData.repository as Record<string, unknown>;
             if (repository.type == 'git') {
