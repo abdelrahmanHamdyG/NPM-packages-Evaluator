@@ -1,0 +1,101 @@
+strip-bom - Strip UTF-8 byte order mark (BOM) from a string.
+
+strip-indent - Strip leading whitespace from each line in a string.
+
+strip-json-comments - Strip comments from JSON.
+
+supports-color - Detect if a terminal supports color.
+
+symbol-tree - Fast ES6 Symbol-based implementation of N-ary tree.
+
+table - Pretty-print tabular data in the console.
+
+term-size - Get the terminal window size.
+
+ternary-stream - A ternary stream that routes data based on a predicate.
+
+to-readable-stream - Convert a Buffer/String/Array/ArrayBuffer to a readable stream.
+
+toposort - Topological sorting algorithm.
+
+type-check - Check the type of JavaScript values.
+
+type-is - Infer the content-type of a request.
+
+typedarray-to-buffer - Convert a typed array to a Buffer.
+
+universalify - Make a callback-based function support promises.
+
+unzip-response - Unzip HTTP response if needed.
+
+update-notifier - Update notifications for your CLI app.
+
+uri-js - Fully RFC3986-compliant URI parsing and formatting.
+
+user-home - Get the path to the current user's home directory.
+
+util-deprecate - A function that marks functions as deprecated.
+
+v8flags - Retrieve V8 command-line flags for the current environment.
+
+validate-npm-package-license - Check the license field of a package.json.
+
+verror - Create error classes that inherit from VError.
+
+walker - A node module for recursive directory traversal.
+
+which - Locate a program file in the PATH.
+
+window-size - Reliable way to get the height and width of the terminal/console.
+
+wrap-ansi - Wordwrap a string with ANSI escape codes.
+
+write-file-atomic - Write a file atomically.
+
+xdg-basedir - Get XDG Base Directory paths.
+
+x-is-string - Utility for testing if a value is a string.
+
+xo - JavaScript/TypeScript linter with great defaults.
+
+xtend - Extend like a boss.
+
+y18n - The bare minimum for i18n in your library or application.
+
+yargs - yargs the modern, pirate-themed, successor to optimist.
+
+zen-observable - An implementation of Observables for JavaScript.
+
+zip-stream - Streamable archive generator.
+
+dequal - Performs a deep comparison between two values to determine if they are equivalent.
+
+hasha - Hashing made simple. Get the hash of a buffer/string/stream/file.
+
+query-string - Parse and stringify URL query strings.
+
+env-var - Parse, validate, and sanitize environment variables.
+
+figures - Unicode symbols with Windows CMD fallbacks.
+
+gaze - A globbing file watcher.
+
+humanize-duration - Human readable durations like “1 minute”.
+
+ip - IP address utilities.
+
+js-yaml - YAML 1.2 parser and serializer.
+
+leven - Measure the difference between two strings.
+
+locate-path - Get the first path that exists on disk of multiple paths.
+
+md5 - Tiny JavaScript implementation of the MD5 algorithm.
+
+mimic-fn - Make a function mimic another one.
+
+ms - Tiny millisecond conversion utility.
+
+node-releases - Node.jsreleases data.
+
+normalize-url
