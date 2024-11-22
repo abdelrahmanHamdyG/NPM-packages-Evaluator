@@ -9,7 +9,10 @@ export interface Module {
     name: string;
     version: string;
     s3Key: string;
+    uploadType: string; // New required field
+    packageUrl?: string; // Optional URL field
 }
+
 export interface PackageMetadata {
     Name: string;
     Version: string;
@@ -17,14 +20,22 @@ export interface PackageMetadata {
 }
 
 export const addModuleToDynamoDB = async (module: Module) => {
+    const item: Record<string, any> = {
+        id: { S: module.id },
+        name: { S: module.name },
+        version: { S: module.version },
+        s3Key: { S: module.s3Key },
+        uploadType: { S: module.uploadType }, // Save upload type
+    };
+
+    // Conditionally add packageUrl if it is not undefined
+    if (module.packageUrl) {
+        item.packageUrl = { S: module.packageUrl };
+    }
+
     const command = new PutItemCommand({
         TableName: 'Packages',
-        Item: {
-            id: { S: module.id },
-            name: { S: module.name },
-            version: { S: module.version },
-            s3Key: { S: module.s3Key },
-        },
+        Item: item,
     });
 
     try {

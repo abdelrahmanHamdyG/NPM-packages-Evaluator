@@ -18,11 +18,14 @@ const __dirname = path.dirname(__filename);
 const router = Router();
 const cli = new CLI();
 interface Module {
-    id: string;
-    name: string;
-    version: string;
-    s3Key: string;
+  id: string;
+  name: string;
+  version: string;
+  s3Key: string;
+  uploadType: string;           // Required field
+  packageUrl?: string;          // Optional field
 }
+
 interface RepoInfo {
     version: string,
     url: string,
@@ -477,7 +480,6 @@ router.put('/:id', async (req: Request, res: Response): Promise<void> => {
   });
 
 // POST /package - Upload a new package
-// POST /package - Upload a new package
 router.post('/', async (req: Request, res: Response): Promise<void> => {
   const authToken = req.header('X-Authorization');
   const { Content, URL, JSProgram, debloat } = req.body;
@@ -488,37 +490,46 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
   }
 
   if (!Content && !URL) {
-      res.status(400).json({ error: 'URL or Content is required for this operation.' });
+      res.status(400).json({ error: 'Either URL or Content is required for this operation.' });
       return;
   }
 
   if (Content && URL) {
-      res.status(400).json({ error: 'URL and Content cannot both be set.' });
+      res.status(400).json({ error: 'Both URL and Content cannot be set in the same request.' });
       return;
   }
 
   try {
       let metadata;
       const tempDir = tmp.dirSync({ unsafeCleanup: true }).name;
+      let uploadType = '';
+      let s3Key = '';
+      let extractedURL = null;
 
       if (Content) {
+          uploadType = 'Content';
           const zipBuffer = Buffer.from(Content, 'base64');
           const zip = new AdmZip(zipBuffer);
           zip.extractAllTo(tempDir, true);
 
-          // Extract metadata from extracted content
+          // Extract metadata
           metadata = extractMetadataFromRepo(tempDir);
       } else if (URL) {
+          uploadType = 'URL';
+          extractedURL = URL;
           await cloneRepo(URL, tempDir);
+
+          // Extract metadata
           metadata = extractMetadataFromRepo(tempDir);
       }
 
       if (!metadata) {
-          res.status(400).json({ error: 'Failed to extract metadata from the repository or uploaded content.' });
+          res.status(400).json({ error: 'Failed to extract metadata from the repository or content.' });
           return;
       }
 
       const { name, version, id } = metadata;
+      s3Key = `packages/${id}.zip`;
 
       // Check if the package already exists
       const existingPackage = await getPackageFromDynamoDB(id);
@@ -533,14 +544,12 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
           await optimizePackage(tempDir);
       }
 
-      const s3Key = `packages/${id}.zip`;
-
       // Recreate ZIP buffer
       const zip = new AdmZip();
       zip.addLocalFolder(tempDir);
       const zipBuffer = zip.toBuffer();
 
-      // Upload to S3
+      // Upload package to S3
       await uploadPackage(id, {
           fieldname: 'file',
           originalname: 'zipped_directory.zip',
@@ -555,13 +564,23 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
           name,
           version,
           s3Key,
-          packageUrl: URL || null,
+          uploadType, // Specify upload type
+          packageUrl: extractedURL, // Save URL if applicable
           createdAt: new Date().toISOString(),
           jsProgram: JSProgram || null,
           debloat: debloat || false,
       };
 
-      await addModuleToDynamoDB(packageData);
+      await addModuleToDynamoDB({
+        id,
+        name,
+        version,
+        s3Key,
+        uploadType: Content ? "content" : "URL", // Required field
+        packageUrl: URL || undefined,           // Optional field
+    });
+    
+    
 
       res.status(201).json({
           metadata: {
@@ -604,168 +623,4 @@ async function optimizePackage(dirPath: string): Promise<void> {
     }
 }
 
-  
-  /**
-   * Handles Content-based package upload by using the repository name and default version.
-   */
-  async function handleContentBasedUpload(
-    req: Request,
-    res: Response,
-    authToken: string,
-    Content: string,
-    JSProgram?: string
-  ): Promise<void> {
-    try {
-      const tempDir = tmp.dirSync().name; // Create a temporary directory for extraction
-      const zipFilePath = path.join(tempDir, 'temp.zip');
-      fs.writeFileSync(zipFilePath, Buffer.from(Content, 'base64')); // Decode and save the zip file
-  
-      // Extract repo information from the package.json file inside the zip
-      const repoInfo = await extractRepoInfo(zipFilePath);
-  
-      // If repoInfo extraction fails, return an error
-      if (!repoInfo || !repoInfo.url) {
-        res.status(400).json({ error: 'Could not extract repository information from the package content.' });
-        return;
-      }
-  
-      // Use the repo name and default version for the package
-      const packageName = getGithubInfo(repoInfo.url).repo || 'UnknownRepo';
-      const version = repoInfo.version || '1.0.0';
-      const packageId = generateId(packageName, version);
-  
-      // Upload the content to S3
-      const s3Response = await uploadPackage(packageId, {
-        buffer: Buffer.from(Content, 'base64'),
-        mimetype: 'application/zip',
-      });
-  
-      if (!s3Response) {
-        res.status(500).json({ error: 'Failed to upload package content to S3.' });
-        return;
-      }
-  
-      // Save metadata to DynamoDB
-      const metadata = {
-        Name: packageName,
-        Version: version,
-        ID: packageId,
-      };
-  
-      const dbResponse = await updateDynamoPackagedata(metadata);
-      if (!dbResponse) {
-        res.status(409).json({ error: 'Package already exists or failed to save metadata.' });
-        return;
-      }
-  
-      // Prepare the response
-      res.status(201).json({
-        metadata,
-        data: { Content, JSProgram: JSProgram || null },
-      });
-  
-      // Cleanup temporary directory
-      fs.rmSync(tempDir, { recursive: true, force: true });
-    } catch (error) {
-      console.error('Error handling Content-based upload:', error);
-      throw error;
-    }
-  }
-  
-  /**
-   * Handles URL-based package upload (unchanged from previous logic).
-   */
-  async function handleURLBasedUpload(
-    req: Request,
-    res: Response,
-    authToken: string,
-    URL: string,
-    JSProgram?: string
-  ): Promise<void> {
-    try {
-      let gitUrl = URL;
-  
-      // Check if the URL is a GitHub repository
-      if (URL.includes("github.com")) {
-        // Extract GitHub information directly
-        console.info("Processing GitHub repository URL.");
-      } else {
-        // Assume it's an npm package URL
-        const npmPackageName = getNPMPackageName(URL);
-        if (!npmPackageName) {
-          res.status(400).json({ error: 'Invalid URL or unsupported repository.' });
-          return;
-        }
-  
-        // Retrieve the Git URL from the npm package metadata
-        gitUrl = await checkNPMOpenSource(npmPackageName);
-        if (gitUrl === 'Invalid') {
-          res.status(400).json({ error: 'Package repository is not open source or unsupported.' });
-          return;
-        }
-      }
-  
-      // Clone the repository
-      const cloneDir = tmp.dirSync().name; // Temporary directory for cloning
-      const [cloneResult, cloneDirPath] = await cloneRepo(gitUrl, cloneDir);
-      if (cloneResult === 0) {
-        res.status(500).json({ error: 'Failed to clone repository.' });
-        return;
-      }
-  
-      // Create a zip file of the cloned repository
-      const zipFilePath = tmp.fileSync({ postfix: '.zip' }).name;
-      await zipDirectory(cloneDirPath, zipFilePath);
-  
-      // Read package.json for metadata
-      const packageJsonPath = path.join(cloneDirPath, 'package.json');
-      if (!fs.existsSync(packageJsonPath)) {
-        res.status(400).json({ error: 'package.json not found in the repository.' });
-        return;
-      }
-  
-      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-      const npmPackageName = packageJson.name || 'UnknownPackage';
-      const version = packageJson.version || '1.0.0';
-  
-      // Create metadata
-      const metadata = {
-        Name: npmPackageName,
-        Version: version,
-        ID: generateId(npmPackageName, version),
-      };
-  
-      // Upload the zip file to S3
-      const s3Response = await uploadPackage(metadata.ID, {
-        buffer: fs.readFileSync(zipFilePath),
-        mimetype: 'application/zip',
-      });
-  
-      if (!s3Response) {
-        res.status(500).json({ error: 'Failed to upload package content to S3.' });
-        return;
-      }
-  
-      // Save metadata to DynamoDB
-      const dbResponse = await updateDynamoPackagedata(metadata);
-      if (!dbResponse) {
-        res.status(409).json({ error: 'Package already exists or failed to save metadata.' });
-        return;
-      }
-  
-      // Respond with success
-      res.status(201).json({
-        metadata,
-        data: { Content: fs.readFileSync(zipFilePath).toString('base64'), JSProgram: JSProgram || null },
-      });
-  
-      // Cleanup temporary files and directories
-      fs.rmSync(cloneDirPath, { recursive: true });
-      fs.unlinkSync(zipFilePath);
-    } catch (error) {
-      console.error('Error handling URL-based upload:', error);
-      throw error;
-    }
-  }
-  
   export default router;
