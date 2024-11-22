@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import packageRouter from './routes/package.js';
 import packagesRouter from './routes/packages.js';
-
+import tracksRouter from './routes/tracks.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 // Routes
 app.use('/package', packageRouter);
 app.use('/packages', packagesRouter);
+app.use('/tracks', tracksRouter);
 
 // Start server
 app.listen(PORT, () => {

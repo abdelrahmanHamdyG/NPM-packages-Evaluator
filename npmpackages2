@@ -1,0 +1,115 @@
+http-errors - Create HTTP errors.
+
+http-proxy - A full-featured HTTP proxy.
+
+http-signature - Reference implementation of Joyent's HTTP Signature scheme.
+
+iconv-lite - Convert character encodings in pure JavaScript.
+
+ignore-walk - Utility for ignoring things during recursive directory traversals.
+
+imurmurhash - An incremental implementation of MurmurHash3 for JavaScript.
+
+indexof - A safer implementation of the array indexOf method.
+
+ini - An ini parser/serializer in JavaScript.
+
+is-absolute-url - Check if a URL is absolute.
+
+is-binary-path - Check if a file path is binary.
+
+is-callable - Determine whether a given value is callable.
+
+is-ci - Detect if a process is running in a CI environment.
+
+is-data-descriptor - Check if a value is a valid data descriptor.
+
+is-descriptor - Check if a value is a valid descriptor.
+
+is-extendable - Returns true if a value is a plain object or function.
+
+is-extglob - Returns true if a string has an extglob.
+
+is-fullwidth-code-point - Check if the character represented by a given Unicode code point is fullwidth.
+
+is-glob - Returns true if a string looks like a glob pattern.
+
+is-path-cwd - Check if a path is the current working directory.
+
+is-path-in-cwd - Check if a path is inside the current working directory.
+
+is-plain-obj - Check if a value is a plain object.
+
+is-promise - Test if something looks like a promise.
+
+is-redirect - Check if a URL is a redirect.
+
+is-regular-file - Check if a file path is a regular file.
+
+is-retry-allowed - Check if a retry is allowed based on the error code.
+
+isstream - Determine if an object is a stream.
+
+is-svg - Check if a file path is an SVG.
+
+js-levenshtein - Measure the difference between two strings.
+
+jsonfile - Read and write JSON files.
+
+jsprim - utilities for manipulating JavaScript objects.
+
+levn - Levenshtein distance algorithm.
+
+lodash - A modern JavaScript utility library delivering modularity, performance, and extras.
+
+lodash-compat - A modern JavaScript utility library delivering modularity, performance, & extras.
+
+log-symbols - Colored symbols for various log levels.
+
+lower-case - Convert a string to lower case.
+
+lru-cache - A least-recently-used cache.
+
+merge2 - Merge multiple streams into one stream.
+
+micromatch - Glob matcher.
+
+minimatch - A minimal matching utility.
+
+nanoid - A tiny, secure URL-friendly unique string ID generator for JavaScript.
+
+negotiator - HTTP content negotiation.
+
+node-fetch - A light-weight module that brings window.fetch to Node.js.
+
+node-int64 - Support for 64-bit numbers on JavaScript.
+
+node-releases - Node.jsreleases data.
+
+npm-package-arg - Parse the url or shorthand of an npm package.
+
+npm-run-all - A CLI tool to run multiple npm-scripts.
+
+oauth-sign - A library for signing OAuth requests.
+
+object-assign - ES6 Object.assign() ponyfill.
+
+object.defaults - Safely assign properties from source objects into a target object.
+
+path-is-absolute - Check if a path is absolute.
+
+path-key - Get the PATH environment variable key cross-platform.
+
+postcss - Tool for transforming CSS with JavaScript.
+
+pretty-bytes - Convert bytes to a human readable string.
+
+proxy-addr - Determine the address of a proxied request.
+
+punycode - A robust Punycode converter that fully complies with RFC 3492 and RFC 5891.
+
+qs - A query string parser.
+
+randombytes - Generate strong pseudo-random bytes.
+
+readable-stream - Streams3, a user-land copy of the stream library from Node.js.
