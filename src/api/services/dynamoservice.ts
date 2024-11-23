@@ -1,5 +1,7 @@
 import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb';
 import semver from 'semver';
+import { DeleteItemCommand } from '@aws-sdk/client-dynamodb';
+
 
 
 // Initialize DynamoDB client
@@ -77,78 +79,7 @@ export const getPackageFromDynamoDB = async (id: string) => {
         throw error; // Re-throw the error for higher-level handling
     }
 };
-export const getPackagesFromDynamoDB = async (
-    queries: Module[],
-    offset: string = '0',
-    limit: number = 10
-) => {
-    // Convert offset to an integer and set a default value if it's invalid
-    const startIndex = parseInt(offset, 10) || 0;
-    const pageSize = limit;
 
-    // Construct filter expressions for the DynamoDB scan query
-    const filterExpressions = queries
-        .map((query, idx) => {
-            return `#name${idx} = :name${idx} AND #version${idx} = :version${idx}`;
-        })
-        .join(' OR ');
-
-    // Dynamically create the expression attribute values and names
-    let expressionValues: { [key: string]: { S: string } } = {};
-    let expressionNames: { [key: string]: string } = {};
-
-    queries.forEach((query, idx) => {
-        expressionValues[`:name${idx}`] = { S: query.name };
-        expressionValues[`:version${idx}`] = { S: query.version };
-        expressionNames[`#name${idx}`] = 'name';
-        expressionNames[`#version${idx}`] = 'version';
-    });
-
-    // Command to scan DynamoDB
-    const command = new ScanCommand({
-        TableName: 'Packages',
-        FilterExpression: filterExpressions,
-        ExpressionAttributeValues: expressionValues,
-        ExpressionAttributeNames: expressionNames,
-        ExclusiveStartKey: startIndex ? { id: { S: startIndex.toString() } } : undefined,
-    });
-
-    try {
-        const response = await dynamo.send(command);
-
-        if (!response.Items || response.Items.length === 0) {
-            return { packages: [], nextOffset: '' };
-        }
-
-        // Paginate the results by slicing the array to the page size
-        const paginatedPackages = response.Items.slice(startIndex, startIndex + pageSize);
-
-        // Set the next offset for pagination (this would be the id of the last item in the page)
-        const nextOffset =
-            paginatedPackages.length < pageSize ? '' : (startIndex + pageSize).toString();
-
-        // Map the results to match the expected format
-        const packages = paginatedPackages.map((pkg) => ({
-            id: pkg.id.S,
-            name: pkg.name.S,
-            version: pkg.version.S,
-            s3Key: pkg.s3Key.S,
-        }));
-
-        return {
-            packages,
-            nextOffset,
-        };
-    } catch (error: unknown) {
-        // Type narrowing for error
-        if (error instanceof Error) {
-            console.error('Error scanning packages from DynamoDB:', error.message);
-        } else {
-            console.error('Unknown error scanning packages:', error);
-        }
-        throw error;
-    }
-};
 // Clear all entries in the Packages table
 export const clearRegistryInDynamoDB = async () => {
     const scanCommand = new ScanCommand({
@@ -179,11 +110,11 @@ export const clearRegistryInDynamoDB = async () => {
     }
 };
 export const getPackagesFromDynamoDB = async (
-    queries:{ Name: string, Version: string }[],
+    queries: { Name: string; Version: string }[],
     offset: string = '0',
     limit: number = 10
 ) => {
-    // Convert offset to an integer and set a default value if it's invalid
+    // Convert offset to an integer
     const startIndex = parseInt(offset, 10) || 0;
     const pageSize = limit;
 
@@ -211,45 +142,35 @@ export const getPackagesFromDynamoDB = async (
 
                 // Filter packages by version using semver
                 const filteredPackages = response.Items.filter((pkg) => {
-                    const version = pkg.version.S; // Ensure this matches your DynamoDB schema
-                    // Ensure that version is defined before calling semver.satisfies
-                    if (version && semver.satisfies(version, query.Version)) {
-                        return true;
-                    }
-                    return false;
-
+                    const version = pkg.version.S;
+                    return version && semver.satisfies(version, query.Version);
                 });
-                
 
-                // Map the results to match the expected format
+                // Map to Module type
                 return filteredPackages.map((pkg) => ({
                     id: pkg.id.S,
                     name: pkg.name.S,
                     version: pkg.version.S,
                     s3Key: pkg.s3Key.S,
+                    uploadType: pkg.uploadType.S, // Include uploadType
+                    packageUrl: pkg.packageUrl?.S, // Include optional packageUrl
                 }));
             })
         );
 
-        // Flatten results and apply pagination
+        // Flatten results and paginate
         const allPackages = results.flat();
         const paginatedPackages = allPackages.slice(startIndex, startIndex + pageSize);
 
-        // Set the next offset for pagination
-        const nextOffset =
-            paginatedPackages.length < pageSize ? '' : (startIndex + pageSize).toString();
+        // Set next offset for pagination
+        const nextOffset = paginatedPackages.length < pageSize ? '' : (startIndex + pageSize).toString();
 
         return {
             packages: paginatedPackages,
             nextOffset,
         };
-    } catch (error: unknown) {
-        // Type narrowing for error
-        if (error instanceof Error) {
-            console.error('Error scanning packages from DynamoDB:', error.message);
-        } else {
-            console.error('Unknown error scanning packages:', error);
-        }
+    } catch (error) {
+        console.error('Error scanning packages from DynamoDB:', error);
         throw error;
     }
 };

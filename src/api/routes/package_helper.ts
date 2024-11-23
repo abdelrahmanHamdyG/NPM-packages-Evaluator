@@ -3,7 +3,6 @@ import { Octokit, App } from "octokit"; // Octokit v17
 import { execSync } from 'child_process'; // to execute shell cmds
 import * as fs from 'fs';
 import * as path from 'path';
-import BluebirdPromise from 'bluebird';
 import { promisify } from 'util';
 import { fileURLToPath } from 'url';
 import * as tar from 'tar';
