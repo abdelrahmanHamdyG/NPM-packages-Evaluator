@@ -1,0 +1,138 @@
+/* App.css */
+
+body {
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    background-color: #e8eff3;
+    margin: 0;
+    padding: 0;
+}
+
+.App {
+    max-width: 800px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+}
+
+.App:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+h1 {
+    color: #2a3e52;
+    text-align: center;
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #455a6e;
+    font-size: 1.6em;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 12px;
+    border: 2px solid #3a8dff;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 90%;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+input[type="file"]:focus {
+    outline: none;
+    border-color: #008cba;
+}
+
+/* Button Styling */
+.button-group {
+    display: flex;
+    justify-content: center; /* Centers buttons horizontally */
+    flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+    gap: 10px; /* Space between buttons */
+}
+
+button {
+    background-color: #008cba;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    margin: 8px 5px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9em;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.1s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #0053a6;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    background: #f5f7fa;
+    margin: 12px 0;
+    padding: 15px;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+}
+
+li:hover {
+    background: #e9eef3;
+}
+
+pre {
+    background: #f3f4f6;
+    padding: 16px;
+    border-radius: 10px;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Accessibility */
+.hidden {
+    display: none;
+    position: absolute;
+    left: -9999px;
+}
+
+/* Media Query for Responsiveness */
+@media (max-width: 600px) {
+    .App {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    button {
+        padding: 8px 15px;
+    }
+}

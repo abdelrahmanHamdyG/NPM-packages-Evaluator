@@ -1,0 +1,27 @@
+name: Reboot EC2 on Push
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  reboot-ec2:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install AWS CLI
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y awscli
+
+    - name: Reboot EC2 Instance
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: us-east-2 
+      run: |
+        aws ec2 reboot-instances --instance-ids ${{ secrets.EC2_INSTANCE_ID }}

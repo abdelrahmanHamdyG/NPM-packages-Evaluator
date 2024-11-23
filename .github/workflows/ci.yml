@@ -1,0 +1,66 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.17.0'
+
+      # Step 3: Cache npm dependencies
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: part1/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Step 4: Install dependencies
+      - name: Install dependencies
+        run: |
+          npm install
+          npm install crypto-browserify
+
+      # Step 5: Compile TypeScript
+      - name: Compile TypeScript
+        run: |
+          npx tsc
+
+        env:
+          CI: true
+
+      # Step 6: Run tests and collect coverage
+      - name: Run tests and generate coverage
+        run: |
+              export LOG_FILE=app.log
+              npx vitest --run --coverage --reporter=json || { echo "Vitest failed"; exit 1; }
+        shell: bash
+
+      # Step 7: Upload test coverage report
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: ./coverage
+
+      # Step 8: Display test results summary
+      - name: Display test results
+        run: |
+          cat testResults.json
