@@ -67,20 +67,28 @@ export class CLI {
     }
   }
 
-  private calculateDependencyPinningMetric(dependencies: Record<string, string>): number {
+   private calculateDependencyPinningMetric(dependencies: Record<string, string>): number {
     if (!dependencies || Object.keys(dependencies).length === 0) {
-        return 1.0; // Score 1.0 if no dependencies
+      return 1.0; // Score 1.0 if there are no dependencies
     }
 
-    const totalDependencies = Object.keys(dependencies).length;
-    const pinnedDependencies = Object.values(dependencies).filter(version => {
-        return /^\d+\.\d+\.\d+$|^\d+\.\d+\.x$|^~\d+\.\d+\.\d+$/.test(version);
-    }).length;
+    let pinnedCount = 0;
+    let totalDependencies = 0;
 
-    const pinningScore = pinnedDependencies / totalDependencies;
-    logger.log(2, `Pinned Dependencies: ${pinnedDependencies}, Total: ${totalDependencies}, Score: ${pinningScore}`);
+    for (const [_, version] of Object.entries(dependencies)) {
+      if (typeof version === "string") {
+        // Check if the dependency is pinned to a major+minor version
+        if (/^\d+\.\d+\.\d+$|^\d+\.\d+\.x$|^~\d+\.\d+\.\d+$/.test(version)) {
+          pinnedCount++;
+        }
+      }
+      totalDependencies++;
+    }
+
+    const pinningScore = pinnedCount / totalDependencies;
+    logger.log(2, `Dependency Pinning Score: ${pinningScore}`);
     return pinningScore;
-}
+  }
 
 
   public async rankModules(path: string): Promise<number> {

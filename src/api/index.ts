@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import packageRouter from './routes/package.js';
 import packagesRouter from './routes/packages.js';
+import tracksRouter from './routes/tracks.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true })); // Increase U
 // Routes
 app.use('/package', packageRouter);
 app.use('/packages', packagesRouter);
+app.use('/tracks', tracksRouter);
 
 // Start server
 app.listen(PORT, () => {
