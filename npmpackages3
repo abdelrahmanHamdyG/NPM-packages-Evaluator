@@ -1,0 +1,39 @@
+rechoir - Register a module, call a callback, and unregister the module.
+
+request - Simplified HTTP request client.
+
+resolve - A tiny module for resolving module paths.
+
+retry - A retrying utility.
+
+rimraf - A deep deletion module for node.
+
+rxjs - Reactive Extensions for JavaScript.
+
+safe-buffer - Safer Buffer API.
+
+semver - The semantic version parser used by npm.
+
+send - A tiny streaming static file server.
+
+serve-favicon - A favicon serving middleware for Node.js.
+
+serve-static - Serve static files.
+
+shelljs - Portable Unix shell commands for Node.js.
+
+shortid - Amazingly short non-sequential url-friendly unique id generator.
+
+slash - Convert Windows backslashes to Unix forward slashes.
+
+snapdragon - A fast, pluggable parser.
+
+source-map - Generates and consumes source maps.
+
+split - A tiny Node.jsstream split module.
+
+sprintf-js - A JavaScript implementation of sprintf.
+
+statuses - HTTP status utility.
+
+string-width - Get the visual width of a string.
