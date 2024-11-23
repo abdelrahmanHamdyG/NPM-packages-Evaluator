@@ -1,4 +1,5 @@
-import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb';
+import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
+import semver from 'semver';
 
 
 // Initialize DynamoDB client
@@ -9,6 +10,11 @@ export interface Module {
     name: string;
     version: string;
     s3Key: string;
+}
+export interface PackageMetadata {
+    Name: string;
+    Version: string;
+    ID: string;
 }
 
 export const addModuleToDynamoDB = async (module: Module) => {
@@ -55,9 +61,8 @@ export const getPackageFromDynamoDB = async (id: string) => {
         throw error;
     }
 };
-
 export const getPackagesFromDynamoDB = async (
-    queries: Module[],
+    queries:{ Name: string, Version: string }[],
     offset: string = '0',
     limit: number = 10
 ) => {
@@ -65,57 +70,60 @@ export const getPackagesFromDynamoDB = async (
     const startIndex = parseInt(offset, 10) || 0;
     const pageSize = limit;
 
-    // Construct filter expressions for the DynamoDB scan query
-    const filterExpressions = queries
-        .map((query, idx) => {
-            return `#name${idx} = :name${idx} AND #version${idx} = :version${idx}`;
-        })
-        .join(' OR ');
-
-    // Dynamically create the expression attribute values and names
-    let expressionValues: { [key: string]: { S: string } } = {};
-    let expressionNames: { [key: string]: string } = {};
-
-    queries.forEach((query, idx) => {
-        expressionValues[`:name${idx}`] = { S: query.name };
-        expressionValues[`:version${idx}`] = { S: query.version };
-        expressionNames[`#name${idx}`] = 'name';
-        expressionNames[`#version${idx}`] = 'version';
-    });
-
-    // Command to scan DynamoDB
-    const command = new ScanCommand({
-        TableName: 'Packages',
-        FilterExpression: filterExpressions,
-        ExpressionAttributeValues: expressionValues,
-        ExpressionAttributeNames: expressionNames,
-        ExclusiveStartKey: startIndex ? { id: { S: startIndex.toString() } } : undefined,
-    });
-
     try {
-        const response = await dynamo.send(command);
+        // Fetch all potential matches for the given queries
+        const results = await Promise.all(
+            queries.map(async (query) => {
+                // Command to scan DynamoDB for packages matching the name
+                const command = new ScanCommand({
+                    TableName: 'Packages',
+                    FilterExpression: '#name = :name',
+                    ExpressionAttributeNames: {
+                        '#name': 'name',
+                    },
+                    ExpressionAttributeValues: {
+                        ':name': { S: query.Name },
+                    },
+                });
 
-        if (!response.Items || response.Items.length === 0) {
-            return { packages: [], nextOffset: '' };
-        }
+                const response = await dynamo.send(command);
 
-        // Paginate the results by slicing the array to the page size
-        const paginatedPackages = response.Items.slice(startIndex, startIndex + pageSize);
+                if (!response.Items || response.Items.length === 0) {
+                    return [];
+                }
 
-        // Set the next offset for pagination (this would be the id of the last item in the page)
+                // Filter packages by version using semver
+                const filteredPackages = response.Items.filter((pkg) => {
+                    const version = pkg.version.S; // Ensure this matches your DynamoDB schema
+                    // Ensure that version is defined before calling semver.satisfies
+                    if (version && semver.satisfies(version, query.Version)) {
+                        return true;
+                    }
+                    return false;
+
+                });
+                
+
+                // Map the results to match the expected format
+                return filteredPackages.map((pkg) => ({
+                    id: pkg.id.S,
+                    name: pkg.name.S,
+                    version: pkg.version.S,
+                    s3Key: pkg.s3Key.S,
+                }));
+            })
+        );
+
+        // Flatten results and apply pagination
+        const allPackages = results.flat();
+        const paginatedPackages = allPackages.slice(startIndex, startIndex + pageSize);
+
+        // Set the next offset for pagination
         const nextOffset =
             paginatedPackages.length < pageSize ? '' : (startIndex + pageSize).toString();
 
-        // Map the results to match the expected format
-        const packages = paginatedPackages.map((pkg) => ({
-            id: pkg.id.S,
-            name: pkg.name.S,
-            version: pkg.version.S,
-            s3Key: pkg.s3Key.S,
-        }));
-
         return {
-            packages,
+            packages: paginatedPackages,
             nextOffset,
         };
     } catch (error: unknown) {
@@ -126,5 +134,64 @@ export const getPackagesFromDynamoDB = async (
             console.error('Unknown error scanning packages:', error);
         }
         throw error;
+    }
+};
+// Clear all entries in the Packages table
+export const clearRegistryInDynamoDB = async () => {
+    const scanCommand = new ScanCommand({
+        TableName: 'Packages',
+    });
+
+    try {
+        // Fetch all items from the Packages table
+        const scanResponse = await dynamo.send(scanCommand);
+        if (!scanResponse.Items) return;
+
+        // Delete each item individually
+        const deletePromises = scanResponse.Items.map((item) => {
+            const deleteCommand = new DeleteItemCommand({
+                TableName: 'Packages',
+                Key: {
+                    id: item.id,
+                },
+            });
+            return dynamo.send(deleteCommand);
+        });
+
+        await Promise.all(deletePromises);
+        console.log('Registry has been cleared in DynamoDB.');
+    } catch (error) {
+        console.error('Error clearing registry in DynamoDB:', error);
+        throw error;
+    }
+};
+
+
+// Function to add data to DynamoDB
+export const updateDynamoPackagedata = async (
+    metadata: PackageMetadata): Promise<string | null> => {
+    // The table name should match your DynamoDB table's name
+    const tableName = 'Packages';
+
+    // Create the PutItemCommand with metadata and rating
+    const command = new PutItemCommand({
+        TableName: tableName,
+        Item: {
+            id: { S: metadata.ID },  // ID as string
+            name: { S: metadata.Name },  // Name as string
+            version: { S: metadata.Version },  // Version as string
+        },
+    });
+
+    try {
+        // Send the command to DynamoDB to insert the item
+        await dynamo.send(command);
+        console.log('Package metadata added to DynamoDB:', metadata);
+
+        // Return the package ID
+        return metadata.ID;
+    } catch (error) {
+        console.error('Error adding package to DynamoDB:', error);
+        return null;
     }
 };

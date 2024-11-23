@@ -97,6 +97,21 @@ const App = () => {
       alert('Failed to download the package. Please try again.');
     }
   };
+  // Reset Data
+  const handleReset = async () => {
+    try {
+      const response = await axios.post(`http://${publicIp}:3000/reset`, {
+        headers: {
+          'X-Authorization': `Bearer <your-token-here>`, // Replace with your token
+        },
+      });
+
+      alert('Data has been reset successfully!'); // Display success message
+    } catch (error) {
+      console.error('Error resetting data:', error);
+      alert('Failed to reset data. Please try again.');
+    }
+  };
 
   return (
     <div className="App">
@@ -221,6 +236,12 @@ const App = () => {
           </ul>
         </div>
       )}
+      
+     {/* Reset Data Section */}
+    <h2>Reset Data</h2>
+    <div>
+      <button onClick={handleReset}>Reset Data</button>
+    </div> 
     </div>
   );
 };
