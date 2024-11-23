@@ -8,6 +8,7 @@ import { NPMData } from "./NPMData.js";
 import { Logger } from "./logger.js";
 import fs from "fs/promises";
 import { NetScore } from "./NetScore.js";
+import { CodeReviewMetric } from "./CodeReviewMetric.js";
 
 const logger = new Logger();
 
@@ -118,7 +119,7 @@ export class CLI {
                 const metrics = netScoreClass.getMetricResults();
 
                 if (metrics) {
-                    const [correctness, responsiveness, rampUp, busFactor, license, dependencyPinning] = metrics;
+                    const [correctness, responsiveness, rampUp, busFactor, license, dependencyPinning, codeReviewMetric] = metrics;
 
                     const formattedResult = {
                         URL: urls[index],
@@ -134,6 +135,8 @@ export class CLI {
                         ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
                         License: Number(license.score.toFixed(3)),
                         License_Latency: Number((license.latency / 1000).toFixed(3)), // Convert to number
+                        CodeReviewFraction: Number(codeReviewMetric.score.toFixed(3)),
+                        CodeReviewFraction_Latency: Number((codeReviewMetric.latency / 1000).toFixed(3)),
                         DependencyPinning: Number(dependencyPinning.score.toFixed(3)), // New metric
                         DependencyPinning_Latency: Number((dependencyPinning.latency / 1000).toFixed(3)), // New metric
                     };
@@ -215,7 +218,7 @@ export class CLI {
       const npmAPI = new NpmAPI(npmObject);
 
       npmData = await npmAPI.fetchData();
-//a
+
       if (npmData.githubUrl && npmData.githubUrl !== "empty") {
         const githubObject = this.parseGitHubUrl(npmData.githubUrl);
 

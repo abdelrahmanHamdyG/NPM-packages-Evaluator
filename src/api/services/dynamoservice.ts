@@ -1,4 +1,4 @@
-import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb';
+import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 import semver from 'semver';
 
 
@@ -10,6 +10,11 @@ export interface Module {
     name: string;
     version: string;
     s3Key: string;
+}
+export interface PackageMetadata {
+    Name: string;
+    Version: string;
+    ID: string;
 }
 
 export const addModuleToDynamoDB = async (module: Module) => {
@@ -129,5 +134,64 @@ export const getPackagesFromDynamoDB = async (
             console.error('Unknown error scanning packages:', error);
         }
         throw error;
+    }
+};
+// Clear all entries in the Packages table
+export const clearRegistryInDynamoDB = async () => {
+    const scanCommand = new ScanCommand({
+        TableName: 'Packages',
+    });
+
+    try {
+        // Fetch all items from the Packages table
+        const scanResponse = await dynamo.send(scanCommand);
+        if (!scanResponse.Items) return;
+
+        // Delete each item individually
+        const deletePromises = scanResponse.Items.map((item) => {
+            const deleteCommand = new DeleteItemCommand({
+                TableName: 'Packages',
+                Key: {
+                    id: item.id,
+                },
+            });
+            return dynamo.send(deleteCommand);
+        });
+
+        await Promise.all(deletePromises);
+        console.log('Registry has been cleared in DynamoDB.');
+    } catch (error) {
+        console.error('Error clearing registry in DynamoDB:', error);
+        throw error;
+    }
+};
+
+
+// Function to add data to DynamoDB
+export const updateDynamoPackagedata = async (
+    metadata: PackageMetadata): Promise<string | null> => {
+    // The table name should match your DynamoDB table's name
+    const tableName = 'Packages';
+
+    // Create the PutItemCommand with metadata and rating
+    const command = new PutItemCommand({
+        TableName: tableName,
+        Item: {
+            id: { S: metadata.ID },  // ID as string
+            name: { S: metadata.Name },  // Name as string
+            version: { S: metadata.Version },  // Version as string
+        },
+    });
+
+    try {
+        // Send the command to DynamoDB to insert the item
+        await dynamo.send(command);
+        console.log('Package metadata added to DynamoDB:', metadata);
+
+        // Return the package ID
+        return metadata.ID;
+    } catch (error) {
+        console.error('Error adding package to DynamoDB:', error);
+        return null;
     }
 };
