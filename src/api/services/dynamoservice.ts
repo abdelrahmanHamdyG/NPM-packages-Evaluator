@@ -1,4 +1,4 @@
-import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
+import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 import semver from 'semver';
 import { DeleteItemCommand } from '@aws-sdk/client-dynamodb';
 
@@ -12,7 +12,10 @@ export interface Module {
     name: string;
     version: string;
     s3Key: string;
+    uploadType: string; // Add this field
+    packageUrl?: string; // Optional field
 }
+
 export interface PackageMetadata {
     Name: string;
     Version: string;
@@ -171,35 +174,6 @@ export const getPackagesFromDynamoDB = async (
         throw error;
     }
 };
-// Clear all entries in the Packages table
-export const clearRegistryInDynamoDB = async () => {
-    const scanCommand = new ScanCommand({
-        TableName: 'Packages',
-    });
-
-    try {
-        // Fetch all items from the Packages table
-        const scanResponse = await dynamo.send(scanCommand);
-        if (!scanResponse.Items) return;
-
-        // Delete each item individually
-        const deletePromises = scanResponse.Items.map((item) => {
-            const deleteCommand = new DeleteItemCommand({
-                TableName: 'Packages',
-                Key: {
-                    id: item.id,
-                },
-            });
-            return dynamo.send(deleteCommand);
-        });
-
-        await Promise.all(deletePromises);
-        console.log('Registry has been cleared in DynamoDB.');
-    } catch (error) {
-        console.error('Error clearing registry in DynamoDB:', error);
-        throw error;
-    }
-};
 
 
 // Function to add data to DynamoDB
@@ -228,5 +202,34 @@ export const updateDynamoPackagedata = async (
     } catch (error) {
         console.error('Error adding package to DynamoDB:', error);
         return null;
+    }
+};
+
+export const getPackagesByRegex = async (regex: string): Promise<PackageMetadata[]> => {
+    const command = new ScanCommand({
+        TableName: 'Packages',
+    });
+
+    try {
+        const response = await dynamo.send(command);
+
+        if (!response.Items) {
+            return [];
+        }
+
+        const regexPattern = new RegExp(regex, 'i');
+
+        return response.Items.filter((item) => {
+            const name = item.name?.S || '';
+            const readme = item.readme?.S || '';
+            return regexPattern.test(name) || regexPattern.test(readme);
+        }).map((item) => ({
+            Name: item.name.S,
+            Version: item.version.S,
+            ID: item.id.S,
+        }));
+    } catch (error) {
+        console.error('Error fetching packages by regex:', error);
+        throw error;
     }
 };

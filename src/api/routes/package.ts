@@ -1,10 +1,9 @@
 import { Router, Request, Response } from 'express';
-import { getPackageFromDynamoDB, updateDynamoPackagedata, addModuleToDynamoDB} from '../services/dynamoservice.js';
+import { getPackageFromDynamoDB, updateDynamoPackagedata, getPackagesByRegex, addModuleToDynamoDB} from '../services/dynamoservice.js';
 import { downloadFileFromS3,uploadPackage} from '../services/s3service.js';
-import {getNPMPackageName, checkNPMOpenSource, getGithubInfo, cloneRepo, zipDirectory, generateId} from '../routes/package_helper.js'
+import {getNPMPackageName, checkNPMOpenSource, getGithubInfo, cloneRepo, cloneRepo2, zipDirectory, debloatZippedFile, generateId} from '../routes/package_helper.js'
 import * as fsExtra from 'fs-extra';
 import AdmZip from 'adm-zip';
-import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 import * as path from 'path';
 import { CLI } from "../../phase-1/CLI.js";
@@ -25,7 +24,7 @@ interface Module {
   name: string;
   version: string;
   s3Key: string;
-  uploadType: string;           // Required field
+  uploadType: string ;           // Required field
   packageUrl?: string;          // Optional field
 }
 
@@ -559,7 +558,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
       } else if (URL) {
           uploadType = 'URL';
           extractedURL = URL;
-          await cloneRepo(URL, tempDir);
+          await cloneRepo2(URL, tempDir);
 
           // Extract metadata
           metadata = extractMetadataFromRepo(tempDir);
@@ -664,5 +663,32 @@ async function optimizePackage(dirPath: string): Promise<void> {
         throw new Error('Debloating failed.');
     }
 }
+router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
+  const authToken = req.header('X-Authorization');
+  const { RegEx } = req.body;
 
+  if (!authToken) {
+      res.status(403).json({ error: 'Authentication failed due to invalid or missing AuthenticationToken.' });
+      return;
+  }
+
+  if (!RegEx || typeof RegEx !== 'string') {
+      res.status(400).json({ error: 'There is missing field(s) in the PackageRegEx or it is formed improperly.' });
+      return;
+  }
+
+  try {
+      const packages = await getPackagesByRegex(RegEx);
+
+      if (packages.length === 0) {
+          res.status(404).json({ error: 'No package found under this regex.' });
+          return;
+      }
+
+      res.status(200).json(packages);
+  } catch (error) {
+      console.error('Error retrieving packages by regex:', error);
+      res.status(500).json({ error: 'Internal server error.' });
+  }
+});
   export default router;
