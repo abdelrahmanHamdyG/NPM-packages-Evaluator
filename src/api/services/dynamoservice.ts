@@ -223,10 +223,11 @@ export const getPackagesByRegex = async (regex: string): Promise<PackageMetadata
             const name = item.name?.S || '';
             const readme = item.readme?.S || '';
             return regexPattern.test(name) || regexPattern.test(readme);
-        }).map((item) => ({
-            Name: item.name.S,
-            Version: item.version.S,
-            ID: item.id.S,
+        })
+        .map((item) => ({
+            Name: item.name?.S || 'Unknown', // Provide default values if undefined
+            Version: item.version?.S || '0.0.0',
+            ID: item.id?.S || 'unknown-id',
         }));
     } catch (error) {
         console.error('Error fetching packages by regex:', error);
