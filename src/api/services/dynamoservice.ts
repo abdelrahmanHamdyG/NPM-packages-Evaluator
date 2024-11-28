@@ -1,4 +1,4 @@
-import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb';
+import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 import semver from 'semver';
 import { DeleteItemCommand } from '@aws-sdk/client-dynamodb';
 
@@ -12,10 +12,7 @@ export interface Module {
     name: string;
     version: string;
     s3Key: string;
-    uploadType: string; // New required field
-    packageUrl?: string; // Optional URL field
 }
-
 export interface PackageMetadata {
     Name: string;
     Version: string;
@@ -174,6 +171,36 @@ export const getPackagesFromDynamoDB = async (
         throw error;
     }
 };
+// Clear all entries in the Packages table
+export const clearRegistryInDynamoDB = async () => {
+    const scanCommand = new ScanCommand({
+        TableName: 'Packages',
+    });
+
+    try {
+        // Fetch all items from the Packages table
+        const scanResponse = await dynamo.send(scanCommand);
+        if (!scanResponse.Items) return;
+
+        // Delete each item individually
+        const deletePromises = scanResponse.Items.map((item) => {
+            const deleteCommand = new DeleteItemCommand({
+                TableName: 'Packages',
+                Key: {
+                    id: item.id,
+                },
+            });
+            return dynamo.send(deleteCommand);
+        });
+
+        await Promise.all(deletePromises);
+        console.log('Registry has been cleared in DynamoDB.');
+    } catch (error) {
+        console.error('Error clearing registry in DynamoDB:', error);
+        throw error;
+    }
+};
+
 
 // Function to add data to DynamoDB
 export const updateDynamoPackagedata = async (

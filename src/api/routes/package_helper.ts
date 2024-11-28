@@ -1,21 +1,22 @@
 import * as fsExtra from 'fs-extra';
 import { Octokit, App } from "octokit"; // Octokit v17
+import { exec } from 'child_process'; // Import exec from child_process
 import { execSync } from 'child_process'; // to execute shell cmds
 import * as fs from 'fs';
 import * as path from 'path';
 import { promisify } from 'util';
-import { fileURLToPath } from 'url';
+import AdmZip from "adm-zip";
+import { minify as minifyJs } from "terser"; // JavaScript minification
+import { minify as minifyHtml } from "html-minifier";
 import * as tar from 'tar';
 import axios from 'axios';
-
-import ESLint from 'eslint';
 import archiver from 'archiver';
-
+// Get the directory name of the current module (like __dirname in CommonJS)
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
 
-
-const writeFile = promisify(fs.writeFile);
 export const getNPMPackageName = (npmUrl: string): string  => { 
     const npmRegex = /https:\/\/www\.npmjs\.com\/package\/([\w-]+)/i; // regex to get package name from npm url
     const npm_match = npmUrl.match(npmRegex);
@@ -43,40 +44,30 @@ async function extractTarball(tarballPath: string, targetDir: any) {
 }
 export async function cloneRepo(repoUrl: string, destinationPath: string): Promise<[number, string]> {
     try {
-      const cloneDir = path.isAbsolute(destinationPath)
-        ? destinationPath
-        : path.join(__dirname, destinationPath);
-  
-      if (!fs.existsSync(cloneDir)) {
-        fs.mkdirSync(cloneDir, { recursive: true });
-      }
-  
-      // Fetch the default branch name dynamically
-      const apiRepoUrl = repoUrl.replace('https://github.com/', 'https://api.github.com/repos/');
-      const response = await axios.get(apiRepoUrl, {
-        headers: { Accept: 'application/vnd.github.v3+json' },
-      });
-  
-      const defaultBranch = response.data.default_branch || 'main'; // Use default branch or fallback to 'main'
-      const tarballUrl = `${repoUrl}/archive/refs/heads/${defaultBranch}.tar.gz`;
-      const tarballPath = path.join(__dirname, 'temp.tar.gz');
-  
-      // Download and extract the tarball
-      await downloadFile(tarballUrl, tarballPath);
-      await extractTarball(tarballPath, cloneDir);
-  
-      console.info('Tarball extracted successfully');
-      const score = 1;
-  
-      fs.unlinkSync(tarballPath); // Cleanup temporary tarball
-      return [score, cloneDir];
+        const cloneDir = path.join(__dirname, destinationPath);
+        if (!fs.existsSync(cloneDir)) {
+            fs.mkdirSync(cloneDir);
+        }
+
+        const tarballUrl = `${repoUrl}/archive/master.tar.gz`;
+        const tarballPath = path.join(__dirname, 'temp.tar.gz');
+
+        await downloadFile(tarballUrl, tarballPath);
+        await extractTarball(tarballPath, cloneDir);
+
+        await console.info("Tarball extracted successfully");
+
+        //let score = await lintDirectory(cloneDir);
+        let score = 1;
+
+        fs.unlinkSync(tarballPath);
+        return [score, cloneDir];
     } catch (error) {
-      console.error('An error occurred when cloning the repo:', error);
-      return [0, ''];
+        console.info("An error occurred when cloning the repo: ", error);
+        return [0,""];
     }
-  }
-  
-  export async function zipDirectory(directoryPath: string, outputZipPath: string): Promise<string> {
+}
+export async function zipDirectory(directoryPath: string, outputZipPath: string): Promise<string> {
     return new Promise((resolve, reject) => {
         const output = fs.createWriteStream(outputZipPath);
         const archive = archiver('zip', { zlib: { level: 9 } });
@@ -121,7 +112,7 @@ const readJSON = (jsonPath: string, callback: (data: Record<string, unknown> | n
 export async function checkNPMOpenSource(filePath: string): Promise<string> {
     return new Promise((resolve) => {
         readJSON(filePath, async (jsonData) => {
-        if (jsonData !== null) {
+        if (jsonData != null) {
             console.info(`reading json (not null)...`);
             const repository = jsonData.repository as Record<string, unknown>;
             if (repository.type == 'git') {
@@ -172,3 +163,62 @@ export const getGithubInfo = (gitUrl: string): { username: string, repo: string}
 export function generateId(name: string, version: string) {
     return name + version
 }
+export async function debloatZippedFile(zippedData: Buffer): Promise<Buffer> {
+    const zip = new AdmZip(zippedData);
+    const entries = zip.getEntries();
+    const cleanedZip = new AdmZip();
+  
+    for (const entry of entries) {
+      if (entry.isDirectory) {
+        console.debug(`Skipping directory: ${entry.entryName}`);
+        continue; // Skip directories entirely
+      }
+  
+      const fileName = entry.entryName;
+      const fileContent = entry.getData().toString();
+  
+      // Remove unnecessary files
+      if (
+        fileName.endsWith(".md") || // Remove markdown files
+        fileName.startsWith("test/") || // Remove test files
+        fileName.endsWith(".log") // Remove log files
+      ) {
+        console.debug(`Excluding unnecessary file: ${fileName}`);
+        continue; // Skip adding this file
+      }
+  
+      let optimizedContent: Buffer = entry.getData(); // Default to original content
+  
+      // Minify JavaScript files
+      if (fileName.endsWith(".js")) {
+        try {
+          const result = await minifyJs(fileContent);
+          if (result.code) {
+            optimizedContent = Buffer.from(result.code);
+          }
+        } catch (error) {
+          console.error(`Failed to minify JavaScript file: ${fileName}`, error);
+        }
+      }
+  
+      // Minify HTML files
+      if (fileName.endsWith(".html")) {
+        try {
+          const minified = minifyHtml(fileContent, {
+            collapseWhitespace: true,
+            removeComments: true,
+            minifyJS: true, // Will minify embedded JS within HTML
+          });
+          optimizedContent = Buffer.from(minified);
+        } catch (error) {
+          console.error(`Failed to minify HTML file: ${fileName}`, error);
+        }
+      }
+  
+      // Add the optimized or original file to the new zip
+      cleanedZip.addFile(fileName, optimizedContent);
+    }
+  
+    // Return the debloated zip as a buffer
+    return cleanedZip.toBuffer();
+  }
