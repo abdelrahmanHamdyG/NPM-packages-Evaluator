@@ -1,9 +1,11 @@
 import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 import semver from 'semver';
-
-
+import AWS from 'aws-sdk';
+import { GetCommand, DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 // Initialize DynamoDB client
 const dynamo = new DynamoDBClient({ region: 'us-east-2' });
+// const client = new DynamoDBClient({ region: dynamo });
+// const dynamoDBDocumentClient = DynamoDBDocumentClient.from(client);
 
 export interface Module {
     id: string;
@@ -49,32 +51,41 @@ export const getPackageFromDynamoDB = async (id: string) => {
         const response = await dynamo.send(command);
         if (!response.Item) return null;
 
+        // Parse dependencies and determine if the package has dependencies
+        const dependencyList = response.Item.dependencies?.SS || [];
+        const hasDependencies = dependencyList.length > 0;
         return {
             id: response.Item.id.S,
             name: response.Item.name.S,
             version: response.Item.version.S,
             s3Key: response.Item.s3Key.S,
-            packageUrl: response.Item.packageUrl.S
+            packageUrl: response.Item.packageUrl.S,
+            // id: response.Item.id?.S || null,               // Fallback to null if `id` is missing
+            // name: response.Item.name?.S || 'Unknown',     // Fallback to 'Unknown' if `name` is missing
+            // version: response.Item.version?.S || '0.0.0', // Fallback to a default version
+            // s3Key: response.Item.s3Key?.S || '',          // Fallback to an empty string
+            // packageUrl: response.Item.url?.S || '',       // Fallback to an empty string
+            hasDependencies: dependencyList.length > 0,
+            dependencies: dependencyList,                 // Returns an empty array if no dependencies
         };
     } catch (error) {
         console.error('Error fetching package from DynamoDB:', error);
         throw error;
     }
 };
+
+
 export const getPackagesFromDynamoDB = async (
-    queries:{ Name: string, Version: string }[],
+    queries: { Name: string; Version: string }[],
     offset: string = '0',
     limit: number = 10
 ) => {
-    // Convert offset to an integer and set a default value if it's invalid
     const startIndex = parseInt(offset, 10) || 0;
     const pageSize = limit;
 
     try {
-        // Fetch all potential matches for the given queries
         const results = await Promise.all(
             queries.map(async (query) => {
-                // Command to scan DynamoDB for packages matching the name
                 const command = new ScanCommand({
                     TableName: 'Packages',
                     FilterExpression: '#name = :name',
@@ -89,36 +100,26 @@ export const getPackagesFromDynamoDB = async (
                 const response = await dynamo.send(command);
 
                 if (!response.Items || response.Items.length === 0) {
+                    console.warn('No items found for query:', JSON.stringify(query));
                     return [];
                 }
 
-                // Filter packages by version using semver
                 const filteredPackages = response.Items.filter((pkg) => {
-                    const version = pkg.version.S; // Ensure this matches your DynamoDB schema
-                    // Ensure that version is defined before calling semver.satisfies
-                    if (version && semver.satisfies(version, query.Version)) {
-                        return true;
-                    }
-                    return false;
-
+                    const version = pkg.version?.S;
+                    return version && semver.satisfies(version, query.Version);
                 });
-                
 
-                // Map the results to match the expected format
                 return filteredPackages.map((pkg) => ({
-                    id: pkg.id.S,
-                    name: pkg.name.S,
-                    version: pkg.version.S,
-                    s3Key: pkg.s3Key.S,
+                    id: pkg.id?.S || 'unknown',
+                    name: pkg.name?.S || 'unknown',
+                    version: pkg.version?.S || 'unknown',
+                    s3Key: pkg.s3Key?.S || '',
                 }));
             })
         );
 
-        // Flatten results and apply pagination
         const allPackages = results.flat();
         const paginatedPackages = allPackages.slice(startIndex, startIndex + pageSize);
-
-        // Set the next offset for pagination
         const nextOffset =
             paginatedPackages.length < pageSize ? '' : (startIndex + pageSize).toString();
 
@@ -127,7 +128,6 @@ export const getPackagesFromDynamoDB = async (
             nextOffset,
         };
     } catch (error: unknown) {
-        // Type narrowing for error
         if (error instanceof Error) {
             console.error('Error scanning packages from DynamoDB:', error.message);
         } else {
@@ -136,6 +136,7 @@ export const getPackagesFromDynamoDB = async (
         throw error;
     }
 };
+
 // Clear all entries in the Packages table
 export const clearRegistryInDynamoDB = async () => {
     const scanCommand = new ScanCommand({
