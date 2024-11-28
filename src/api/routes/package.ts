@@ -51,8 +51,9 @@ interface PackageData {
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     const authToken = req.header('X-Authorization');
+    const packageIdRegex = /^[a-zA-Z0-9-_]+$/; // Matches alphanumeric, hyphen, and underscore
 
-    if (!id) {
+    if (!id || !packageIdRegex.test(id)) {
         res.status(400).json({ error: 'PackageID is missing or malformed.' });
         return;
     }

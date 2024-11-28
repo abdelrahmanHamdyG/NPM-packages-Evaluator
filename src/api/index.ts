@@ -22,3 +22,5 @@ app.use('/reset', resetRouter);  // Add the reset endpoint
 app.listen(PORT, () => {
     console.log(`Server running at port ${PORT}`);
 });
+
+export default app;
