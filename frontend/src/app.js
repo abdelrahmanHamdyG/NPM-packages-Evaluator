@@ -16,7 +16,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [downloadHistory, setDownloadHistory] = useState([]);
   const [ratingResult, setRatingResult] = useState(null);
-  const publicIp = "18.224.4.111";
+  const publicIp = "52.15.245.119";
 
   // Handle file input change
   const handleFileChange = (event) => {
