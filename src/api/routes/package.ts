@@ -244,6 +244,10 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
     }
     const { metadata, data } = req.body;
     const {Name, Version, Id} = metadata;
+    if (!req.body || !metadata || !data) {
+        res.status(400).json({ error: 'There is missing field(s) in the PackageID or it is formed improperly, or is invalid.'});
+        return;
+    }
     try {
         // Fetch metadata for the given package ID from DynamoDB
         const packageData = await getPackageFromDynamoDB(id);
