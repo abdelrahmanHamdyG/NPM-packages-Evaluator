@@ -1,21 +1,20 @@
-import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
+import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 import semver from 'semver';
-import { DeleteItemCommand } from '@aws-sdk/client-dynamodb';
-
 
 
 // Initialize DynamoDB client
 const dynamo = new DynamoDBClient({ region: 'us-east-2' });
-
 export interface Module {
-    id: string;
-    name: string;
-    version: string;
-    s3Key: string;
-    uploadType: string; // Add this field
-    packageUrl?: string; // Optional field
+    id: string;            // Unique identifier for the module
+    name: string;          // Name of the package/module
+    version: string;       // Version of the package/module
+    s3Key: string;         // S3 key where the package is stored
+    uploadType: string;    // Type of upload, e.g., "content" or "URL"
+    packageUrl?: string;   // Optional: URL of the package (if applicable)
+    createdAt?: string;    // Optional: Timestamp of creation
+    jsProgram?: string;    // Optional: JavaScript program content, if applicable
+    debloat?: boolean;
 }
-
 export interface PackageMetadata {
     Name: string;
     Version: string;
@@ -28,10 +27,10 @@ export const addModuleToDynamoDB = async (module: Module) => {
         name: { S: module.name },
         version: { S: module.version },
         s3Key: { S: module.s3Key },
-        uploadType: { S: module.uploadType }, // Save upload type
+        uploadType: { S: module.uploadType }, // Ensure uploadType is saved
     };
 
-    // Conditionally add packageUrl if it is not undefined
+    // Conditionally add packageUrl if it exists
     if (module.packageUrl) {
         item.packageUrl = { S: module.packageUrl };
     }
@@ -52,7 +51,7 @@ export const addModuleToDynamoDB = async (module: Module) => {
 
 export const getPackageFromDynamoDB = async (id: string) => {
     const command = new GetItemCommand({
-        TableName: 'Packages', // Replace with your actual DynamoDB table name
+        TableName: 'Packages',
         Key: {
             id: { S: id },
         },
@@ -61,18 +60,21 @@ export const getPackageFromDynamoDB = async (id: string) => {
     try {
         const response = await dynamo.send(command);
 
+        // Check if the item exists in the response
         if (!response.Item) {
-            console.error('Package not found in DynamoDB.');
-            return null; // Return null if the item doesn't exist
+            console.error('Package not found in DynamoDB for ID:', id);
+            return null; // Return null if no item is found
         }
 
-        // Safely access attributes and provide default values if missing
+        // Safely access attributes and provide default values if undefined
+        const item = response.Item;
+
         return {
-            id: response.Item.id.S,
-            name: response.Item.name.S,
-            version: response.Item.version.S,
-            s3Key: response.Item.s3Key.S,
-            packageUrl: response.Item.packageUrl.S
+            id: item.id?.S || 'unknown-id',
+            name: item.name?.S || 'unknown-name',
+            version: item.version?.S || '0.0.0',
+            s3Key: item.s3Key?.S || 'unknown-s3Key',
+            packageUrl: item.packageUrl?.S || undefined, // Optional field
         };
     } catch (error) {
         console.error('Error fetching package from DynamoDB:', error);
@@ -80,41 +82,42 @@ export const getPackageFromDynamoDB = async (id: string) => {
     }
 };
 
-// Clear all entries in the Packages table
-export const clearRegistryInDynamoDB = async () => {
-    const scanCommand = new ScanCommand({
+export const getPackagesByRegex = async (regex: string): Promise<PackageMetadata[]> => {
+    const command = new ScanCommand({
         TableName: 'Packages',
     });
 
     try {
-        // Fetch all items from the Packages table
-        const scanResponse = await dynamo.send(scanCommand);
-        if (!scanResponse.Items) return;
+        const response = await dynamo.send(command);
 
-        // Delete each item individually
-        const deletePromises = scanResponse.Items.map((item) => {
-            const deleteCommand = new DeleteItemCommand({
-                TableName: 'Packages',
-                Key: {
-                    id: item.id,
-                },
-            });
-            return dynamo.send(deleteCommand);
-        });
+        if (!response.Items) {
+            return [];
+        }
 
-        await Promise.all(deletePromises);
-        console.log('Registry has been cleared in DynamoDB.');
+        const regexPattern = new RegExp(regex, 'i'); // Case-insensitive regex
+
+        return response.Items.filter((item) => {
+            const name = item.name?.S || '';       // Safe access to 'name'
+            const readme = item.readme?.S || '';   // Safe access to 'readme'
+            return regexPattern.test(name) || regexPattern.test(readme); // Match against both fields
+        }).map((item) => ({
+            Name: item.name?.S || 'Unknown',
+            Version: item.version?.S || '0.0.0',
+            ID: item.id?.S || 'unknown-id',
+        }));
     } catch (error) {
-        console.error('Error clearing registry in DynamoDB:', error);
+        console.error('Error fetching packages by regex:', error);
         throw error;
     }
 };
+
+
 export const getPackagesFromDynamoDB = async (
-    queries: { Name: string; Version: string }[],
+    queries:{ Name: string, Version: string }[],
     offset: string = '0',
     limit: number = 10
 ) => {
-    // Convert offset to an integer
+    // Convert offset to an integer and set a default value if it's invalid
     const startIndex = parseInt(offset, 10) || 0;
     const pageSize = limit;
 
@@ -142,35 +145,74 @@ export const getPackagesFromDynamoDB = async (
 
                 // Filter packages by version using semver
                 const filteredPackages = response.Items.filter((pkg) => {
-                    const version = pkg.version.S;
-                    return version && semver.satisfies(version, query.Version);
-                });
+                    const version = pkg.version.S; // Ensure this matches your DynamoDB schema
+                    // Ensure that version is defined before calling semver.satisfies
+                    if (version && semver.satisfies(version, query.Version)) {
+                        return true;
+                    }
+                    return false;
 
-                // Map to Module type
+                });
+                
+
+                // Map the results to match the expected format
                 return filteredPackages.map((pkg) => ({
                     id: pkg.id.S,
                     name: pkg.name.S,
                     version: pkg.version.S,
                     s3Key: pkg.s3Key.S,
-                    uploadType: pkg.uploadType.S, // Include uploadType
-                    packageUrl: pkg.packageUrl?.S, // Include optional packageUrl
                 }));
             })
         );
 
-        // Flatten results and paginate
+        // Flatten results and apply pagination
         const allPackages = results.flat();
         const paginatedPackages = allPackages.slice(startIndex, startIndex + pageSize);
 
-        // Set next offset for pagination
-        const nextOffset = paginatedPackages.length < pageSize ? '' : (startIndex + pageSize).toString();
+        // Set the next offset for pagination
+        const nextOffset =
+            paginatedPackages.length < pageSize ? '' : (startIndex + pageSize).toString();
 
         return {
             packages: paginatedPackages,
             nextOffset,
         };
+    } catch (error: unknown) {
+        // Type narrowing for error
+        if (error instanceof Error) {
+            console.error('Error scanning packages from DynamoDB:', error.message);
+        } else {
+            console.error('Unknown error scanning packages:', error);
+        }
+        throw error;
+    }
+};
+// Clear all entries in the Packages table
+export const clearRegistryInDynamoDB = async () => {
+    const scanCommand = new ScanCommand({
+        TableName: 'Packages',
+    });
+
+    try {
+        // Fetch all items from the Packages table
+        const scanResponse = await dynamo.send(scanCommand);
+        if (!scanResponse.Items) return;
+
+        // Delete each item individually
+        const deletePromises = scanResponse.Items.map((item) => {
+            const deleteCommand = new DeleteItemCommand({
+                TableName: 'Packages',
+                Key: {
+                    id: item.id,
+                },
+            });
+            return dynamo.send(deleteCommand);
+        });
+
+        await Promise.all(deletePromises);
+        console.log('Registry has been cleared in DynamoDB.');
     } catch (error) {
-        console.error('Error scanning packages from DynamoDB:', error);
+        console.error('Error clearing registry in DynamoDB:', error);
         throw error;
     }
 };
@@ -202,35 +244,5 @@ export const updateDynamoPackagedata = async (
     } catch (error) {
         console.error('Error adding package to DynamoDB:', error);
         return null;
-    }
-};
-
-export const getPackagesByRegex = async (regex: string): Promise<PackageMetadata[]> => {
-    const command = new ScanCommand({
-        TableName: 'Packages',
-    });
-
-    try {
-        const response = await dynamo.send(command);
-
-        if (!response.Items) {
-            return [];
-        }
-
-        const regexPattern = new RegExp(regex, 'i');
-
-        return response.Items.filter((item) => {
-            const name = item.name?.S || '';
-            const readme = item.readme?.S || '';
-            return regexPattern.test(name) || regexPattern.test(readme);
-        })
-        .map((item) => ({
-            Name: item.name?.S || 'Unknown', // Provide default values if undefined
-            Version: item.version?.S || '0.0.0',
-            ID: item.id?.S || 'unknown-id',
-        }));
-    } catch (error) {
-        console.error('Error fetching packages by regex:', error);
-        throw error;
     }
 };

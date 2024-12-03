@@ -245,6 +245,37 @@ const validatePatchVersionSequence = (existingVersion: string, newVersion: strin
     return true;
 };
 
+router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
+  const authToken = req.header('X-Authorization');
+  const { RegEx } = req.body;
+
+  if (!authToken) {
+      res.status(403).json({ error: 'Authentication failed due to invalid or missing AuthenticationToken.' });
+      return;
+  }
+
+  if (!RegEx || typeof RegEx !== 'string') {
+      res.status(400).json({ error: 'There is missing field(s) in the PackageRegEx or it is formed improperly.' });
+      return;
+  }
+
+  try {
+      // Fetch packages matching the regex
+      const packages = await getPackagesByRegex(RegEx);
+
+      if (packages.length === 0) {
+          res.status(404).json({ error: 'No package found under this regex.' });
+          return;
+      }
+
+      res.status(200).json(packages);
+  } catch (error) {
+      console.error('Error retrieving packages by regex:', error);
+      res.status(500).json({ error: 'Internal server error.' });
+  }
+});
+
+
 // POST /package/:id - Update a package's content by its ID
 router.post('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
@@ -617,9 +648,10 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
         name,
         version,
         s3Key,
-        uploadType: Content ? "content" : "URL", // Required field
+        uploadType: Content ? "content" : "URL", // Ensure this matches the Module type
         packageUrl: URL || undefined,           // Optional field
     });
+    
     
     
 
@@ -641,10 +673,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-/**
- * Optimizes a directory by applying tree shaking and minification.
- * @param dirPath Path to the directory to be optimized.
- */
+
 async function optimizePackage(dirPath: string): Promise<void> {
     try {
         const outputPath = `${dirPath}-optimized`;
@@ -663,32 +692,4 @@ async function optimizePackage(dirPath: string): Promise<void> {
         throw new Error('Debloating failed.');
     }
 }
-router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
-  const authToken = req.header('X-Authorization');
-  const { RegEx } = req.body;
-
-  if (!authToken) {
-      res.status(403).json({ error: 'Authentication failed due to invalid or missing AuthenticationToken.' });
-      return;
-  }
-
-  if (!RegEx || typeof RegEx !== 'string') {
-      res.status(400).json({ error: 'There is missing field(s) in the PackageRegEx or it is formed improperly.' });
-      return;
-  }
-
-  try {
-      const packages = await getPackagesByRegex(RegEx);
-
-      if (packages.length === 0) {
-          res.status(404).json({ error: 'No package found under this regex.' });
-          return;
-      }
-
-      res.status(200).json(packages);
-  } catch (error) {
-      console.error('Error retrieving packages by regex:', error);
-      res.status(500).json({ error: 'Internal server error.' });
-  }
-});
   export default router;
