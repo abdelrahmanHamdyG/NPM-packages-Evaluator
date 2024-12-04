@@ -158,28 +158,33 @@ export function extractMetadataFromRepo(repoDir: string): { name: string; versio
 
     // Extract URL from the repository field, if present
     let url: string | undefined = repository?.url;
-    if (url && url.startsWith('git+')) {
-      url = url.replace(/^git\+/, ''); // Remove git+ prefix if exists
-    }
 
-    // Ensure URL is in the format: https://github.com/<username>/<reponame>
-    if (url && !url.startsWith('https://github.com/')) {
-      const regex = /github\.com\/([^\/]+)\/([^\/]+)/;
-      const match = url.match(regex);
+    // Normalize the URL to start with 'https://github.com/'
+    if (url) {
+      // Remove 'git+' prefix if it exists
+      url = url.replace(/^git\+/, '');
+
+      // Replace 'git://' or 'http://' with 'https://'
+      url = url.replace(/^git:\/\//, 'https://')
+              .replace(/^http:\/\//, 'https://');
+
+      // Ensure it's a GitHub URL and normalize it
+      const githubRegex = /github\.com\/([^\/]+)\/([^\/]+)/;
+      const match = url.match(githubRegex);
+
       if (match) {
         const username = match[1];
-        const repoName = match[2];
+        const repoName = match[2].replace(/\.git$/, ''); // Remove .git suffix if present
         url = `https://github.com/${username}/${repoName}`;
       } else {
-        console.error('Invalid URL format in repository field.');
-        return null;
+        console.error('Invalid GitHub URL format:', url);
+        return null; // Return null if it's not a valid GitHub URL
       }
     }
 
-    // Remove the .git suffix, if present
-    if (url && url.endsWith('.git')) {
-      url = url.slice(0, -4); // Remove .git from the end
-    }
+    // Log the formatted URL for verification
+    console.log('Normalized URL:', url);
+
 
     // Generate a unique ID using name and version
     const id = `${name}-${version}`.replace(/[^a-zA-Z0-9_-]/g, '_');
