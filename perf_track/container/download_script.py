@@ -1,7 +1,7 @@
 import requests
 import time
 
-api_url = "http://52.15.245.119:3000/package/lodash-4_17_21"  # Replace with your actual API endpoint
+api_url = "http://52.15.245.119:3000/package/lodash-4_17_21"
 headers = {
     "X-Authorization": "Bearer <your-token-here>"  
 }
