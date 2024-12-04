@@ -7,8 +7,8 @@ import AdmZip from 'adm-zip';
 import { execSync } from 'child_process';
 import { CLI } from "../../phase-1/CLI.js";
 import * as tmp from 'tmp';
-import * as fs from 'fs';
-import * as path from 'path';
+// import * as fs from 'fs';
+// import * as path from 'path';
 import yauzl from 'yauzl';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -67,6 +67,60 @@ interface CostCalculationResult {
   hasDependencies: boolean;
 }
 
+// export function extractMetadataFromRepo(repoDir: string): { name: string; version: string; id: string; url?: string } | null {
+//   try {
+//     let packageJsonPath = path.join(repoDir, 'package.json');
+
+//     // Check if package.json exists directly in repoDir
+//     if (!fs.existsSync(packageJsonPath)) {
+//       // Get the list of entries in repoDir
+//       const entries = fs.readdirSync(repoDir, { withFileTypes: true });
+      
+//       // Find the first (and only) subdirectory if it exists
+//       const subDir = entries.find(entry => entry.isDirectory());
+//       if (subDir && entries.length === 1) {
+//         // Construct the path to package.json inside the subdirectory
+//         packageJsonPath = path.join(repoDir, subDir.name, 'package.json');
+//       } else {
+//         console.error('package.json not found in the provided directory.');
+//         return null;
+//       }
+//     }
+
+//     // Check if package.json exists at the determined path
+//     if (!fs.existsSync(packageJsonPath)) {
+//       console.error('package.json not found.');
+//       return null;
+//     }
+
+//     // Read and parse package.json
+//     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+//     const { name, version, repository } = packageJson;
+
+//     if (!name || !version) {
+//       console.error('Missing name or version in package.json.');
+//       return null;
+//     }
+
+//     // Extract URL from the repository field, if present
+//     let url: string | undefined = repository?.url;
+//     if (url && url.startsWith('git+')) {
+//       url = url.replace(/^git\+/, '');
+//     }
+
+//     // Generate a unique ID using name and version
+//     const id = `${name}-${version}`.replace(/[^a-zA-Z0-9_-]/g, '_');
+
+//     return { name, version, id, url };
+//   } catch (error) {
+//     console.error('Error extracting metadata from repository:', error);
+//     return null;
+//   }
+// }
+
+import fs from 'fs';
+import path from 'path';
+
 export function extractMetadataFromRepo(repoDir: string): { name: string; version: string; id: string; url?: string } | null {
   try {
     let packageJsonPath = path.join(repoDir, 'package.json');
@@ -105,7 +159,26 @@ export function extractMetadataFromRepo(repoDir: string): { name: string; versio
     // Extract URL from the repository field, if present
     let url: string | undefined = repository?.url;
     if (url && url.startsWith('git+')) {
-      url = url.replace(/^git\+/, '');
+      url = url.replace(/^git\+/, ''); // Remove git+ prefix if exists
+    }
+
+    // Ensure URL is in the format: https://github.com/<username>/<reponame>
+    if (url && !url.startsWith('https://github.com/')) {
+      const regex = /github\.com\/([^\/]+)\/([^\/]+)/;
+      const match = url.match(regex);
+      if (match) {
+        const username = match[1];
+        const repoName = match[2];
+        url = `https://github.com/${username}/${repoName}`;
+      } else {
+        console.error('Invalid URL format in repository field.');
+        return null;
+      }
+    }
+
+    // Remove the .git suffix, if present
+    if (url && url.endsWith('.git')) {
+      url = url.slice(0, -4); // Remove .git from the end
     }
 
     // Generate a unique ID using name and version
@@ -174,30 +247,20 @@ router.get('/:id/rate', async (req: Request, res: Response): Promise<void> => {
             return;
         }
 
+        console.log(packageData.packageUrl);
         const tempURLFile = tmp.fileSync({ prefix: 'tempURLFile_', postfix: '.txt' });
         fs.writeFileSync(tempURLFile.name, packageData.packageUrl || '');
 
-        // Run CLI tool, capture CLI output to string
-        let capturedOutput = '';
-        // Backup the original console.log
-        const originalConsoleLog = console.log;
-
-        // Override console.log to capture output
-        console.log = (message: any) => {
-            capturedOutput += message + '\n';
-        };
         // Calculate metrics
-        const rcode = await cli.rankModules(tempURLFile.name);
-        // Restore the original console.log
-        console.log = originalConsoleLog;
+        const jsonmetrics = await cli.rankModules_phase2(tempURLFile.name);
 
-        if (rcode) {
+        if (jsonmetrics.split(' ')[0].toLowerCase() == 'error') {
             res.status(500).json({ error: 'The package rating system choked on at least one of the metrics.' });
             return;
         }
         
         // Respond with the rating data if successful
-        res.status(200).json(JSON.parse(capturedOutput));
+        res.status(200).json(JSON.parse(jsonmetrics));
 
     } catch (error) {
         console.error('Error retrieving package rating:', error);
