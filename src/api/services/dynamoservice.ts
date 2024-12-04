@@ -1,17 +1,17 @@
 import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 import semver from 'semver';
-import AWS from 'aws-sdk';
-import { GetCommand, DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 // Initialize DynamoDB client
 const dynamo = new DynamoDBClient({ region: 'us-east-2' });
-// const client = new DynamoDBClient({ region: dynamo });
-// const dynamoDBDocumentClient = DynamoDBDocumentClient.from(client);
-
 export interface Module {
-    id: string;
-    name: string;
-    version: string;
-    s3Key: string;
+    id: string;            // Unique identifier for the module
+    name: string;          // Name of the package/module
+    version: string;       // Version of the package/module
+    s3Key: string;         // S3 key where the package is stored
+    uploadType: string;    // Type of upload, e.g., "content" or "URL"
+    packageUrl?: string;   // Optional: URL of the package (if applicable)
+    createdAt?: string;    // Optional: Timestamp of creation
+    jsProgram?: string;    // Optional: JavaScript program content, if applicable
+    debloat?: boolean;
 }
 export interface PackageMetadata {
     Name: string;
@@ -20,14 +20,22 @@ export interface PackageMetadata {
 }
 
 export const addModuleToDynamoDB = async (module: Module) => {
+    const item: Record<string, any> = {
+        id: { S: module.id },
+        name: { S: module.name },
+        version: { S: module.version },
+        s3Key: { S: module.s3Key },
+        uploadType: { S: module.uploadType }, // Ensure uploadType is saved
+    };
+
+    // Conditionally add packageUrl if it exists
+    if (module.packageUrl) {
+        item.packageUrl = { S: module.packageUrl };
+    }
+
     const command = new PutItemCommand({
         TableName: 'Packages',
-        Item: {
-            id: { S: module.id },
-            name: { S: module.name },
-            version: { S: module.version },
-            s3Key: { S: module.s3Key },
-        },
+        Item: item,
     });
 
     try {
@@ -43,36 +51,65 @@ export const getPackageFromDynamoDB = async (id: string) => {
     const command = new GetItemCommand({
         TableName: 'Packages',
         Key: {
-            id: { S: id }
-        }
+            id: { S: id },
+        },
     });
 
     try {
         const response = await dynamo.send(command);
-        if (!response.Item) return null;
 
-        // Parse dependencies and determine if the package has dependencies
-        const dependencyList = response.Item.dependencies?.SS || [];
-        const hasDependencies = dependencyList.length > 0;
+        // Check if the item exists in the response
+        if (!response.Item) {
+            console.error('Package not found in DynamoDB for ID:', id);
+            return null; // Return null if no item is found
+        }
+
+        // Safely access attributes and provide default values if undefined
+        const item = response.Item;
+
         return {
-            id: response.Item.id.S,
-            name: response.Item.name.S,
-            version: response.Item.version.S,
-            s3Key: response.Item.s3Key.S,
-            packageUrl: response.Item.packageUrl.S,
-            // id: response.Item.id?.S || null,               // Fallback to null if `id` is missing
-            // name: response.Item.name?.S || 'Unknown',     // Fallback to 'Unknown' if `name` is missing
-            // version: response.Item.version?.S || '0.0.0', // Fallback to a default version
-            // s3Key: response.Item.s3Key?.S || '',          // Fallback to an empty string
-            // packageUrl: response.Item.url?.S || '',       // Fallback to an empty string
-            hasDependencies: dependencyList.length > 0,
-            dependencies: dependencyList,                 // Returns an empty array if no dependencies
+            id: item.id?.S || 'unknown-id',
+            name: item.name?.S || 'unknown-name',
+            version: item.version?.S || '0.0.0',
+            s3Key: item.s3Key?.S || 'unknown-s3Key',
+            packageUrl: item.packageUrl?.S || undefined, // Optional field
         };
     } catch (error) {
         console.error('Error fetching package from DynamoDB:', error);
+        throw error; // Re-throw the error for higher-level handling
+    }
+};
+
+export const getPackagesByRegex = async (regex: string): Promise<PackageMetadata[]> => {
+    const command = new ScanCommand({
+        TableName: 'Packages',
+    });
+
+    try {
+        const response = await dynamo.send(command);
+
+        if (!response.Items) {
+            return [];
+        }
+
+        const regexPattern = new RegExp(regex, 'i'); // Case-insensitive regex
+
+        return response.Items.filter((item) => {
+            const name = item.name?.S || '';       // Safe access to 'name'
+            const readme = item.readme?.S || '';   // Safe access to 'readme'
+            return regexPattern.test(name) || regexPattern.test(readme); // Match against both fields
+        }).map((item) => ({
+            Name: item.name?.S || 'Unknown',
+            Version: item.version?.S || '0.0.0',
+            ID: item.id?.S || 'unknown-id',
+        }));
+    } catch (error) {
+        console.error('Error fetching packages by regex:', error);
         throw error;
     }
 };
+
+
 
 
 export const getPackagesFromDynamoDB = async (
