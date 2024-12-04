@@ -3,9 +3,9 @@ import requests
 import base64
 
 # Directory containing the zipped npm packages
-package_directory = "./npm_packages"  
+package_directory = "../../npm_packages"  
 # API endpoint and authorization token
-api_url = "http://52.15.245.119:3000/package" 
+api_url = "http://localhost:3000/package" 
 auth_token = "Bearer feiojfsiego"  
 
 # Function to read and encode the zip file
@@ -45,7 +45,7 @@ def upload_packages(directory):
                     print(f"Failed to upload {package_name}: {response.status_code} - {response.text}")
             except Exception as e:
                 print(f"Error uploading {package_name}: {str(e)}")
-            time.sleep(1)
+            time.sleep(0.1)
 
 # Run the function
 upload_packages(package_directory)
