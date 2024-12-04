@@ -78,10 +78,10 @@ export const uploadPackage = async (packageId: string, file: any): Promise<strin
     const fileContent = file.buffer;
 
     const command = new PutObjectCommand({
-        Bucket: 'ece461storage',  // Replace with your actual bucket name
+        Bucket: 'ece461storage',  
         Key: packageId,
         Body: fileContent,
-        ContentType: file.mimetype || 'application/octet-stream', // Optional: to set content type from file
+        ContentType: file.mimetype || 'application/octet-stream', 
     });
 
     try {

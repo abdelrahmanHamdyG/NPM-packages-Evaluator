@@ -683,7 +683,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
       }
 
       const { name, version, id } = metadata;
-      s3Key = `packages/${id}.zip`;
+      s3Key = `${id}.zip`;
 
       // Check if the package already exists
       const existingPackage = await getPackageFromDynamoDB(id);
@@ -704,7 +704,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
       const zipBuffer = zip.toBuffer();
 
       // Upload package to S3
-      await uploadPackage(id, {
+      await uploadPackage(s3Key, {
           fieldname: 'file',
           originalname: 'zipped_directory.zip',
           encoding: '7bit',
