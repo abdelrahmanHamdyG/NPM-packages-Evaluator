@@ -67,33 +67,130 @@ interface CostCalculationResult {
   hasDependencies: boolean;
 }
 
-export function extractMetadataFromRepo(repoDir: string): { name: string; version: string; id: string } | null {
+// export function extractMetadataFromRepo(repoDir: string): { name: string; version: string; id: string } | null {
+//   try {
+//       const packageJsonPath = path.join(repoDir, 'package.json');
+
+//       if (!fs.existsSync(packageJsonPath)) {
+//           console.error('package.json not found in the provided directory.');
+//           return null;
+//       }
+
+//       // Read and parse package.json
+//       const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+//       const { name, version } = packageJson;
+
+//       if (!name || !version) {
+//           console.error('Missing name or version in package.json.');
+//           return null;
+//       }
+
+//       // Generate a unique ID using name and version
+//       const id = `${name}-${version}`.replace(/[^a-zA-Z0-9_-]/g, '_');
+
+//       return { name, version, id };
+//   } catch (error) {
+//       console.error('Error extracting metadata from repository:', error);
+//       return null;
+//   }
+// }
+
+// export function extractMetadataFromRepo(repoDir: string): { name: string; version: string; id: string } | null {
+//   try {
+//     let packageJsonPath = path.join(repoDir, 'package.json');
+
+//     // Check if package.json exists directly in repoDir
+//     if (!fs.existsSync(packageJsonPath)) {
+//       // Get the list of entries in repoDir
+//       const entries = fs.readdirSync(repoDir, { withFileTypes: true });
+      
+//       // Find the first (and only) subdirectory if it exists
+//       const subDir = entries.find(entry => entry.isDirectory());
+//       if (subDir && entries.length === 1) {
+//         // Construct the path to package.json inside the subdirectory
+//         packageJsonPath = path.join(repoDir, subDir.name, 'package.json');
+//       } else {
+//         console.error('package.json not found in the provided directory.');
+//         return null;
+//       }
+//     }
+
+//     // Check if package.json exists at the determined path
+//     if (!fs.existsSync(packageJsonPath)) {
+//       console.error('package.json not found.');
+//       return null;
+//     }
+
+//     // Read and parse package.json
+//     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+//     const { name, version } = packageJson;
+
+//     if (!name || !version) {
+//       console.error('Missing name or version in package.json.');
+//       return null;
+//     }
+
+//     // Generate a unique ID using name and version
+//     const id = `${name}-${version}`.replace(/[^a-zA-Z0-9_-]/g, '_');
+
+//     return { name, version, id };
+//   } catch (error) {
+//     console.error('Error extracting metadata from repository:', error);
+//     return null;
+//   }
+// }
+
+export function extractMetadataFromRepo(repoDir: string): { name: string; version: string; id: string; url?: string } | null {
   try {
-      const packageJsonPath = path.join(repoDir, 'package.json');
+    let packageJsonPath = path.join(repoDir, 'package.json');
 
-      if (!fs.existsSync(packageJsonPath)) {
-          console.error('package.json not found in the provided directory.');
-          return null;
+    // Check if package.json exists directly in repoDir
+    if (!fs.existsSync(packageJsonPath)) {
+      // Get the list of entries in repoDir
+      const entries = fs.readdirSync(repoDir, { withFileTypes: true });
+      
+      // Find the first (and only) subdirectory if it exists
+      const subDir = entries.find(entry => entry.isDirectory());
+      if (subDir && entries.length === 1) {
+        // Construct the path to package.json inside the subdirectory
+        packageJsonPath = path.join(repoDir, subDir.name, 'package.json');
+      } else {
+        console.error('package.json not found in the provided directory.');
+        return null;
       }
+    }
 
-      // Read and parse package.json
-      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
-      const { name, version } = packageJson;
-
-      if (!name || !version) {
-          console.error('Missing name or version in package.json.');
-          return null;
-      }
-
-      // Generate a unique ID using name and version
-      const id = `${name}-${version}`.replace(/[^a-zA-Z0-9_-]/g, '_');
-
-      return { name, version, id };
-  } catch (error) {
-      console.error('Error extracting metadata from repository:', error);
+    // Check if package.json exists at the determined path
+    if (!fs.existsSync(packageJsonPath)) {
+      console.error('package.json not found.');
       return null;
+    }
+
+    // Read and parse package.json
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+    const { name, version, repository } = packageJson;
+
+    if (!name || !version) {
+      console.error('Missing name or version in package.json.');
+      return null;
+    }
+
+    // Extract URL from the repository field, if present
+    let url: string | undefined = repository?.url;
+    if (url && url.startsWith('git+')) {
+      url = url.replace(/^git\+/, '');
+    }
+
+    // Generate a unique ID using name and version
+    const id = `${name}-${version}`.replace(/[^a-zA-Z0-9_-]/g, '_');
+
+    return { name, version, id, url };
+  } catch (error) {
+    console.error('Error extracting metadata from repository:', error);
+    return null;
   }
 }
+
 
 // GET /package/:id - Retrieve a package by its ID
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
@@ -682,7 +779,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
           return;
       }
 
-      const { name, version, id } = metadata;
+      const { name, version, id, url } = metadata;
       s3Key = `${id}.zip`;
 
       // Check if the package already exists
@@ -731,7 +828,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
         version,
         s3Key,
         uploadType: Content ? "content" : "URL", // Ensure this matches the Module type
-        packageUrl: URL || undefined,           // Optional field
+        packageUrl: URL || url,           // Optional field
     });
     
     
