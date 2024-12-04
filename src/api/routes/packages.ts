@@ -6,16 +6,9 @@ const router = Router();
 
 // POST /packages - Search or list packages
 router.post('/', async (req: Request, res: Response): Promise<void> => {
-    const authToken = req.header('X-Authorization');
     const offset = req.query.offset as string || '0';  // Default to '0' if no offset is provided
     // const queries: Module[] = req.body;
     const queries: { Name: string, Version: string }[] = req.body;
-
-    // Validate authentication token
-    if (!authToken) {
-        res.status(403).json({ error: 'Authentication failed due to invalid or missing AuthenticationToken.' });
-        return;
-    }
 
     // Validate request body
     if (!Array.isArray(queries) || queries.some(query => !query.Name || !query.Version)) {

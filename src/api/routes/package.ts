@@ -67,79 +67,6 @@ interface CostCalculationResult {
   hasDependencies: boolean;
 }
 
-// export function extractMetadataFromRepo(repoDir: string): { name: string; version: string; id: string } | null {
-//   try {
-//       const packageJsonPath = path.join(repoDir, 'package.json');
-
-//       if (!fs.existsSync(packageJsonPath)) {
-//           console.error('package.json not found in the provided directory.');
-//           return null;
-//       }
-
-//       // Read and parse package.json
-//       const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
-//       const { name, version } = packageJson;
-
-//       if (!name || !version) {
-//           console.error('Missing name or version in package.json.');
-//           return null;
-//       }
-
-//       // Generate a unique ID using name and version
-//       const id = `${name}-${version}`.replace(/[^a-zA-Z0-9_-]/g, '_');
-
-//       return { name, version, id };
-//   } catch (error) {
-//       console.error('Error extracting metadata from repository:', error);
-//       return null;
-//   }
-// }
-
-// export function extractMetadataFromRepo(repoDir: string): { name: string; version: string; id: string } | null {
-//   try {
-//     let packageJsonPath = path.join(repoDir, 'package.json');
-
-//     // Check if package.json exists directly in repoDir
-//     if (!fs.existsSync(packageJsonPath)) {
-//       // Get the list of entries in repoDir
-//       const entries = fs.readdirSync(repoDir, { withFileTypes: true });
-      
-//       // Find the first (and only) subdirectory if it exists
-//       const subDir = entries.find(entry => entry.isDirectory());
-//       if (subDir && entries.length === 1) {
-//         // Construct the path to package.json inside the subdirectory
-//         packageJsonPath = path.join(repoDir, subDir.name, 'package.json');
-//       } else {
-//         console.error('package.json not found in the provided directory.');
-//         return null;
-//       }
-//     }
-
-//     // Check if package.json exists at the determined path
-//     if (!fs.existsSync(packageJsonPath)) {
-//       console.error('package.json not found.');
-//       return null;
-//     }
-
-//     // Read and parse package.json
-//     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
-//     const { name, version } = packageJson;
-
-//     if (!name || !version) {
-//       console.error('Missing name or version in package.json.');
-//       return null;
-//     }
-
-//     // Generate a unique ID using name and version
-//     const id = `${name}-${version}`.replace(/[^a-zA-Z0-9_-]/g, '_');
-
-//     return { name, version, id };
-//   } catch (error) {
-//     console.error('Error extracting metadata from repository:', error);
-//     return null;
-//   }
-// }
-
 export function extractMetadataFromRepo(repoDir: string): { name: string; version: string; id: string; url?: string } | null {
   try {
     let packageJsonPath = path.join(repoDir, 'package.json');
@@ -195,16 +122,10 @@ export function extractMetadataFromRepo(repoDir: string): { name: string; versio
 // GET /package/:id - Retrieve a package by its ID
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
-    const authToken = req.header('X-Authorization');
     const packageIdRegex = /^[a-zA-Z0-9-_]+$/; // Matches alphanumeric, hyphen, and underscore
 
     if (!id || !packageIdRegex.test(id)) {
         res.status(400).json({ error: 'PackageID is missing or malformed.' });
-        return;
-    }
-
-    if (!authToken) {
-        res.status(403).json({ error: 'Authentication token is missing.' });
         return;
     }
 
@@ -237,17 +158,10 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
 // GET /package/:id/rate - Retrieve rating for a package by its ID
 router.get('/:id/rate', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
-    const authToken = req.header('X-Authorization');
 
     // Check if the package ID is missing or malformed
     if (!id) {
         res.status(400).json({ error: 'There is missing field(s) in the PackageID.' });
-        return;
-    }
-
-    // Check for authorization token
-    if (!authToken) {
-        res.status(403).json({ error: 'Authentication failed due to invalid or missing AuthenticationToken.' });
         return;
     }
 
@@ -361,13 +275,7 @@ const validatePatchVersionSequence = (existingVersion: string, newVersion: strin
 };
 
 router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
-  const authToken = req.header('X-Authorization');
   const { RegEx } = req.body;
-
-  if (!authToken) {
-      res.status(403).json({ error: 'Authentication failed due to invalid or missing AuthenticationToken.' });
-      return;
-  }
 
   if (!RegEx || typeof RegEx !== 'string') {
       res.status(400).json({ error: 'There is missing field(s) in the PackageRegEx or it is formed improperly.' });
@@ -394,12 +302,6 @@ router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
 // POST /package/:id - Update a package's content by its ID
 router.post('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
-    const authenticationToken = req.header('X-Authorization');
-    console.info(`XAuth: ${authenticationToken}`)
-    if(!authenticationToken) {
-      res.status(400).json('Auth not given');
-      return;
-    }
     const { metadata, data } = req.body;
     if (!req.body || !metadata || !data) {
         res.status(400).json({ error: 'There is missing field(s) in the PackageID or it is formed improperly, or is invalid.'});
@@ -673,17 +575,10 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
 // GET /package/:id/cost - Calculate cost of a package
 router.get('/:id/cost', async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
-  const authToken = req.header('X-Authorization');
 
   // Validate ID parameter
   if (!id || !/^[a-zA-Z0-9-]+$/.test(id)) {
       res.status(400).json({ error: 'PackageID is missing or malformed.' });
-      return;
-  }
-
-  // Validate authorization token
-  if (!authToken) {
-      res.status(403).json({ error: 'Authentication token is missing.' });
       return;
   }
 
@@ -732,13 +627,7 @@ router.get('/:id/cost', async (req: Request, res: Response): Promise<void> => {
 
 // POST /package - Upload a new package
 router.post('/', async (req: Request, res: Response): Promise<void> => {
-  const authToken = req.header('X-Authorization');
   const { Content, URL, JSProgram, debloat } = req.body;
-
-  if (!authToken) {
-      res.status(403).json({ error: 'Authentication token is missing.' });
-      return;
-  }
 
   if (!Content && !URL) {
       res.status(400).json({ error: 'Either URL or Content is required for this operation.' });
