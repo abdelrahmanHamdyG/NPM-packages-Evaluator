@@ -16,7 +16,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [downloadHistory, setDownloadHistory] = useState([]);
   const [ratingResult, setRatingResult] = useState(null);
-  const publicIp = "3.15.13.78"; // Replace with your EC2 instance's public IP address
+  const publicIp = "52.15.245.119";
 
   // Handle file input change
   const handleFileChange = (event) => {

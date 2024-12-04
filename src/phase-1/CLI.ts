@@ -247,7 +247,6 @@ export class CLI {
       return { username: "empty", repoName: "empty" };
     }
   }
-
   private parseNpmPackageUrl(url: string): string {
     const regex = /https:\/\/www\.npmjs\.com\/package\/([^\/]+)/;
 
