@@ -163,6 +163,75 @@ export class CLI {
     }
 }
 
+  public async rankModules_phase2(path: string): Promise<string> {
+    logger.log(1, `Starting to rank modules from path: ${path}`);
+
+    try {
+        const results = await this.rankModulesTogether(path);
+        logger.log(1, "The data fetched for each URL:");
+
+        const urls = await this.readFromFile(path);
+
+        // Loop through results and process each module
+        for (const [index, { npmData, githubData }] of results.entries()) {
+            logger.log(1, `Processing result ${index + 1}:`);
+
+            if (npmData) {
+                npmData.printMyData();
+            }
+
+            if (githubData) {
+                githubData.printMyData();
+            }
+
+            if (githubData && npmData) {
+                const netScoreClass = new NetScore(githubData, npmData);
+                const net = await netScoreClass.calculateLatency();
+                const metrics = netScoreClass.getMetricResults();
+
+                if (metrics) {
+                    const [correctness, responsiveness, rampUp, busFactor, license, dependencyPinning, codeReviewMetric] = metrics;
+
+                    const formattedResult = {
+                        URL: urls[index],
+                        NetScore: Number(net.score.toFixed(3)),
+                        NetScore_Latency: Number((net.latency / 1000).toFixed(3)), // Convert to number
+                        RampUp: Number(rampUp.score.toFixed(3)),
+                        RampUp_Latency: Number((rampUp.latency / 1000).toFixed(3)), // Convert to number
+                        Correctness: Number(correctness.score.toFixed(3)),
+                        Correctness_Latency: Number((correctness.latency / 1000).toFixed(3)), // Convert to number
+                        BusFactor: Number(busFactor.score.toFixed(3)),
+                        BusFactor_Latency: Number((busFactor.latency / 1000).toFixed(3)), // Convert to number
+                        ResponsiveMaintainer: Number(responsiveness.score.toFixed(3)),
+                        ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
+                        License: Number(license.score.toFixed(3)),
+                        License_Latency: Number((license.latency / 1000).toFixed(3)), // Convert to number
+                        CodeReviewFraction: Number(codeReviewMetric.score.toFixed(3)),
+                        CodeReviewFraction_Latency: Number((codeReviewMetric.latency / 1000).toFixed(3)),
+                        DependencyPinning: Number(dependencyPinning.score.toFixed(3)), // New metric
+                        DependencyPinning_Latency: Number((dependencyPinning.latency / 1000).toFixed(3)), // New metric
+                    };
+
+                    if (githubData.name !== "empty") {
+                        return (JSON.stringify(formattedResult));
+                    } else {
+                        return "GitHub repo doesn't exist";
+                    }
+                }
+            }
+        }
+
+        // Return success code 0 wrapped in a Promise
+        // return Promise.resolve(0);
+        return "Error in rankModules"
+
+    } catch (error) {
+        logger.log(1, `Error in rankModules: ${error}`);
+        // Return error code 1 wrapped in a Promise
+        return "Error in rankModules: ${error}"
+    }
+}
+
 
   public async rankModulesTogether(
     path: string
