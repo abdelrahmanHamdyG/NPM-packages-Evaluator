@@ -57,11 +57,16 @@ export const getPackageFromDynamoDB = async (id: string) => {
 
     try {
         const response = await dynamo.send(command);
-        if (!response.Item) return null;
 
-        // Parse dependencies and determine if the package has dependencies
-        const dependencyList = response.Item.dependencies?.SS || [];
-        const hasDependencies = dependencyList.length > 0;
+        // Check if the item exists in the response
+        if (!response.Item) {
+            console.error('Package not found in DynamoDB for ID:', id);
+            return null; // Return null if no item is found
+        }
+
+        // Safely access attributes and provide default values if undefined
+        const item = response.Item;
+
         return {
             id: item.id?.S || 'unknown-id',
             name: item.name?.S || 'unknown-name',
