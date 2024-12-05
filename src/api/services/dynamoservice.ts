@@ -73,6 +73,7 @@ export const getPackageFromDynamoDB = async (id: string) => {
             version: item.version?.S || '0.0.0',
             s3Key: item.s3Key?.S || 'unknown-s3Key',
             packageUrl: item.packageUrl?.S || undefined, // Optional field
+            uploadType: item.uploadType?.S || 'unknown-uploadType', // Ensure uploadType is
         };
     } catch (error) {
         console.error('Error fetching package from DynamoDB:', error);
