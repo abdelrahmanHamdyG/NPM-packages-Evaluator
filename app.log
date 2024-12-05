@@ -1,0 +1,410 @@
+2024-12-05T16:47:32.908Z [INFO]: Starting to rank modules from path: C:\Users\parth\AppData\Local\Temp\tempURLFile_-25660-vdfi7hMocAro-.txt
+2024-12-05T16:47:32.909Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-25660-vdfi7hMocAro-.txt
+2024-12-05T16:47:32.910Z [DEBUG]: Successfully read 1 URLs from file.
+2024-12-05T16:47:32.910Z [DEBUG]: GitHubAPI initialized for owner: expressjs, repo: express
+2024-12-05T16:47:32.913Z [DEBUG]: Fetching data for owner: expressjs, repo: express
+2024-12-05T16:47:32.913Z [DEBUG]: Initializing API requests.
+2024-12-05T16:47:32.914Z [DEBUG]: Fetching closed issues since 2024-09-05T15:47:32.914Z
+2024-12-05T16:47:32.914Z [DEBUG]: Fetching contributors for repository: expressjs/express
+2024-12-05T16:47:32.914Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-12-05T16:47:33.281Z [DEBUG]: Fetched 50 contributors on page 1
+2024-12-05T16:47:33.483Z [DEBUG]: Fetched 50 contributors on page 2
+2024-12-05T16:47:33.730Z [DEBUG]: Fetched 50 contributors on page 3
+2024-12-05T16:47:34.040Z [DEBUG]: Fetched 50 contributors on page 4
+2024-12-05T16:47:34.264Z [DEBUG]: Fetched 50 contributors on page 5
+2024-12-05T16:47:34.321Z [DEBUG]: Fetched 100 closed issues on page 1
+2024-12-05T16:47:34.491Z [DEBUG]: Fetched 41 contributors on page 6
+2024-12-05T16:47:34.804Z [DEBUG]: Fetched 0 contributors on page 7
+2024-12-05T16:47:34.804Z [DEBUG]: Finished fetching contributors. Total contributors: 291
+2024-12-05T16:47:34.805Z [DEBUG]: Returning fetched contributors.
+2024-12-05T16:47:35.441Z [DEBUG]: Fetched 100 closed issues on page 2
+2024-12-05T16:47:35.997Z [DEBUG]: Fetched 45 closed issues on page 3
+2024-12-05T16:47:36.296Z [DEBUG]: Fetched 0 closed issues on page 4
+2024-12-05T16:47:36.296Z [DEBUG]: Finished fetching closed issues. Total closed issues: 245
+2024-12-05T16:47:36.296Z [DEBUG]: Fetching open issues since 2024-09-05T15:47:32.914Z
+2024-12-05T16:47:37.042Z [DEBUG]: Fetched 100 open issues on page 1
+2024-12-05T16:47:37.466Z [DEBUG]: Fetched 23 open issues on page 2
+2024-12-05T16:47:37.773Z [DEBUG]: Fetched 0 open issues on page 3
+2024-12-05T16:47:37.774Z [DEBUG]: Finished fetching open issues. Total open issues: 123
+2024-12-05T16:47:37.774Z [DEBUG]: Returning fetched issues.
+2024-12-05T16:47:37.774Z [DEBUG]: Fetched 245 closed issues and 123 open issues.
+2024-12-05T16:47:37.775Z [DEBUG]: Processed contributions from 291 contributors.
+2024-12-05T16:47:37.775Z [DEBUG]: Readme found: true, Description found: true
+2024-12-05T16:47:37.775Z [DEBUG]: License: MIT License
+2024-12-05T16:47:37.775Z [DEBUG]: Data fetch latency: 4862.6407 ms.
+2024-12-05T16:47:37.776Z [DEBUG]: Successfully fetched data from GitHub API
+2024-12-05T16:47:37.776Z [DEBUG]: Generating repository URL for username: expressjs, repoName: express
+2024-12-05T16:47:37.776Z [DEBUG]: Generated repository URL: https://github.com/expressjs/express
+2024-12-05T16:47:37.776Z [INFO]: The data fetched for each URL:
+2024-12-05T16:47:37.776Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-25660-vdfi7hMocAro-.txt
+2024-12-05T16:47:37.777Z [DEBUG]: Successfully read 1 URLs from file.
+2024-12-05T16:47:37.777Z [INFO]: Processing result 1:
+2024-12-05T16:47:37.777Z [DEBUG]: NPM Data:
+2024-12-05T16:47:37.777Z [DEBUG]: License: empty
+2024-12-05T16:47:37.778Z [DEBUG]: GitHub URL: empty
+2024-12-05T16:47:37.778Z [DEBUG]: Dependencies: {}
+2024-12-05T16:47:37.778Z [DEBUG]: Readme Present: Yes
+2024-12-05T16:47:37.778Z [DEBUG]: Description Present: Yes
+2024-12-05T16:47:37.778Z [DEBUG]: Number of Forks: 16790
+2024-12-05T16:47:37.779Z [DEBUG]: Number of Stars: 65819
+2024-12-05T16:47:37.779Z [DEBUG]: GitHub Data:
+2024-12-05T16:47:37.779Z [DEBUG]: Name: express
+2024-12-05T16:47:37.779Z [DEBUG]: License Name: MIT License 
+2024-12-05T16:47:37.779Z [DEBUG]: Contributions Array: 3881
+2024-12-05T16:47:37.779Z [DEBUG]: Readme Present: Yes
+2024-12-05T16:47:37.780Z [DEBUG]: Description Present: Yes
+2024-12-05T16:47:37.780Z [DEBUG]: Number of Issues: 245
+2024-12-05T16:47:37.780Z [INFO]: NetScore instance created.
+2024-12-05T16:47:37.780Z [DEBUG]: CorrectnessMetric initialized.
+2024-12-05T16:47:37.781Z [INFO]: ResponsivenessMetric instance created.
+2024-12-05T16:47:37.781Z [DEBUG]: BusFactorMetric initialized.
+2024-12-05T16:47:37.781Z [INFO]: LicenseMetric instance created.
+2024-12-05T16:47:37.781Z [DEBUG]: DependencyPinningMetric initialized.
+2024-12-05T16:47:37.781Z [INFO]: CodeReviewMetric instance created.
+2024-12-05T16:47:37.782Z [INFO]: Calculating latency for NetScore calculation...
+2024-12-05T16:47:37.782Z [INFO]: Calculating NetScore...
+2024-12-05T16:47:37.782Z [DEBUG]: Calculating latency for correctness score...
+2024-12-05T16:47:37.782Z [INFO]: Calculating Correctness Score for repository: express
+2024-12-05T16:47:37.783Z [INFO]: Cloning repository: https://github.com/expressjs/express into directory: express
+2024-12-05T16:47:37.784Z [INFO]: Calculating responsiveness score with latency...
+2024-12-05T16:47:37.785Z [DEBUG]: Number of closed issues: 245
+2024-12-05T16:47:37.785Z [DEBUG]: Repository size (KB): 9437
+2024-12-05T16:47:37.785Z [DEBUG]: Repository size <= 50MB, standard number of issues set to 80.
+2024-12-05T16:47:37.785Z [INFO]: Number of closed issues exceeds standard, returning score: 1
+2024-12-05T16:47:37.785Z [INFO]: Measuring latency for score calculation...
+2024-12-05T16:47:37.786Z [INFO]: Calculating RampUp Score...
+2024-12-05T16:47:37.786Z [INFO]: Has README: true, Has Description: true
+2024-12-05T16:47:37.786Z [INFO]: README Description Score: 0.2
+2024-12-05T16:47:37.786Z [INFO]: Total Forks: 16790, Total Stars: 65819, Total Forks + Stars: 82609
+2024-12-05T16:47:37.786Z [INFO]: Forks and Stars Percentage Score: 0.1
+2024-12-05T16:47:37.787Z [INFO]: Forks and Stars Percentage Score: 0.1
+2024-12-05T16:47:37.787Z [INFO]: Repository Size (KB): 9.437
+2024-12-05T16:47:37.787Z [INFO]: Repository Size Proportion Score: 0.06800689406801462
+2024-12-05T16:47:37.787Z [INFO]: Open Issues: 123, Closed Issues: 245
+2024-12-05T16:47:37.787Z [INFO]: Open to Closed Issue Ratio Score: 0.2
+2024-12-05T16:47:37.787Z [INFO]: Contributors: 291, Standard No. of Contributors (Normalized): 0.017018321209103057
+2024-12-05T16:47:37.788Z [INFO]: Contributors Score: 0.1
+2024-12-05T16:47:37.788Z [INFO]: Contributors Score: 0.1
+2024-12-05T16:47:37.788Z [INFO]: Total RampUp Score: 0.6680068940680147
+2024-12-05T16:47:37.788Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-12-05T16:47:37.788Z [DEBUG]: Calculating BusFactor score...
+2024-12-05T16:47:37.789Z [DEBUG]: Total commits calculated: 5854
+2024-12-05T16:47:37.789Z [DEBUG]: Total commits: 5854
+2024-12-05T16:47:37.789Z [DEBUG]: HHI calculated: 0.4843245777067704
+2024-12-05T16:47:37.789Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.4843245777067704
+2024-12-05T16:47:37.789Z [INFO]: Calculated BusFactor: 0.5156754222932296
+2024-12-05T16:47:37.789Z [INFO]: Calculating latency for license score calculation...
+2024-12-05T16:47:37.790Z [INFO]: Calculating license compatibility score...
+2024-12-05T16:47:37.790Z [INFO]: Initial GitHub license: MIT License
+2024-12-05T16:47:37.790Z [INFO]: License MIT License is fully compatible.
+2024-12-05T16:47:37.790Z [DEBUG]: Calculating latency for dependency pinning score...
+2024-12-05T16:47:37.790Z [INFO]: Calculating Dependency Pinning Score for repository: express
+2024-12-05T16:47:37.791Z [INFO]: Cloning repository: https://github.com/expressjs/express into directory: express
+2024-12-05T16:47:37.791Z [INFO]: Calculating latency for code review fraction score calculation...
+2024-12-05T16:47:37.791Z [INFO]: Calculating code review fraction score...
+2024-12-05T16:47:37.792Z [INFO]: Calculating code review fraction...
+2024-12-05T16:47:37.792Z [DEBUG]: GitHubAPI initialized for owner: expressjs, repo: express
+2024-12-05T16:47:37.793Z [DEBUG]: Fetching pull requests for repository: expressjs/express
+2024-12-05T16:47:37.793Z [DEBUG]: Score calculated: 1, Latency: 8.655099999999948 ms
+2024-12-05T16:47:37.793Z [INFO]: Score Calculation Latency: 7.6062999999994645 ms
+2024-12-05T16:47:37.793Z [INFO]: BusFactor score: 0.5156754222932296, Latency: 5.091800000000148 ms
+2024-12-05T16:47:37.794Z [INFO]: Calculated score: 1, Latency: 4.000899999999092 ms
+2024-12-05T16:47:38.389Z [DEBUG]: Fetched 50 pull requests on page 1
+2024-12-05T16:47:38.417Z [INFO]: Repository cloned successfully to express
+2024-12-05T16:47:38.419Z [INFO]: Total Dependencies: 30, Pinned Dependencies: 19, Fraction Pinned: 0.6333333333333333
+2024-12-05T16:47:38.454Z [INFO]: Error calculating dependency pinning score: Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\parth\Desktop\senior purdue\ECE 461\ECE-46100-Phase-2\express\.git'
+2024-12-05T16:47:38.454Z [INFO]: Dependency Pinning Score: 0, Latency: 663.6697000000004 ms
+2024-12-05T16:47:38.458Z [INFO]: Error cloning repository: NotFoundError: Could not find origin/master.
+2024-12-05T16:47:38.459Z [DEBUG]: Repository cloned. Starting analysis.
+2024-12-05T16:47:38.459Z [DEBUG]: Latest commit results: {"testfileCount":0,"testlineCount":0,"fileCount":0,"lineCount":0}
+2024-12-05T16:47:38.460Z [DEBUG]: Getting the commit 20 commits ago in directory: express
+2024-12-05T16:47:38.461Z [INFO]: Error calculating correctness score: NotFoundError: Could not find HEAD.
+2024-12-05T16:47:38.461Z [INFO]: Correctness score: 0, Latency: 679.195099999999 ms
+2024-12-05T16:47:39.189Z [DEBUG]: Fetched 50 pull requests on page 2
+2024-12-05T16:47:39.511Z [DEBUG]: Fetched 4 pull requests on page 3
+2024-12-05T16:47:39.854Z [DEBUG]: Fetched 0 pull requests on page 4
+2024-12-05T16:47:39.855Z [DEBUG]: Finished fetching pull requests. Total PRs: 104
+2024-12-05T16:47:39.855Z [INFO]: Code review fraction calculated: 0
+2024-12-05T16:47:39.855Z [INFO]: Total code introduced: NaN
+2024-12-05T16:47:39.856Z [INFO]: Reviewed code: NaN
+2024-12-05T16:47:39.856Z [INFO]: Code review fraction is low, score: 0
+2024-12-05T16:47:39.856Z [INFO]: Calculated score: 0, Latency: 2064.5084000000006 ms
+2024-12-05T16:47:39.856Z [DEBUG]: Correctness score: 0, latency: 679.195099999999
+2024-12-05T16:47:39.856Z [DEBUG]: Responsiveness score: 1, latency: 8.655099999999948
+2024-12-05T16:47:39.856Z [DEBUG]: RampUp score: 0.6680068940680147, latency: 7.6062999999994645
+2024-12-05T16:47:39.857Z [DEBUG]: BusFactor score: 0.5156754222932296, latency: 5.091800000000148
+2024-12-05T16:47:39.857Z [DEBUG]: License score: 1, latency: 4.000899999999092
+2024-12-05T16:47:39.857Z [DEBUG]: Dependency Pinning score: 0, latency: 663.6697000000004
+2024-12-05T16:47:39.857Z [DEBUG]: CodeReview score: 0, latency: 2064.5084000000006
+2024-12-05T16:47:39.857Z [INFO]: Calculated NetScore: 0.6295140243354804
+2024-12-05T16:47:39.857Z [INFO]: NetScore: 0.6295140243354804, Latency: 2075.552300000001 ms
+2024-12-05T16:47:39.858Z [DEBUG]: Returning stored metric results.
+2024-12-05T16:47:39.858Z [DEBUG]: Fetching GitHub issues for expressjs/express
+2024-12-05T16:47:40.251Z [DEBUG]: Found 0 bug issues for expressjs/express
+2024-12-05T16:47:40.251Z [DEBUG]: expressjs/express has 30 issues 
+2024-12-05T16:47:40.252Z [INFO]: Calculated correctness for expressjs/express: 1
+2024-12-05T16:47:57.484Z [INFO]: Starting to rank modules from path: C:\Users\parth\AppData\Local\Temp\tempURLFile_-25660-KhvojcLso2Wh-.txt
+2024-12-05T16:47:57.484Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-25660-KhvojcLso2Wh-.txt
+2024-12-05T16:47:57.485Z [DEBUG]: Successfully read 1 URLs from file.
+2024-12-05T16:47:57.486Z [DEBUG]: GitHubAPI initialized for owner: lquixada, repo: cross-fetch
+2024-12-05T16:47:57.486Z [DEBUG]: Fetching data for owner: lquixada, repo: cross-fetch
+2024-12-05T16:47:57.486Z [DEBUG]: Initializing API requests.
+2024-12-05T16:47:57.487Z [DEBUG]: Fetching closed issues since 2024-09-05T15:47:57.487Z
+2024-12-05T16:47:57.487Z [DEBUG]: Fetching contributors for repository: lquixada/cross-fetch
+2024-12-05T16:47:57.487Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-12-05T16:47:57.888Z [DEBUG]: Fetched 19 contributors on page 1
+2024-12-05T16:47:57.966Z [DEBUG]: Fetched 1 closed issues on page 1
+2024-12-05T16:47:58.119Z [DEBUG]: Fetched 0 contributors on page 2
+2024-12-05T16:47:58.119Z [DEBUG]: Finished fetching contributors. Total contributors: 19
+2024-12-05T16:47:58.120Z [DEBUG]: Returning fetched contributors.
+2024-12-05T16:47:58.243Z [DEBUG]: Fetched 0 closed issues on page 2
+2024-12-05T16:47:58.244Z [DEBUG]: Finished fetching closed issues. Total closed issues: 1
+2024-12-05T16:47:58.244Z [DEBUG]: Fetching open issues since 2024-09-05T15:47:57.487Z
+2024-12-05T16:47:58.568Z [DEBUG]: Fetched 6 open issues on page 1
+2024-12-05T16:47:58.862Z [DEBUG]: Fetched 0 open issues on page 2
+2024-12-05T16:47:58.862Z [DEBUG]: Finished fetching open issues. Total open issues: 6
+2024-12-05T16:47:58.862Z [DEBUG]: Returning fetched issues.
+2024-12-05T16:47:58.863Z [DEBUG]: Fetched 1 closed issues and 6 open issues.
+2024-12-05T16:47:58.863Z [DEBUG]: Processed contributions from 19 contributors.
+2024-12-05T16:47:58.863Z [DEBUG]: Readme found: true, Description found: true
+2024-12-05T16:47:58.863Z [DEBUG]: License: MIT License
+2024-12-05T16:47:58.864Z [DEBUG]: Data fetch latency: 1377.5218000000023 ms.
+2024-12-05T16:47:58.864Z [DEBUG]: Successfully fetched data from GitHub API
+2024-12-05T16:47:58.864Z [DEBUG]: Generating repository URL for username: lquixada, repoName: cross-fetch
+2024-12-05T16:47:58.864Z [DEBUG]: Generated repository URL: https://github.com/lquixada/cross-fetch
+2024-12-05T16:47:58.864Z [INFO]: The data fetched for each URL:
+2024-12-05T16:47:58.864Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-25660-KhvojcLso2Wh-.txt
+2024-12-05T16:47:58.865Z [DEBUG]: Successfully read 1 URLs from file.
+2024-12-05T16:47:58.865Z [INFO]: Processing result 1:
+2024-12-05T16:47:58.865Z [DEBUG]: NPM Data:
+2024-12-05T16:47:58.865Z [DEBUG]: License: empty
+2024-12-05T16:47:58.866Z [DEBUG]: GitHub URL: empty
+2024-12-05T16:47:58.866Z [DEBUG]: Dependencies: {}
+2024-12-05T16:47:58.866Z [DEBUG]: Readme Present: Yes
+2024-12-05T16:47:58.866Z [DEBUG]: Description Present: Yes
+2024-12-05T16:47:58.866Z [DEBUG]: Number of Forks: 105
+2024-12-05T16:47:58.867Z [DEBUG]: Number of Stars: 1672
+2024-12-05T16:47:58.867Z [DEBUG]: GitHub Data:
+2024-12-05T16:47:58.867Z [DEBUG]: Name: cross-fetch
+2024-12-05T16:47:58.867Z [DEBUG]: License Name: MIT License 
+2024-12-05T16:47:58.867Z [DEBUG]: Contributions Array: 642
+2024-12-05T16:47:58.867Z [DEBUG]: Readme Present: Yes
+2024-12-05T16:47:58.868Z [DEBUG]: Description Present: Yes
+2024-12-05T16:47:58.868Z [DEBUG]: Number of Issues: 1
+2024-12-05T16:47:58.868Z [INFO]: NetScore instance created.
+2024-12-05T16:47:58.868Z [DEBUG]: CorrectnessMetric initialized.
+2024-12-05T16:47:58.868Z [INFO]: ResponsivenessMetric instance created.
+2024-12-05T16:47:58.869Z [DEBUG]: BusFactorMetric initialized.
+2024-12-05T16:47:58.869Z [INFO]: LicenseMetric instance created.
+2024-12-05T16:47:58.869Z [DEBUG]: DependencyPinningMetric initialized.
+2024-12-05T16:47:58.869Z [INFO]: CodeReviewMetric instance created.
+2024-12-05T16:47:58.869Z [INFO]: Calculating latency for NetScore calculation...
+2024-12-05T16:47:58.869Z [INFO]: Calculating NetScore...
+2024-12-05T16:47:58.869Z [DEBUG]: Calculating latency for correctness score...
+2024-12-05T16:47:58.870Z [INFO]: Calculating Correctness Score for repository: cross-fetch
+2024-12-05T16:47:58.870Z [INFO]: Cloning repository: https://github.com/lquixada/cross-fetch into directory: cross-fetch
+2024-12-05T16:47:58.870Z [INFO]: Calculating responsiveness score with latency...
+2024-12-05T16:47:58.870Z [DEBUG]: Number of closed issues: 1
+2024-12-05T16:47:58.870Z [DEBUG]: Repository size (KB): 3941
+2024-12-05T16:47:58.871Z [DEBUG]: Repository size <= 50MB, standard number of issues set to 80.
+2024-12-05T16:47:58.871Z [DEBUG]: Calculated responsiveness score: 0.0125
+2024-12-05T16:47:58.871Z [INFO]: Measuring latency for score calculation...
+2024-12-05T16:47:58.871Z [INFO]: Calculating RampUp Score...
+2024-12-05T16:47:58.871Z [INFO]: Has README: true, Has Description: true
+2024-12-05T16:47:58.871Z [INFO]: README Description Score: 0.2
+2024-12-05T16:47:58.872Z [INFO]: Total Forks: 105, Total Stars: 1672, Total Forks + Stars: 1777
+2024-12-05T16:47:58.872Z [INFO]: Forks and Stars Percentage Score: 0.1
+2024-12-05T16:47:58.872Z [INFO]: Forks and Stars Percentage Score: 0.1
+2024-12-05T16:47:58.872Z [INFO]: Repository Size (KB): 3.941
+2024-12-05T16:47:58.872Z [INFO]: Repository Size Proportion Score: 0.07510580302704253
+2024-12-05T16:47:58.872Z [INFO]: Open Issues: 6, Closed Issues: 1
+2024-12-05T16:47:58.873Z [INFO]: Open to Closed Issue Ratio Score: 0.02857142857142857
+2024-12-05T16:47:58.873Z [INFO]: Open to Closed Issue Ratio Score: 0.02857142857142857
+2024-12-05T16:47:58.873Z [INFO]: Contributors: 19, Standard No. of Contributors (Normalized): 0.009893838319457133
+2024-12-05T16:47:58.873Z [INFO]: Contributors Score: 0.1
+2024-12-05T16:47:58.873Z [INFO]: Contributors Score: 0.1
+2024-12-05T16:47:58.873Z [INFO]: Total RampUp Score: 0.5036772315984711
+2024-12-05T16:47:58.874Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-12-05T16:47:58.874Z [DEBUG]: Calculating BusFactor score...
+2024-12-05T16:47:58.874Z [DEBUG]: Total commits calculated: 665
+2024-12-05T16:47:58.874Z [DEBUG]: Total commits: 665
+2024-12-05T16:47:58.874Z [DEBUG]: HHI calculated: 0.9321160042964561
+2024-12-05T16:47:58.874Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.9321160042964561
+2024-12-05T16:47:58.874Z [INFO]: Calculated BusFactor: 0.06788399570354386
+2024-12-05T16:47:58.875Z [INFO]: Calculating latency for license score calculation...
+2024-12-05T16:47:58.875Z [INFO]: Calculating license compatibility score...
+2024-12-05T16:47:58.875Z [INFO]: Initial GitHub license: MIT License
+2024-12-05T16:47:58.875Z [INFO]: License MIT License is fully compatible.
+2024-12-05T16:47:58.875Z [DEBUG]: Calculating latency for dependency pinning score...
+2024-12-05T16:47:58.876Z [INFO]: Calculating Dependency Pinning Score for repository: cross-fetch
+2024-12-05T16:47:58.876Z [INFO]: Cloning repository: https://github.com/lquixada/cross-fetch into directory: cross-fetch
+2024-12-05T16:47:58.876Z [INFO]: Calculating latency for code review fraction score calculation...
+2024-12-05T16:47:58.877Z [INFO]: Calculating code review fraction score...
+2024-12-05T16:47:58.877Z [INFO]: Calculating code review fraction...
+2024-12-05T16:47:58.877Z [DEBUG]: GitHubAPI initialized for owner: lquixada, repo: cross-fetch
+2024-12-05T16:47:58.878Z [DEBUG]: Fetching pull requests for repository: lquixada/cross-fetch
+2024-12-05T16:47:58.878Z [DEBUG]: Score calculated: 0.0125, Latency: 7.807099999998172 ms
+2024-12-05T16:47:58.878Z [INFO]: Score Calculation Latency: 6.938099999999395 ms
+2024-12-05T16:47:58.878Z [INFO]: BusFactor score: 0.06788399570354386, Latency: 4.486600000003818 ms
+2024-12-05T16:47:58.878Z [INFO]: Calculated score: 1, Latency: 3.502100000005157 ms
+2024-12-05T16:47:59.128Z [DEBUG]: Fetched 4 pull requests on page 1
+2024-12-05T16:47:59.267Z [INFO]: Repository cloned successfully to cross-fetch
+2024-12-05T16:47:59.277Z [DEBUG]: Fetched 0 pull requests on page 2
+2024-12-05T16:47:59.277Z [DEBUG]: Finished fetching pull requests. Total PRs: 4
+2024-12-05T16:47:59.278Z [INFO]: Code review fraction calculated: 0
+2024-12-05T16:47:59.278Z [INFO]: Total code introduced: NaN
+2024-12-05T16:47:59.278Z [INFO]: Reviewed code: 0
+2024-12-05T16:47:59.278Z [INFO]: Code review fraction is low, score: 0
+2024-12-05T16:47:59.278Z [INFO]: Calculated score: 0, Latency: 401.58439999999973 ms
+2024-12-05T16:47:59.280Z [INFO]: Total Dependencies: 1, Pinned Dependencies: 0, Fraction Pinned: 0
+2024-12-05T16:47:59.285Z [INFO]: Repository cloned successfully to cross-fetch
+2024-12-05T16:47:59.285Z [DEBUG]: Repository cloned. Starting analysis.
+2024-12-05T16:47:59.287Z [INFO]: Error calculating correctness score: Error: ENOENT: no such file or directory, scandir 'C:\Users\parth\Desktop\senior purdue\ECE 461\ECE-46100-Phase-2\cross-fetch\.github'
+2024-12-05T16:47:59.287Z [INFO]: Correctness score: 0, Latency: 417.43960000000516 ms
+2024-12-05T16:47:59.293Z [INFO]: Error calculating dependency pinning score: Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\parth\Desktop\senior purdue\ECE 461\ECE-46100-Phase-2\cross-fetch\examples\reactnative\ios\reactnative\Base.lproj'
+2024-12-05T16:47:59.293Z [INFO]: Dependency Pinning Score: 0, Latency: 417.6799000000028 ms
+2024-12-05T16:47:59.294Z [DEBUG]: Correctness score: 0, latency: 417.43960000000516
+2024-12-05T16:47:59.294Z [DEBUG]: Responsiveness score: 0.0125, latency: 7.807099999998172
+2024-12-05T16:47:59.294Z [DEBUG]: RampUp score: 0.5036772315984711, latency: 6.938099999999395
+2024-12-05T16:47:59.294Z [DEBUG]: BusFactor score: 0.06788399570354386, latency: 4.486600000003818
+2024-12-05T16:47:59.294Z [DEBUG]: License score: 1, latency: 3.502100000005157
+2024-12-05T16:47:59.294Z [DEBUG]: Dependency Pinning score: 0, latency: 417.6799000000028
+2024-12-05T16:47:59.295Z [DEBUG]: CodeReview score: 0, latency: 401.58439999999973
+2024-12-05T16:47:59.295Z [INFO]: Calculated NetScore: 0.27858163286938575
+2024-12-05T16:47:59.295Z [INFO]: NetScore: 0.27858163286938575, Latency: 425.6232000000018 ms
+2024-12-05T16:47:59.295Z [DEBUG]: Returning stored metric results.
+2024-12-05T16:47:59.295Z [DEBUG]: Fetching GitHub issues for lquixada/cross-fetch
+2024-12-05T16:47:59.655Z [DEBUG]: Found 0 bug issues for lquixada/cross-fetch
+2024-12-05T16:47:59.655Z [DEBUG]: lquixada/cross-fetch has 30 issues 
+2024-12-05T16:47:59.656Z [INFO]: Calculated correctness for lquixada/cross-fetch: 1
+2024-12-05T16:48:23.816Z [INFO]: Starting to rank modules from path: C:\Users\parth\AppData\Local\Temp\tempURLFile_-25660-t7Ps3tzInBq0-.txt
+2024-12-05T16:48:23.817Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-25660-t7Ps3tzInBq0-.txt
+2024-12-05T16:48:23.817Z [DEBUG]: Successfully read 1 URLs from file.
+2024-12-05T16:48:23.818Z [DEBUG]: GitHubAPI initialized for owner: Gninoskcaj, repo: easy-math-module
+2024-12-05T16:48:23.818Z [DEBUG]: Fetching data for owner: Gninoskcaj, repo: easy-math-module
+2024-12-05T16:48:23.819Z [DEBUG]: Initializing API requests.
+2024-12-05T16:48:23.819Z [DEBUG]: Fetching closed issues since 2024-09-05T15:48:23.819Z
+2024-12-05T16:48:23.819Z [DEBUG]: Fetching contributors for repository: Gninoskcaj/easy-math-module
+2024-12-05T16:48:23.819Z [DEBUG]: Awaiting responses from GitHub API requests.
+2024-12-05T16:48:24.333Z [DEBUG]: Fetched 0 closed issues on page 1
+2024-12-05T16:48:24.334Z [DEBUG]: Finished fetching closed issues. Total closed issues: 0
+2024-12-05T16:48:24.334Z [DEBUG]: Fetching open issues since 2024-09-05T15:48:23.819Z
+2024-12-05T16:48:24.366Z [DEBUG]: Fetched 2 contributors on page 1
+2024-12-05T16:48:24.613Z [DEBUG]: Fetched 0 open issues on page 1
+2024-12-05T16:48:24.614Z [DEBUG]: Finished fetching open issues. Total open issues: 0
+2024-12-05T16:48:24.614Z [DEBUG]: Returning fetched issues.
+2024-12-05T16:48:24.690Z [DEBUG]: Fetched 0 contributors on page 2
+2024-12-05T16:48:24.690Z [DEBUG]: Finished fetching contributors. Total contributors: 2
+2024-12-05T16:48:24.690Z [DEBUG]: Returning fetched contributors.
+2024-12-05T16:48:24.691Z [DEBUG]: Fetched 0 closed issues and 0 open issues.
+2024-12-05T16:48:24.691Z [DEBUG]: Processed contributions from 2 contributors.
+2024-12-05T16:48:24.691Z [DEBUG]: Readme found: true, Description found: true
+2024-12-05T16:48:24.691Z [DEBUG]: License: MIT License
+2024-12-05T16:48:24.691Z [DEBUG]: Data fetch latency: 872.987000000001 ms.
+2024-12-05T16:48:24.692Z [DEBUG]: Successfully fetched data from GitHub API
+2024-12-05T16:48:24.692Z [DEBUG]: Generating repository URL for username: Gninoskcaj, repoName: easy-math-module
+2024-12-05T16:48:24.692Z [DEBUG]: Generated repository URL: https://github.com/Gninoskcaj/easy-math-module
+2024-12-05T16:48:24.692Z [INFO]: The data fetched for each URL:
+2024-12-05T16:48:24.692Z [DEBUG]: Attempting to read from file: C:\Users\parth\AppData\Local\Temp\tempURLFile_-25660-t7Ps3tzInBq0-.txt
+2024-12-05T16:48:24.693Z [DEBUG]: Successfully read 1 URLs from file.
+2024-12-05T16:48:24.693Z [INFO]: Processing result 1:
+2024-12-05T16:48:24.693Z [DEBUG]: NPM Data:
+2024-12-05T16:48:24.694Z [DEBUG]: License: empty
+2024-12-05T16:48:24.694Z [DEBUG]: GitHub URL: empty
+2024-12-05T16:48:24.694Z [DEBUG]: Dependencies: {}
+2024-12-05T16:48:24.694Z [DEBUG]: Readme Present: Yes
+2024-12-05T16:48:24.694Z [DEBUG]: Description Present: Yes
+2024-12-05T16:48:24.695Z [DEBUG]: Number of Forks: 0
+2024-12-05T16:48:24.695Z [DEBUG]: Number of Stars: 2
+2024-12-05T16:48:24.695Z [DEBUG]: GitHub Data:
+2024-12-05T16:48:24.695Z [DEBUG]: Name: easy-math-module
+2024-12-05T16:48:24.695Z [DEBUG]: License Name: MIT License 
+2024-12-05T16:48:24.695Z [DEBUG]: Contributions Array: 87
+2024-12-05T16:48:24.696Z [DEBUG]: Readme Present: Yes
+2024-12-05T16:48:24.696Z [DEBUG]: Description Present: Yes
+2024-12-05T16:48:24.696Z [DEBUG]: Number of Issues: 0
+2024-12-05T16:48:24.696Z [INFO]: NetScore instance created.
+2024-12-05T16:48:24.696Z [DEBUG]: CorrectnessMetric initialized.
+2024-12-05T16:48:24.697Z [INFO]: ResponsivenessMetric instance created.
+2024-12-05T16:48:24.697Z [DEBUG]: BusFactorMetric initialized.
+2024-12-05T16:48:24.697Z [INFO]: LicenseMetric instance created.
+2024-12-05T16:48:24.697Z [DEBUG]: DependencyPinningMetric initialized.
+2024-12-05T16:48:24.697Z [INFO]: CodeReviewMetric instance created.
+2024-12-05T16:48:24.698Z [INFO]: Calculating latency for NetScore calculation...
+2024-12-05T16:48:24.698Z [INFO]: Calculating NetScore...
+2024-12-05T16:48:24.698Z [DEBUG]: Calculating latency for correctness score...
+2024-12-05T16:48:24.698Z [INFO]: Calculating Correctness Score for repository: easy-math-module
+2024-12-05T16:48:24.698Z [INFO]: Cloning repository: https://github.com/Gninoskcaj/easy-math-module into directory: easy-math-module
+2024-12-05T16:48:24.699Z [INFO]: Calculating responsiveness score with latency...
+2024-12-05T16:48:24.699Z [DEBUG]: Number of closed issues: 0
+2024-12-05T16:48:24.699Z [INFO]: No closed issues found, returning default score: 0.25
+2024-12-05T16:48:24.700Z [INFO]: Measuring latency for score calculation...
+2024-12-05T16:48:24.700Z [INFO]: Calculating RampUp Score...
+2024-12-05T16:48:24.700Z [INFO]: Has README: true, Has Description: true
+2024-12-05T16:48:24.700Z [INFO]: README Description Score: 0.2
+2024-12-05T16:48:24.700Z [INFO]: Total Forks: 0, Total Stars: 2, Total Forks + Stars: 2
+2024-12-05T16:48:24.700Z [INFO]: Forks and Stars Percentage Score: 0.0002
+2024-12-05T16:48:24.701Z [INFO]: Forks and Stars Percentage Score: 0.0002
+2024-12-05T16:48:24.701Z [INFO]: Repository Size (KB): 0.054
+2024-12-05T16:48:24.701Z [INFO]: Repository Size Proportion Score: 0.08481201511836085
+2024-12-05T16:48:24.701Z [INFO]: Open Issues: 0, Closed Issues: 0
+2024-12-05T16:48:24.701Z [INFO]: Open to Closed Issue Ratio Score: 0
+2024-12-05T16:48:24.702Z [INFO]: Open to Closed Issue Ratio Score: 0
+2024-12-05T16:48:24.702Z [INFO]: Contributors: 2, Standard No. of Contributors (Normalized): 0.006728846229241421
+2024-12-05T16:48:24.702Z [INFO]: Contributors Score: 0.1
+2024-12-05T16:48:24.702Z [INFO]: Contributors Score: 0.1
+2024-12-05T16:48:24.702Z [INFO]: Total RampUp Score: 0.3850120151183609
+2024-12-05T16:48:24.702Z [DEBUG]: Measuring latency for BusFactor score calculation...
+2024-12-05T16:48:24.703Z [DEBUG]: Calculating BusFactor score...
+2024-12-05T16:48:24.703Z [DEBUG]: Total commits calculated: 89
+2024-12-05T16:48:24.703Z [DEBUG]: Total commits: 89
+2024-12-05T16:48:24.703Z [DEBUG]: HHI calculated: 0.9560661532634767
+2024-12-05T16:48:24.703Z [DEBUG]: HHI (Herfindahl-Hirschman Index): 0.9560661532634767
+2024-12-05T16:48:24.704Z [INFO]: Calculated BusFactor: 0.04393384673652334
+2024-12-05T16:48:24.704Z [INFO]: Calculating latency for license score calculation...
+2024-12-05T16:48:24.705Z [INFO]: Calculating license compatibility score...
+2024-12-05T16:48:24.705Z [INFO]: Initial GitHub license: MIT License
+2024-12-05T16:48:24.705Z [INFO]: License MIT License is fully compatible.
+2024-12-05T16:48:24.705Z [DEBUG]: Calculating latency for dependency pinning score...
+2024-12-05T16:48:24.705Z [INFO]: Calculating Dependency Pinning Score for repository: easy-math-module
+2024-12-05T16:48:24.706Z [INFO]: Cloning repository: https://github.com/Gninoskcaj/easy-math-module into directory: easy-math-module
+2024-12-05T16:48:24.706Z [INFO]: Calculating latency for code review fraction score calculation...
+2024-12-05T16:48:24.707Z [INFO]: Calculating code review fraction score...
+2024-12-05T16:48:24.707Z [INFO]: Calculating code review fraction...
+2024-12-05T16:48:24.707Z [DEBUG]: GitHubAPI initialized for owner: Gninoskcaj, repo: easy-math-module
+2024-12-05T16:48:24.708Z [DEBUG]: Fetching pull requests for repository: Gninoskcaj/easy-math-module
+2024-12-05T16:48:24.708Z [DEBUG]: Score calculated: 0.25, Latency: 9.109700000000885 ms
+2024-12-05T16:48:24.708Z [INFO]: Score Calculation Latency: 8.572800000001735 ms
+2024-12-05T16:48:24.709Z [INFO]: BusFactor score: 0.04393384673652334, Latency: 5.865599999997357 ms
+2024-12-05T16:48:24.709Z [INFO]: Calculated score: 1, Latency: 4.083100000003469 ms
+2024-12-05T16:48:24.907Z [DEBUG]: Fetched 0 pull requests on page 1
+2024-12-05T16:48:24.908Z [DEBUG]: Finished fetching pull requests. Total PRs: 0
+2024-12-05T16:48:24.908Z [INFO]: Code review fraction calculated: 0
+2024-12-05T16:48:24.908Z [INFO]: Total code introduced: 0
+2024-12-05T16:48:24.908Z [INFO]: Reviewed code: 0
+2024-12-05T16:48:24.909Z [INFO]: Code review fraction is low, score: 0
+2024-12-05T16:48:24.909Z [INFO]: Calculated score: 0, Latency: 202.11579999999958 ms
+2024-12-05T16:48:24.947Z [INFO]: Repository cloned successfully to easy-math-module
+2024-12-05T16:48:24.948Z [INFO]: Total Dependencies: 1, Pinned Dependencies: 0, Fraction Pinned: 0
+2024-12-05T16:48:24.955Z [INFO]: Dependency Pinning Score: 0
+2024-12-05T16:48:24.955Z [INFO]: Dependency Pinning Score: 0, Latency: 249.436099999999 ms
+2024-12-05T16:48:24.982Z [INFO]: Error cloning repository: NotFoundError: Could not find origin/master.
+2024-12-05T16:48:24.983Z [DEBUG]: Repository cloned. Starting analysis.
+2024-12-05T16:48:24.983Z [DEBUG]: Latest commit results: {"testfileCount":0,"testlineCount":0,"fileCount":0,"lineCount":0}
+2024-12-05T16:48:24.983Z [DEBUG]: Getting the commit 20 commits ago in directory: easy-math-module
+2024-12-05T16:48:24.984Z [INFO]: Error calculating correctness score: NotFoundError: Could not find HEAD.
+2024-12-05T16:48:24.985Z [INFO]: Correctness score: 0, Latency: 286.3654000000024 ms
+2024-12-05T16:48:24.985Z [DEBUG]: Correctness score: 0, latency: 286.3654000000024
+2024-12-05T16:48:24.985Z [DEBUG]: Responsiveness score: 0.25, latency: 9.109700000000885
+2024-12-05T16:48:24.985Z [DEBUG]: RampUp score: 0.3850120151183609, latency: 8.572800000001735
+2024-12-05T16:48:24.985Z [DEBUG]: BusFactor score: 0.04393384673652334, latency: 5.865599999997357
+2024-12-05T16:48:24.985Z [DEBUG]: License score: 1, latency: 4.083100000003469
+2024-12-05T16:48:24.986Z [DEBUG]: Dependency Pinning score: 0, latency: 249.436099999999
+2024-12-05T16:48:24.986Z [DEBUG]: CodeReview score: 0, latency: 202.11579999999958
+2024-12-05T16:48:24.986Z [INFO]: Calculated NetScore: 0.3406881432196065
+2024-12-05T16:48:24.986Z [INFO]: NetScore: 0.3406881432196065, Latency: 288.40460000000166 ms
+2024-12-05T16:48:24.986Z [DEBUG]: Returning stored metric results.
+2024-12-05T16:48:24.987Z [DEBUG]: Fetching GitHub issues for Gninoskcaj/easy-math-module
+2024-12-05T16:48:25.419Z [DEBUG]: Found 0 bug issues for Gninoskcaj/easy-math-module
+2024-12-05T16:48:25.419Z [DEBUG]: Gninoskcaj/easy-math-module has 17 issues 
+2024-12-05T16:48:25.419Z [INFO]: Calculated correctness for Gninoskcaj/easy-math-module: 1
