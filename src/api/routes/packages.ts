@@ -1,53 +1,68 @@
-import { Router, Request, Response } from 'express';
-import { getPackagesFromDynamoDB, Module } from '../services/dynamoservice.js';  // Assuming you have a DynamoDB service
-import { format } from 'path';
+import express, { Request, Response } from 'express';
+import { getPackagesFromDynamoDB } from '../services/dynamoservice.js'; // Assume DynamoDB service exists
+import * as semver from 'semver';
 
-const router = Router();
+const router = express.Router();
 
-// POST /packages - Search or list packages
+// Define types for request validation
+interface PackageQuery {
+    Name: string;
+    Version: string;
+}
+
+interface EnumerateOffset {
+    offset?: string; // Optional offset for pagination
+}
+
+// Helper function to validate version formats
+function isValidVersion(version: string): boolean {
+    return semver.valid(version) !== null || semver.validRange(version) !== null;
+}
 router.post('/', async (req: Request, res: Response): Promise<void> => {
-    const offset = req.query.offset as string || '0';  // Default to '0' if no offset is provided
-    // const queries: Module[] = req.body;
-    const queries: { Name: string, Version: string }[] = req.body;
-
-    // Validate request body
-    if (!Array.isArray(queries) || queries.some(query => !query.Name || !query.Version)) {
-        res.status(400).json({ error: 'There are missing field(s) in the PackageQuery or it is malformed.' });
-        return;
-    }
-
     try {
-        // Retrieve packages from DynamoDB based on the query and pagination
-        const { packages, nextOffset } = await getPackagesFromDynamoDB(queries, offset);
-
-        if (!packages || packages.length === 0) {
-            res.status(404).json({ error: 'No packages match the query criteria.' });
-            return;
+        // Validate the X-Authorization header
+        const authHeader = req.headers['x-authorization'];
+        if (!authHeader) {
+            res.status(403).json({ error: 'Authentication failed: Missing X-Authorization header.' });
+            return ;
         }
 
-        // Add pagination information in headers
-        res.setHeader('offset', nextOffset);
+        // Validate and parse the request body
+        const packageQueries: PackageQuery[] = req.body;
+        if (!Array.isArray(packageQueries) || packageQueries.some(q => !q.Name || !q.Version)) {
+            res.status(400).json({
+                error: 'Invalid PackageQuery. Ensure the request body contains an array of { Name, Version } objects.',
+            });
+            return ;
+        }
 
-        // Respond with the list of packages
-        // res.status(200).json("ID":packages.id);
-        const packageMetadata = packages.map((pkg) => ({
-            Name: pkg.name,
-            Version: pkg.version,
-            ID: pkg.id
-        }));
-        
-        // Send the metadata response
-        res.status(200).json(packageMetadata);
-    } catch (error:unknown) {
-        // Custom error handling for specific cases like too many items
-        if (error instanceof Error) {
-            if (error.message === 'Too many packages returned') {
-                res.status(413).json({ error: 'Too many packages returned. Refine the query.' });
-            } else {
-                console.error('Error retrieving packages:', error);
-                res.status(500).json({ error: 'Internal server error.' });
+        // Validate each version
+        for (const query of packageQueries) {
+            if (!isValidVersion(query.Version)) {
+                res.status(400).json({ error: `Invalid version format: ${query.Version}.` });
+                return ;
             }
-    }}
-});
+        }
 
+        // Extract pagination offset
+        const offset = req.query.offset as string | undefined;
+
+        // Fetch packages from the database
+        const { packages, nextOffset } = await getPackagesFromDynamoDB(packageQueries, offset);
+
+        // Check for too many packages
+        if (packages.length > 100) {
+            res.status(413).json({ error: 'Too many packages returned. Refine your query.' });
+            return ;
+        }
+
+        // Respond with the list of packages and the next offset
+        res.status(200)
+            .set('X-Next-Offset', nextOffset || '')
+            .json(packages);
+    } catch (error) {
+        console.error('Error processing the /packages request:', error);
+        res.status(500).json({ error: 'Internal Server Error.' });
+    }
+});
 export default router;

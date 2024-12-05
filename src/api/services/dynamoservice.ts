@@ -1,5 +1,14 @@
 import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 import semver from 'semver';
+import {QueryCommand, QueryCommandInput, QueryCommandOutput } from "@aws-sdk/client-dynamodb";
+
+// import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
+// import { ScanCommand } from '@aws-sdk/lib-dynamodb';
+
+// const dynamo = new DynamoDBClient({ region: 'your-region' });
+
+// Your existing getPackagesFromDynamoDB function...
+
 // Initialize DynamoDB client
 const dynamo = new DynamoDBClient({ region: 'us-east-2' });
 export interface Module {
@@ -109,10 +118,6 @@ export const getPackagesByRegex = async (regex: string): Promise<PackageMetadata
         throw error;
     }
 };
-
-
-
-
 export const getPackagesFromDynamoDB = async (
     queries: { Name: string; Version: string }[],
     offset: string = '0',
@@ -124,18 +129,32 @@ export const getPackagesFromDynamoDB = async (
     try {
         const results = await Promise.all(
             queries.map(async (query) => {
+                // Log query parameters
+                console.log('Processing query:', query);
+
+                if (!semver.validRange(query.Version)) {
+                    console.warn('Invalid semver range in query:', query.Version);
+                    return [];
+                }
+
                 const command = new ScanCommand({
                     TableName: 'Packages',
-                    FilterExpression: '#name = :name',
-                    ExpressionAttributeNames: {
-                        '#name': 'name',
-                    },
-                    ExpressionAttributeValues: {
-                        ':name': { S: query.Name },
-                    },
+                    // FilterExpression: '#name = :name',
+                    // ExpressionAttributeNames: {
+                    //     '#name': 'name',
+                    // },
+                    // ExpressionAttributeValues: {
+                    //     ':name': { S: query.Name },
+                    // },
+
                 });
+                console.log(command);
 
                 const response = await dynamo.send(command);
+                console.log(response);
+
+                // Log DynamoDB response
+                console.log('DynamoDB response:', JSON.stringify(response.Items, null, 2));
 
                 if (!response.Items || response.Items.length === 0) {
                     console.warn('No items found for query:', JSON.stringify(query));
@@ -144,19 +163,30 @@ export const getPackagesFromDynamoDB = async (
 
                 const filteredPackages = response.Items.filter((pkg) => {
                     const version = pkg.version?.S;
-                    return version && semver.satisfies(version, query.Version);
+                    const name = pkg.name?.S;
+                    
+                    if (!version || !semver.valid(version) || name !== query.Name) {
+                        console.warn('Invalid or missing semver version in item:', pkg);
+                        return false;
+                    }
+                    return semver.satisfies(version, query.Version);
                 });
+                console.log(query.Name);
+                // Log filtered packages
+                console.log('Filtered packages:', filteredPackages);
 
                 return filteredPackages.map((pkg) => ({
-                    id: pkg.id?.S || 'unknown',
-                    name: pkg.name?.S || 'unknown',
-                    version: pkg.version?.S || 'unknown',
-                    s3Key: pkg.s3Key?.S || '',
+                    Version: pkg.version?.S || 'unknown',
+                    Name: pkg.name?.S || 'unknown',
+                    Id: pkg.id?.S || 'unknown',
+                    // s3Key: pkg.s3Key?.S || '',
                 }));
             })
         );
 
         const allPackages = results.flat();
+        console.log(`Total packages matching query: ${allPackages.length}`);
+
         const paginatedPackages = allPackages.slice(startIndex, startIndex + pageSize);
         const nextOffset =
             paginatedPackages.length < pageSize ? '' : (startIndex + pageSize).toString();

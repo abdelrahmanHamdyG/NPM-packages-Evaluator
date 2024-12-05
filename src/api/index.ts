@@ -9,6 +9,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+// const app = express();
+
+app.use(express.json()); // Parse incoming JSON requests
+app.use('/packages', packagesRouter); // Mount the /packages endpoint
+
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' })); // Increase JSON payload size limit
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true })); // Increase URL-encoded payload size limit
