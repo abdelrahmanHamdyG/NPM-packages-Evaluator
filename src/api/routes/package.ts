@@ -201,27 +201,16 @@ router.get('/:id/rate', async (req: Request, res: Response): Promise<void> => {
         const tempURLFile = tmp.fileSync({ prefix: 'tempURLFile_', postfix: '.txt' });
         fs.writeFileSync(tempURLFile.name, packageData.packageUrl || '');
 
-        // Run CLI tool, capture CLI output to string
-        let capturedOutput = '';
-        // Backup the original console.log
-        const originalConsoleLog = console.log;
+         // Calculate metrics
+        const jsonmetrics = await cli.rankModules_phase2(tempURLFile.name);
 
-        // Override console.log to capture output
-        console.log = (message: any) => {
-            capturedOutput += message + '\n';
-        };
-        // Calculate metrics
-        const rcode = await cli.rankModules(tempURLFile.name);
-        // Restore the original console.log
-        console.log = originalConsoleLog;
-
-        if (rcode) {
+        if (jsonmetrics.split(' ')[0].toLowerCase() == 'error') {
             res.status(500).json({ error: 'The package rating system choked on at least one of the metrics.' });
             return;
         }
-        
+
         // Respond with the rating data if successful
-        res.status(200).json(JSON.parse(capturedOutput));
+        res.status(200).json(JSON.parse(jsonmetrics));
 
     } catch (error) {
         console.error('Error retrieving package rating:', error);
