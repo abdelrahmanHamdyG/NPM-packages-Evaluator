@@ -98,6 +98,26 @@ const App = () => {
     }
   };
   // Reset Data
+  const handleUpload = async () => {
+    try {
+      const payload = uploadType === 'content'
+        ? { Content: packageContent, JSProgram: jsProgram, debloat }
+        : { URL: packageURL, JSProgram: jsProgram, debloat };
+  
+      const response = await axios.post(`http://${publicIp}:3000/package`, payload, {
+        headers: {
+          'X-Authorization': `Bearer <your-token-here>`, // Replace with your token
+        },
+      });
+  
+      setUploadResponse(response.data);
+      alert('Package uploaded successfully!');
+    } catch (error) {
+      console.error('Error uploading package:', error);
+      alert('Failed to upload the package. Please try again.');
+    }
+  };
+  
   const handleReset = async () => {
     try {
       const response = await axios.post(`http://${publicIp}:3000/reset`, {
@@ -132,25 +152,63 @@ const App = () => {
           </ul>
         </div>
       )}
+    {/*upload*/}
+    <h2>Upload New Package</h2>
+    <div>
+      <label>
+        <input
+          type="radio"
+          name="uploadType"
+          value="content"
+          checked={uploadType === 'content'}
+          onChange={() => setUploadType('content')}
+        />
+        Upload Content
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="uploadType"
+          value="URL"
+          checked={uploadType === 'URL'}
+          onChange={() => setUploadType('URL')}
+        />
+        Provide URL
+      </label>
+    </div>
 
-      {/* Package Management Section */}
-      <h2>Package Management</h2>
-      <div>
-        <h3>Upload Package</h3>
-        <input
-          type="text"
-          placeholder="Package Name"
-          value={uploadPackageName}
-          onChange={(e) => setUploadPackageName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Package Version"
-          value={uploadPackageVersion}
-          onChange={(e) => setUploadPackageVersion(e.target.value)}
-        />
-        <button onClick={() => console.log("Upload function goes here")}>Upload</button>
-      </div>
+    {uploadType === 'content' ? (
+      <textarea
+        placeholder="Base64 Encoded Package Content"
+        value={packageContent}
+        onChange={(e) => setPackageContent(e.target.value)}
+        rows={10}
+        cols={50}
+      />
+    ) : (
+      <input
+        type="text"
+        placeholder="Package URL"
+        value={packageURL}
+        onChange={(e) => setPackageURL(e.target.value)}
+      />
+    )}
+
+    <input
+      type="text"
+      placeholder="JS Program (Optional)"
+      value={jsProgram}
+      onChange={(e) => setJsProgram(e.target.value)}
+    />
+    <label>
+      <input
+        type="checkbox"
+        checked={debloat}
+        onChange={(e) => setDebloat(e.target.checked)}
+      />
+      Apply Debloat
+    </label>
+
 
       <div>
         <h3>Update Package</h3>
