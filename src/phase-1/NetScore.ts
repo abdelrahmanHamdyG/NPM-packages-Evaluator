@@ -9,6 +9,7 @@ import { Metrics } from "./Metrics.js";
 import { Logger } from "./logger.js";
 import { DependencyPinningMetric } from "./DependencyPinningMetric.js"; // Import the new metric
 import { CodeReviewMetric } from "./CodeReviewMetric.js";  // Import CodeReviewMetric
+import { calculateGitHubCorrectness } from "./CorrectnessMetric.js";
 
 const logger = new Logger();
 
@@ -66,6 +67,9 @@ export class NetScore extends Metrics {
     logger.log(2, `License score: ${license.score}, latency: ${license.latency}`);
     logger.log(2, `Dependency Pinning score: ${dependencyPinning.score}, latency: ${dependencyPinning.latency}`);
     logger.log(2, `CodeReview score: ${codeReviewMetric.score}, latency: ${codeReviewMetric.latency}`);
+    const correctnessResult = await calculateGitHubCorrectness(this.githubData.owner || 'undefined', this.githubData.repoName || 'undefined', process.env.GITHUB_TOKEN || 'undefined');
+    metricResults[0].score = correctnessResult.correctness;
+    metricResults[0].latency = correctnessResult.latency;
 
     // Store the results in the class attribute
     this.metrics = metricResults;
@@ -79,7 +83,7 @@ export class NetScore extends Metrics {
       // (2/11) * license.score; +
       (1/ 13) * codeReviewMetric.score+
       (1 / 13) * rampUp.score +
-      (1 / 13) * correctness.score +
+      (1 / 13) * correctnessResult.correctness +
       (1 / 13) * busFactor.score +
       (4 / 13) * responsiveness.score +
       (3 / 13) * license.score +

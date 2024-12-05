@@ -9,7 +9,6 @@ import { Logger } from "./logger.js";
 import fs from "fs/promises";
 import { NetScore } from "./NetScore.js";
 import { CodeReviewMetric } from "./CodeReviewMetric.js";
-import { calculateGitHubCorrectness } from "./CorrectnessMetric.js";
 
 const logger = new Logger();
 
@@ -193,16 +192,14 @@ export class CLI {
                 if (metrics) {
                     const [correctness, responsiveness, rampUp, busFactor, license, dependencyPinning, codeReviewMetric] = metrics;
                      
-                    const correctnessResult = await calculateGitHubCorrectness(githubData.owner || 'undefined', githubData.repoName || 'undefined', process.env.GITHUB_TOKEN || 'undefined');
-
                     const formattedResult = {
                         URL: urls[index],
                         NetScore: Number(net.score.toFixed(3)),
                         NetScore_Latency: Number((net.latency / 1000).toFixed(3)), // Convert to number
                         RampUp: Number(rampUp.score.toFixed(3)),
                         RampUp_Latency: Number((rampUp.latency / 1000).toFixed(3)), // Convert to number
-                        Correctness: Number(correctnessResult.correctness.toFixed(3)),
-                        Correctness_Latency: Number((correctnessResult.latency / 1000).toFixed(3)), // Convert to number
+                        Correctness: Number(correctness.score.toFixed(3)),
+                        Correctness_Latency: Number((correctness.latency / 1000).toFixed(3)), // Convert to number
                         BusFactor: Number(busFactor.score.toFixed(3)),
                         BusFactor_Latency: Number((busFactor.latency / 1000).toFixed(3)), // Convert to number
                         ResponsiveMaintainer: Number(responsiveness.score.toFixed(3)),
