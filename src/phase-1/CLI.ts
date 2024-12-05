@@ -193,7 +193,6 @@ export class CLI {
                     const [correctness, responsiveness, rampUp, busFactor, license, dependencyPinning, codeReviewMetric] = metrics;
                      
                     const formattedResult = {
-                        URL: urls[index],
                         NetScore: Number(net.score.toFixed(3)),
                         NetScore_Latency: Number((net.latency / 1000).toFixed(3)), // Convert to number
                         RampUp: Number(rampUp.score.toFixed(3)),
