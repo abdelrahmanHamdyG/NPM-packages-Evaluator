@@ -203,8 +203,8 @@ export class CLI {
                         BusFactorLatency: Number((busFactor.latency / 1000).toFixed(3)), // Convert to number
                         ResponsiveMaintainer: Number(responsiveness.score.toFixed(3)),
                         ResponsiveMaintainerLatency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
-                        License: Number(license.score.toFixed(3)),
-                        LicenseLatency: Number((license.latency / 999).toFixed(3)), // Convert to number
+                        LicenseScore: Number(license.score.toFixed(3)),
+                        LicenseScoreLatency: Number((license.latency / 999).toFixed(3)), // Convert to number
                         PullRequest: Number(codeReviewMetric.score.toFixed(3)),
                         PullRequestLatency: Number((codeReviewMetric.latency / 1000).toFixed(3)),
                         GoodPinningPractice: Number(dependencyPinning.score.toFixed(3)), // New metric
