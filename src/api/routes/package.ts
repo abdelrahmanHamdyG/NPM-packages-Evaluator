@@ -403,20 +403,28 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
             return;
         }
 
-        // // Check if the package was ingested via Content or URL
-        // if (packageData.ingestedVia === 'Content' && data?.ingestedVia === 'URL') {
-        //     res.status(400).json({
-        //         error: 'A package ingested via Content cannot be updated via URL.',
-        //     });
-        //     return;
-        // }
-        } catch (error) {
-            console.error('Error processing package update:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
+        // Check if the package was ingested via Content or URL
+        if (packageData.uploadType === 'content' && data.URL && !data.Content) {
+            res.status(400).json({
+                error: 'A package ingested via Content cannot be updated via URL.',
+            });
+            return;
         }
+         // Check if the package was ingested via Content or URL
+        if (packageData.uploadType === 'URL' && !data.URL && data.Content) {
+          res.status(400).json({
+              error: 'A package ingested via URL cannot be updated via Content.',
+          });
+          return;
+        }
+      } catch (error) {
+          console.error('Error processing package update:', error);
+          res.status(500).json({ error: 'Internal Server Error' });
+      }
     // NPM ingest
     if(data.URL && !data.Content) {
       try {
+
         console.info('Ingesting package (POST /package)')
         // await handleURLBasedUpload( res, data.URL, data.JSProgram);
 
