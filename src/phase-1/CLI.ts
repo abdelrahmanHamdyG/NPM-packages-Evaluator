@@ -206,10 +206,10 @@ export class CLI {
                         ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
                         License: Number(license.score.toFixed(3)),
                         License_Latency: Number((license.latency / 1000).toFixed(3)), // Convert to number
-                        CodeReviewFraction: Number(codeReviewMetric.score.toFixed(3)),
-                        CodeReviewFraction_Latency: Number((codeReviewMetric.latency / 1000).toFixed(3)),
-                        DependencyPinning: Number(dependencyPinning.score.toFixed(3)), // New metric
-                        DependencyPinning_Latency: Number((dependencyPinning.latency / 1000).toFixed(3)), // New metric
+                        PullRequest: Number(codeReviewMetric.score.toFixed(3)),
+                        PullRequest_Latency: Number((codeReviewMetric.latency / 1000).toFixed(3)),
+                        GoodPinningPractice: Number(dependencyPinning.score.toFixed(3)), // New metric
+                        GoodPinningPractice_Latency: Number((dependencyPinning.latency / 1000).toFixed(3)), // New metric
                     };
 
                     if (githubData.name !== "empty") {
