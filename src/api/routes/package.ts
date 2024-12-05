@@ -209,10 +209,26 @@ router.get('/:id/rate', async (req: Request, res: Response): Promise<void> => {
         const tempURLFile = tmp.fileSync({ prefix: 'tempURLFile_', postfix: '.txt' });
         fs.writeFileSync(tempURLFile.name, packageData.packageUrl || '');
 
+<<<<<<< HEAD
          // Calculate metrics
         const jsonmetrics = await cli.rankModules_phase2(tempURLFile.name);
+=======
+        // Run CLI tool, capture CLI output to string
+        let capturedOutput = '';
+        // Backup the original console.log
+        const originalConsoleLog = console.log;
+>>>>>>> 90e0130 (fixed post/pacakges)
 
-        if (jsonmetrics.split(' ')[0].toLowerCase() == 'error') {
+        // Override console.log to capture output
+        console.log = (message: any) => {
+            capturedOutput += message + '\n';
+        };
+        // Calculate metrics
+        const rcode = await cli.rankModules(tempURLFile.name);
+        // Restore the original console.log
+        console.log = originalConsoleLog;
+
+        if (rcode) {
             res.status(500).json({ error: 'The package rating system choked on at least one of the metrics.' });
             logger.log(1, `The package rating system choked on at least one of the metrics.`); // Debug level logging
 
@@ -221,7 +237,7 @@ router.get('/:id/rate', async (req: Request, res: Response): Promise<void> => {
         logger.log(2, `jsonmetrics: ${jsonmetrics}`); // Debug level logging
 
         // Respond with the rating data if successful
-        res.status(200).json(JSON.parse(jsonmetrics));
+        res.status(200).json(JSON.parse(capturedOutput));
 
     } catch (error) {
         console.error('Error retrieving package rating:', error);
