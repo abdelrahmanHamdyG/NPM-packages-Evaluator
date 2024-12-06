@@ -26,7 +26,11 @@ const App = () => {
   const [jsProgram, setJsProgram] = useState("");
   const [debloat, setDebloat] = useState(false);
   const [uploadResponse, setUploadResponse] = useState(null);
-  const publicIp = "3.129.57.219";
+  const publicIp = "18.188.254.86";
+  const [queryPackageName, setQueryPackageName] = useState('');
+  const [queryPackageVersion, setQueryPackageVersion] = useState('');
+  const [packagesList, setPackagesList] = useState([]);
+
 
   // Handle file input change
   const handleFileChange = (event) => {
@@ -51,6 +55,61 @@ const App = () => {
       reader.readAsText(file);
     }
   };
+  
+  const handleQueryPackages = async () => {
+    if (!queryPackageName || !queryPackageVersion) {
+      alert("Please enter both Package Name and Version to query.");
+      return;
+    }
+  
+    // Construct the query payload
+    const query = [
+      {
+        Version: queryPackageVersion, // Remove unnecessary spaces
+        Name: queryPackageName, // Remove unnecessary spaces  
+      },
+    ];
+  
+    try {
+      // API call to fetch packages based on query parameters
+      const response = await axios.post(
+        `http://${publicIp}:3000/packages`,
+        // `http://localhost:3000/packages`, 
+        query, // Directly pass the query payload as the body
+        {
+          headers: {
+            // "Content-Type": "application/json", // Ensure JSON content type
+            "X-Authorization": `Bearer <your-auth-token-here>`, // Replace with the valid token
+          },
+        }
+      );
+  
+      // Check if response is successful
+      if (response.status === 200) {
+        console.log("Response Data:", response.data); // Log response data
+        setPackagesList(response.data); // Update the packages list state
+      } else {
+        alert("Failed to fetch packages. Server returned an error.");
+      }
+    } catch (error) {
+      if (error.response) {
+        // Server responded with an error status code
+        console.error("Error Response:", error.response.data);
+        console.error("Status Code:", error.response.status);
+        alert(`Server Error: ${error.response.data.message || "Unknown Error"}`);
+      } else if (error.request) {
+        // Request was made but no response received
+        console.error("Error Request:", error.request);
+        alert("Request was sent but no response was received. Check the server.");
+      } else {
+        // Other errors (e.g., network issues, incorrect endpoint)
+        console.error("Error Message:", error.message);
+        alert("An unexpected error occurred. Please try again.");
+      }
+    }
+  };
+  
+
 
   // Upload a new package
   const handleUpload = async () => {
@@ -247,6 +306,7 @@ const handleUpdate = async () => {
           <pre>{JSON.stringify(uploadResponse, null, 2)}</pre>
         </div>
       )}
+      
 {/* Update Package Section */}
 <h2>Update Existing Package</h2>
 <div>
@@ -271,6 +331,57 @@ const handleUpdate = async () => {
     Provide URL
   </label>
 </div>
+
+{/* Query Packages Section */}
+<h2>Query Packages</h2>
+      <div style={{ marginTop: '20px' }}>
+        <div style={{ marginBottom: '10px' }}>
+          <label>
+            Package Name:
+            <input
+              type="text"
+              placeholder="Enter Package Name or * for all packages"
+              value={queryPackageName}
+              onChange={(e) => setQueryPackageName(e.target.value)}
+              style={{ marginLeft: '10px', width: '300px' }}
+            />
+          </label>
+        </div>
+        <div style={{ marginBottom: '10px' }}>
+          <label>
+            Package Version:
+            <input
+              type="text"
+              placeholder="Enter Package Version (e.g., 1.2.3, ^1.2.3, 1.2.3-2.1.0)"
+              value={queryPackageVersion}
+              onChange={(e) => setQueryPackageVersion(e.target.value)}
+              style={{ marginLeft: '10px', width: '300px' }}
+            />
+          </label>
+        </div>
+        <button
+          style={{ marginTop: '20px', padding: '10px 20px', cursor: 'pointer' }}
+          onClick={handleQueryPackages}
+        >
+          Query Packages
+        </button>
+      </div>
+
+      {/* Display Search Results */}
+      <div style={{ marginTop: '20px' }}>
+        <h3>Search Results:</h3>
+        <ul>
+          {packagesList.length > 0 ? (
+            packagesList.map((pkg) => (
+              <li key={pkg.ID}>
+                <strong>{pkg.Name}</strong> (Version: {pkg.Version}, ID: {pkg.ID})
+              </li>
+            ))
+          ) : (
+            <p>No packages found. Try a different query.</p>
+          )}
+        </ul>
+      </div>
 
 <div style={{ marginTop: '20px' }}>
   <div style={{ marginBottom: '10px' }}>
@@ -381,5 +492,6 @@ const handleUpdate = async () => {
     </div>
   );
 };
+
 
 export default App;
