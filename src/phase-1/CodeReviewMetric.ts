@@ -28,6 +28,7 @@ export class CodeReviewMetric extends Metrics {
       
       const githubAPI = new GitHubAPI(this.githubData.owner, this.githubData.repoName);
       const result = await githubAPI.calculateCodeReviewFraction();
+      console.log(result);
 
       const fraction = result.fraction;
       const totalCodeIntroduced = result.totalCodeIntroduced;
@@ -49,17 +50,12 @@ export class CodeReviewMetric extends Metrics {
     logger.log(1, "Calculating code review fraction score...");
 
     const { fraction } = await this.calculateCodeReviewFraction();
+    const scaled_fraction = fraction / 0.5;
 
-    if (fraction >= 0.8) {
-      logger.log(1, "Code review fraction is high, score: 1");
-      return 1; // High code review fraction
-    } else if (fraction >= 0.5) {
-      logger.log(1, "Code review fraction is moderate, score: 0.5");
-      return 0.5; // Moderate code review fraction
-    } else {
-      logger.log(1, "Code review fraction is low, score: 0");
-      return 0; // Low code review fraction
+    if (scaled_fraction > 1) {
+      return 1;
     }
+    return scaled_fraction;
   }
 
   // Method to calculate the latency for calculating code review score
