@@ -2,7 +2,8 @@ import { Issue } from "./IssueInterface.js";
 import { Logger } from "./logger.js";
 export class   GitHubData{
 
-    
+    public owner?:string;
+    public repoName?:string;
     public url?:string;
     public name?:string;
     public numberOfclosedIssues?:number;
@@ -21,7 +22,10 @@ export class   GitHubData{
     
 
 
-    constructor(url:string="empty",
+    constructor(
+        owner:string="empty",
+        repoName:string="empty",
+        url:string="empty",
         name:string="empty",
         numberOfClosedIssues:number=0,
         numberOfCommits:number=0,
@@ -37,8 +41,8 @@ export class   GitHubData{
         openIssues:Issue[]=[],
         latency:number=0
     ){
-
-
+        this.owner=owner
+        this.repoName=repoName
         this.name=name;
         this.numberOfclosedIssues=numberOfClosedIssues;
         this.numberOfCommits=numberOfCommits;
