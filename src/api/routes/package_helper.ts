@@ -39,31 +39,7 @@ async function extractTarball(tarballPath: string, targetDir: any) {
             .on('end', resolve);
     });
 }
-export async function cloneRepo(repoUrl: string, destinationPath: string): Promise<[number, string]> {
-    try {
-        const cloneDir = path.join(__dirname, destinationPath);
-        if (!fs.existsSync(cloneDir)) {
-            fs.mkdirSync(cloneDir);
-        }
 
-        const tarballUrl = `${repoUrl}/archive/master.tar.gz`;
-        const tarballPath = path.join(__dirname, 'temp.tar.gz');
-
-        await downloadFile(tarballUrl, tarballPath);
-        await extractTarball(tarballPath, cloneDir);
-
-        await console.info("Tarball extracted successfully");
-
-        //let score = await lintDirectory(cloneDir);
-        let score = 1;
-
-        fs.unlinkSync(tarballPath);
-        return [score, cloneDir];
-    } catch (error) {
-        console.info("An error occurred when cloning the repo: ", error);
-        return [0,""];
-    }
-}
 
 export async function cloneRepo2(repoUrl: string, destinationPath: string): Promise<[number, string]> {
     try {
