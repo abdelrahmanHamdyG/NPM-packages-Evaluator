@@ -193,23 +193,22 @@ export class CLI {
                     const [correctness, responsiveness, rampUp, busFactor, license, dependencyPinning, codeReviewMetric] = metrics;
                      
                     const formattedResult = {
-                        URL: urls[index],
                         NetScore: Number(net.score.toFixed(3)),
-                        NetScore_Latency: Number((net.latency / 1000).toFixed(3)), // Convert to number
+                        NetScoreLatency: Number((net.latency / 1000).toFixed(3)), // Convert to number
                         RampUp: Number(rampUp.score.toFixed(3)),
-                        RampUp_Latency: Number((rampUp.latency / 1000).toFixed(3)), // Convert to number
+                        RampUpLatency: Number((rampUp.latency / 1000).toFixed(3)), // Convert to number
                         Correctness: Number(correctness.score.toFixed(3)),
-                        Correctness_Latency: Number((correctness.latency / 1000).toFixed(3)), // Convert to number
+                        CorrectnessLatency: Number((correctness.latency / 1000).toFixed(3)), // Convert to number
                         BusFactor: Number(busFactor.score.toFixed(3)),
-                        BusFactor_Latency: Number((busFactor.latency / 1000).toFixed(3)), // Convert to number
+                        BusFactorLatency: Number((busFactor.latency / 1000).toFixed(3)), // Convert to number
                         ResponsiveMaintainer: Number(responsiveness.score.toFixed(3)),
-                        ResponsiveMaintainer_Latency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
-                        License: Number(license.score.toFixed(3)),
-                        License_Latency: Number((license.latency / 1000).toFixed(3)), // Convert to number
+                        ResponsiveMaintainerLatency: Number((responsiveness.latency / 1000).toFixed(3)), // Convert to number
+                        LicenseScore: Number(license.score.toFixed(3)),
+                        LicenseScoreLatency: Number((license.latency / 999).toFixed(3)), // Convert to number
                         PullRequest: Number(codeReviewMetric.score.toFixed(3)),
-                        PullRequest_Latency: Number((codeReviewMetric.latency / 1000).toFixed(3)),
+                        PullRequestLatency: Number((codeReviewMetric.latency / 1000).toFixed(3)),
                         GoodPinningPractice: Number(dependencyPinning.score.toFixed(3)), // New metric
-                        GoodPinningPractice_Latency: Number((dependencyPinning.latency / 1000).toFixed(3)), // New metric
+                        GoodPinningPracticeLatency: Number((dependencyPinning.latency / 1000).toFixed(3)), // New metric
                     };
 
                     if (githubData.name !== "empty") {

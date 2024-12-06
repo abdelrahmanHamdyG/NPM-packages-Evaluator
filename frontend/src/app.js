@@ -1,21 +1,26 @@
 "use strict";
-import React, { useState } from 'react';
-import './app.css';
-import axios from 'axios';
+import React, { useState } from "react";
+import "./app.css";
+import axios from "axios";
 
 const App = () => {
   const [file, setFile] = useState(null);
   const [urls, setUrls] = useState([]);
-  const [results, setResults] = useState(null);
-  const [uploadPackageName, setUploadPackageName] = useState('');
-  const [uploadPackageVersion, setUploadPackageVersion] = useState('');
-  const [updatePackageName, setUpdatePackageName] = useState('');
-  const [updatePackageVersion, setUpdatePackageVersion] = useState('');
-  const [ratingPackageId, setRatingPackageId] = useState('');
-  const [downloadPackageId, setDownloadPackageId] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [uploadPackageName, setUploadPackageName] = useState("");
+  const [uploadPackageVersion, setUploadPackageVersion] = useState("");
+  const [updatePackageName, setUpdatePackageName] = useState("");
+  const [updatePackageVersion, setUpdatePackageVersion] = useState("");
+  const [ratingPackageId, setRatingPackageId] = useState("");
+  const [downloadPackageId, setDownloadPackageId] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [downloadHistory, setDownloadHistory] = useState([]);
   const [ratingResult, setRatingResult] = useState(null);
+  const [uploadType, setUploadType] = useState("content");
+  const [packageContent, setPackageContent] = useState("");
+  const [packageURL, setPackageURL] = useState("");
+  const [jsProgram, setJsProgram] = useState("");
+  const [debloat, setDebloat] = useState(false);
+  const [uploadResponse, setUploadResponse] = useState(null);
   const publicIp = "3.129.57.219";
 
   // Handle file input change
@@ -32,84 +37,85 @@ const App = () => {
       const reader = new FileReader();
       reader.onload = (event) => {
         const content = event.target?.result;
-        const parsedUrls = content.split('\n').map(line => line.trim()).filter(Boolean);
+        const parsedUrls = content
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean);
         setUrls(parsedUrls);
       };
       reader.readAsText(file);
     }
   };
 
+  // Upload a new package
+  const handleUpload = async () => {
+    if (uploadType === "content" && !packageContent) {
+      alert("Please provide Base64-encoded package content.");
+      return;
+    }
+
+    if (uploadType === "URL" && !packageURL) {
+      alert("Please provide a package URL.");
+      return;
+    }
+
+    try {
+      const payload =
+        uploadType === "content"
+          ? { Content: packageContent, JSProgram: jsProgram, debloat }
+          : { URL: packageURL, JSProgram: jsProgram, debloat };
+
+      const response = await axios.post(`http://${publicIp}:3000/package`, payload, {
+        headers: {
+          "X-Authorization": `Bearer <your-token-here>`, // Replace with your token
+        },
+      });
+
+      setUploadResponse(response.data);
+      alert("Package uploaded successfully!");
+    } catch (error) {
+      console.error("Error uploading package:", error);
+      alert("Failed to upload the package. Please try again.");
+    }
+  };
+
   // Check package rating
   const handleCheckRating = async () => {
     if (!ratingPackageId) {
-      alert('Please enter a package ID to check the rating.');
+      alert("Please enter a package ID to check the rating.");
       return;
     }
 
     try {
-      const response = await axios.get(`http://${publicIp}:3000/package/${ratingPackageId}/rate`, {
-        headers: {
-          'X-Authorization': `Bearer <your-token-here>`, // Replace with your token
-        },
-      });
+      const response = await axios.get(
+        `http://${publicIp}:3000/package/${ratingPackageId}/rate`,
+        {
+          headers: {
+            "X-Authorization": `Bearer <your-token-here>`, // Replace with your token
+          },
+        }
+      );
 
-      setRatingResult(response.data); // Set rating result to display in output box
+      setRatingResult(response.data);
     } catch (error) {
-      console.error('Error fetching package rating:', error);
-      alert('Failed to fetch the package rating. Please try again.');
+      console.error("Error fetching package rating:", error);
+      alert("Failed to fetch the package rating. Please try again.");
     }
   };
 
-  // Download a package as a ZIP file
-  const handleDownload = async () => {
-    if (!downloadPackageId) {
-      alert('Please enter a package ID to download.');
-      return;
-    }
-
-    try {
-      const response = await axios.get(`http://${publicIp}:3000/package/${downloadPackageId}`, {
-        headers: {
-          'X-Authorization': `Bearer <your-token-here>`, // Replace with your token
-        },
-      });
-
-      const base64Content = response.data.data.Content;
-      const binaryContent = atob(base64Content);
-      const buffer = new Uint8Array(binaryContent.length);
-      for (let i = 0; i < binaryContent.length; i++) {
-        buffer[i] = binaryContent.charCodeAt(i);
-      }
-
-      const blob = new Blob([buffer], { type: 'application/zip' });
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', `${downloadPackageId}.zip`);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      window.URL.revokeObjectURL(url);
-
-      alert('Download started!');
-    } catch (error) {
-      console.error('Error downloading package:', error);
-      alert('Failed to download the package. Please try again.');
-    }
-  };
   // Reset Data
   const handleReset = async () => {
     try {
       const response = await axios.post(`http://${publicIp}:3000/reset`, {
         headers: {
-          'X-Authorization': `Bearer <your-token-here>`, // Replace with your token
+          "X-Authorization": `Bearer <your-token-here>`, // Replace with your token
         },
       });
 
-      alert('Data has been reset successfully!'); // Display success message
+      alert("Data has been reset successfully!");
     } catch (error) {
-      console.error('Error resetting data:', error);
-      alert('Failed to reset data. Please try again.');
+      console.error("Error resetting data:", error);
+      alert("Failed to reset data. Please try again.");
     }
   };
 
@@ -133,41 +139,70 @@ const App = () => {
         </div>
       )}
 
-      {/* Package Management Section */}
-      <h2>Package Management</h2>
+      {/* Upload New Package Section */}
+      <h2>Upload New Package</h2>
       <div>
-        <h3>Upload Package</h3>
-        <input
-          type="text"
-          placeholder="Package Name"
-          value={uploadPackageName}
-          onChange={(e) => setUploadPackageName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Package Version"
-          value={uploadPackageVersion}
-          onChange={(e) => setUploadPackageVersion(e.target.value)}
-        />
-        <button onClick={() => console.log("Upload function goes here")}>Upload</button>
+        <label>
+          <input
+            type="radio"
+            name="uploadType"
+            value="content"
+            checked={uploadType === "content"}
+            onChange={() => setUploadType("content")}
+          />
+          Upload Content
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="uploadType"
+            value="URL"
+            checked={uploadType === "URL"}
+            onChange={() => setUploadType("URL")}
+          />
+          Provide URL
+        </label>
       </div>
 
-      <div>
-        <h3>Update Package</h3>
+      {uploadType === "content" ? (
+        <textarea
+          placeholder="Base64 Encoded Package Content"
+          value={packageContent}
+          onChange={(e) => setPackageContent(e.target.value)}
+          rows={10}
+          cols={50}
+        />
+      ) : (
         <input
           type="text"
-          placeholder="Package Name"
-          value={updatePackageName}
-          onChange={(e) => setUpdatePackageName(e.target.value)}
+          placeholder="Package URL"
+          value={packageURL}
+          onChange={(e) => setPackageURL(e.target.value)}
         />
+      )}
+
+      <input
+        type="text"
+        placeholder="JS Program (Optional)"
+        value={jsProgram}
+        onChange={(e) => setJsProgram(e.target.value)}
+      />
+      <label>
         <input
-          type="text"
-          placeholder="New Version"
-          value={updatePackageVersion}
-          onChange={(e) => setUpdatePackageVersion(e.target.value)}
+          type="checkbox"
+          checked={debloat}
+          onChange={(e) => setDebloat(e.target.checked)}
         />
-        <button onClick={() => console.log("Update function goes here")}>Update</button>
-      </div>
+        Apply Debloat
+      </label>
+      <button onClick={handleUpload}>Upload</button>
+
+      {uploadResponse && (
+        <div>
+          <h2>Upload Response:</h2>
+          <pre>{JSON.stringify(uploadResponse, null, 2)}</pre>
+        </div>
+      )}
 
       {/* Check Package Rating Section */}
       <div>
@@ -181,7 +216,6 @@ const App = () => {
         <button onClick={handleCheckRating}>Check Rating</button>
       </div>
 
-      {/* Display Rating Results */}
       {ratingResult && (
         <div>
           <h2>Package Rating Results:</h2>
@@ -189,59 +223,11 @@ const App = () => {
         </div>
       )}
 
-      {/* Download Package Section */}
+      {/* Reset Data Section */}
+      <h2>Reset Data</h2>
       <div>
-        <h3>Download Package</h3>
-        <input
-          type="text"
-          placeholder="Package ID"
-          value={downloadPackageId}
-          onChange={(e) => setDownloadPackageId(e.target.value)}
-        />
-        <button onClick={handleDownload}>Download</button>
+        <button onClick={handleReset}>Reset Data</button>
       </div>
-
-      {/* Search Packages Section */}
-      <h2>Search Packages</h2>
-      <div>
-        <input
-          type="text"
-          placeholder="Search Term"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button onClick={() => console.log("Search function goes here")}>Search</button>
-      </div>
-
-      {/* Fetch Package Versions Section */}
-      <h2>Fetch Package Versions</h2>
-      <input
-        type="text"
-        placeholder="Package Name"
-        value={updatePackageName}
-        onChange={(e) => setUpdatePackageName(e.target.value)}
-      />
-      <button onClick={() => console.log("Fetch versions function goes here")}>Get Versions</button>
-
-      {/* Download History Section */}
-      <h2>Download History</h2>
-      <button onClick={() => console.log("Fetch download history function goes here")}>View Download History</button>
-      {downloadHistory.length > 0 && (
-        <div>
-          <h3>Download History:</h3>
-          <ul>
-            {downloadHistory.map((entry, index) => (
-              <li key={index}>{entry}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-      
-     {/* Reset Data Section */}
-    <h2>Reset Data</h2>
-    <div>
-      <button onClick={handleReset}>Reset Data</button>
-    </div> 
     </div>
   );
 };
