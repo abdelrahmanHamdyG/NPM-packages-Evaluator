@@ -1,8 +1,10 @@
 import express, { Request, Response } from 'express';
 import { getPackagesFromDynamoDB } from '../services/dynamoservice.js'; // Assume DynamoDB service exists
 import * as semver from 'semver';
+import { Logger } from "../../phase-1/logger.js";
 
 const router = express.Router();
+const logger = new Logger();
 
 // Define types for request validation
 interface PackageQuery {
@@ -23,6 +25,8 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
     try {
         // Validate and parse the request body
         const packageQueries: PackageQuery[] = req.body;
+        logger.log(1, `Entered POST packages API`); // Debug level logging
+        logger.log(1, `Request body: ${req}`)
         if (!Array.isArray(packageQueries) || packageQueries.some(q => !q.Name || !q.Version)) {
             res.status(400).json({
                 error: 'Invalid PackageQuery. Ensure the request body contains an array of { Name, Version } objects.',
