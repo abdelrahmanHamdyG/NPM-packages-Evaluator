@@ -209,15 +209,12 @@ router.get('/:id/rate', async (req: Request, res: Response): Promise<void> => {
         const tempURLFile = tmp.fileSync({ prefix: 'tempURLFile_', postfix: '.txt' });
         fs.writeFileSync(tempURLFile.name, packageData.packageUrl || '');
 
-<<<<<<< HEAD
          // Calculate metrics
         const jsonmetrics = await cli.rankModules_phase2(tempURLFile.name);
-=======
         // Run CLI tool, capture CLI output to string
         let capturedOutput = '';
         // Backup the original console.log
         const originalConsoleLog = console.log;
->>>>>>> 90e0130 (fixed post/pacakges)
 
         // Override console.log to capture output
         console.log = (message: any) => {
