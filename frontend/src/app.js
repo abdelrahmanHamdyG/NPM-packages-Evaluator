@@ -1,4 +1,3 @@
-"use strict";
 import React, { useState } from "react";
 import "./app.css";
 import axios from "axios";
@@ -6,16 +5,10 @@ import axios from "axios";
 const App = () => {
   const [file, setFile] = useState(null);
   const [urls, setUrls] = useState([]);
-  const [uploadPackageName, setUploadPackageName] = useState("");
-  const [uploadPackageVersion, setUploadPackageVersion] = useState("");
-  const [updatePackageName, setUpdatePackageName] = useState("");
-  const [updatePackageVersion, setUpdatePackageVersion] = useState("");
   const [ratingPackageId, setRatingPackageId] = useState("");
   const [updatePackageID, setUpdatePackageId] = useState("");
-  const [downloadPackageId, setDownloadPackageId] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [downloadHistory, setDownloadHistory] = useState([]);
-  const [ratingResult, setRatingResult] = useState(null);
+  const [regexSearchTerm, setRegexSearchTerm] = useState("");
+  const [regexSearchResults, setRegexSearchResults] = useState([]);
   const [uploadType, setUploadType] = useState("content");
   const [uploadUpdateType, setUploadUpdateType] = useState("content");
   const [updateDebloat, setUpdateDebloat] = useState(false);
@@ -26,9 +19,9 @@ const App = () => {
   const [jsProgram, setJsProgram] = useState("");
   const [debloat, setDebloat] = useState(false);
   const [uploadResponse, setUploadResponse] = useState(null);
+  const [ratingResult, setRatingResult] = useState(null);
   const publicIp = "localhost";
 
-  // Handle file input change
   const handleFileChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
       const selectedFile = event.target.files[0];
@@ -36,7 +29,6 @@ const App = () => {
     }
   };
 
-  // Read URLs from file and update URLs state
   const handleFileRead = () => {
     if (file) {
       const reader = new FileReader();
@@ -52,7 +44,6 @@ const App = () => {
     }
   };
 
-  // Upload a new package
   const handleUpload = async () => {
     if (uploadType === "content" && !packageContent) {
       alert("Please provide Base64-encoded package content.");
@@ -72,7 +63,7 @@ const App = () => {
 
       const response = await axios.post(`http://${publicIp}:3000/package`, payload, {
         headers: {
-          "X-Authorization": `Bearer <your-token-here>`, // Replace with your token
+          "X-Authorization": `Bearer <your-token-here>`,
         },
       });
 
@@ -123,7 +114,6 @@ const handleUpdate = async () => {
 };
 
 
-  // Check package rating
   const handleCheckRating = async () => {
     if (!ratingPackageId) {
       alert("Please enter a package ID to check the rating.");
@@ -135,7 +125,7 @@ const handleUpdate = async () => {
         `http://${publicIp}:3000/package/${ratingPackageId}/rate`,
         {
           headers: {
-            "X-Authorization": `Bearer <your-token-here>`, // Replace with your token
+            "X-Authorization": `Bearer <your-token-here>`,
           },
         }
       );
@@ -147,12 +137,36 @@ const handleUpdate = async () => {
     }
   };
 
-  // Reset Data
+  const handleRegexSearch = async () => {
+    if (!regexSearchTerm) {
+      alert("Please enter a valid regex search term.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `http://${publicIp}:3000/package/byRegEx`,
+        { RegEx: regexSearchTerm },
+        {
+          headers: {
+            "X-Authorization": `Bearer <your-token-here>`,
+          },
+        }
+      );
+
+      setRegexSearchResults(response.data);
+      alert("Search completed successfully!");
+    } catch (error) {
+      console.error("Error searching by regex:", error);
+      alert("Failed to perform regex search. Please try again.");
+    }
+  };
+
   const handleReset = async () => {
     try {
-      const response = await axios.post(`http://${publicIp}:3000/reset`, {
+      const response = await axios.post(`http://${publicIp}:3000/reset`, {}, {
         headers: {
-          "X-Authorization": `Bearer <your-token-here>`, // Replace with your token
+          "X-Authorization": `Bearer <your-token-here>`,
         },
       });
 
@@ -370,6 +384,31 @@ const handleUpdate = async () => {
         <div>
           <h2>Package Rating Results:</h2>
           <pre>{JSON.stringify(ratingResult, null, 2)}</pre>
+        </div>
+      )}
+
+      {/* Search by Regex Section */}
+      <h2>Search by Regex</h2>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter Regex"
+          value={regexSearchTerm}
+          onChange={(e) => setRegexSearchTerm(e.target.value)}
+        />
+        <button onClick={handleRegexSearch}>Search</button>
+      </div>
+
+      {regexSearchResults.length > 0 && (
+        <div>
+          <h2>Search Results:</h2>
+          <ul>
+            {regexSearchResults.map((result, index) => (
+              <li key={index}>
+                {result.name} (Version: {result.version})
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 

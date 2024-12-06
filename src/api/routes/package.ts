@@ -6,6 +6,7 @@ import * as fsExtra from 'fs-extra';
 import AdmZip from 'adm-zip';
 import { execSync } from 'child_process';
 import { CLI } from "../../phase-1/CLI.js";
+import safeRegex from 'safe-regex';
 import * as tmp from 'tmp';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -296,27 +297,27 @@ const validatePatchVersionSequence = (existingVersion: string, newVersion: strin
 };
 
 router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
-  const { RegEx } = req.body;
+    const { RegEx } = req.body;
 
-  if (!RegEx || typeof RegEx !== 'string') {
-      res.status(400).json({ error: 'There is missing field(s) in the PackageRegEx or it is formed improperly.' });
-      return;
-  }
+    if (!RegEx || typeof RegEx !== 'string') {
+        res.status(400).json({ error: 'Invalid or missing RegEx pattern.' });
+        return;
+    }
 
-  try {
-      // Fetch packages matching the regex
-      const packages = await getPackagesByRegex(RegEx);
+    if (!safeRegex(RegEx)) {
+        res.status(400).json({ error: 'Unsafe or overly complex regex pattern provided.' });
+        return;
+    }
 
-      if (packages.length === 0) {
-          res.status(404).json({ error: 'No package found under this regex.' });
-          return;
-      }
+    try {
+        // Pre-filter the package list to only valid package IDs/names
+        const packages = await getPackagesByRegex(RegEx);
 
-      res.status(200).json(packages);
-  } catch (error) {
-      console.error('Error retrieving packages by regex:', error);
-      res.status(500).json({ error: 'Internal server error.' });
-  }
+        res.status(200).json(packages.length > 0 ? packages : []);
+    } catch (error) {
+        console.error('Error processing regex:', error);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
 });
 
 
