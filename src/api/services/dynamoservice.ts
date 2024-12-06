@@ -118,6 +118,7 @@ export const getPackagesByRegex = async (regex: string): Promise<PackageMetadata
         throw error;
     }
 };
+
 export const getPackagesFromDynamoDB = async (
     queries: { Name: string; Version: string }[],
     offset: string = '0',
@@ -129,31 +130,23 @@ export const getPackagesFromDynamoDB = async (
     try {
         const results = await Promise.all(
             queries.map(async (query) => {
-                // Log query parameters
                 console.log('Processing query:', query);
 
+                // Validate semver range
                 if (!semver.validRange(query.Version)) {
                     console.warn('Invalid semver range in query:', query.Version);
                     return [];
                 }
 
+                // DynamoDB scan command
                 const command = new ScanCommand({
                     TableName: 'Packages',
-                    // FilterExpression: '#name = :name',
-                    // ExpressionAttributeNames: {
-                    //     '#name': 'name',
-                    // },
-                    // ExpressionAttributeValues: {
-                    //     ':name': { S: query.Name },
-                    // },
-
                 });
-                console.log(command);
 
+                console.log('Executing ScanCommand:', command);
+
+                // Fetch response from DynamoDB
                 const response = await dynamo.send(command);
-                console.log(response);
-
-                // Log DynamoDB response
                 console.log('DynamoDB response:', JSON.stringify(response.Items, null, 2));
 
                 if (!response.Items || response.Items.length === 0) {
@@ -161,25 +154,38 @@ export const getPackagesFromDynamoDB = async (
                     return [];
                 }
 
+                // Filter packages based on query criteria
                 const filteredPackages = response.Items.filter((pkg) => {
                     const version = pkg.version?.S;
                     const name = pkg.name?.S;
-                    
-                    if (!version || !semver.valid(version) || name !== query.Name) {
-                        console.warn('Invalid or missing semver version in item:', pkg);
+
+                    // Check name match
+                    if (name !== query.Name) {
+                        console.warn('Name mismatch in item:', { expected: query.Name, actual: name });
                         return false;
                     }
-                    return semver.satisfies(version, query.Version);
+
+                    // Check version validity and match
+                    if (!version || !semver.valid(version)) {
+                        console.warn('Invalid or missing semver version in item:', { version });
+                        return false;
+                    }
+
+                    if (!semver.satisfies(version, query.Version)) {
+                        console.warn('Version does not satisfy semver range in item:', { version, range: query.Version });
+                        return false;
+                    }
+
+                    return true;
                 });
-                console.log(query.Name);
-                // Log filtered packages
+
                 console.log('Filtered packages:', filteredPackages);
 
+                // Map filtered packages to required format
                 return filteredPackages.map((pkg) => ({
                     Version: pkg.version?.S || 'unknown',
                     Name: pkg.name?.S || 'unknown',
                     Id: pkg.id?.S || 'unknown',
-                    // s3Key: pkg.s3Key?.S || '',
                 }));
             })
         );
@@ -187,6 +193,14 @@ export const getPackagesFromDynamoDB = async (
         const allPackages = results.flat();
         console.log(`Total packages matching query: ${allPackages.length}`);
 
+        if (allPackages.length === 0) {
+            console.error('No packages found matching the query. Returning 404 error.');
+            const error = new Error('Package not found');
+            (error as any).statusCode = 404; // Assign statusCode for custom error handling
+            throw error; // Throw the error to propagate it to the controller
+        }
+
+        // Pagination logic
         const paginatedPackages = allPackages.slice(startIndex, startIndex + pageSize);
         const nextOffset =
             paginatedPackages.length < pageSize ? '' : (startIndex + pageSize).toString();
@@ -196,14 +210,20 @@ export const getPackagesFromDynamoDB = async (
             nextOffset,
         };
     } catch (error: unknown) {
-        if (error instanceof Error) {
-            console.error('Error scanning packages from DynamoDB:', error.message);
-        } else {
-            console.error('Unknown error scanning packages:', error);
+        console.error('Error scanning packages from DynamoDB:', error);
+
+        // If a custom error with statusCode is caught, propagate it
+        if (error instanceof Error && (error as any).statusCode) {
+            throw error;
         }
-        throw error;
+
+        // Wrap other errors into a generic internal server error
+        const internalError = new Error('Internal Server Error');
+        (internalError as any).statusCode = 500;
+        throw internalError;
     }
 };
+
 
 // Clear all entries in the Packages table
 export const clearRegistryInDynamoDB = async () => {

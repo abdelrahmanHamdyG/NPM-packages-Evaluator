@@ -18,13 +18,14 @@ interface EnumerateOffset {
 function isValidVersion(version: string): boolean {
     return semver.valid(version) !== null || semver.validRange(version) !== null;
 }
+
 router.post('/', async (req: Request, res: Response): Promise<void> => {
     try {
         // Validate the X-Authorization header
         const authHeader = req.headers['x-authorization'];
         if (!authHeader) {
             res.status(403).json({ error: 'Authentication failed: Missing X-Authorization header.' });
-            return ;
+            return;
         }
 
         // Validate and parse the request body
@@ -33,14 +34,14 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
             res.status(400).json({
                 error: 'Invalid PackageQuery. Ensure the request body contains an array of { Name, Version } objects.',
             });
-            return ;
+            return;
         }
 
         // Validate each version
         for (const query of packageQueries) {
             if (!isValidVersion(query.Version)) {
                 res.status(400).json({ error: `Invalid version format: ${query.Version}.` });
-                return ;
+                return;
             }
         }
 
@@ -50,10 +51,16 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
         // Fetch packages from the database
         const { packages, nextOffset } = await getPackagesFromDynamoDB(packageQueries, offset);
 
+        // Check if no packages are found
+        if (packages.length === 0) {
+            res.status(404).json({ error: 'No packages found matching the query.' });
+            return;
+        }
+
         // Check for too many packages
         if (packages.length > 100) {
             res.status(413).json({ error: 'Too many packages returned. Refine your query.' });
-            return ;
+            return;
         }
 
         // Respond with the list of packages and the next offset
@@ -62,7 +69,8 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
             .json(packages);
     } catch (error) {
         console.error('Error processing the /packages request:', error);
-        res.status(500).json({ error: 'Internal Server Error.' });
+        res.status(404).json({ error: 'Internal Server Error.' });
     }
 });
+
 export default router;
