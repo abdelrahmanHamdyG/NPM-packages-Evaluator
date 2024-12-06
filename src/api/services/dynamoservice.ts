@@ -118,6 +118,7 @@ export const getPackagesByRegex = async (regex: string): Promise<PackageMetadata
         throw error;
     }
 };
+
 export const getPackagesFromDynamoDB = async (
     queries: { Name: string; Version: string }[],
     offset: string = '0',
@@ -137,23 +138,25 @@ export const getPackagesFromDynamoDB = async (
                     return [];
                 }
 
+                // Dynamically build FilterExpression
+                const isWildcard = query.Name === '*';
+
                 const command = new ScanCommand({
                     TableName: 'Packages',
-                    // FilterExpression: '#name = :name',
-                    // ExpressionAttributeNames: {
-                    //     '#name': 'name',
-                    // },
-                    // ExpressionAttributeValues: {
-                    //     ':name': { S: query.Name },
-                    // },
-
+                    FilterExpression: isWildcard ? '#version <> :empty' : '#name = :name AND #version <> :empty',
+                    ExpressionAttributeNames: isWildcard
+                        ? { '#version': 'version' }
+                        : { '#name': 'name', '#version': 'version' },
+                    ExpressionAttributeValues: isWildcard
+                        ? { ':empty': { S: '' } }
+                        : { ':name': { S: query.Name }, ':empty': { S: '' } },
                 });
-                console.log(command);
+
+
+
+                console.log('ScanCommand:', JSON.stringify(command));
 
                 const response = await dynamo.send(command);
-                console.log(response);
-
-                // Log DynamoDB response
                 console.log('DynamoDB response:', JSON.stringify(response.Items, null, 2));
 
                 if (!response.Items || response.Items.length === 0) {
@@ -164,22 +167,25 @@ export const getPackagesFromDynamoDB = async (
                 const filteredPackages = response.Items.filter((pkg) => {
                     const version = pkg.version?.S;
                     const name = pkg.name?.S;
-                    
-                    if (!version || !semver.valid(version) || name !== query.Name) {
+
+                    if (!version || !semver.valid(version)) {
                         console.warn('Invalid or missing semver version in item:', pkg);
                         return false;
                     }
-                    return semver.satisfies(version, query.Version);
+
+                    // Match versions and names
+                    return (
+                        semver.satisfies(version, query.Version) &&
+                        (isWildcard || name === query.Name)
+                    );
                 });
-                console.log(query.Name);
-                // Log filtered packages
+
                 console.log('Filtered packages:', filteredPackages);
 
                 return filteredPackages.map((pkg) => ({
                     Version: pkg.version?.S || 'unknown',
                     Name: pkg.name?.S || 'unknown',
                     Id: pkg.id?.S || 'unknown',
-                    // s3Key: pkg.s3Key?.S || '',
                 }));
             })
         );
@@ -204,6 +210,7 @@ export const getPackagesFromDynamoDB = async (
         throw error;
     }
 };
+
 
 // Clear all entries in the Packages table
 export const clearRegistryInDynamoDB = async () => {
