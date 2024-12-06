@@ -26,7 +26,7 @@ const App = () => {
   const [jsProgram, setJsProgram] = useState("");
   const [debloat, setDebloat] = useState(false);
   const [uploadResponse, setUploadResponse] = useState(null);
-  const publicIp = "3.129.57.219";
+  const publicIp = "localhost";
 
   // Handle file input change
   const handleFileChange = (event) => {
@@ -253,10 +253,10 @@ const handleUpdate = async () => {
   <label>
     <input
       type="radio"
-      name="uploadType"
+      name="uploadUpdateType"
       value="content"
       checked={uploadUpdateType === "content"}
-      onChange={() => setUploadUpdateType("content")}
+      onChange={() => {setUploadUpdateType("content"); setUpdatePackageURL("");}}
     />
     Upload Content
   </label>
@@ -266,7 +266,7 @@ const handleUpdate = async () => {
       name="uploadUpdateType"
       value="URL"
       checked={uploadUpdateType === "URL"}
-      onChange={() => setUploadUpdateType("URL")}
+      onChange={() => {setUploadUpdateType("URL"); setUpdatePackageContent("");}}
     />
     Provide URL
   </label>
@@ -311,8 +311,8 @@ const handleUpdate = async () => {
   </div>
 
   {uploadUpdateType === "content" ? (
-    <div style={{ marginBottom: '10px' }}>
-      <label>
+  <div style={{ marginBottom: '10px' }}>
+    <label>
         Base64 Encoded Package Content:
         <textarea
           placeholder="Paste Base64 Encoded Content Here"
@@ -321,10 +321,10 @@ const handleUpdate = async () => {
           rows={10}
           cols={50}
           style={{ display: 'block', marginTop: '5px', width: '300px' }}
-        />
-      </label>
-    </div>
-  ) : (
+      />
+    </label>
+  </div>
+) : (
     <div style={{ marginBottom: '10px' }}>
       <label>
         Package URL:

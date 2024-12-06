@@ -1,0 +1,26 @@
+2024-12-06T16:54:12.726Z [INFO]: Request body: [object Object]
+2024-12-06T16:54:12.729Z [DEBUG]: Entered post package for updating cross-fetch-4_0_0
+2024-12-06T16:54:13.426Z [DEBUG]: Fetched package Metadata [object Object]
+2024-12-06T16:54:13.428Z [DEBUG]: Patch version must be uploaded sequentially.
+2024-12-06T16:55:10.828Z [INFO]: Request body: [object Object]
+2024-12-06T16:55:10.829Z [DEBUG]: Entered post package for updating cross-fetch-4_0_0
+2024-12-06T16:55:10.857Z [DEBUG]: Fetched package Metadata [object Object]
+2024-12-06T16:55:10.858Z [DEBUG]: Ingesting package (POST /package)
+2024-12-06T16:55:10.859Z [DEBUG]: req: {"Name":"cross-fetch","URL":"https://github.com/lquixada/cross-fetch","JSProgram":"","debloat":false}
+2024-12-06T16:55:10.859Z [INFO]: constructed npm package url: https://www.npmjs.com/package/cross-fetch
+2024-12-06T16:55:10.871Z [INFO]: package name: cross-fetch
+2024-12-06T16:55:16.025Z [INFO]: wrote json file
+2024-12-06T16:55:16.036Z [INFO]: gitUrl: https://github.com/lquixada/cross-fetch
+2024-12-06T16:55:19.292Z [INFO]: finished cloning C:\Users\disha\OneDrive\Documents\Desktop\Purdue\Fall 2024\ECE 46100\ECE-46100-Phase-2\dist\api\routes\temp
+2024-12-06T16:55:20.454Z [INFO]: Version found: 4.0.0
+2024-12-06T16:55:20.455Z [INFO]: Username and repo found successfully: lquixada, cross-fetch
+2024-12-06T16:55:20.456Z [INFO]: Version: 4.0.0
+2024-12-06T16:55:21.804Z [INFO]: Successfully uploaded package with id: cross-fetch4.0.0
+2024-12-06T20:39:35.844Z [INFO]: Request body: [object Object]
+2024-12-06T20:39:35.845Z [DEBUG]: Entered post package for updating JSONStream-1_3_5
+2024-12-06T20:39:36.208Z [DEBUG]: Fetched package Metadata [object Object]
+2024-12-06T20:39:36.209Z [INFO]: Uploading package (POST /package)
+2024-12-06T20:39:36.210Z [INFO]: Got buffer/binary data
+2024-12-06T20:39:36.214Z [INFO]: created upload directory
+2024-12-06T20:39:36.215Z [INFO]: Got zip file path: uploads\file_1733517576214.zip
+2024-12-06T20:39:36.223Z [INFO]: zip file saved successfully
