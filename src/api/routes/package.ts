@@ -290,9 +290,6 @@ const validateVersion = (version: string) => {
 const validatePatchVersionSequence = (existingVersion: string, newVersion: string) => {
     const [existingMajor, existingMinor, existingPatch] = existingVersion.split('.').map(Number);
     const [newMajor, newMinor, newPatch] = newVersion.split('.').map(Number);
-
-    if (newMajor < existingMajor) return false; // Major version cannot be decreased
-    if (newMajor === existingMajor && newMinor < existingMinor) return false; // Minor version cannot be decreased
     if (newMajor === existingMajor && newMinor === existingMinor && newPatch <= existingPatch) return false; // Patch version must be strictly greater than the existing patch version
 
     return true;
@@ -362,7 +359,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
         }
 
         // Validate that the patch version is uploaded sequentially
-        if (packageData.version && !validatePatchVersionSequence(Version, packageData.version)) {
+        if (packageData.version && !validatePatchVersionSequence( packageData.version, Version)) {
             logger.log(2,'Patch version must be uploaded sequentially.' )
             res.status(400).json({ error: 'Patch version must be uploaded sequentially.' });
             return;
