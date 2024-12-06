@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { getPackageFromDynamoDB, updateDynamoPackagedata, getPackagesByRegex, addModuleToDynamoDB} from '../services/dynamoservice.js';
 import { downloadFileFromS3,uploadPackage} from '../services/s3service.js';
-import {getNPMPackageName, checkNPMOpenSource, getGithubInfo, cloneRepo, cloneRepo2, zipDirectory, debloatZippedFile, generateId} from '../routes/package_helper.js'
+import {getNPMPackageName, checkNPMOpenSource, getGithubInfo, cloneRepo2, zipDirectory, debloatZippedFile, generateId} from '../routes/package_helper.js'
 import * as fsExtra from 'fs-extra';
 import AdmZip from 'adm-zip';
 import { execSync } from 'child_process';
@@ -291,9 +291,6 @@ const validateVersion = (version: string) => {
 const validatePatchVersionSequence = (existingVersion: string, newVersion: string) => {
     const [existingMajor, existingMinor, existingPatch] = existingVersion.split('.').map(Number);
     const [newMajor, newMinor, newPatch] = newVersion.split('.').map(Number);
-
-    if (newMajor < existingMajor) return false; // Major version cannot be decreased
-    if (newMajor === existingMajor && newMinor < existingMinor) return false; // Minor version cannot be decreased
     if (newMajor === existingMajor && newMinor === existingMinor && newPatch <= existingPatch) return false; // Patch version must be strictly greater than the existing patch version
 
     return true;
@@ -363,7 +360,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
         }
 
         // Validate that the patch version is uploaded sequentially
-        if (packageData.version && !validatePatchVersionSequence(packageData.version, Version)) {
+        if (packageData.version && !validatePatchVersionSequence( packageData.version, Version)) {
             logger.log(2,'Patch version must be uploaded sequentially.' )
             res.status(400).json({ error: 'Patch version must be uploaded sequentially.' });
             return;
@@ -418,8 +415,8 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
         const gitUrl:string = await checkNPMOpenSource(file2);
         logger.log(1, `gitUrl: ${gitUrl}`);
         let destinationPath = 'temp';
-        const cloneRepoOut = await cloneRepo(gitUrl, destinationPath);
-        logger.log(1, `finished cloning`);
+        const cloneRepoOut = await cloneRepo2(gitUrl, destinationPath);
+        logger.log(1, `finished cloning ${cloneRepoOut[1]}`);
         const zipFilePath = await zipDirectory(cloneRepoOut[1], `./tempZip.zip`);
   
         
