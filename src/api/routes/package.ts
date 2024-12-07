@@ -395,6 +395,9 @@ router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
 
     if (packages.length === 0) {
       logger.log(1, `No packages matched regex: ${RegEx}`);
+       res.status(404).json({ error: 'Unsafe or overly complex regex pattern provided.' });
+
+       return;
     } else {
       logger.log(1, `Found ${packages.length} packages matching regex.`);
     }
