@@ -1,6 +1,8 @@
 import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 import semver from 'semver';
 import {QueryCommand, QueryCommandInput, QueryCommandOutput } from "@aws-sdk/client-dynamodb";
+import { Logger } from "../../phase-1/logger.js";
+const logger = new Logger();
 
 // import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 // import { ScanCommand } from '@aws-sdk/lib-dynamodb';
@@ -252,9 +254,9 @@ export const clearRegistryInDynamoDB = async () => {
         });
 
         await Promise.all(deletePromises);
-        console.log('Registry has been cleared in DynamoDB.');
+        logger.log(1, 'Registry has been cleared in DynamoDB.');
     } catch (error) {
-        console.error('Error clearing registry in DynamoDB:', error);
+        logger.log(1, `Error clearing registry in DynamoDB: ${error}`);
         throw error;
     }
 };

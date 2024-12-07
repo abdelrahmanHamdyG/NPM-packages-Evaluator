@@ -1,12 +1,14 @@
 import { Router, Request, Response } from 'express';
 import { clearRegistryInDynamoDB } from '../services/dynamoservice.js';
 import { clearRegistryInS3 } from '../services/s3service.js';
+import { Logger } from "../../phase-1/logger.js";
 
 const router = Router();
+const logger = new Logger();
 
 /// DELETE /reset - Reset the registry
 router.delete('/', async (req: Request, res: Response): Promise<void> => {
-    console.log('DELETE /reset hit');
+    logger.log(1, 'DELETE /reset hit');
     try {
         // Call functions to clear the registry
         await clearRegistryInDynamoDB();
