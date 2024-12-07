@@ -190,7 +190,7 @@ export const getPackagesFromDynamoDB = async (
                 return filteredPackages.map((pkg) => ({
                     Version: pkg.version?.S || 'unknown',
                     Name: pkg.name?.S || 'unknown',
-                    Id: pkg.id?.S || 'unknown',
+                    ID: pkg.id?.S || 'unknown',
                 }));
             })
         );

@@ -344,7 +344,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
     }
 
     logger.log(2,`Entered post package for updating ${id}` )
-    const {Name, Version, Id} = metadata;
+    const {Name, Version, ID} = metadata;
     try {
         // Fetch metadata for the given package ID from DynamoDB
         const packageData = await getPackageFromDynamoDB(id);
