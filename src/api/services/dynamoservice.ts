@@ -116,13 +116,15 @@ export const getPackagesByRegex = async (regex: string): Promise<PackageMetadata
         // Filter items using regex
         const filteredItems = response.Items.filter((item) => {
             const name = item.name?.S || '';       // Safe access to 'name'
+            const readme = item.readme?.S || '';   // Safe access to 'readme'
 
             try {
                 // Test both 'name' and 'readme' fields against the regex
                 const nameMatches = regexPattern.test(name);
-                return nameMatches ;
+                const readmeMatches = regexPattern.test(readme);
+                return nameMatches || readmeMatches;
             } catch (err) {
-                console.error('Error testing regex against item:', { name}, err);
+                console.error('Error testing regex against item:', { name, readme }, err);
                 return false; // Exclude items with matching errors
             }
         });
