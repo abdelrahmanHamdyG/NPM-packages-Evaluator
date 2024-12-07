@@ -617,58 +617,6 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
 });
 
 // GET /package/:id/cost - Calculate cost of a package
-// router.get('/:id/cost', async (req: Request, res: Response): Promise<void> => {
-//   const { id } = req.params;
-
-//   // Validate ID parameter
-//   if (!id || !/^[a-zA-Z0-9-]+$/.test(id)) {
-//       res.status(400).json({ error: 'PackageID is missing or malformed.' });
-//       return;
-//   }
-
-//   try {
-//       // Fetch package metadata from DynamoDB
-//       const packageData = await getPackageFromDynamoDB(id);
-//       if (!packageData) {
-//           res.status(404).json({ error: 'Package not found.' });
-//           return;
-//       }
-
-//       // Ensure S3 key exists for the package
-//       if (!packageData.s3Key) {
-//           res.status(500).json({ error: 'Package content key is missing.' });
-//           return;
-//       }
-
-//       // Download package content from S3
-//       const contentBuffer = await downloadFileFromS3(packageData.s3Key);
-//       const tempDir = tmp.dirSync({ unsafeCleanup: true });
-//       const packagePath = path.join(tempDir.name, 'package.zip');
-//       fs.writeFileSync(packagePath, contentBuffer);
-
-//       // Calculate the cost
-//       const costResult = await calculateCost(packagePath);
-
-//       // Build response structure
-//       const response: CostResponse = {
-//           [id]: {
-//               totalCost: costResult.totalCost / 1024, // Convert to KB
-//           },
-//       };
-
-//       // Add standaloneCost if dependencies exist
-//       if (costResult.hasDependencies) {
-//           response[id].standaloneCost = costResult.standaloneCost / 1024;
-//       }
-
-//       res.status(200).json(response);
-//       tempDir.removeCallback();
-//   } catch (error) {
-//       console.error('Error calculating package cost:', error);
-//       res.status(500).json({ error: 'Internal server error.' });
-//   }
-// });
-// GET /package/:id/cost - Calculate cost of a package
 router.get('/:id/cost', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     logger.log(1, `Received GET /package/${id}/cost request.`);
@@ -889,82 +837,6 @@ async function optimizePackage(dirPath: string): Promise<void> {
   export default router;
 
 // Helper function to calculate cost
-// const calculateCost = async (zipPath: string): Promise<CostCalculationResult> => {
-//   return new Promise((resolve, reject) => {
-//       let standaloneCost = 0;
-//       let totalCost = 0;
-//       let hasDependencies = false;
-
-//       yauzl.open(zipPath, { lazyEntries: true }, (err, zipfile) => {
-//           if (err) return reject(new Error('Invalid ZIP file'));
-
-//           const dependencyPromises: Promise<number>[] = [];
-//           zipfile.readEntry();
-//           zipfile.on('entry', (entry) => {
-//               if (/\/$/.test(entry.fileName)) {
-//                   zipfile.readEntry(); // Skip directories
-//               } else {
-//                   standaloneCost += entry.uncompressedSize; // Add size of current file to standaloneCost
-
-//                   if (entry.fileName.endsWith('package.json')) {
-//                       zipfile.openReadStream(entry, (err, readStream) => {
-//                           if (err) return reject(err);
-
-//                           let packageJson = '';
-//                           readStream.on('data', (chunk) => (packageJson += chunk));
-//                           readStream.on('end', async () => {
-//                               try {
-//                                   const json = JSON.parse(packageJson);
-//                                   const dependencies = {
-//                                       ...json.dependencies,
-//                                       ...json.devDependencies,
-//                                   };
-
-//                                   if (Object.keys(dependencies).length > 0) {
-//                                       hasDependencies = true;
-
-//                                       for (const [depName] of Object.entries(dependencies)) {
-//                                           dependencyPromises.push(processDependency(depName));
-//                                       }
-//                                   }
-
-//                                   zipfile.readEntry(); // Continue processing entries
-//                               } catch (err) {
-//                                   reject(err);
-//                               }
-//                           });
-//                       });
-//                   } else {
-//                       zipfile.readEntry(); // Continue processing entries
-//                   }
-//               }
-//           });
-
-//           zipfile.on('end', async () => {
-//               try {
-//                   // Wait for all dependency calculations
-//                   const dependencyCosts = await Promise.all(dependencyPromises);
-
-//                   // Add dependency costs to totalCost
-//                   const dependencyTotalCost = dependencyCosts.reduce((sum, cost) => sum + cost, 0);
-
-//                   // Total cost = standalone cost + dependencies' total cost
-//                   totalCost = standaloneCost + dependencyTotalCost;
-
-//                   resolve({
-//                     standaloneCost: parseFloat((standaloneCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB and round to 6 decimals
-//                     totalCost: parseFloat((totalCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB and round to 6 decimals
-//                     hasDependencies,
-//                 });
-//               } catch (err) {
-//                   reject(err);
-//               }
-//           });
-
-//           zipfile.on('error', reject);
-//       });
-//   });
-// };
 const calculateCost = async (zipPath: string): Promise<CostCalculationResult> => {
     logger.log(1, `Starting cost calculation for ZIP file: ${zipPath}`);
 
@@ -1068,98 +940,107 @@ const calculateCost = async (zipPath: string): Promise<CostCalculationResult> =>
 import { x } from 'tar'; // Correct named import for tar extraction
 
 const processDependency = async (depName: string): Promise<number> => {
+    logger.log(1, `Processing dependency: ${depName}`);
+
     try {
-        // Attempt to fetch dependency metadata
         const depData = await getPackageFromDynamoDB(depName);
+        logger.log(2, `Fetched dependency metadata from DynamoDB for: ${depName}`);
 
         let depContent: Buffer | null;
 
         if (depData && depData.s3Key) {
             depContent = await downloadFileFromS3(depData.s3Key);
+            logger.log(2, `Downloaded dependency content from S3 for: ${depName}`);
         } else {
-            // Fallback: Fetch dependency tarball from NPM
-            console.warn(`Dependency ${depName} not found in database. Fetching from NPM.`);
+            logger.log(2, `Dependency ${depName} not found in database. Fetching from NPM.`);
             depContent = await fetchPackageFromNPM(depName);
 
             if (!depContent) {
-                console.warn(`Dependency ${depName} could not be fetched from NPM.`);
-                return 0; // Skip if the dependency cannot be fetched
+                logger.log(1, `Dependency ${depName} could not be fetched from NPM.`);
+                return 0;
             }
         }
 
-        // Validate the tarball format (ZIP, TAR, or TGZ)
-        const isZip = depContent.slice(0, 2).toString('hex') === '504b'; // ZIP magic number
-        const isTgz = depContent.slice(0, 3).toString('hex') === '1f8b08'; // TGZ magic number
+        const isZip = depContent.slice(0, 2).toString('hex') === '504b';
+        const isTgz = depContent.slice(0, 3).toString('hex') === '1f8b08';
 
         const tempDir = tmp.dirSync({ unsafeCleanup: true });
 
         if (isZip) {
-            // Write ZIP file to temp directory and calculate cost
             const depZipPath = path.join(tempDir.name, 'dep-package.zip');
             fs.writeFileSync(depZipPath, depContent);
+            logger.log(2, `Dependency ${depName} saved as ZIP. Calculating cost.`);
+
             const depCost = await calculateCost(depZipPath);
+            logger.log(1, `Cost for dependency ${depName}: ${depCost.totalCost} bytes`);
             tempDir.removeCallback();
-            return depCost.totalCost; // Return total cost of the dependency
+            return depCost.totalCost;
         } else if (isTgz) {
-            // Extract TGZ file to temp directory
             const depTgzPath = path.join(tempDir.name, 'dep-package.tgz');
             fs.writeFileSync(depTgzPath, depContent);
             const extractedPath = path.join(tempDir.name, 'extracted');
             fs.mkdirSync(extractedPath);
 
-            await x({
-                file: depTgzPath,
-                cwd: extractedPath,
-            });
+            logger.log(2, `Dependency ${depName} saved as TGZ. Extracting...`);
+            await x({ file: depTgzPath, cwd: extractedPath });
 
-            // Calculate cost recursively on the extracted directory
             const depCost = await calculateDirectoryCost(extractedPath);
+            logger.log(1, `Cost for dependency ${depName}: ${depCost} bytes`);
             tempDir.removeCallback();
             return depCost;
         } else {
-            console.warn(`Dependency ${depName} is not a valid ZIP or TGZ file.`);
-            return 0; // Skip invalid files
+            logger.log(1, `Dependency ${depName} is not a valid ZIP or TGZ file.`);
+            return 0;
         }
     } catch (error) {
-        console.error(`Error processing dependency ${depName}:`, error);
-        return 0; // Ignore failed dependencies
+        logger.log(1, `Error processing dependency ${depName}`);
+        return 0;
     }
 };
 
 const calculateDirectoryCost = async (directoryPath: string): Promise<number> => {
-  let totalCost = 0;
+    logger.log(1, `Calculating directory cost for: ${directoryPath}`);
 
-  const files = fs.readdirSync(directoryPath);
+    let totalCost = 0;
 
-  for (const file of files) {
-      const filePath = path.join(directoryPath, file);
-      const stats = fs.statSync(filePath);
+    const files = fs.readdirSync(directoryPath);
+    logger.log(2, `Found ${files.length} files in directory: ${directoryPath}`);
 
-      if (stats.isDirectory()) {
-          // Recursively calculate cost for subdirectories
-          totalCost += await calculateDirectoryCost(filePath);
-      } else {
-          totalCost += stats.size; // Add file size to total cost
-      }
-  }
+    for (const file of files) {
+        const filePath = path.join(directoryPath, file);
+        const stats = fs.statSync(filePath);
 
-  return totalCost;
+        if (stats.isDirectory()) {
+            logger.log(2, `Entering subdirectory: ${filePath}`);
+            totalCost += await calculateDirectoryCost(filePath);
+        } else {
+            totalCost += stats.size;
+            logger.log(2, `Added file ${filePath} size: ${stats.size} bytes`);
+        }
+    }
+
+    logger.log(1, `Total cost for directory ${directoryPath}: ${totalCost} bytes`);
+    return totalCost;
 };
 
-
-
 const fetchPackageFromNPM = async (packageName: string): Promise<Buffer | null> => {
+    logger.log(1, `Fetching package ${packageName} from NPM`);
+
     try {
-        // Fetch metadata from the NPM registry
         const response = await axios.get(`https://registry.npmjs.org/${packageName}`, { timeout: 10000 });
+        logger.log(2, `Fetched metadata for package ${packageName} from NPM registry`);
+
         const latestVersion = response.data['dist-tags'].latest;
         const tarballUrl = response.data.versions[latestVersion].dist.tarball;
 
-        // Download the tarball
+        logger.log(2, `Latest version: ${latestVersion}. Tarball URL: ${tarballUrl}`);
+
         const tarballResponse = await axios.get(tarballUrl, { responseType: 'arraybuffer', timeout: 10000 });
-        return Buffer.from(tarballResponse.data); // Return the tarball content as a Buffer
+        logger.log(1, `Downloaded tarball for package ${packageName}`);
+
+        return Buffer.from(tarballResponse.data);
     } catch (error) {
-        console.error(`Error fetching package ${packageName} from NPM:`, error);
-        return null; // Return null if fetching fails
+        logger.log(1, `Error fetching package ${packageName} from NPM`);
+        return null;
     }
 };
