@@ -584,7 +584,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
         });
 
         logger.log(1, `Package ID ${Id} successfully updated.`);
-        res.status(201).json({
+        res.status(200).json({
             metadata: {
                 Name: name,
                 Version: version,
