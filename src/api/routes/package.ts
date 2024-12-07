@@ -338,7 +338,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
   
   const { id } = req.params;
   const { metadata, data } = req.body;
-  const { NameBody, Content, URL, JSProgram, debloat } = data;
+  const { Content, URL, JSProgram, debloat } = data;
   logger.log(1,`data: ${Content}, ${URL}, ${debloat}, ${JSProgram} ` )
   logger.log(1, `metadata ${metadata.version}`)
   if ( !req.body || !metadata || !data) {
