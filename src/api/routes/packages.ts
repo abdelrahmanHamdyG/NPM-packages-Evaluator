@@ -53,7 +53,12 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
 
         // Check if no packages are found
         if (packages.length === 0) {
-            res.status(404).json({ error: 'No packages found matching the query.' });
+            if (packageQueries.some((q) => q.Name === '*')) {
+                // Wildcard query with no results
+                res.status(200).json([]); // Return empty list with 200 OK
+            } else {
+                res.status(404).json({ error: 'No packages found matching the query.' });
+            }
             return;
         }
 
