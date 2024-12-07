@@ -21,15 +21,17 @@ function isValidVersion(version: string): boolean {
 
 router.post('/', async (req: Request, res: Response): Promise<void> => {
     try {
+        console.log('req.body', req.body);
         // Validate the X-Authorization header
-        const authHeader = req.headers['x-authorization'];
-        if (!authHeader) {
-            res.status(403).json({ error: 'Authentication failed: Missing X-Authorization header.' });
-            return;
-        }
+        // const authHeader = req.headers['x-authorization'];/
+        // if (!authHeader) {
+        //     res.status(403).json({ error: 'Authentication failed: Missing X-Authorization header.' });
+        //     return;
+        // }
 
         // Validate and parse the request body
         const packageQueries: PackageQuery[] = req.body;
+        
         if (!Array.isArray(packageQueries) || packageQueries.some(q => !q.Name || !q.Version)) {
             res.status(400).json({
                 error: 'Invalid PackageQuery. Ensure the request body contains an array of { Name, Version } objects.',

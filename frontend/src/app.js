@@ -30,6 +30,8 @@ const App = () => {
   const [queryPackageName, setQueryPackageName] = useState('');
   const [queryPackageVersion, setQueryPackageVersion] = useState('');
   const [packagesList, setPackagesList] = useState([]);
+  const [queryResult, setQueryResult] = useState(null); // State to store the query result
+
 
 
   // Handle file input change
@@ -56,59 +58,65 @@ const App = () => {
     }
   };
   
+  // const handleQueryPackages = async () => {
+  //   if (!queryPackageName) {
+  //     alert('Please enter a package name.');
+  //     return;
+  //   }
+
+  //   const query = [{
+  //     "Name": queryPackageName,
+  //     "Version": queryPackageVersion,
+  //   }];
+
+  //   try {
+  //     const response = await axios.post(`http://localhost:3000/packages`,
+  //       // method: 'POST',
+
+  //       query,
+  //     );
+
+  //     if (response.status==200) {
+  //       const result = await response.data;
+  //       console.log('Query result:', result);
+  //       alert('Query successful! Check the console for details.');
+  //     } else {
+  //       const errorData = await response.data;
+  //       alert(`Query failed: ${errorData.message}`);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error querying packages:', error);
+  //     alert('An error occurred while querying packages.');
+  //   }
+  // };
   const handleQueryPackages = async () => {
-    if (!queryPackageName || !queryPackageVersion) {
-      alert("Please enter both Package Name and Version to query.");
+    if (!queryPackageName) {
+      alert('Please enter a package name.');
       return;
     }
   
-    // Construct the query payload
-    const query = [
-      {
-        Version: queryPackageVersion, // Remove unnecessary spaces
-        Name: queryPackageName, // Remove unnecessary spaces  
-      },
-    ];
+    const query = [{
+      "Name": queryPackageName,
+      "Version": queryPackageVersion,
+    }];
   
     try {
-      // API call to fetch packages based on query parameters
-      const response = await axios.post(
-        `http://${publicIp}:3000/packages`,
-        // `http://localhost:3000/packages`, 
-        query, // Directly pass the query payload as the body
-        {
-          headers: {
-            // "Content-Type": "application/json", // Ensure JSON content type
-            "X-Authorization": `Bearer <your-auth-token-here>`, // Replace with the valid token
-          },
-        }
-      );
+      const response = await axios.post(`http://localhost:3000/packages`, query);
   
-      // Check if response is successful
       if (response.status === 200) {
-        console.log("Response Data:", response.data); // Log response data
-        setPackagesList(response.data); // Update the packages list state
+        const result = await response.data;
+        console.log('Query result:', result);
+        setQueryResult(result); // Store the query result in the state
+        // alert('Query successful! Check the results below.');
       } else {
-        alert("Failed to fetch packages. Server returned an error.");
+        const errorData = await response.data;
+        alert(`Query failed: ${errorData.message}`);
       }
     } catch (error) {
-      if (error.response) {
-        // Server responded with an error status code
-        console.error("Error Response:", error.response.data);
-        console.error("Status Code:", error.response.status);
-        alert(`Server Error: ${error.response.data.message || "Unknown Error"}`);
-      } else if (error.request) {
-        // Request was made but no response received
-        console.error("Error Request:", error.request);
-        alert("Request was sent but no response was received. Check the server.");
-      } else {
-        // Other errors (e.g., network issues, incorrect endpoint)
-        console.error("Error Message:", error.message);
-        alert("An unexpected error occurred. Please try again.");
-      }
+      console.error('Error querying packages:', error);
+      alert('An error occurred while querying packages.');
     }
   };
-  
 
 
   // Upload a new package
@@ -191,7 +199,7 @@ const handleUpdate = async () => {
 
     try {
       const response = await axios.get(
-        `http://${publicIp}:3000/package/${ratingPackageId}/rate`,
+        `http://localhost:3000/package/${ratingPackageId}/rate`,
         {
           headers: {
             "X-Authorization": `Bearer <your-token-here>`, // Replace with your token
@@ -306,7 +314,7 @@ const handleUpdate = async () => {
           <pre>{JSON.stringify(uploadResponse, null, 2)}</pre>
         </div>
       )}
-      
+
 {/* Update Package Section */}
 <h2>Update Existing Package</h2>
 <div>
@@ -332,40 +340,52 @@ const handleUpdate = async () => {
   </label>
 </div>
 
-{/* Query Packages Section */}
+<div>
 <h2>Query Packages</h2>
-      <div style={{ marginTop: '20px' }}>
-        <div style={{ marginBottom: '10px' }}>
-          <label>
-            Package Name:
-            <input
-              type="text"
-              placeholder="Enter Package Name or * for all packages"
-              value={queryPackageName}
-              onChange={(e) => setQueryPackageName(e.target.value)}
-              style={{ marginLeft: '10px', width: '300px' }}
-            />
-          </label>
-        </div>
-        <div style={{ marginBottom: '10px' }}>
-          <label>
-            Package Version:
-            <input
-              type="text"
-              placeholder="Enter Package Version (e.g., 1.2.3, ^1.2.3, 1.2.3-2.1.0)"
-              value={queryPackageVersion}
-              onChange={(e) => setQueryPackageVersion(e.target.value)}
-              style={{ marginLeft: '10px', width: '300px' }}
-            />
-          </label>
-        </div>
-        <button
-          style={{ marginTop: '20px', padding: '10px 20px', cursor: 'pointer' }}
-          onClick={handleQueryPackages}
-        >
-          Query Packages
-        </button>
-      </div>
+<div style={{ marginTop: '20px' }}>
+  <div style={{ marginBottom: '10px' }}>
+    <label>
+      Package Name:
+      <input
+        type="text"
+        placeholder="Enter Package Name or * for all packages"
+        value={queryPackageName}
+        onChange={(e) => setQueryPackageName(e.target.value)}
+        style={{ marginLeft: '10px', width: '300px' }}
+      />
+    </label>
+  </div>
+  <div style={{ marginBottom: '10px' }}>
+    <label>
+      Package Version:
+      <input
+        type="text"
+        placeholder="Enter Package Version (e.g., 1.2.3, ^1.2.3, 1.2.3-2.1.0)"
+        value={queryPackageVersion}
+        onChange={(e) => setQueryPackageVersion(e.target.value)}
+        style={{ marginLeft: '10px', width: '300px' }}
+      />
+    </label>
+  </div>
+  <button
+    style={{ marginTop: '20px', padding: '10px 20px', cursor: 'pointer' }}
+    onClick={handleQueryPackages}
+  >
+    Query Packages
+  </button>
+  <div style={{ marginTop: '20px' }}>
+  <h3>Query Results:</h3>
+  {queryResult ? (
+    <pre style={{ background: '#f4f4f4', padding: '10px', borderRadius: '5px' }}>
+      {JSON.stringify(queryResult, null, 2)}
+    </pre>
+  ) : (
+    <p>No results to display. Please run a query.</p>
+  )}
+</div>
+
+</div>
+</div>
 
       {/* Display Search Results */}
       <div style={{ marginTop: '20px' }}>
