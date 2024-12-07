@@ -133,26 +133,34 @@ export const getPackagesFromDynamoDB = async (
                 // Log query parameters
                 console.log('Processing query:', query);
 
-                if (!semver.validRange(query.Version)) {
+                // if (!semver.validRange(query.Version)) {
+                if (query.Version && !semver.validRange(query.Version)) {
                     console.warn('Invalid semver range in query:', query.Version);
                     return [];
                 }
 
                 // Dynamically build FilterExpression
                 const isWildcard = query.Name === '*';
+                const hasVersion = !!query.Version;
 
                 const command = new ScanCommand({
                     TableName: 'Packages',
-                    FilterExpression: isWildcard ? '#version <> :empty' : '#name = :name AND #version <> :empty',
+                    FilterExpression: isWildcard
+                        ? '#version <> :empty'
+                        : hasVersion
+                        ? '#name = :name AND #version <> :empty'
+                        : '#name = :name',
                     ExpressionAttributeNames: isWildcard
                         ? { '#version': 'version' }
-                        : { '#name': 'name', '#version': 'version' },
+                        : hasVersion
+                        ? { '#name': 'name', '#version': 'version' }
+                        : { '#name': 'name' },
                     ExpressionAttributeValues: isWildcard
                         ? { ':empty': { S: '' } }
-                        : { ':name': { S: query.Name }, ':empty': { S: '' } },
+                        : hasVersion
+                        ? { ':name': { S: query.Name }, ':empty': { S: '' } }
+                        : { ':name': { S: query.Name } },
                 });
-
-
 
                 console.log('ScanCommand:', JSON.stringify(command));
 
@@ -173,11 +181,20 @@ export const getPackagesFromDynamoDB = async (
                         return false;
                     }
 
-                    // Match versions and names
-                    return (
-                        semver.satisfies(version, query.Version) &&
-                        (isWildcard || name === query.Name)
-                    );
+                    if (isWildcard) {
+                        // If Name is "*" and Version is undefined, we only care about the name matching
+                        if (query.Version === undefined) {
+                            return true; // We only care about the name being present
+                        }
+                        // If there is a version provided with the wildcard, apply version filtering
+                        return semver.satisfies(version, query.Version) && name;
+                    } else if (query.Version) {
+                        // Match both version and name for non-wildcard queries
+                        return semver.satisfies(version, query.Version) && name === query.Name;
+                    }
+                    else {
+                        return name === query.Name;
+                    }
                 });
 
                 console.log('Filtered packages:', filteredPackages);
@@ -185,7 +202,7 @@ export const getPackagesFromDynamoDB = async (
                 return filteredPackages.map((pkg) => ({
                     Version: pkg.version?.S || 'unknown',
                     Name: pkg.name?.S || 'unknown',
-                    Id: pkg.id?.S || 'unknown',
+                    ID: pkg.id?.S || 'unknown',
                 }));
             })
         );

@@ -297,27 +297,38 @@ const validatePatchVersionSequence = (existingVersion: string, newVersion: strin
 };
 
 router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
-    const { RegEx } = req.body;
+  const { RegEx } = req.body;
 
-    if (!RegEx || typeof RegEx !== 'string') {
-        res.status(400).json({ error: 'Invalid or missing RegEx pattern.' });
-        return;
+  logger.log(1, `Received POST /byRegEx request with body: ${JSON.stringify(req.body)}`);
+
+  if (!RegEx || typeof RegEx !== 'string') {
+    logger.log(2, 'Invalid or missing RegEx pattern.');
+    res.status(400).json({ error: 'Invalid or missing RegEx pattern.' });
+    return;
+  }
+
+  if (!safeRegex(RegEx)) {
+    logger.log(2, 'Unsafe or overly complex regex pattern provided.');
+    res.status(400).json({ error: 'Unsafe or overly complex regex pattern provided.' });
+    return;
+  }
+
+  try {
+    logger.log(1, `Searching for packages matching regex: ${RegEx}`);
+    const packages = await getPackagesByRegex(RegEx);
+
+    if (packages.length === 0) {
+      logger.log(1, `No packages matched regex: ${RegEx}`);
+    } else {
+      logger.log(1, `Found ${packages.length} packages matching regex.`);
     }
 
-    if (!safeRegex(RegEx)) {
-        res.status(400).json({ error: 'Unsafe or overly complex regex pattern provided.' });
-        return;
-    }
-
-    try {
-        // Pre-filter the package list to only valid package IDs/names
-        const packages = await getPackagesByRegex(RegEx);
-
-        res.status(200).json(packages.length > 0 ? packages : []);
-    } catch (error) {
-        console.error('Error processing regex:', error);
-        res.status(500).json({ error: 'Internal server error.' });
-    }
+    res.status(200).json(packages.length > 0 ? packages : []);
+  } catch (error) {
+    logger.log(2, `Error processing regex: ${error}`);
+    console.error('Error processing regex:', error);
+    res.status(500).json({ error: 'Internal server error.' });
+  }
 });
 
 
@@ -527,13 +538,15 @@ router.get('/:id/cost', async (req: Request, res: Response): Promise<void> => {
 // POST /package - Upload a new package
 router.post('/', async (req: Request, res: Response): Promise<void> => {
   const { Content, URL, JSProgram, debloat } = req.body;
-
+  logger.log(1, `Received POST /package request with body: ${JSON.stringify(req.body)}`);
   if (!Content && !URL) {
+      logger.log(2, 'Either URL or Content is required for this operation.');
       res.status(400).json({ error: 'Either URL or Content is required for this operation.' });
       return;
   }
 
   if (Content && URL) {
+      logger.log(2, 'Both URL and Content cannot be set in the same request.');
       res.status(400).json({ error: 'Both URL and Content cannot be set in the same request.' });
       return;
   }
@@ -549,6 +562,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
           uploadType = 'Content';
           const zipBuffer = Buffer.from(Content, 'base64');
           const zip = new AdmZip(zipBuffer);
+          logger.log(1, 'Extracting content to temporary directory.');
           zip.extractAllTo(tempDir, true);
 
           // Extract metadata
@@ -556,6 +570,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
       } else if (URL) {
           uploadType = 'URL';
           extractedURL = URL;
+          logger.log(1, `Cloning repository from URL: ${URL}`);
           await cloneRepo2(URL, tempDir);
 
           // Extract metadata
@@ -563,6 +578,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
       }
 
       if (!metadata) {
+          logger.log(2, 'Failed to extract metadata from the repository or content.');
           res.status(400).json({ error: 'Failed to extract metadata from the repository or content.' });
           return;
       }
@@ -573,6 +589,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
       // Check if the package already exists
       const existingPackage = await getPackageFromDynamoDB(id);
       if (existingPackage) {
+          logger.log(2, `Package with ID ${id} already exists.`);
           res.status(409).json({ error: `Package with ID ${id} already exists.` });
           return;
       }
@@ -589,6 +606,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
       const zipBuffer = zip.toBuffer();
 
       // Upload package to S3
+      logger.log(1, 'Uploading package to S3.');
       await uploadPackage(s3Key, {
           fieldname: 'file',
           originalname: 'zipped_directory.zip',
@@ -610,6 +628,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
           debloat: debloat || false,
       };
 
+      logger.log(1, `Adding package metadata to DynamoDB: ${JSON.stringify(packageData)}`);
       await addModuleToDynamoDB({
         id,
         name,
@@ -634,7 +653,9 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
               JSProgram: JSProgram || null,
           },
       });
+      logger.log(1, `Successfully handled POST /package for ID: ${id}`);
   } catch (error) {
+      logger.log(2, `Error handling package upload: ${error}`);
       console.error('Error handling package upload:', error);
       res.status(500).json({ error: 'Internal server error.' });
   }
