@@ -13,6 +13,9 @@ const App = () => {
   const [uploadUpdateType, setUploadUpdateType] = useState("content");
   const [updateDebloat, setUpdateDebloat] = useState(false);
   const [packageContent, setPackageContent] = useState("");
+  const [updatePackageName, setUpdatePackageName] = useState("");
+  const [updatePackageVersion, setUpdatePackageVersion] = useState("");
+
   const [packageUpdateContent, setUpdatePackageContent] = useState("");
   const [packageUpdateURL, setUpdatePackageURL] = useState("");
   const [packageURL, setPackageURL] = useState("");

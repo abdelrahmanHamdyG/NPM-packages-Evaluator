@@ -334,295 +334,153 @@ router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
 
 // POST /package/:id - Update a package's content by its ID
 router.post('/:id', async (req: Request, res: Response): Promise<void> => {
-    logger.log(1, `Request body: ${req}`)
-    const { id } = req.params;
-    const { metadata, data } = req.body;
-    if (!req.body || !metadata || !data) {
-        logger.log(2,`There is missing field(s) in the PackageID or it is formed improperly, or is invalid.` )
-        res.status(400).json({ error: 'There is missing field(s) in the PackageID or it is formed improperly, or is invalid.'});
-        return;
-    }
+  logger.log(1, `Request received to update package. Request body: ${JSON.stringify(req.body)}`);
+  
+  const { id } = req.params;
+  const { metadata, data } = req.body;
+  const { NameBody, Content, URL, JSProgram, debloat } = data;
+  logger.log(1,`data: ${Content}, ${URL}, ${debloat}, ${JSProgram} ` )
+  logger.log(1, `metadata ${metadata.version}`)
+  if (!metadata || !data) {
+      logger.log(2, `Invalid request: missing metadata or data fields for package ID ${id}`);
+      res.status(400).json({ error: 'There is missing field(s) in the PackageID or it is formed improperly, or is invalid.' });
+      return;
+  }
 
-    logger.log(2,`Entered post package for updating ${id}` )
-    const {Name, Version, ID} = metadata;
-    try {
-        // Fetch metadata for the given package ID from DynamoDB
-        const packageData = await getPackageFromDynamoDB(id);
-        logger.log(2,`Fetched package Metadata ${packageData}` )
+  logger.log(2, `Processing update for package ID: ${id}`);
+  const { Name, Version, Id } = metadata;
 
-        if (!packageData) {
-            logger.log(2,`Package not found.` )
-            res.status(404).json({ error: 'Package not found.' });
-            return;
-        }
+  try {
+      // Fetch metadata for the given package ID from DynamoDB
+      const packageData = await getPackageFromDynamoDB(id);
+      logger.log(2, `Fetched package metadata from database: ${JSON.stringify(packageData)}`);
 
-        // Check if the package name matches
-        if (packageData.name !== Name) {
-             logger.log(2,`Package name mismatch.` )
-             res.status(400).json({ error: 'Package name mismatch.' });
-             return;
-        }
-
-        // Validate the version format (Major.Minor.Patch)
-        if (!validateVersion(Version)) {
-            logger.log(2,'Invalid version format. Version must follow Major.Minor.Patch format.' )
-            res.status(400).json({ error: 'Invalid version format. Version must follow Major.Minor.Patch format.' });
-            return;
-        }
-
-        // Validate that the patch version is uploaded sequentially
-        if (packageData.version && !validatePatchVersionSequence( packageData.version, Version)) {
-            logger.log(2,'Patch version must be uploaded sequentially.' )
-            res.status(400).json({ error: 'Patch version must be uploaded sequentially.' });
-            return;
-        }
-
-        // Check if the package was ingested via Content or URL
-        if (packageData.uploadType === 'content' && data.URL && !data.Content) {
-            logger.log(2,'A package ingested via Content cannot be updated via URL.' )
-            res.status(400).json({
-                error: 'A package ingested via Content cannot be updated via URL.',
-            });
-            return;
-        }
-         // Check if the package was ingested via Content or URL
-        if (packageData.uploadType === 'URL' && !data.URL && data.Content) {
-          logger.log(2,'A package ingested via URL cannot be updated via Content.' )
-
-          res.status(400).json({
-              error: 'A package ingested via URL cannot be updated via Content.',
-          });
+      if (!packageData) {
+          logger.log(2, `Package with ID ${id} not found.`);
+          res.status(404).json({ error: 'Package not found.' });
           return;
-        }
-      } catch (error) {
-          logger.log(2, `Error processing package update: ${error}`);
-          res.status(500).json({ error: 'Internal Server Error' });
       }
-    // NPM ingest
-    if(data.URL && !data.Content) {
-      try {
 
-        logger.log(2,`Ingesting package (POST /package)`)
-        // await handleURLBasedUpload( res, data.URL, data.JSProgram);
-
-        let url = data.URL;
-        logger.log(2, `req: ${JSON.stringify(data)}`);
-  
-        if(url.includes("github")) {
-          const parts = url.split('/');
-          const repositoryName = parts[parts.length - 1];
-          // Constructing the npm package URL
-          url = `https://www.npmjs.com/package/${repositoryName}`;
-          logger.log(1, `constructed npm package url: ${url}`);
-        }
-  
-        const npmPackageName: string = getNPMPackageName(url);
-        logger.log(1, `package name: ${npmPackageName}`);
-  
-        const output = execSync(`npm view ${npmPackageName} --json --silent`, { encoding: 'utf8' }); // shell cmd to get json
-        fs.writeFileSync(`${npmPackageName}_info.json`, output); // write json to file
-        logger.log(1, `wrote json file`);
-        const file2 = `${npmPackageName}_info.json`; // file path
-        const gitUrl:string = await checkNPMOpenSource(file2);
-        logger.log(1, `gitUrl: ${gitUrl}`);
-        let destinationPath = 'temp';
-        const cloneRepoOut = await cloneRepo2(gitUrl, destinationPath);
-        logger.log(1, `finished cloning ${cloneRepoOut[1]}`);
-        const zipFilePath = await zipDirectory(cloneRepoOut[1], `./tempZip.zip`);
-  
-        
-        let version = "";
-        
-        try {
-          // Use fs.promises.readFile to return a Promise
-          const data = await fs.promises.readFile(path.join(__dirname, './temp', 'package.json'), 'utf8');
-          
-          // Parse the JSON data and get the version
-          const packageJson = JSON.parse(data);
-          version = packageJson.version;
-          logger.log(1, `Version found: ${version}`);
-        } catch (err) {
-          logger.log(1, `Error reading file: ${err}`);
-        }
-        
-        let username: string = ""; 
-        let repo: string = ""; 
-        const gitInfo = await getGithubInfo(gitUrl); 
-        username = gitInfo.username;
-        repo = gitInfo.repo;
-        logger.log(1, `Username and repo found successfully: ${username}, ${repo}`);
-        
-        // Now we start the upload
-        const info: RepoInfo = {
-          version: version,
-          url: repo
-        };
-        const package_version = info.version;
-        logger.log(1,`Version: ${package_version}`);
-        
-        const metadata: PackageMetadata = {
-          Name: npmPackageName,
-          Version: package_version,
-          ID: generateId(npmPackageName, package_version)
-        };
-        
-  
-        const package_id = await updateDynamoPackagedata(metadata);
-  
-        // Check to see if package metadata was upladed to db
-        if (package_id === null) { //  happens when package exists already
-          logger.log(2,`Could not upload package data to db`)
-         
-          res.status(409).send('Package exists already.');
+      // Check if the package name matches
+      if (packageData.name !== Name) {
+          logger.log(2, `Package name mismatch. Expected: ${packageData.name}, Provided: ${Name}`);
+          res.status(400).json({ error: 'Package name mismatch.' });
           return;
-        }
-        console.debug(`ingest package to db with id: ${package_id}`)
-  
-        // Upload the actual package to s3
-        // Read the zipped file content
-        const zippedFileContent = fs.readFileSync(zipFilePath);
-        const zippedDebloatContent = await debloatZippedFile(zippedFileContent)
-        console.debug(`got zipped file content`)
-  
-        // Create Express.Multer.File object
-        const zippedFile = {
-            fieldname: 'file',
-            originalname: 'zipped_directory.zip',
-            encoding: '7bit',
-            mimetype: 'application/zip',
-            buffer: zippedDebloatContent // Buffer of the zipped file content
-        };
-  
-        const s3_response = await uploadPackage(package_id, zippedFile); // Call your S3 upload function here\
-  
-        // Check to see if package data was uploaded to S3
-        if (s3_response === null) {
-          logger.log(2,`Error uploading package to S3`)
-         
-          res.status(400).send('Could not add package data');
-          return
-        }
-  
-        // If you get to this point, the file has been successfully uploaded
-        logger.log(1,`Successfully uploaded package with id: ${package_id}`)
-        await fsExtra.remove(cloneRepoOut[1]);
-        console.debug(`removed clone repo`)
-  
-        const base64EncodedData = (zippedDebloatContent).toString('base64');
-        
-        let response: Package = {
-          metadata: metadata,
-          data: {
-            Content: base64EncodedData,
-            //JSProgram: req.body.JSProgram,
-          },
-        }
-        
-      
-        res.status(201).json(response);
-      } catch (error) {
-        console.error('Could not ingest package', error);
-       
-        res.status(500).send('An error occurred.');
       }
-  
-      // zip file
-    } else if(!data.URL && data.Content) {
-      try {
-        logger.log(1,`Uploading package (POST /package)`)
-  
-        const binaryData = Buffer.from(data.Content, 'base64');
-        logger.log(1,`Got buffer/binary data`);
-        const uploadDir = './uploads';
-  
-        // Create the uploads directory if it doesn't exist
-        if (!fs.existsSync(uploadDir)) {
-          fs.mkdirSync(uploadDir);
-          logger.log(1,`created upload directory`);
-        } else {
-          logger.log(1,`upload directory exists already, no need to make it`);
-        }
-  
-        const timestamp = Date.now(); // Use a timestamp to create a unique file name
-        const zipFilePath = path.join(uploadDir, `file_${timestamp}.zip`);
-        logger.log(1,`Got zip file path: ${zipFilePath}`);
-  
-        // Create a writable stream to save the zip data
-        const writeStream = fs.createWriteStream(zipFilePath);
-        writeStream.write(binaryData, async (err: any) => {
-          if (err) {
-            logger.log(1,`failed to save zip file`);
-          } else {
-            logger.log(1,`zip file saved successfully`);
-            
-            const info = await extractRepoInfo(zipFilePath);
-            const repoUrl = info.url;
-            const version = info.version;
-            logger.log(1,`retrieved repo url: ${repoUrl}`);
-            let username: string = ""; 
-            let repo: string = ""; 
-            const regex = /\/([^\/]+)\/([^\/]+)\.git$/;
-            const matches = repoUrl.match(regex);
-            if (matches) {
-              username = matches[1]; 
-              repo = matches[2]; 
-            }
-            logger.log(1,`username and repo found successfully: ${username}, ${repo}`);
-            let gitDetails = [{username: username, repo: repo}];
-            // let scores = await get_metric_info(gitDetails);
-            // console.info(`retrieved scores from score calculator: ${scores.BusFactor}, ${scores.RampUp}, ${scores.LicenseScore}, ${scores.Correctness}, ${scores.ResponsiveMaintainer}, ${scores.PullRequest}, ${scores.GoodPinningPractice}, ${scores.NetScore}`);
-  
-            fs.unlinkSync(zipFilePath);
-            const metadata: PackageMetadata = {
-              Name: repo,
+
+      // Validate the version format (Major.Minor.Patch)
+      if (!validateVersion(Version)) {
+          logger.log(2, `Invalid version format for package ID ${id}. Provided version: ${Version}`);
+          res.status(400).json({ error: 'Invalid version format. Version must follow Major.Minor.Patch format.' });
+          return;
+      }
+
+      // Validate that the patch version is uploaded sequentially
+      if (packageData.version && !validatePatchVersionSequence(packageData.version, Version)) {
+          logger.log(2, `Patch version sequence invalid. Existing: ${packageData.version}, Provided: ${Version}`);
+          res.status(400).json({ error: 'Patch version must be uploaded sequentially.' });
+          return;
+      }
+
+      // Handle Content vs URL validation
+      if ((packageData.uploadType === 'Content' && URL) || (packageData.uploadType === 'URL' && Content)) {
+          logger.log(2, `Invalid update type for package ID ${id}. Upload type: ${packageData.uploadType}`);
+          res.status(400).json({ error: `Cannot update package via ${packageData.uploadType}.` });
+          return;
+      }
+  } catch (error) {
+      logger.log(2, `Error fetching or validating package ID ${id}: ${error}`);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+  }
+
+  try {
+      logger.log(2, `Starting update process for package ID ${id}`);
+      let metadatanew;
+      const tempDir = tmp.dirSync({ unsafeCleanup: true }).name;
+      let uploadType = '';
+      let s3Key = '';
+      let extractedURL = null;
+
+      if (data.Content) {
+          logger.log(2, `Processing content-based update for package ID ${id}`);
+          uploadType = 'Content';
+          const zipBuffer = Buffer.from(data.Content, 'base64');
+          const zip = new AdmZip(zipBuffer);
+          zip.extractAllTo(tempDir, true);
+
+          metadatanew = extractMetadataFromRepo(tempDir);
+      } else if (URL) {
+          logger.log(2, `Processing URL-based update for package ID ${id}`);
+          uploadType = 'URL';
+          extractedURL = URL;
+          await cloneRepo2(URL, tempDir);
+
+          metadatanew = extractMetadataFromRepo(tempDir);
+      }
+
+      if (!metadatanew) {
+          logger.log(2, `Failed to extract metadata for package ID ${id}`);
+          res.status(400).json({ error: 'Failed to extract metadata from the repository or content.' });
+          return;
+      }
+
+      const { name, version, id: Id, url } = metadatanew;
+      s3Key = `${Id}.zip`;
+
+      const existingPackage = await getPackageFromDynamoDB(Id);
+      if (existingPackage) {
+          logger.log(2, `Package with ID ${Id} already exists.`);
+          res.status(409).json({ error: `Package with ID ${Id} already exists.` });
+          return;
+      }
+
+      if (debloat) {
+          logger.log(1, `Applying debloat optimization for package ID ${Id}`);
+          await optimizePackage(tempDir);
+      }
+
+      logger.log(2, `Repacking and uploading package ID ${Id} to S3`);
+      const zip = new AdmZip();
+      zip.addLocalFolder(tempDir);
+      const zipBuffer = zip.toBuffer();
+
+      await uploadPackage(s3Key, {
+          fieldname: 'file',
+          originalname: 'zipped_directory.zip',
+          encoding: '7bit',
+          mimetype: 'application/zip',
+          buffer: zipBuffer,
+      });
+
+      logger.log(2, `Adding new package metadata to DynamoDB for package ID ${id}`);
+      await addModuleToDynamoDB({
+          id: Id,
+          name,
+          version,
+          s3Key,
+          uploadType: Content ? "content" : "URL",
+          packageUrl: URL || url,
+      });
+
+      logger.log(1, `Package ID ${Id} successfully updated.`);
+      res.status(201).json({
+          metadata: {
+              Name: name,
               Version: version,
-              ID: generateId(repo, version),
-            }
-  
-            const package_id = await updateDynamoPackagedata(metadata);
-  
-            // Check to see if package metadata was upladed to db
-            if (package_id === null) { //  happens when package exists already
-              logger.log(2,`Could not upload package data to db`)
-              return res.status(409).send('Package exists already.');
-            }
-            console.debug(`Uploaded package to db with id: ${package_id}`)
-  
-            // Upload the actual package to s3
-            const file = {buffer: binaryData}
-            const s3_response = await uploadPackage(package_id, file);
-  
-            // Check to see if package data was uploaded to S3
-            if (s3_response === null) {
-              logger.log(2,`Error uploading package to S3`)
-              return res.status(400).send('Could not add package data');
-            }
-  
-            let response: Package = {
-              metadata: metadata,
-              data: {
-                Content: String(data.Content),
-                //JSProgram: req.body.JSProgram,
-              },
-            }
-  
-            logger.log(1,`Successfully uploaded package with id: ${package_id}`)
-  
-            res.status(201).json(response)
-          }
-          writeStream.end();
-        });
-      } catch (error) {
-        console.error('Could not upload package', error);
-       
-        res.status(500).send('An error occurred.');
-      }
-    } else {
-      // Impropper request
-      res.status(400).send("There is missing field(s) in the PackageData/AuthenticationToken or it is formed improperly (e.g. Content and URL are both set), or the AuthenticationToken is invalid.")
-    }
-  });
-
+              ID: Id,
+          },
+          data: {
+              Content: zipBuffer.toString('base64'),
+              URL,
+              JSProgram: JSProgram || null,
+          },
+      });
+  } catch (error) {
+      logger.log(2, `Error during package update process for ID ${Id}: ${error}`);
+      res.status(500).json({ error: 'An error occurred while processing the package update.' });
+  }
+});
 
 // GET /package/:id/cost - Calculate cost of a package
 router.get('/:id/cost', async (req: Request, res: Response): Promise<void> => {

@@ -1,0 +1,17 @@
+2024-12-07T04:45:17.680Z [INFO]: Request received to update package. Request body: {"metadata":{"Name":"debug","Version":"5.0.0","ID":"debug-4_4_0"},"data":{"Name":"debug","URL":"https://github.com/debug-js/debug","JSProgram":"","debloat":false}}
+2024-12-07T04:45:17.682Z [DEBUG]: Processing update for package ID: debug-4_4_0
+2024-12-07T04:45:17.694Z [DEBUG]: Error fetching or validating package ID debug-4_4_0: TypeError: Cannot read properties of undefined (reading '0')
+2024-12-07T04:46:32.297Z [INFO]: Request received to update package. Request body: {"metadata":{"Name":"debug","Version":"5.0.0","ID":"debug-4_4_0"},"data":{"Name":"debug","URL":"https://github.com/debug-js/debug","JSProgram":"","debloat":false}}
+2024-12-07T04:46:32.300Z [INFO]: data: undefined, https://github.com/debug-js/debug, false,  
+2024-12-07T04:46:32.302Z [DEBUG]: Processing update for package ID: debug-4_4_0
+2024-12-07T04:46:32.714Z [DEBUG]: Fetched package metadata from database: {"id":"debug-4_4_0","name":"debug","version":"4.4.0","s3Key":"debug-4_4_0.zip","packageUrl":"https://github.com/debug-js/debug","uploadType":"URL"}
+2024-12-07T04:46:32.715Z [DEBUG]: Starting update process for package ID debug-4_4_0
+2024-12-07T04:46:32.719Z [DEBUG]: Processing URL-based update for package ID debug-4_4_0
+2024-12-07T04:46:33.957Z [DEBUG]: Package with ID debug-4_4_0 already exists.
+2024-12-07T04:51:13.545Z [INFO]: Request received to update package. Request body: {"metadata":{"Name":"debug","Version":"5.0.0","ID":"debug-4_4_0"},"data":{"Name":"debug","URL":"https://github.com/debug-js/debug","JSProgram":"","debloat":false}}
+2024-12-07T04:51:13.546Z [INFO]: data: undefined, https://github.com/debug-js/debug, false,  
+2024-12-07T04:51:13.548Z [DEBUG]: Processing update for package ID: debug-4_4_0
+2024-12-07T04:51:13.980Z [DEBUG]: Fetched package metadata from database: {"id":"debug-4_4_0","name":"debug","version":"4.4.0","s3Key":"debug-4_4_0.zip","packageUrl":"https://github.com/debug-js/debug","uploadType":"URL"}
+2024-12-07T04:51:13.984Z [DEBUG]: Starting update process for package ID debug-4_4_0
+2024-12-07T04:51:13.988Z [DEBUG]: Processing URL-based update for package ID debug-4_4_0
+2024-12-07T04:51:15.207Z [DEBUG]: Package with ID debug-4_4_0 already exists.
