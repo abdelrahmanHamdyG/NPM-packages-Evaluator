@@ -1142,11 +1142,75 @@ const processDependency = async (depName: string): Promise<number> => {
             const depZipPath = path.join(tempDir.name, 'dep-package.zip');
             fs.writeFileSync(depZipPath, depContent);
             logger.log(2, `Dependency ${depName} saved as ZIP. Calculating cost.`);
+            const extractedPath = path.join(tempDir.name, 'extracted');
+            fs.mkdirSync(extractedPath);
 
-            const depCost = await calculateCost(depZipPath);
-            logger.log(1, `Cost for dependency ${depName}: ${depCost.totalCost} bytes`);
-            tempDir.removeCallback();
-            return depCost.totalCost;
+
+    // Extract the ZIP contents
+    try {
+        await new Promise<void>((resolve, reject) => {
+            yauzl.open(depZipPath, { lazyEntries: true }, (err, zipfile) => {
+                if (err) {
+                    logger.log(1, `Error opening ZIP file for extraction: ${err.message}`);
+                    return reject(err);
+                }
+
+                zipfile.readEntry();
+                zipfile.on('entry', (entry) => {
+                    const entryPath = path.join(extractedPath, entry.fileName);
+
+                    // Handle directories
+                    if (/\/$/.test(entry.fileName)) {
+                        fs.mkdirSync(entryPath, { recursive: true });
+                        zipfile.readEntry();
+                    } else {
+                        // Extract files
+                        zipfile.openReadStream(entry, (err, readStream) => {
+                            if (err) {
+                                logger.log(1, `Error reading ZIP entry: ${err.message}`);
+                                return reject(err);
+                            }
+                            const writeStream = fs.createWriteStream(entryPath);
+                            readStream.pipe(writeStream);
+                            readStream.on('end', () => zipfile.readEntry());
+                        });
+                    }
+                });
+
+                zipfile.on('end', () => {
+                    logger.log(2, `Extraction complete for ${depName}.`);
+                    resolve();
+                });
+
+                zipfile.on('error', (err) => {
+                    logger.log(1, `Error during ZIP extraction: ${err.message}`);
+                    reject(err);
+                });
+            });
+        });
+
+        // Calculate the cost of the extracted directory
+        const depCost = await calculateDirectoryCost(extractedPath);
+        logger.log(1, `Cost for dependency ${depName}: ${depCost} bytes`);
+
+        // Cleanup
+        // Cleanup extracted directory recursively
+        try {
+            await fsExtra.remove(extractedPath);
+            logger.log(2, `Successfully cleaned up extracted directory: ${extractedPath}`);
+        } catch (err) {
+            logger.log(1, `Error cleaning up extracted directory`);
+        }
+
+        tempDir.removeCallback();
+        return depCost;
+    } catch (err) {
+        
+        logger.log(1, `Error extracting and calculating cost for dependency ${depName}`);
+        tempDir.removeCallback();
+        return 0; // Return 0 cost for failed extractions
+    }
+
         } else if (isTgz) {
             const depTgzPath = path.join(tempDir.name, 'dep-package.tgz');
             fs.writeFileSync(depTgzPath, depContent);
@@ -1195,24 +1259,64 @@ const calculateDirectoryCost = async (directoryPath: string): Promise<number> =>
     return totalCost;
 };
 
+// const fetchPackageFromNPM = async (packageName: string): Promise<Buffer | null> => {
+//     logger.log(1, `Fetching package ${packageName} from NPM`);
+
+//     try {
+//         const response = await axios.get(`https://registry.npmjs.org/${packageName}`, { timeout: 10000 });
+//         logger.log(2, `Fetched metadata for package ${packageName} from NPM registry`);
+
+//         const latestVersion = response.data['dist-tags'].latest;
+//         const tarballUrl = response.data.versions[latestVersion].dist.tarball;
+
+//         logger.log(2, `Latest version: ${latestVersion}. Tarball URL: ${tarballUrl}`);
+
+//         const tarballResponse = await axios.get(tarballUrl, { responseType: 'arraybuffer', timeout: 10000 });
+//         logger.log(1, `Downloaded tarball for package ${packageName}`);
+
+//         return Buffer.from(tarballResponse.data);
+//     } catch (error) {
+//         logger.log(1, `Error fetching package ${packageName} from NPM`);
+//         return null;
+//     }
+// };
+
 const fetchPackageFromNPM = async (packageName: string): Promise<Buffer | null> => {
     logger.log(1, `Fetching package ${packageName} from NPM`);
 
     try {
+        // Fetch package metadata from NPM registry
         const response = await axios.get(`https://registry.npmjs.org/${packageName}`, { timeout: 10000 });
         logger.log(2, `Fetched metadata for package ${packageName} from NPM registry`);
 
         const latestVersion = response.data['dist-tags'].latest;
-        const tarballUrl = response.data.versions[latestVersion].dist.tarball;
+        const repositoryUrl = response.data.versions[latestVersion]?.repository?.url;
 
-        logger.log(2, `Latest version: ${latestVersion}. Tarball URL: ${tarballUrl}`);
+        if (!repositoryUrl) {
+            logger.log(1, `No repository URL found for package ${packageName}`);
+            return null;
+        }
 
-        const tarballResponse = await axios.get(tarballUrl, { responseType: 'arraybuffer', timeout: 10000 });
-        logger.log(1, `Downloaded tarball for package ${packageName}`);
+        logger.log(2, `Latest version: ${latestVersion}. Repository URL: ${repositoryUrl}`);
 
-        return Buffer.from(tarballResponse.data);
+        // Normalize the repository URL
+        let githubUrl = repositoryUrl.replace(/^git\+/, '').replace(/\.git$/, '');
+        if (!githubUrl.startsWith('https://')) {
+            githubUrl = `https://${githubUrl}`;
+        }
+
+        // Construct the GitHub ZIP download URL
+        const zipUrl = `${githubUrl}/archive/refs/heads/main.zip`;
+
+        logger.log(2, `Constructed GitHub ZIP download URL: ${zipUrl}`);
+
+        // Download the ZIP from GitHub
+        const zipResponse = await axios.get(zipUrl, { responseType: 'arraybuffer', timeout: 20000 });
+        logger.log(1, `Downloaded ZIP from GitHub for package ${packageName}`);
+
+        return Buffer.from(zipResponse.data);
     } catch (error) {
-        logger.log(1, `Error fetching package ${packageName} from NPM`);
+        logger.log(1, `Error fetching package ${packageName} from GitHub or NPM`);
         return null;
     }
 };
