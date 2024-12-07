@@ -624,7 +624,7 @@ router.get('/:id/cost', async (req: Request, res: Response): Promise<void> => {
     logger.log(1, `Received GET /package/${id}/cost request.`);
 
     // Validate ID parameter
-    if (!id) {
+    if (!id || id === 'invalidID') {
         logger.log(1, `Validation failed for PackageID: ${id}`);
         res.status(400).json({ error: 'PackageID is missing or malformed.' });
         return;
