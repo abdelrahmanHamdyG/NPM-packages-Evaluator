@@ -50,6 +50,8 @@ jobs:
       - name: Run tests and generate coverage
         run: |
               export LOG_FILE=app.log
+              export LOG_LEVEL=2
+              export GITHUB_TOKEN=${{ secrets.GH_TOKEN }}
               npx vitest --run --coverage --reporter=json || { echo "Vitest failed"; exit 1; }
         shell: bash
 
