@@ -584,7 +584,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
         });
 
         logger.log(1, `Package ID ${Id} successfully updated.`);
-        res.status(201).json({
+        res.status(200).json({
             metadata: {
                 Name: name,
                 Version: version,
@@ -596,6 +596,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
                 JSProgram: JSProgram || null,
             },
         });
+        return;
     } catch (error) {
         logger.log(2, `Error during package update process for ID ${ID}: ${error}`);
         res.status(500).json({ error: 'An error occurred while processing the package update.' });
