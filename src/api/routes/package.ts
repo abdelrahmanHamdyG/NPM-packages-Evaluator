@@ -617,57 +617,129 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
 });
 
 // GET /package/:id/cost - Calculate cost of a package
+// router.get('/:id/cost', async (req: Request, res: Response): Promise<void> => {
+//   const { id } = req.params;
+
+//   // Validate ID parameter
+//   if (!id || !/^[a-zA-Z0-9-]+$/.test(id)) {
+//       res.status(400).json({ error: 'PackageID is missing or malformed.' });
+//       return;
+//   }
+
+//   try {
+//       // Fetch package metadata from DynamoDB
+//       const packageData = await getPackageFromDynamoDB(id);
+//       if (!packageData) {
+//           res.status(404).json({ error: 'Package not found.' });
+//           return;
+//       }
+
+//       // Ensure S3 key exists for the package
+//       if (!packageData.s3Key) {
+//           res.status(500).json({ error: 'Package content key is missing.' });
+//           return;
+//       }
+
+//       // Download package content from S3
+//       const contentBuffer = await downloadFileFromS3(packageData.s3Key);
+//       const tempDir = tmp.dirSync({ unsafeCleanup: true });
+//       const packagePath = path.join(tempDir.name, 'package.zip');
+//       fs.writeFileSync(packagePath, contentBuffer);
+
+//       // Calculate the cost
+//       const costResult = await calculateCost(packagePath);
+
+//       // Build response structure
+//       const response: CostResponse = {
+//           [id]: {
+//               totalCost: costResult.totalCost / 1024, // Convert to KB
+//           },
+//       };
+
+//       // Add standaloneCost if dependencies exist
+//       if (costResult.hasDependencies) {
+//           response[id].standaloneCost = costResult.standaloneCost / 1024;
+//       }
+
+//       res.status(200).json(response);
+//       tempDir.removeCallback();
+//   } catch (error) {
+//       console.error('Error calculating package cost:', error);
+//       res.status(500).json({ error: 'Internal server error.' });
+//   }
+// });
+// GET /package/:id/cost - Calculate cost of a package
 router.get('/:id/cost', async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
+    const { id } = req.params;
+    logger.log(1, `Received GET /package/${id}/cost request.`);
 
-  // Validate ID parameter
-  if (!id || !/^[a-zA-Z0-9-]+$/.test(id)) {
-      res.status(400).json({ error: 'PackageID is missing or malformed.' });
-      return;
-  }
+    // Validate ID parameter
+    if (!id) {
+        logger.log(1, `Validation failed for PackageID: ${id}`);
+        res.status(400).json({ error: 'PackageID is missing or malformed.' });
+        return;
+    }
 
-  try {
-      // Fetch package metadata from DynamoDB
-      const packageData = await getPackageFromDynamoDB(id);
-      if (!packageData) {
-          res.status(404).json({ error: 'Package not found.' });
-          return;
-      }
+    try {
+        logger.log(2, `Fetching metadata for PackageID: ${id} from DynamoDB.`);
+        
+        // Fetch package metadata from DynamoDB
+        const packageData = await getPackageFromDynamoDB(id);
+        if (!packageData) {
+            logger.log(1, `PackageID: ${id} not found in DynamoDB.`);
+            res.status(404).json({ error: 'Package not found.' });
+            return;
+        }
 
-      // Ensure S3 key exists for the package
-      if (!packageData.s3Key) {
-          res.status(500).json({ error: 'Package content key is missing.' });
-          return;
-      }
+        logger.log(2, `Package metadata for PackageID: ${id} fetched successfully.`);
 
-      // Download package content from S3
-      const contentBuffer = await downloadFileFromS3(packageData.s3Key);
-      const tempDir = tmp.dirSync({ unsafeCleanup: true });
-      const packagePath = path.join(tempDir.name, 'package.zip');
-      fs.writeFileSync(packagePath, contentBuffer);
+        // Ensure S3 key exists for the package
+        if (!packageData.s3Key) {
+            logger.log(1, `PackageID: ${id} is missing the S3 key.`);
+            res.status(500).json({ error: 'Package content key is missing.' });
+            return;
+        }
 
-      // Calculate the cost
-      const costResult = await calculateCost(packagePath);
+        logger.log(2, `Downloading package content for PackageID: ${id} from S3.`);
 
-      // Build response structure
-      const response: CostResponse = {
-          [id]: {
-              totalCost: costResult.totalCost / 1024, // Convert to KB
-          },
-      };
+        // Download package content from S3
+        const contentBuffer = await downloadFileFromS3(packageData.s3Key);
+        const tempDir = tmp.dirSync({ unsafeCleanup: true });
+        const packagePath = path.join(tempDir.name, 'package.zip');
+        fs.writeFileSync(packagePath, contentBuffer);
 
-      // Add standaloneCost if dependencies exist
-      if (costResult.hasDependencies) {
-          response[id].standaloneCost = costResult.standaloneCost / 1024;
-      }
+        logger.log(2, `Package content for PackageID: ${id} downloaded and written to temporary file.`);
 
-      res.status(200).json(response);
-      tempDir.removeCallback();
-  } catch (error) {
-      console.error('Error calculating package cost:', error);
-      res.status(500).json({ error: 'Internal server error.' });
-  }
+        // Calculate the cost
+        logger.log(2, `Calculating cost for PackageID: ${id}.`);
+        const costResult = await calculateCost(packagePath);
+
+        logger.log(2, `Cost calculation completed for PackageID: ${id}.`);
+
+        // Build response structure
+        const response: CostResponse = {
+            [id]: {
+                totalCost: costResult.totalCost / 1024, // Convert to KB
+            },
+        };
+
+        if (costResult.hasDependencies) {
+            response[id].standaloneCost = costResult.standaloneCost / 1024;
+            logger.log(2, `Dependencies detected for PackageID: ${id}. Standalone cost added.`);
+        }
+
+        logger.log(1, `Cost calculation for PackageID: ${id} successful. Sending response.`);
+        res.status(200).json(response);
+
+        // Cleanup temporary directory
+        tempDir.removeCallback();
+        logger.log(2, `Temporary directory cleaned up for PackageID: ${id}.`);
+    } catch (error) {
+        logger.log(1, `Error calculating cost for PackageID: ${id}. ${error}`);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
 });
+
 
 // POST /package - Upload a new package
 router.post('/', async (req: Request, res: Response): Promise<void> => {
@@ -817,81 +889,177 @@ async function optimizePackage(dirPath: string): Promise<void> {
   export default router;
 
 // Helper function to calculate cost
+// const calculateCost = async (zipPath: string): Promise<CostCalculationResult> => {
+//   return new Promise((resolve, reject) => {
+//       let standaloneCost = 0;
+//       let totalCost = 0;
+//       let hasDependencies = false;
+
+//       yauzl.open(zipPath, { lazyEntries: true }, (err, zipfile) => {
+//           if (err) return reject(new Error('Invalid ZIP file'));
+
+//           const dependencyPromises: Promise<number>[] = [];
+//           zipfile.readEntry();
+//           zipfile.on('entry', (entry) => {
+//               if (/\/$/.test(entry.fileName)) {
+//                   zipfile.readEntry(); // Skip directories
+//               } else {
+//                   standaloneCost += entry.uncompressedSize; // Add size of current file to standaloneCost
+
+//                   if (entry.fileName.endsWith('package.json')) {
+//                       zipfile.openReadStream(entry, (err, readStream) => {
+//                           if (err) return reject(err);
+
+//                           let packageJson = '';
+//                           readStream.on('data', (chunk) => (packageJson += chunk));
+//                           readStream.on('end', async () => {
+//                               try {
+//                                   const json = JSON.parse(packageJson);
+//                                   const dependencies = {
+//                                       ...json.dependencies,
+//                                       ...json.devDependencies,
+//                                   };
+
+//                                   if (Object.keys(dependencies).length > 0) {
+//                                       hasDependencies = true;
+
+//                                       for (const [depName] of Object.entries(dependencies)) {
+//                                           dependencyPromises.push(processDependency(depName));
+//                                       }
+//                                   }
+
+//                                   zipfile.readEntry(); // Continue processing entries
+//                               } catch (err) {
+//                                   reject(err);
+//                               }
+//                           });
+//                       });
+//                   } else {
+//                       zipfile.readEntry(); // Continue processing entries
+//                   }
+//               }
+//           });
+
+//           zipfile.on('end', async () => {
+//               try {
+//                   // Wait for all dependency calculations
+//                   const dependencyCosts = await Promise.all(dependencyPromises);
+
+//                   // Add dependency costs to totalCost
+//                   const dependencyTotalCost = dependencyCosts.reduce((sum, cost) => sum + cost, 0);
+
+//                   // Total cost = standalone cost + dependencies' total cost
+//                   totalCost = standaloneCost + dependencyTotalCost;
+
+//                   resolve({
+//                     standaloneCost: parseFloat((standaloneCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB and round to 6 decimals
+//                     totalCost: parseFloat((totalCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB and round to 6 decimals
+//                     hasDependencies,
+//                 });
+//               } catch (err) {
+//                   reject(err);
+//               }
+//           });
+
+//           zipfile.on('error', reject);
+//       });
+//   });
+// };
 const calculateCost = async (zipPath: string): Promise<CostCalculationResult> => {
-  return new Promise((resolve, reject) => {
-      let standaloneCost = 0;
-      let totalCost = 0;
-      let hasDependencies = false;
+    logger.log(1, `Starting cost calculation for ZIP file: ${zipPath}`);
 
-      yauzl.open(zipPath, { lazyEntries: true }, (err, zipfile) => {
-          if (err) return reject(new Error('Invalid ZIP file'));
+    return new Promise((resolve, reject) => {
+        let standaloneCost = 0;
+        let totalCost = 0;
+        let hasDependencies = false;
 
-          const dependencyPromises: Promise<number>[] = [];
-          zipfile.readEntry();
-          zipfile.on('entry', (entry) => {
-              if (/\/$/.test(entry.fileName)) {
-                  zipfile.readEntry(); // Skip directories
-              } else {
-                  standaloneCost += entry.uncompressedSize; // Add size of current file to standaloneCost
+        logger.log(2, `Attempting to open ZIP file: ${zipPath}`);
+        yauzl.open(zipPath, { lazyEntries: true }, (err, zipfile) => {
+            if (err) {
+                logger.log(1, `Error opening ZIP file: ${err.message}`);
+                return reject(new Error('Invalid ZIP file'));
+            }
 
-                  if (entry.fileName.endsWith('package.json')) {
-                      zipfile.openReadStream(entry, (err, readStream) => {
-                          if (err) return reject(err);
+            const dependencyPromises: Promise<number>[] = [];
+            logger.log(2, `ZIP file opened successfully. Reading entries...`);
+            zipfile.readEntry();
 
-                          let packageJson = '';
-                          readStream.on('data', (chunk) => (packageJson += chunk));
-                          readStream.on('end', async () => {
-                              try {
-                                  const json = JSON.parse(packageJson);
-                                  const dependencies = {
-                                      ...json.dependencies,
-                                      ...json.devDependencies,
-                                  };
+            zipfile.on('entry', (entry) => {
+                logger.log(2, `Processing ZIP entry: ${entry.fileName}`);
+                if (/\/$/.test(entry.fileName)) {
+                    logger.log(2, `Skipping directory entry: ${entry.fileName}`);
+                    zipfile.readEntry(); // Skip directories
+                } else {
+                    standaloneCost += entry.uncompressedSize;
+                    logger.log(2, `Added ${entry.uncompressedSize} bytes to standalone cost. Total standalone cost: ${standaloneCost}`);
 
-                                  if (Object.keys(dependencies).length > 0) {
-                                      hasDependencies = true;
+                    if (entry.fileName.endsWith('package.json')) {
+                        logger.log(2, `Found package.json: ${entry.fileName}. Parsing dependencies.`);
+                        zipfile.openReadStream(entry, (err, readStream) => {
+                            if (err) {
+                                logger.log(1, `Error reading package.json: ${err.message}`);
+                                return reject(err);
+                            }
 
-                                      for (const [depName] of Object.entries(dependencies)) {
-                                          dependencyPromises.push(processDependency(depName));
-                                      }
-                                  }
+                            let packageJson = '';
+                            readStream.on('data', (chunk) => (packageJson += chunk));
+                            readStream.on('end', async () => {
+                                try {
+                                    const json = JSON.parse(packageJson);
+                                    const dependencies = {
+                                        ...json.dependencies,
+                                        ...json.devDependencies,
+                                    };
 
-                                  zipfile.readEntry(); // Continue processing entries
-                              } catch (err) {
-                                  reject(err);
-                              }
-                          });
-                      });
-                  } else {
-                      zipfile.readEntry(); // Continue processing entries
-                  }
-              }
-          });
+                                    if (Object.keys(dependencies).length > 0) {
+                                        hasDependencies = true;
+                                        logger.log(2, `Found ${Object.keys(dependencies).length} dependencies in package.json.`);
 
-          zipfile.on('end', async () => {
-              try {
-                  // Wait for all dependency calculations
-                  const dependencyCosts = await Promise.all(dependencyPromises);
+                                        for (const [depName] of Object.entries(dependencies)) {
+                                            logger.log(2, `Processing dependency: ${depName}`);
+                                            dependencyPromises.push(processDependency(depName));
+                                        }
+                                    }
 
-                  // Add dependency costs to totalCost
-                  const dependencyTotalCost = dependencyCosts.reduce((sum, cost) => sum + cost, 0);
+                                    zipfile.readEntry(); // Continue processing entries
+                                } catch (err) {
+                                    logger.log(1, `Error parsing package.json`);
+                                    reject(err);
+                                }
+                            });
+                        });
+                    } else {
+                        zipfile.readEntry(); // Continue processing entries
+                    }
+                }
+            });
 
-                  // Total cost = standalone cost + dependencies' total cost
-                  totalCost = standaloneCost + dependencyTotalCost;
+            zipfile.on('end', async () => {
+                logger.log(2, `Finished reading ZIP entries. Calculating dependency costs.`);
+                try {
+                    const dependencyCosts = await Promise.all(dependencyPromises);
 
-                  resolve({
-                    standaloneCost: parseFloat((standaloneCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB and round to 6 decimals
-                    totalCost: parseFloat((totalCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB and round to 6 decimals
-                    hasDependencies,
-                });
-              } catch (err) {
-                  reject(err);
-              }
-          });
+                    const dependencyTotalCost = dependencyCosts.reduce((sum, cost) => sum + cost, 0);
+                    totalCost = standaloneCost + dependencyTotalCost;
 
-          zipfile.on('error', reject);
-      });
-  });
+                    logger.log(1, `Cost calculation completed. Total cost: ${totalCost} bytes. Standalone cost: ${standaloneCost} bytes. Has dependencies: ${hasDependencies}`);
+                    resolve({
+                        standaloneCost: parseFloat((standaloneCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB
+                        totalCost: parseFloat((totalCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB
+                        hasDependencies,
+                    });
+                } catch (err) {
+                    logger.log(1, `Error calculating dependency costs`);
+                    reject(err);
+                }
+            });
+
+            zipfile.on('error', (err) => {
+                logger.log(1, `Error processing ZIP file: ${err.message}`);
+                reject(err);
+            });
+        });
+    });
 };
 
 
