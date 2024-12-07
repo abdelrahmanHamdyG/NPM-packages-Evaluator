@@ -147,6 +147,82 @@ export function extractMetadataFromRepo(repoDir: string): { name: string; versio
 }
 
 
+export function extractMetadataFromRepoUpdate(repoDir: string, version: string): { name: string; version: string; id: string; url?: string } | null {
+  try {
+    let packageJsonPath = path.join(repoDir, 'package.json');
+
+    // Check if package.json exists directly in repoDir
+    if (!fs.existsSync(packageJsonPath)) {
+      // Get the list of entries in repoDir
+      const entries = fs.readdirSync(repoDir, { withFileTypes: true });
+      
+      // Find the first (and only) subdirectory if it exists
+      const subDir = entries.find(entry => entry.isDirectory());
+      if (subDir && entries.length === 1) {
+        // Construct the path to package.json inside the subdirectory
+        packageJsonPath = path.join(repoDir, subDir.name, 'package.json');
+      } else {
+        console.error('package.json not found in the provided directory.');
+        return null;
+      }
+    }
+
+    // Check if package.json exists at the determined path
+    if (!fs.existsSync(packageJsonPath)) {
+      console.error('package.json not found.');
+      return null;
+    }
+
+    // Read and parse package.json
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+    const { name,  repository } = packageJson;
+
+    if (!name) {
+      console.error('Missing name in package.json.');
+      return null;
+    }
+
+    // Extract URL from the repository field, if present
+    let url: string | undefined = repository?.url;
+
+    // Normalize the URL to start with 'https://github.com/'
+    if (url) {
+      // Remove 'git+' prefix if it exists
+      url = url.replace(/^git\+/, '');
+
+      // Replace 'git://' or 'http://' with 'https://'
+      url = url.replace(/^git:\/\//, 'https://')
+              .replace(/^http:\/\//, 'https://');
+
+      // Ensure it's a GitHub URL and normalize it
+      const githubRegex = /github\.com\/([^\/]+)\/([^\/]+)/;
+      const match = url.match(githubRegex);
+
+      if (match) {
+        const username = match[1];
+        const repoName = match[2].replace(/\.git$/, ''); // Remove .git suffix if present
+        url = `https://github.com/${username}/${repoName}`;
+      } else {
+        console.error('Invalid GitHub URL format:', url);
+        return null; // Return null if it's not a valid GitHub URL
+      }
+    }
+
+    // Log the formatted URL for verification
+    console.log('Normalized URL:', url);
+
+
+    // Generate a unique ID using name and version
+    const id = `${name}-${version}`.replace(/[^a-zA-Z0-9_-]/g, '_');
+
+    return { name, version, id, url };
+  } catch (error) {
+    console.error('Error extracting metadata from repository:', error);
+    return null;
+  }
+}
+
+
 // GET /package/:id - Retrieve a package by its ID
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
@@ -374,19 +450,19 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
       logger.log(1, `data: Content=${Content}, URL=${URL}, debloat=${debloat}, JSProgram=${JSProgram}`);
     
       // Check if metadata has required properties
-      if (!metadata.version) {
+      if (!metadata.Version) {
         logger.log(2, `Invalid metadata: missing 'version' field for package ID ${id}`);
         res.status(400).json({
           error: 'Metadata is missing the required "version" field.',
         });
         return;
       }
-      logger.log(1, `metadata version: ${metadata.version}`);
+      logger.log(1, `metadata version: ${metadata.Version}`);
     
       logger.log(2, `Processing update for package ID: ${id}`);
     
       // Destructure metadata fields
-      const { Name, Version, Id } = metadata;
+      const { Name, Version, ID } = metadata;
     
     
     
@@ -450,14 +526,14 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
             const zip = new AdmZip(zipBuffer);
             zip.extractAllTo(tempDir, true);
 
-            metadatanew = extractMetadataFromRepo(tempDir);
+            metadatanew = extractMetadataFromRepoUpdate(tempDir, Version);
         } else if (URL) {
             logger.log(2, `Processing URL-based update for package ID ${id}`);
             uploadType = 'URL';
             extractedURL = URL;
             await cloneRepo2(URL, tempDir);
 
-            metadatanew = extractMetadataFromRepo(tempDir);
+            metadatanew = extractMetadataFromRepoUpdate(tempDir, Version);
         }
 
         if (!metadatanew) {
@@ -518,7 +594,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
             },
         });
     } catch (error) {
-        logger.log(2, `Error during package update process for ID ${Id}: ${error}`);
+        logger.log(2, `Error during package update process for ID ${ID}: ${error}`);
         res.status(500).json({ error: 'An error occurred while processing the package update.' });
         return;
     }
