@@ -336,149 +336,200 @@ router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
 router.post('/:id', async (req: Request, res: Response): Promise<void> => {
   logger.log(1, `Request received to update package. Request body: ${JSON.stringify(req.body)}`);
   
-  const { id } = req.params;
-  const { metadata, data } = req.body;
-  const { Content, URL, JSProgram, debloat } = data;
-  logger.log(1,`data: ${Content}, ${URL}, ${debloat}, ${JSProgram} ` )
-  logger.log(1, `metadata ${metadata.version}`)
-  if ( !req.body || !metadata || !data) {
-      logger.log(2, `Invalid request: missing metadata or data fields for package ID ${id}`);
-      res.status(400).json({ error: 'There is missing field(s) in the PackageID or it is formed improperly, or is invalid.' });
-      return;
-  }
-
-  logger.log(2, `Processing update for package ID: ${id}`);
-  const { Name, Version, Id } = metadata;
-
   try {
-      // Fetch metadata for the given package ID from DynamoDB
-      const packageData = await getPackageFromDynamoDB(id);
-      logger.log(2, `Fetched package metadata from database: ${JSON.stringify(packageData)}`);
-
-      if (!packageData) {
-          logger.log(2, `Package with ID ${id} not found.`);
-          res.status(404).json({ error: 'Package not found.' });
-          return;
+      // Validate if request body exists
+      if (!req.body) {
+        logger.log(2, `Invalid request: missing metadata or data fields.`);
+        res.status(400).json({
+          error: 'The request body is missing or improperly formed.',
+        });
+        return;
       }
-
-      // Check if the package name matches
-      if (packageData.name !== Name) {
-          logger.log(2, `Package name mismatch. Expected: ${packageData.name}, Provided: ${Name}`);
-          res.status(400).json({ error: 'Package name mismatch.' });
-          return;
+    
+      const { id } = req.params;
+    
+      // Validate if 'id' exists in the request params
+      if (!id) {
+        logger.log(2, `Invalid request: missing package ID.`);
+        res.status(400).json({
+          error: 'Missing or invalid PackageID in the URL parameters.',
+        });
+        return;
       }
-
-      // Validate the version format (Major.Minor.Patch)
-      if (!validateVersion(Version)) {
-          logger.log(2, `Invalid version format for package ID ${id}. Provided version: ${Version}`);
-          res.status(400).json({ error: 'Invalid version format. Version must follow Major.Minor.Patch format.' });
-          return;
+    
+      const { metadata, data } = req.body;
+    
+      // Validate if 'metadata' and 'data' exist in the request body
+      if (!metadata || !data) {
+        logger.log(2, `Invalid request: metadata or data fields missing for package ID ${id}`);
+        res.status(400).json({
+          error: 'Metadata or data fields are missing in the request body.',
+        });
+        return;
       }
-
-      // Validate that the patch version is uploaded sequentially
-      if (packageData.version && !validatePatchVersionSequence(packageData.version, Version)) {
-          logger.log(2, `Patch version sequence invalid. Existing: ${packageData.version}, Provided: ${Version}`);
-          res.status(400).json({ error: 'Patch version must be uploaded sequentially.' });
-          return;
+    
+      const { Content, URL, JSProgram, debloat } = data;
+    
+      // Log data values
+      logger.log(1, `data: Content=${Content}, URL=${URL}, debloat=${debloat}, JSProgram=${JSProgram}`);
+    
+      // Check if metadata has required properties
+      if (!metadata.version) {
+        logger.log(2, `Invalid metadata: missing 'version' field for package ID ${id}`);
+        res.status(400).json({
+          error: 'Metadata is missing the required "version" field.',
+        });
+        return;
       }
+      logger.log(1, `metadata version: ${metadata.version}`);
+    
+      logger.log(2, `Processing update for package ID: ${id}`);
+    
+      // Destructure metadata fields
+      const { Name, Version, Id } = metadata;
+    
+    
+    
 
-      // Handle Content vs URL validation
-      if ((packageData.uploadType === 'Content' && URL) || (packageData.uploadType === 'URL' && Content)) {
-          logger.log(2, `Invalid update type for package ID ${id}. Upload type: ${packageData.uploadType}`);
-          res.status(400).json({ error: `Cannot update package via ${packageData.uploadType}.` });
-          return;
-      }
+    try {
+        // Fetch metadata for the given package ID from DynamoDB
+        const packageData = await getPackageFromDynamoDB(id);
+        logger.log(2, `Fetched package metadata from database: ${JSON.stringify(packageData)}`);
+
+        if (!packageData) {
+            logger.log(2, `Package with ID ${id} not found.`);
+            res.status(404).json({ error: 'Package not found.' });
+            return;
+        }
+
+        // Check if the package name matches
+        if (packageData.name !== Name) {
+            logger.log(2, `Package name mismatch. Expected: ${packageData.name}, Provided: ${Name}`);
+            res.status(400).json({ error: 'Package name mismatch.' });
+            return;
+        }
+
+        // Validate the version format (Major.Minor.Patch)
+        if (!validateVersion(Version)) {
+            logger.log(2, `Invalid version format for package ID ${id}. Provided version: ${Version}`);
+            res.status(400).json({ error: 'Invalid version format. Version must follow Major.Minor.Patch format.' });
+            return;
+        }
+
+        // Validate that the patch version is uploaded sequentially
+        if (packageData.version && !validatePatchVersionSequence(packageData.version, Version)) {
+            logger.log(2, `Patch version sequence invalid. Existing: ${packageData.version}, Provided: ${Version}`);
+            res.status(400).json({ error: 'Patch version must be uploaded sequentially.' });
+            return;
+        }
+
+        // Handle Content vs URL validation
+        if ((packageData.uploadType === 'Content' && URL) || (packageData.uploadType === 'URL' && Content)) {
+            logger.log(2, `Invalid update type for package ID ${id}. Upload type: ${packageData.uploadType}`);
+            res.status(400).json({ error: `Cannot update package via ${packageData.uploadType}.` });
+            return;
+        }
+    } catch (error) {
+        logger.log(2, `Error fetching or validating package ID ${id}: ${error}`);
+        res.status(500).json({ error: 'Internal Server Error' });
+        return;
+    }
+
+    try {
+        logger.log(2, `Starting update process for package ID ${id}`);
+        let metadatanew;
+        const tempDir = tmp.dirSync({ unsafeCleanup: true }).name;
+        let uploadType = '';
+        let s3Key = '';
+        let extractedURL = null;
+
+        if (data.Content) {
+            logger.log(2, `Processing content-based update for package ID ${id}`);
+            uploadType = 'Content';
+            const zipBuffer = Buffer.from(data.Content, 'base64');
+            const zip = new AdmZip(zipBuffer);
+            zip.extractAllTo(tempDir, true);
+
+            metadatanew = extractMetadataFromRepo(tempDir);
+        } else if (URL) {
+            logger.log(2, `Processing URL-based update for package ID ${id}`);
+            uploadType = 'URL';
+            extractedURL = URL;
+            await cloneRepo2(URL, tempDir);
+
+            metadatanew = extractMetadataFromRepo(tempDir);
+        }
+
+        if (!metadatanew) {
+            logger.log(2, `Failed to extract metadata for package ID ${id}`);
+            res.status(400).json({ error: 'Failed to extract metadata from the repository or content.' });
+            return;
+        }
+
+        const { name, version, id: Id, url } = metadatanew;
+        s3Key = `${Id}.zip`;
+
+        const existingPackage = await getPackageFromDynamoDB(Id);
+        if (existingPackage) {
+            logger.log(2, `Package with ID ${Id} already exists.`);
+            res.status(409).json({ error: `Package with ID ${Id} already exists.` });
+            return;
+        }
+
+        if (debloat) {
+            logger.log(1, `Applying debloat optimization for package ID ${Id}`);
+            await optimizePackage(tempDir);
+        }
+
+        logger.log(2, `Repacking and uploading package ID ${Id} to S3`);
+        const zip = new AdmZip();
+        zip.addLocalFolder(tempDir);
+        const zipBuffer = zip.toBuffer();
+
+        await uploadPackage(s3Key, {
+            fieldname: 'file',
+            originalname: 'zipped_directory.zip',
+            encoding: '7bit',
+            mimetype: 'application/zip',
+            buffer: zipBuffer,
+        });
+
+        logger.log(2, `Adding new package metadata to DynamoDB for package ID ${id}`);
+        await addModuleToDynamoDB({
+            id: Id,
+            name,
+            version,
+            s3Key,
+            uploadType: Content ? "content" : "URL",
+            packageUrl: URL || url,
+        });
+
+        logger.log(1, `Package ID ${Id} successfully updated.`);
+        res.status(201).json({
+            metadata: {
+                Name: name,
+                Version: version,
+                ID: Id,
+            },
+            data: {
+                Content: zipBuffer.toString('base64'),
+                URL,
+                JSProgram: JSProgram || null,
+            },
+        });
+    } catch (error) {
+        logger.log(2, `Error during package update process for ID ${Id}: ${error}`);
+        res.status(500).json({ error: 'An error occurred while processing the package update.' });
+        return;
+    }
+    // Continue with processing logic here
   } catch (error) {
-      logger.log(2, `Error fetching or validating package ID ${id}: ${error}`);
-      res.status(500).json({ error: 'Internal Server Error' });
-      return;
-  }
-
-  try {
-      logger.log(2, `Starting update process for package ID ${id}`);
-      let metadatanew;
-      const tempDir = tmp.dirSync({ unsafeCleanup: true }).name;
-      let uploadType = '';
-      let s3Key = '';
-      let extractedURL = null;
-
-      if (data.Content) {
-          logger.log(2, `Processing content-based update for package ID ${id}`);
-          uploadType = 'Content';
-          const zipBuffer = Buffer.from(data.Content, 'base64');
-          const zip = new AdmZip(zipBuffer);
-          zip.extractAllTo(tempDir, true);
-
-          metadatanew = extractMetadataFromRepo(tempDir);
-      } else if (URL) {
-          logger.log(2, `Processing URL-based update for package ID ${id}`);
-          uploadType = 'URL';
-          extractedURL = URL;
-          await cloneRepo2(URL, tempDir);
-
-          metadatanew = extractMetadataFromRepo(tempDir);
-      }
-
-      if (!metadatanew) {
-          logger.log(2, `Failed to extract metadata for package ID ${id}`);
-          res.status(400).json({ error: 'Failed to extract metadata from the repository or content.' });
-          return;
-      }
-
-      const { name, version, id: Id, url } = metadatanew;
-      s3Key = `${Id}.zip`;
-
-      const existingPackage = await getPackageFromDynamoDB(Id);
-      if (existingPackage) {
-          logger.log(2, `Package with ID ${Id} already exists.`);
-          res.status(409).json({ error: `Package with ID ${Id} already exists.` });
-          return;
-      }
-
-      if (debloat) {
-          logger.log(1, `Applying debloat optimization for package ID ${Id}`);
-          await optimizePackage(tempDir);
-      }
-
-      logger.log(2, `Repacking and uploading package ID ${Id} to S3`);
-      const zip = new AdmZip();
-      zip.addLocalFolder(tempDir);
-      const zipBuffer = zip.toBuffer();
-
-      await uploadPackage(s3Key, {
-          fieldname: 'file',
-          originalname: 'zipped_directory.zip',
-          encoding: '7bit',
-          mimetype: 'application/zip',
-          buffer: zipBuffer,
-      });
-
-      logger.log(2, `Adding new package metadata to DynamoDB for package ID ${id}`);
-      await addModuleToDynamoDB({
-          id: Id,
-          name,
-          version,
-          s3Key,
-          uploadType: Content ? "content" : "URL",
-          packageUrl: URL || url,
-      });
-
-      logger.log(1, `Package ID ${Id} successfully updated.`);
-      res.status(201).json({
-          metadata: {
-              Name: name,
-              Version: version,
-              ID: Id,
-          },
-          data: {
-              Content: zipBuffer.toString('base64'),
-              URL,
-              JSProgram: JSProgram || null,
-          },
-      });
-  } catch (error) {
-      logger.log(2, `Error during package update process for ID ${Id}: ${error}`);
-      res.status(500).json({ error: 'An error occurred while processing the package update.' });
+    // Handle unexpected runtime errors
+    logger.log(3, `An error occurred while processing the package ID ${req.params.id || 'unknown'}: ${error}`);
+    res.status(500).json({
+      error: 'An internal server error occurred. Please try again later.',
+    });
+    return;
   }
 });
 
