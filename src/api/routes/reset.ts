@@ -15,7 +15,7 @@ router.delete('/', async (req: Request, res: Response): Promise<void> => {
         await clearRegistryInS3();
 
         // Respond with success message
-        res.status(200).json({ message: 'Registry is reset.' });
+        res.status(200).end();
     } catch (error) {
         console.error('Error resetting registry:', error);
 
