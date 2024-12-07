@@ -374,29 +374,6 @@ const validatePatchVersionSequence = (existingVersion: string, newVersion: strin
 
 
 
-function isSafeRegex(regexPattern: string): boolean {
-  const maxLimit = 100000; // Arbitrary safe upper limit
-
-  // Parse the regex to detect high repetition counts
-  const repetitionMatch = regexPattern.match(/\{(\d+),(\d+)\}/);
-  logger.log(1, `repetitionMatch: ${repetitionMatch}` )
-  if (repetitionMatch) {
-    const [, min, max] = repetitionMatch.map(Number);
-    if (max < maxLimit) {
-      return true; // Skip overly large limits, consider safe in this context
-    }
-  }
-
-  // Default to using safeRegex
-  try {
-    const regex = new RegExp(regexPattern);
-    return safeRegex(regex);
-  } catch (error) {
-    logger.log(2, `Invalid regex pattern: ${regexPattern}`);
-    return false;
-  }
-}
-
 router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
   const { RegEx } = req.body;
 
@@ -408,7 +385,7 @@ router.post('/byRegEx', async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  if (!isSafeRegex(RegEx)) {
+  if (!safeRegex(RegEx)) {
     logger.log(2, 'Unsafe or overly complex regex pattern provided.');
     res.status(400).json({ error: 'Unsafe or overly complex regex pattern provided.' });
     return;
