@@ -104,13 +104,31 @@ export const getPackagesByRegex = async (regex: string): Promise<PackageMetadata
             return [];
         }
 
-        const regexPattern = new RegExp(regex, 'i'); // Case-insensitive regex
+        // Compile regex safely and handle invalid patterns
+        let regexPattern: RegExp;
+        try {
+            regexPattern = new RegExp(`^${regex}$`, 'i'); // Anchors ensure exact matches
+        } catch (err) {
+            console.error('Invalid regex provided:', regex, err);
+            throw new Error('Invalid regex pattern');
+        }
 
-        return response.Items.filter((item) => {
+        // Filter items using regex
+        const filteredItems = response.Items.filter((item) => {
             const name = item.name?.S || '';       // Safe access to 'name'
-            const readme = item.readme?.S || '';   // Safe access to 'readme'
-            return regexPattern.test(name) || regexPattern.test(readme); // Match against both fields
-        }).map((item) => ({
+
+            try {
+                // Test both 'name' and 'readme' fields against the regex
+                const nameMatches = regexPattern.test(name);
+                return nameMatches ;
+            } catch (err) {
+                console.error('Error testing regex against item:', { name}, err);
+                return false; // Exclude items with matching errors
+            }
+        });
+
+        // Map the filtered items to the desired output format
+        return filteredItems.map((item) => ({
             Name: item.name?.S || 'Unknown',
             Version: item.version?.S || '0.0.0',
             ID: item.id?.S || 'unknown-id',
