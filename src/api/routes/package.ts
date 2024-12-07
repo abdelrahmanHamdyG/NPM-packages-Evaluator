@@ -341,7 +341,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
   const { NameBody, Content, URL, JSProgram, debloat } = data;
   logger.log(1,`data: ${Content}, ${URL}, ${debloat}, ${JSProgram} ` )
   logger.log(1, `metadata ${metadata.version}`)
-  if (!metadata || !data) {
+  if ( !req.body || !metadata || !data) {
       logger.log(2, `Invalid request: missing metadata or data fields for package ID ${id}`);
       res.status(400).json({ error: 'There is missing field(s) in the PackageID or it is formed improperly, or is invalid.' });
       return;
