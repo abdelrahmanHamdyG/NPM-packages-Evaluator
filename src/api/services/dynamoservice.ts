@@ -134,23 +134,32 @@ export const getPackagesFromDynamoDB = async (
                 console.log('Processing query:', query);
 
                 // if (!semver.validRange(query.Version)) {
-                if (query.Name !== '*' && !semver.validRange(query.Version)) {
+                if (query.Version && !semver.validRange(query.Version)) {
                     console.warn('Invalid semver range in query:', query.Version);
                     return [];
                 }
 
                 // Dynamically build FilterExpression
                 const isWildcard = query.Name === '*';
+                const hasVersion = !!query.Version;
 
                 const command = new ScanCommand({
                     TableName: 'Packages',
-                    FilterExpression: isWildcard ? '#version <> :empty' : '#name = :name AND #version <> :empty',
+                    FilterExpression: isWildcard
+                        ? '#version <> :empty'
+                        : hasVersion
+                        ? '#name = :name AND #version <> :empty'
+                        : '#name = :name',
                     ExpressionAttributeNames: isWildcard
                         ? { '#version': 'version' }
-                        : { '#name': 'name', '#version': 'version' },
+                        : hasVersion
+                        ? { '#name': 'name', '#version': 'version' }
+                        : { '#name': 'name' },
                     ExpressionAttributeValues: isWildcard
                         ? { ':empty': { S: '' } }
-                        : { ':name': { S: query.Name }, ':empty': { S: '' } },
+                        : hasVersion
+                        ? { ':name': { S: query.Name }, ':empty': { S: '' } }
+                        : { ':name': { S: query.Name } },
                 });
 
                 console.log('ScanCommand:', JSON.stringify(command));
@@ -179,9 +188,12 @@ export const getPackagesFromDynamoDB = async (
                         }
                         // If there is a version provided with the wildcard, apply version filtering
                         return semver.satisfies(version, query.Version) && name;
-                    } else {
+                    } else if (query.Version) {
                         // Match both version and name for non-wildcard queries
                         return semver.satisfies(version, query.Version) && name === query.Name;
+                    }
+                    else {
+                        return name === query.Name;
                     }
                 });
 

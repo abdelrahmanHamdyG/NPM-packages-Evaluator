@@ -28,7 +28,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
         logger.log(1, `Entered POST packages API`); // Debug level logging
         logger.log(1, `Request body: ${JSON.stringify(req.body)}`)
         // if (!Array.isArray(packageQueries) || packageQueries.some(q => !q.Name || !q.Version)) {
-        if (!Array.isArray(packageQueries) || packageQueries.some(q => !q.Name || (q.Name !== '*' && !q.Version))) {
+        if (!Array.isArray(packageQueries) || packageQueries.some(q => !q.Name)) {
             res.status(400).json({
                 error: 'Invalid PackageQuery. Ensure the request body contains an array of { Name, Version } objects.',
             });
@@ -39,7 +39,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
         for (const query of packageQueries) {
             console.log(query.Version);
             // if (!isValidVersion(query.Version)) {
-            if (query.Name !== '*' && !isValidVersion(query.Version)) {
+            if (query.Version && !isValidVersion(query.Version)) {
                 res.status(400).json({ error: `Invalid version format: ${query.Version}.` });
                 return;
             }
