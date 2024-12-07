@@ -464,12 +464,11 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
       // Destructure metadata fields
       const { Name, Version, ID } = metadata;
     
-    
-    
-
+    try{
+      const packageData = await getPackageFromDynamoDB(id);
     try {
+
         // Fetch metadata for the given package ID from DynamoDB
-        const packageData = await getPackageFromDynamoDB(id);
         logger.log(2, `Fetched package metadata from database: ${JSON.stringify(packageData)}`);
 
         if (!packageData) {
@@ -493,7 +492,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
         }
 
         // Validate that the patch version is uploaded sequentially
-        if (packageData.version && !validatePatchVersionSequence(packageData.version, Version)) {
+        if (packageData.version && Content && !validatePatchVersionSequence(packageData.version, Version)) {
             logger.log(2, `Patch version sequence invalid. Existing: ${packageData.version}, Provided: ${Version}`);
             res.status(400).json({ error: 'Patch version must be uploaded sequentially.' });
             return;
@@ -509,6 +508,10 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
         logger.log(2, `Error fetching or validating package ID ${id}: ${error}`);
         res.status(500).json({ error: 'Internal Server Error' });
         return;
+    }} catch(error){
+      logger.log(2, `Error fetching package from database: ${error}`);
+      res.status(404).json({ error: 'Package not found' });
+      return;
     }
 
     try {
