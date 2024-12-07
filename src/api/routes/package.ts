@@ -623,8 +623,11 @@ router.get('/:id/cost', async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
     logger.log(1, `Received GET /package/${id}/cost request.`);
 
+    const packageIdRegex = /^[a-zA-Z0-9-_]+$/; // Matches alphanumeric, hyphen, and underscore
+
+    if (!id || !packageIdRegex.test(id)) {
     // Validate ID parameter
-    if (!id || id === 'invalidID') {
+    // if (!id || id === 'invalidID') {
         logger.log(1, `Validation failed for PackageID: ${id}`);
         res.status(400).json({ error: 'PackageID is missing or malformed.' });
         return;
