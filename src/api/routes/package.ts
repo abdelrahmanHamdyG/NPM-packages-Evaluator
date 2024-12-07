@@ -837,272 +837,272 @@ async function optimizePackage(dirPath: string): Promise<void> {
   export default router;
 
 // Helper function to calculate cost
-// const calculateCost = async (zipPath: string): Promise<CostCalculationResult> => {
-//     logger.log(1, `Starting cost calculation for ZIP file: ${zipPath}`);
-
-//     return new Promise((resolve, reject) => {
-//         let standaloneCost = 0;
-//         let totalCost = 0;
-//         let hasDependencies = false;
-
-//         logger.log(2, `Attempting to open ZIP file: ${zipPath}`);
-//         yauzl.open(zipPath, { lazyEntries: true }, (err, zipfile) => {
-//             if (err) {
-//                 logger.log(1, `Error opening ZIP file: ${err.message}`);
-//                 return reject(new Error('Invalid ZIP file'));
-//             }
-
-//             const dependencyPromises: Promise<number>[] = [];
-//             logger.log(2, `ZIP file opened successfully. Reading entries...`);
-//             zipfile.readEntry();
-
-//             zipfile.on('entry', (entry) => {
-//                 logger.log(2, `Processing ZIP entry: ${entry.fileName}`);
-//                 if (/\/$/.test(entry.fileName)) {
-//                     logger.log(2, `Skipping directory entry: ${entry.fileName}`);
-//                     zipfile.readEntry(); // Skip directories
-//                 } else {
-//                     standaloneCost += entry.uncompressedSize;
-//                     logger.log(2, `Added ${entry.uncompressedSize} bytes to standalone cost. Total standalone cost: ${standaloneCost}`);
-
-//                     if (entry.fileName.endsWith('package.json')) {
-//                         logger.log(2, `Found package.json: ${entry.fileName}. Parsing dependencies.`);
-//                         zipfile.openReadStream(entry, (err, readStream) => {
-//                             if (err) {
-//                                 logger.log(1, `Error reading package.json: ${err.message}`);
-//                                 return reject(err);
-//                             }
-
-//                             let packageJson = '';
-//                             readStream.on('data', (chunk) => (packageJson += chunk));
-//                             readStream.on('end', async () => {
-//                                 try {
-//                                     const json = JSON.parse(packageJson);
-//                                     const dependencies = {
-//                                         ...json.dependencies,
-//                                         // ...json.devDependencies,
-//                                     };
-
-//                                     if (Object.keys(dependencies).length > 0) {
-//                                         hasDependencies = true;
-//                                         logger.log(2, `Found ${Object.keys(dependencies).length} dependencies in package.json.`);
-
-//                                         for (const [depName] of Object.entries(dependencies)) {
-//                                             logger.log(2, `Processing dependency: ${depName}`);
-//                                             dependencyPromises.push(processDependency(depName));
-//                                         }
-//                                     }
-
-//                                     zipfile.readEntry(); // Continue processing entries
-//                                 } catch (err) {
-//                                     logger.log(1, `Error parsing package.json`);
-//                                     reject(err);
-//                                 }
-//                             });
-//                         });
-//                     } else {
-//                         zipfile.readEntry(); // Continue processing entries
-//                     }
-//                 }
-//             });
-
-//             zipfile.on('end', async () => {
-//                 logger.log(2, `Finished reading ZIP entries. Calculating dependency costs.`);
-//                 try {
-//                     const dependencyCosts = await Promise.all(dependencyPromises);
-
-//                     const dependencyTotalCost = dependencyCosts.reduce((sum, cost) => sum + cost, 0);
-//                     totalCost = standaloneCost + dependencyTotalCost;
-
-//                     logger.log(1, `Cost calculation completed. Total cost: ${totalCost} bytes. Standalone cost: ${standaloneCost} bytes. Has dependencies: ${hasDependencies}`);
-//                     resolve({
-//                         standaloneCost: parseFloat((standaloneCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB
-//                         totalCost: parseFloat((totalCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB
-//                         hasDependencies,
-//                     });
-//                 } catch (err) {
-//                     logger.log(1, `Error calculating dependency costs`);
-//                     reject(err);
-//                 }
-//             });
-
-//             zipfile.on('error', (err) => {
-//                 logger.log(1, `Error processing ZIP file: ${err.message}`);
-//                 reject(err);
-//             });
-//         });
-//     });
-// };
-
 const calculateCost = async (zipPath: string): Promise<CostCalculationResult> => {
-    logger.log(1, `Starting recursive cost calculation for ZIP file: ${zipPath}`);
-
-    const processPackage = async (packagePath: string): Promise<number> => {
-        return new Promise((resolve, reject) => {
-            let standaloneCost = 0;
-            const dependencyPromises: Promise<number>[] = [];
-
-            logger.log(2, `Opening package file: ${packagePath}`);
-            yauzl.open(packagePath, { lazyEntries: true }, (err, zipfile) => {
-                if (err) {
-                    logger.log(1, `Error opening package file: ${err.message}`);
-                    return reject(new Error('Invalid ZIP or TAR.GZ file'));
-                }
-
-                zipfile.readEntry();
-                zipfile.on('entry', (entry) => {
-                    logger.log(2, `Processing entry: ${entry.fileName}`);
-                    if (/\/$/.test(entry.fileName)) {
-                        logger.log(2, `Skipping directory entry: ${entry.fileName}`);
-                        zipfile.readEntry(); // Skip directories
-                    } else {
-                        standaloneCost += entry.uncompressedSize;
-                        logger.log(2, `Added ${entry.uncompressedSize} bytes to standalone cost. Current standalone cost: ${standaloneCost}`);
-
-                        if (entry.fileName.endsWith('package.json')) {
-                            logger.log(2, `Found package.json: ${entry.fileName}`);
-                            zipfile.openReadStream(entry, (err, readStream) => {
-                                if (err) {
-                                    logger.log(1, `Error reading package.json: ${err.message}`);
-                                    return reject(err);
-                                }
-
-                                let packageJson = '';
-                                readStream.on('data', (chunk) => (packageJson += chunk));
-                                readStream.on('end', async () => {
-                                    try {
-                                        const json = JSON.parse(packageJson);
-                                        const dependencies = json.dependencies || {};
-                                        logger.log(2, `Found ${Object.keys(dependencies).length} dependencies in package.json.`);
-
-                                        for (const [depName, depVersion] of Object.entries(dependencies)) {
-                                            logger.log(2, `Processing dependency: ${depName} (${depVersion})`);
-
-                                            // Fetch the dependency tarball from NPM
-                                            const depContent = await fetchPackageFromNPM(depName);
-                                            if (!depContent) {
-                                                logger.log(1, `Failed to fetch dependency: ${depName}`);
-                                                continue;
-                                            }
-
-                                            const isZip = depContent.slice(0, 2).toString('hex') === '504b'; // ZIP magic number
-                                            const isTgz = depContent.slice(0, 3).toString('hex') === '1f8b08'; // TGZ magic number
-
-                                            const tempDir = tmp.dirSync({ unsafeCleanup: true });
-                                            if (isZip) {
-                                                const depZipPath = path.join(tempDir.name, `${depName}.zip`);
-                                                fs.writeFileSync(depZipPath, depContent);
-                                                // Recursively calculate the cost for the dependency
-                                                dependencyPromises.push(processPackage(depZipPath));
-                                            } else if (isTgz) {
-                                                const depTgzPath = path.join(tempDir.name, `${depName}.tgz`);
-                                                fs.writeFileSync(depTgzPath, depContent);
-                                                const extractedPath = path.join(tempDir.name, 'extracted');
-                                                fs.mkdirSync(extractedPath);
-
-                                                await x({
-                                                    file: depTgzPath,
-                                                    cwd: extractedPath,
-                                                });
-
-                                                // Recursively calculate the cost for the extracted directory
-                                                dependencyPromises.push(calculateDirectoryCost(extractedPath));
-                                            } else {
-                                                logger.log(1, `Dependency ${depName} is not a valid ZIP or TAR.GZ file.`);
-                                            }
-
-                                            tempDir.removeCallback();
-                                        }
-
-                                        zipfile.readEntry(); // Continue processing entries
-                                    } catch (err) {
-                                        logger.log(1, `Error parsing package.json: ${err}`);
-                                        reject(err);
-                                    }
-                                });
-                            });
-                        } else {
-                            zipfile.readEntry(); // Continue processing entries
-                        }
-                    }
-                });
-
-                zipfile.on('end', async () => {
-                    try {
-                        const dependencyCosts = await Promise.all(dependencyPromises);
-                        const dependencyTotalCost = dependencyCosts.reduce((sum, cost) => sum + cost, 0);
-                        const totalCost = standaloneCost + dependencyTotalCost;
-
-                        logger.log(1, `Standalone cost: ${standaloneCost} bytes. Dependency cost: ${dependencyTotalCost} bytes. Total cost: ${totalCost} bytes.`);
-                        resolve(totalCost);
-                    } catch (err) {
-                        logger.log(1, `Error calculating dependency costs: ${err}`);
-                        reject(err);
-                    }
-                });
-
-                zipfile.on('error', (err) => {
-                    logger.log(1, `Error processing package file: ${err.message}`);
-                    reject(err);
-                });
-            });
-        });
-    };
-
-    try {
-        const totalCost = await processPackage(zipPath);
-        const sCost = await calculateStandaloneCost(zipPath);
-        logger.log(1, `Final total cost: ${totalCost} bytes.`);
-        return {
-            standaloneCost: parseFloat((sCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB
-            totalCost: parseFloat((totalCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB
-            hasDependencies: true,
-        };
-    } catch (error) {
-        logger.log(1, `Error during recursive cost calculation: ${error}`);
-        throw error;
-    }
-};
-
-const calculateStandaloneCost = async (zipPath: string): Promise<number> => {
-    logger.log(1, `Calculating standalone cost for package: ${zipPath}`);
+    logger.log(1, `Starting cost calculation for ZIP file: ${zipPath}`);
 
     return new Promise((resolve, reject) => {
         let standaloneCost = 0;
+        let totalCost = 0;
+        let hasDependencies = false;
 
-        // Open the ZIP or TAR.GZ file
+        logger.log(2, `Attempting to open ZIP file: ${zipPath}`);
         yauzl.open(zipPath, { lazyEntries: true }, (err, zipfile) => {
             if (err) {
-                logger.log(1, `Error opening package file: ${err.message}`);
-                return reject(new Error('Invalid ZIP or TAR.GZ file'));
+                logger.log(1, `Error opening ZIP file: ${err.message}`);
+                return reject(new Error('Invalid ZIP file'));
             }
 
-            logger.log(2, `Reading entries in package: ${zipPath}`);
+            const dependencyPromises: Promise<number>[] = [];
+            logger.log(2, `ZIP file opened successfully. Reading entries...`);
             zipfile.readEntry();
 
             zipfile.on('entry', (entry) => {
-                logger.log(2, `Processing entry: ${entry.fileName}`);
+                logger.log(2, `Processing ZIP entry: ${entry.fileName}`);
                 if (/\/$/.test(entry.fileName)) {
+                    logger.log(2, `Skipping directory entry: ${entry.fileName}`);
                     zipfile.readEntry(); // Skip directories
                 } else {
                     standaloneCost += entry.uncompressedSize;
-                    logger.log(2, `Added ${entry.uncompressedSize} bytes. Total standalone cost: ${standaloneCost}`);
-                    zipfile.readEntry(); // Continue processing the next entry
+                    logger.log(2, `Added ${entry.uncompressedSize} bytes to standalone cost. Total standalone cost: ${standaloneCost}`);
+
+                    if (entry.fileName.endsWith('package.json')) {
+                        logger.log(2, `Found package.json: ${entry.fileName}. Parsing dependencies.`);
+                        zipfile.openReadStream(entry, (err, readStream) => {
+                            if (err) {
+                                logger.log(1, `Error reading package.json: ${err.message}`);
+                                return reject(err);
+                            }
+
+                            let packageJson = '';
+                            readStream.on('data', (chunk) => (packageJson += chunk));
+                            readStream.on('end', async () => {
+                                try {
+                                    const json = JSON.parse(packageJson);
+                                    const dependencies = {
+                                        ...json.dependencies,
+                                        // ...json.devDependencies,
+                                    };
+
+                                    if (Object.keys(dependencies).length > 0) {
+                                        hasDependencies = true;
+                                        logger.log(2, `Found ${Object.keys(dependencies).length} dependencies in package.json.`);
+
+                                        for (const [depName] of Object.entries(dependencies)) {
+                                            logger.log(2, `Processing dependency: ${depName}`);
+                                            dependencyPromises.push(processDependency(depName));
+                                        }
+                                    }
+
+                                    zipfile.readEntry(); // Continue processing entries
+                                } catch (err) {
+                                    logger.log(1, `Error parsing package.json`);
+                                    reject(err);
+                                }
+                            });
+                        });
+                    } else {
+                        zipfile.readEntry(); // Continue processing entries
+                    }
                 }
             });
 
-            zipfile.on('end', () => {
-                logger.log(1, `Standalone cost calculation completed. Total size: ${standaloneCost} bytes`);
-                resolve(standaloneCost); // Return the total standalone size
+            zipfile.on('end', async () => {
+                logger.log(2, `Finished reading ZIP entries. Calculating dependency costs.`);
+                try {
+                    const dependencyCosts = await Promise.all(dependencyPromises);
+
+                    const dependencyTotalCost = dependencyCosts.reduce((sum, cost) => sum + cost, 0);
+                    totalCost = standaloneCost + dependencyTotalCost;
+
+                    logger.log(1, `Cost calculation completed. Total cost: ${totalCost} bytes. Standalone cost: ${standaloneCost} bytes. Has dependencies: ${hasDependencies}`);
+                    resolve({
+                        standaloneCost: parseFloat((standaloneCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB
+                        totalCost: parseFloat((totalCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB
+                        hasDependencies,
+                    });
+                } catch (err) {
+                    logger.log(1, `Error calculating dependency costs`);
+                    reject(err);
+                }
             });
 
             zipfile.on('error', (err) => {
-                logger.log(1, `Error processing package file: ${err.message}`);
+                logger.log(1, `Error processing ZIP file: ${err.message}`);
                 reject(err);
             });
         });
     });
 };
+
+// const calculateCost = async (zipPath: string): Promise<CostCalculationResult> => {
+//     logger.log(1, `Starting recursive cost calculation for ZIP file: ${zipPath}`);
+
+//     const processPackage = async (packagePath: string): Promise<number> => {
+//         return new Promise((resolve, reject) => {
+//             let standaloneCost = 0;
+//             const dependencyPromises: Promise<number>[] = [];
+
+//             logger.log(2, `Opening package file: ${packagePath}`);
+//             yauzl.open(packagePath, { lazyEntries: true }, (err, zipfile) => {
+//                 if (err) {
+//                     logger.log(1, `Error opening package file: ${err.message}`);
+//                     return reject(new Error('Invalid ZIP or TAR.GZ file'));
+//                 }
+
+//                 zipfile.readEntry();
+//                 zipfile.on('entry', (entry) => {
+//                     logger.log(2, `Processing entry: ${entry.fileName}`);
+//                     if (/\/$/.test(entry.fileName)) {
+//                         logger.log(2, `Skipping directory entry: ${entry.fileName}`);
+//                         zipfile.readEntry(); // Skip directories
+//                     } else {
+//                         standaloneCost += entry.uncompressedSize;
+//                         logger.log(2, `Added ${entry.uncompressedSize} bytes to standalone cost. Current standalone cost: ${standaloneCost}`);
+
+//                         if (entry.fileName.endsWith('package.json')) {
+//                             logger.log(2, `Found package.json: ${entry.fileName}`);
+//                             zipfile.openReadStream(entry, (err, readStream) => {
+//                                 if (err) {
+//                                     logger.log(1, `Error reading package.json: ${err.message}`);
+//                                     return reject(err);
+//                                 }
+
+//                                 let packageJson = '';
+//                                 readStream.on('data', (chunk) => (packageJson += chunk));
+//                                 readStream.on('end', async () => {
+//                                     try {
+//                                         const json = JSON.parse(packageJson);
+//                                         const dependencies = json.dependencies || {};
+//                                         logger.log(2, `Found ${Object.keys(dependencies).length} dependencies in package.json.`);
+
+//                                         for (const [depName, depVersion] of Object.entries(dependencies)) {
+//                                             logger.log(2, `Processing dependency: ${depName} (${depVersion})`);
+
+//                                             // Fetch the dependency tarball from NPM
+//                                             const depContent = await fetchPackageFromNPM(depName);
+//                                             if (!depContent) {
+//                                                 logger.log(1, `Failed to fetch dependency: ${depName}`);
+//                                                 continue;
+//                                             }
+
+//                                             const isZip = depContent.slice(0, 2).toString('hex') === '504b'; // ZIP magic number
+//                                             const isTgz = depContent.slice(0, 3).toString('hex') === '1f8b08'; // TGZ magic number
+
+//                                             const tempDir = tmp.dirSync({ unsafeCleanup: true });
+//                                             if (isZip) {
+//                                                 const depZipPath = path.join(tempDir.name, `${depName}.zip`);
+//                                                 fs.writeFileSync(depZipPath, depContent);
+//                                                 // Recursively calculate the cost for the dependency
+//                                                 dependencyPromises.push(processPackage(depZipPath));
+//                                             } else if (isTgz) {
+//                                                 const depTgzPath = path.join(tempDir.name, `${depName}.tgz`);
+//                                                 fs.writeFileSync(depTgzPath, depContent);
+//                                                 const extractedPath = path.join(tempDir.name, 'extracted');
+//                                                 fs.mkdirSync(extractedPath);
+
+//                                                 await x({
+//                                                     file: depTgzPath,
+//                                                     cwd: extractedPath,
+//                                                 });
+
+//                                                 // Recursively calculate the cost for the extracted directory
+//                                                 dependencyPromises.push(calculateDirectoryCost(extractedPath));
+//                                             } else {
+//                                                 logger.log(1, `Dependency ${depName} is not a valid ZIP or TAR.GZ file.`);
+//                                             }
+
+//                                             tempDir.removeCallback();
+//                                         }
+
+//                                         zipfile.readEntry(); // Continue processing entries
+//                                     } catch (err) {
+//                                         logger.log(1, `Error parsing package.json: ${err}`);
+//                                         reject(err);
+//                                     }
+//                                 });
+//                             });
+//                         } else {
+//                             zipfile.readEntry(); // Continue processing entries
+//                         }
+//                     }
+//                 });
+
+//                 zipfile.on('end', async () => {
+//                     try {
+//                         const dependencyCosts = await Promise.all(dependencyPromises);
+//                         const dependencyTotalCost = dependencyCosts.reduce((sum, cost) => sum + cost, 0);
+//                         const totalCost = standaloneCost + dependencyTotalCost;
+
+//                         logger.log(1, `Standalone cost: ${standaloneCost} bytes. Dependency cost: ${dependencyTotalCost} bytes. Total cost: ${totalCost} bytes.`);
+//                         resolve(totalCost);
+//                     } catch (err) {
+//                         logger.log(1, `Error calculating dependency costs: ${err}`);
+//                         reject(err);
+//                     }
+//                 });
+
+//                 zipfile.on('error', (err) => {
+//                     logger.log(1, `Error processing package file: ${err.message}`);
+//                     reject(err);
+//                 });
+//             });
+//         });
+//     };
+
+//     try {
+//         const totalCost = await processPackage(zipPath);
+//         const sCost = await calculateStandaloneCost(zipPath);
+//         logger.log(1, `Final total cost: ${totalCost} bytes.`);
+//         return {
+//             standaloneCost: parseFloat((sCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB
+//             totalCost: parseFloat((totalCost / (1024 * 1024)).toFixed(6)), // Convert bytes to MB
+//             hasDependencies: true,
+//         };
+//     } catch (error) {
+//         logger.log(1, `Error during recursive cost calculation: ${error}`);
+//         throw error;
+//     }
+// };
+
+// const calculateStandaloneCost = async (zipPath: string): Promise<number> => {
+//     logger.log(1, `Calculating standalone cost for package: ${zipPath}`);
+
+//     return new Promise((resolve, reject) => {
+//         let standaloneCost = 0;
+
+//         // Open the ZIP or TAR.GZ file
+//         yauzl.open(zipPath, { lazyEntries: true }, (err, zipfile) => {
+//             if (err) {
+//                 logger.log(1, `Error opening package file: ${err.message}`);
+//                 return reject(new Error('Invalid ZIP or TAR.GZ file'));
+//             }
+
+//             logger.log(2, `Reading entries in package: ${zipPath}`);
+//             zipfile.readEntry();
+
+//             zipfile.on('entry', (entry) => {
+//                 logger.log(2, `Processing entry: ${entry.fileName}`);
+//                 if (/\/$/.test(entry.fileName)) {
+//                     zipfile.readEntry(); // Skip directories
+//                 } else {
+//                     standaloneCost += entry.uncompressedSize;
+//                     logger.log(2, `Added ${entry.uncompressedSize} bytes. Total standalone cost: ${standaloneCost}`);
+//                     zipfile.readEntry(); // Continue processing the next entry
+//                 }
+//             });
+
+//             zipfile.on('end', () => {
+//                 logger.log(1, `Standalone cost calculation completed. Total size: ${standaloneCost} bytes`);
+//                 resolve(standaloneCost); // Return the total standalone size
+//             });
+
+//             zipfile.on('error', (err) => {
+//                 logger.log(1, `Error processing package file: ${err.message}`);
+//                 reject(err);
+//             });
+//         });
+//     });
+// };
 
 
 // import tar from 'tar'; // Use 'tar' to handle TAR/TGZ files
