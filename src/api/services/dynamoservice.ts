@@ -1,6 +1,8 @@
 import { DynamoDBClient, PutItemCommand, GetItemCommand, ScanCommand, DeleteItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 import semver from 'semver';
 import {QueryCommand, QueryCommandInput, QueryCommandOutput } from "@aws-sdk/client-dynamodb";
+import { Logger } from "../../phase-1/logger.js";
+const logger = new Logger();
 
 // import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 // import { ScanCommand } from '@aws-sdk/lib-dynamodb';
@@ -134,23 +136,32 @@ export const getPackagesFromDynamoDB = async (
                 console.log('Processing query:', query);
 
                 // if (!semver.validRange(query.Version)) {
-                if (query.Name !== '*' && !semver.validRange(query.Version)) {
+                if (query.Version && !semver.validRange(query.Version)) {
                     console.warn('Invalid semver range in query:', query.Version);
                     return [];
                 }
 
                 // Dynamically build FilterExpression
                 const isWildcard = query.Name === '*';
+                const hasVersion = !!query.Version;
 
                 const command = new ScanCommand({
                     TableName: 'Packages',
-                    FilterExpression: isWildcard ? '#version <> :empty' : '#name = :name AND #version <> :empty',
+                    FilterExpression: isWildcard
+                        ? '#version <> :empty'
+                        : hasVersion
+                        ? '#name = :name AND #version <> :empty'
+                        : '#name = :name',
                     ExpressionAttributeNames: isWildcard
                         ? { '#version': 'version' }
-                        : { '#name': 'name', '#version': 'version' },
+                        : hasVersion
+                        ? { '#name': 'name', '#version': 'version' }
+                        : { '#name': 'name' },
                     ExpressionAttributeValues: isWildcard
                         ? { ':empty': { S: '' } }
-                        : { ':name': { S: query.Name }, ':empty': { S: '' } },
+                        : hasVersion
+                        ? { ':name': { S: query.Name }, ':empty': { S: '' } }
+                        : { ':name': { S: query.Name } },
                 });
 
                 console.log('ScanCommand:', JSON.stringify(command));
@@ -179,9 +190,12 @@ export const getPackagesFromDynamoDB = async (
                         }
                         // If there is a version provided with the wildcard, apply version filtering
                         return semver.satisfies(version, query.Version) && name;
-                    } else {
+                    } else if (query.Version) {
                         // Match both version and name for non-wildcard queries
                         return semver.satisfies(version, query.Version) && name === query.Name;
+                    }
+                    else {
+                        return name === query.Name;
                     }
                 });
 
@@ -190,7 +204,7 @@ export const getPackagesFromDynamoDB = async (
                 return filteredPackages.map((pkg) => ({
                     Version: pkg.version?.S || 'unknown',
                     Name: pkg.name?.S || 'unknown',
-                    Id: pkg.id?.S || 'unknown',
+                    ID: pkg.id?.S || 'unknown',
                 }));
             })
         );
@@ -240,9 +254,9 @@ export const clearRegistryInDynamoDB = async () => {
         });
 
         await Promise.all(deletePromises);
-        console.log('Registry has been cleared in DynamoDB.');
+        logger.log(1, 'Registry has been cleared in DynamoDB.');
     } catch (error) {
-        console.error('Error clearing registry in DynamoDB:', error);
+        logger.log(1, `Error clearing registry in DynamoDB: ${error}`);
         throw error;
     }
 };

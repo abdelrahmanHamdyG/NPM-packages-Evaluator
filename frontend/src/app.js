@@ -6,16 +6,24 @@ const App = () => {
   const [file, setFile] = useState(null);
   const [urls, setUrls] = useState([]);
   const [ratingPackageId, setRatingPackageId] = useState("");
+  const [updatePackageID, setUpdatePackageId] = useState("");
   const [regexSearchTerm, setRegexSearchTerm] = useState("");
   const [regexSearchResults, setRegexSearchResults] = useState([]);
   const [uploadType, setUploadType] = useState("content");
+  const [uploadUpdateType, setUploadUpdateType] = useState("content");
+  const [updateDebloat, setUpdateDebloat] = useState(false);
   const [packageContent, setPackageContent] = useState("");
+  const [updatePackageName, setUpdatePackageName] = useState("");
+  const [updatePackageVersion, setUpdatePackageVersion] = useState("");
+
+  const [packageUpdateContent, setUpdatePackageContent] = useState("");
+  const [packageUpdateURL, setUpdatePackageURL] = useState("");
   const [packageURL, setPackageURL] = useState("");
   const [jsProgram, setJsProgram] = useState("");
   const [debloat, setDebloat] = useState(false);
   const [uploadResponse, setUploadResponse] = useState(null);
   const [ratingResult, setRatingResult] = useState(null);
-  const publicIp = "3.129.57.219";
+  const publicIp = "localhost";
 
   const handleFileChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -69,6 +77,45 @@ const App = () => {
       alert("Failed to upload the package. Please try again.");
     }
   };
+
+
+// Add to the existing App component
+// Add handleUpdate function
+const handleUpdate = async () => {
+  if (!updatePackageName || !updatePackageVersion || !updatePackageID || (!packageUpdateContent && !packageUpdateURL)) {
+    alert("Please fill out all required fields for the update.");
+    return;
+  }
+
+  try {
+    const payload = {
+      metadata: {
+        Name: updatePackageName,
+        Version: updatePackageVersion,
+        ID: updatePackageID,
+      },
+      data: uploadUpdateType === "content"
+        ? { Name: updatePackageName, Content: packageUpdateContent, JSProgram: jsProgram, debloat: updateDebloat }
+        : { Name: updatePackageName, URL: packageUpdateURL, JSProgram: jsProgram, debloat: updateDebloat },
+    };
+
+    const response = await axios.post(
+      `http://${publicIp}:3000/package/${updatePackageID}`,
+      payload,
+      {
+        headers: {
+          "X-Authorization": `Bearer <your-token-here>`, // Replace with your token
+        },
+      }
+    );
+
+    alert("Package updated successfully!");
+  } catch (error) {
+    console.error("Error updating package:", error);
+    alert("Failed to update the package. Please try again.");
+  }
+};
+
 
   const handleCheckRating = async () => {
     if (!ratingPackageId) {
@@ -217,6 +264,112 @@ const App = () => {
           <pre>{JSON.stringify(uploadResponse, null, 2)}</pre>
         </div>
       )}
+{/* Update Package Section */}
+<h2>Update Existing Package</h2>
+<div>
+  <label>
+    <input
+      type="radio"
+      name="uploadUpdateType"
+      value="content"
+      checked={uploadUpdateType === "content"}
+      onChange={() => {setUploadUpdateType("content"); setUpdatePackageURL("");}}
+    />
+    Upload Content
+  </label>
+  <label>
+    <input
+      type="radio"
+      name="uploadUpdateType"
+      value="URL"
+      checked={uploadUpdateType === "URL"}
+      onChange={() => {setUploadUpdateType("URL"); setUpdatePackageContent("");}}
+    />
+    Provide URL
+  </label>
+</div>
+
+<div style={{ marginTop: '20px' }}>
+  <div style={{ marginBottom: '10px' }}>
+    <label>
+      Package ID:
+      <input
+        type="text"
+        placeholder="Enter Package ID"
+        value={updatePackageID}
+        onChange={(e) => setUpdatePackageId(e.target.value)}
+        style={{ marginLeft: '10px', width: '300px' }}
+      />
+    </label>
+  </div>
+  <div style={{ marginBottom: '10px' }}>
+    <label>
+      Package Name:
+      <input
+        type="text"
+        placeholder="Enter Package Name"
+        value={updatePackageName}
+        onChange={(e) => setUpdatePackageName(e.target.value)}
+        style={{ marginLeft: '10px', width: '300px' }}
+      />
+    </label>
+  </div>
+  <div style={{ marginBottom: '10px' }}>
+    <label>
+      Package Version:
+      <input
+        type="text"
+        placeholder="Enter Package Version"
+        value={updatePackageVersion}
+        onChange={(e) => setUpdatePackageVersion(e.target.value)}
+        style={{ marginLeft: '10px', width: '300px' }}
+      />
+    </label>
+  </div>
+
+  {uploadUpdateType === "content" ? (
+  <div style={{ marginBottom: '10px' }}>
+    <label>
+        Base64 Encoded Package Content:
+        <textarea
+          placeholder="Paste Base64 Encoded Content Here"
+          value={packageUpdateContent}
+          onChange={(e) => setUpdatePackageContent(e.target.value)}
+          rows={10}
+          cols={50}
+          style={{ display: 'block', marginTop: '5px', width: '300px' }}
+      />
+    </label>
+  </div>
+) : (
+    <div style={{ marginBottom: '10px' }}>
+      <label>
+        Package URL:
+        <input
+          type="text"
+          placeholder="Enter Package URL"
+          value={packageUpdateURL}
+          onChange={(e) => setUpdatePackageURL(e.target.value)}
+          style={{ marginLeft: '10px', width: '300px' }}
+        />
+      </label>
+    </div>
+  )}
+
+  <div style={{ marginBottom: '10px' }}>
+    <label>
+      <input
+        type="checkbox"
+        checked={updateDebloat}
+        onChange={(e) => setUpdateDebloat(e.target.checked)}
+      />
+      Apply Debloat
+    </label>
+  </div>
+
+  <button onClick={handleUpdate} style={{ marginTop: '10px' }}>Update Package</button>
+</div>
+
 
       {/* Check Package Rating Section */}
       <div>

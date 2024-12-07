@@ -28,7 +28,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
         logger.log(1, `Entered POST packages API`); // Debug level logging
         logger.log(1, `Request body: ${JSON.stringify(req.body)}`)
         // if (!Array.isArray(packageQueries) || packageQueries.some(q => !q.Name || !q.Version)) {
-        if (!Array.isArray(packageQueries) || packageQueries.some(q => !q.Name || (q.Name !== '*' && !q.Version))) {
+        if (!Array.isArray(packageQueries) || packageQueries.some(q => !q.Name)) {
             res.status(400).json({
                 error: 'Invalid PackageQuery. Ensure the request body contains an array of { Name, Version } objects.',
             });
@@ -39,7 +39,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
         for (const query of packageQueries) {
             console.log(query.Version);
             // if (!isValidVersion(query.Version)) {
-            if (query.Name !== '*' && !isValidVersion(query.Version)) {
+            if (query.Version && !isValidVersion(query.Version)) {
                 res.status(400).json({ error: `Invalid version format: ${query.Version}.` });
                 return;
             }
@@ -53,7 +53,12 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
 
         // Check if no packages are found
         if (packages.length === 0) {
-            res.status(404).json({ error: 'No packages found matching the query.' });
+            if (packageQueries.some((q) => q.Name === '*')) {
+                // Wildcard query with no results
+                res.status(200).json([]); // Return empty list with 200 OK
+            } else {
+                res.status(404).json({ error: 'No packages found matching the query.' });
+            }
             return;
         }
 
