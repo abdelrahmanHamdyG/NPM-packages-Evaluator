@@ -239,56 +239,43 @@ export class GitHubAPI extends API {
         const perPage = 50;
         let morePRs = true;
 
-        this.logger.log(2, "Fetching pull requests for repository: " + this.owner + "/" + this.repoName);
-
         while (morePRs) {
             const prResponse = await octokit.request("GET /repos/{owner}/{repo}/pulls", {
                 owner: this.owner,
                 repo: this.repoName,
-                headers: {
-                    "X-GitHub-Api-Version": "2022-11-28"
-                },
+                headers: { "X-GitHub-Api-Version": "2022-11-28" },
                 page: page,
-                per_page: perPage
+                per_page: perPage,
+                sort: 'updated',
+                direction: 'desc'
             });
 
             const fetchedPRs = prResponse.data;
-            this.logger.log(2, "Fetched " + fetchedPRs.length + " pull requests on page " + page);
-
             if (fetchedPRs.length === 0) {
                 morePRs = false;
             } else {
-                fetchedPRs.forEach(async (pr: any) => {
+                const prDetails = await Promise.all(fetchedPRs.map(async (pr: any) => {
                     const prWithReview = !!(pr.requested_reviewers && pr.requested_reviewers.length > 0);
-                    
-                    // Fetch detailed PR data to get additions and deletions
                     const detailedPR = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
                         owner: this.owner,
                         repo: this.repoName,
                         pull_number: pr.number
                     });
-                    
-                    const additions = detailedPR.data.additions;
-                    const deletions = detailedPR.data.deletions;
-                    
-                    // Calculate changedLines as sum of additions and deletions
-                    const changedLines = additions + deletions;
-
-                    pullRequests.push({
+                    return {
                         prId: pr.id,
                         codeReview: prWithReview,
-                        addedLines: additions,
-                        changedLines: changedLines,  // New field
+                        addedLines: detailedPR.data.additions,
+                        changedLines: detailedPR.data.additions + detailedPR.data.deletions,
                         merged: detailedPR.data.merged
-                    });
-                });
+                    };
+                }));
+                pullRequests.push(...prDetails);
                 page++;
             }
         }
-
-        this.logger.log(2, "Finished fetching pull requests. Total PRs: " + pullRequests.length);
         return pullRequests;
     }
+
 
 
     // Calculate the fraction of code introduced through PRs with code reviews
