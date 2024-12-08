@@ -1,0 +1,16 @@
+2024-12-07T21:23:42.333Z [INFO]: Received POST /byRegEx request with body: {"RegEx":"(a|aa)*$"}
+2024-12-07T21:23:42.354Z [INFO]: Searching for packages matching regex: (a|aa)*$
+2024-12-07T21:23:42.607Z [INFO]: packages: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+2024-12-07T21:23:42.608Z [INFO]: Found 11 packages matching regex.
+2024-12-07T21:24:06.042Z [INFO]: Received POST /byRegEx request with body: {"RegEx":"(a|aa)*$"}
+2024-12-07T21:24:06.046Z [INFO]: Searching for packages matching regex: (a|aa)*$
+2024-12-07T21:24:06.096Z [INFO]: packages: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+2024-12-07T21:24:06.096Z [INFO]: Found 11 packages matching regex.
+2024-12-07T21:26:26.549Z [INFO]: Received POST /byRegEx request with body: {"RegEx":"(a|aa)*$"}
+2024-12-07T21:26:26.574Z [INFO]: Searching for packages matching regex: (a|aa)*$
+2024-12-07T21:26:27.008Z [INFO]: packages: 
+2024-12-07T21:26:27.009Z [INFO]: No packages matched regex: (a|aa)*$
+2024-12-07T22:56:31.771Z [INFO]: Received POST /byRegEx request with body: {"RegEx":"(a|aa)*$"}
+2024-12-07T22:56:31.787Z [INFO]: Searching for packages matching regex: (a|aa)*$
+2024-12-07T22:56:32.150Z [INFO]: packages: 
+2024-12-07T22:56:32.150Z [INFO]: No packages matched regex: (a|aa)*$

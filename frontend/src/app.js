@@ -15,6 +15,8 @@ const App = () => {
   const [packageContent, setPackageContent] = useState("");
   const [updatePackageName, setUpdatePackageName] = useState("");
   const [updatePackageVersion, setUpdatePackageVersion] = useState("");
+  const [costPackageId, setCostPackageId] = useState("");
+  const [costResult, setCostResult] = useState(null);
 
   const [packageUpdateContent, setUpdatePackageContent] = useState("");
   const [packageUpdateURL, setUpdatePackageURL] = useState("");
@@ -23,29 +25,11 @@ const App = () => {
   const [debloat, setDebloat] = useState(false);
   const [uploadResponse, setUploadResponse] = useState(null);
   const [ratingResult, setRatingResult] = useState(null);
+  const [trackResult, setTrackResult] = useState(null);
+
   const publicIp = "localhost";
 
-  const handleFileChange = (event) => {
-    if (event.target.files && event.target.files.length > 0) {
-      const selectedFile = event.target.files[0];
-      setFile(selectedFile);
-    }
-  };
-
-  const handleFileRead = () => {
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const content = event.target?.result;
-        const parsedUrls = content
-          .split("\n")
-          .map((line) => line.trim())
-          .filter(Boolean);
-        setUrls(parsedUrls);
-      };
-      reader.readAsText(file);
-    }
-  };
+  
 
   const handleUpload = async () => {
     if (uploadType === "content" && !packageContent) {
@@ -139,6 +123,49 @@ const handleUpdate = async () => {
       alert("Failed to fetch the package rating. Please try again.");
     }
   };
+  const handleTracks = async () => {
+   
+
+    try {
+      const response = await axios.get(
+        `http://${publicIp}:3000/tracks`,
+        {
+          headers: {
+            "X-Authorization": `Bearer <your-token-here>`,
+          },
+        }
+      );
+
+      setTrackResult(response.data);
+    } catch (error) {
+      console.error("Error fetching package rating:", error);
+      alert("Failed to fetch the package rating. Please try again.");
+    }
+  };
+
+  
+  const handleCheckCost = async () => {
+    if (!costPackageId) {
+      alert("Please enter a package ID to check the rating.");
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `http://${publicIp}:3000/package/${costPackageId}/cost`,
+        {
+          headers: {
+            "X-Authorization": `Bearer <your-token-here>`,
+          },
+        }
+      );
+
+      setCostResult(response.data);
+    } catch (error) {
+      console.error("Error fetching package rating:", error);
+      alert("Failed to fetch the package rating. Please try again.");
+    }
+  };
 
   const handleRegexSearch = async () => {
     if (!regexSearchTerm) {
@@ -184,22 +211,7 @@ const handleUpdate = async () => {
     <div className="App">
       <h1>Trustworthy Module Registry</h1>
 
-      {/* Upload URL File Section */}
-      <h2>Upload URL File</h2>
-      <input type="file" accept=".txt" onChange={handleFileChange} />
-      <button onClick={handleFileRead}>Read File</button>
-
-      {urls.length > 0 && (
-        <div>
-          <h2>URLs:</h2>
-          <ul>
-            {urls.map((url, index) => (
-              <li key={index}>{url}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
+  
       {/* Upload New Package Section */}
       <h2>Upload New Package</h2>
       <div>
@@ -209,7 +221,7 @@ const handleUpdate = async () => {
             name="uploadType"
             value="content"
             checked={uploadType === "content"}
-            onChange={() => setUploadType("content")}
+            onChange={() => {setUploadType("content"), setPackageURL("")}}
           />
           Upload Content
         </label>
@@ -219,7 +231,7 @@ const handleUpdate = async () => {
             name="uploadType"
             value="URL"
             checked={uploadType === "URL"}
-            onChange={() => setUploadType("URL")}
+            onChange={() => {setUploadType("URL"), setPackageContent("")}}
           />
           Provide URL
         </label>
@@ -373,7 +385,7 @@ const handleUpdate = async () => {
 
       {/* Check Package Rating Section */}
       <div>
-        <h3>Check Package Rating</h3>
+        <h2>Check Package Rating</h2>
         <input
           type="text"
           placeholder="Package ID"
@@ -387,6 +399,25 @@ const handleUpdate = async () => {
         <div>
           <h2>Package Rating Results:</h2>
           <pre>{JSON.stringify(ratingResult, null, 2)}</pre>
+        </div>
+      )}
+
+       {/* Check Package Cost Section */}
+       <div>
+        <h2>Check Package Cost</h2>
+        <input
+          type="text"
+          placeholder="Package ID"
+          value={costPackageId}
+          onChange={(e) => setCostPackageId(e.target.value)}
+        />
+        <button onClick={handleCheckCost}>Check Cost</button>
+      </div>
+
+      {costResult && (
+        <div>
+          <h2>Package Cost Results:</h2>
+          <pre>{JSON.stringify(costResult, null, 2)}</pre>
         </div>
       )}
 
@@ -414,13 +445,26 @@ const handleUpdate = async () => {
           </ul>
         </div>
       )}
-
+    
       {/* Reset Data Section */}
       <h2>Reset Data</h2>
       <div>
         <button onClick={handleReset}>Reset Data</button>
       </div>
+
+        {/* Display All Tracks */}
+        <h2>Tracks</h2>
+      <div>
+        <button onClick={handleTracks}>Get Tracks</button>
+      </div>
+      {trackResult && (
+        <div>
+          <pre>{JSON.stringify(trackResult, null, 2)}</pre>
+        </div>
+      )}
     </div>
+    
+
   );
 };
 
