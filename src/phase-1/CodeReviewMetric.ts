@@ -50,7 +50,7 @@ export class CodeReviewMetric extends Metrics {
     logger.log(1, "Calculating code review fraction score...");
 
     const { fraction } = await this.calculateCodeReviewFraction();
-    const scaled_fraction = fraction / 0.5;
+    const scaled_fraction = fraction;
 
     if (scaled_fraction > 1) {
       return 1;
