@@ -3,8 +3,7 @@ import "./app.css";
 import axios from "axios";
 
 const App = () => {
-  const [file, setFile] = useState(null);
-  const [urls, setUrls] = useState([]);
+
   const [ratingPackageId, setRatingPackageId] = useState("");
   const [updatePackageID, setUpdatePackageId] = useState("");
   const [regexSearchTerm, setRegexSearchTerm] = useState("");
@@ -26,10 +25,64 @@ const App = () => {
   const [uploadResponse, setUploadResponse] = useState(null);
   const [ratingResult, setRatingResult] = useState(null);
   const [trackResult, setTrackResult] = useState(null);
+  const [packagesName, setPackagesName] = useState("");
+  const [packagesVersion, setPackagesVersion] = useState("");
 
-  const publicIp = "localhost";
-
+  const [packageResults, setPackageResults] = useState([]);
+  const [packageId, setPackageId] = useState(""); // State for package ID
+  const [packageByIdResult, setPackageByIdResult] = useState(null); // State for package details by ID
   
+  const publicIp = "localhost";
+  const handleGetPackageById = async () => {
+    if (!packageId) {
+      alert("Please enter a package ID.");
+      return;
+    }
+
+    try {
+      const response = await axios.get(`http://${publicIp}:3000/package/${packageId}`, {
+        headers: {
+          "X-Authorization": `Bearer <your-token-here>`, // Replace with your token
+        },
+      });
+
+      setPackageByIdResult(response.data);
+      alert("Package fetched successfully!");
+    } catch (error) {
+      console.error("Error fetching package by ID:", error);
+      alert("Failed to fetch the package. Please try again.");
+    }
+  };
+const handleGetPackages = async () => {
+  if (!packagesName) {
+    alert("Please enter a query to fetch packages.");
+    return;
+  }
+
+  try {
+    const payload = [
+      {
+        Name: packagesName,
+        Version: packagesVersion, // Adjust this based on the version requirement
+      },
+    ];
+
+    const response = await axios.post(`http://${publicIp}:3000/packages`,
+      payload, {
+        headers: {
+          "X-Authorization": `Bearer <your-token-here>`, // Replace with your token
+        },
+      }
+    );
+
+    setPackageResults(response.data || []);
+   
+  } catch (error) {
+    console.error("Error fetching packages:", error);
+    alert("Failed to fetch packages. Please try again.");
+  }
+};
+
 
   const handleUpload = async () => {
     if (uploadType === "content" && !packageContent) {
@@ -146,7 +199,7 @@ const handleUpdate = async () => {
   
   const handleCheckCost = async () => {
     if (!costPackageId) {
-      alert("Please enter a package ID to check the rating.");
+      alert("Please enter a package ID to check the cost.");
       return;
     }
 
@@ -162,8 +215,8 @@ const handleUpdate = async () => {
 
       setCostResult(response.data);
     } catch (error) {
-      console.error("Error fetching package rating:", error);
-      alert("Failed to fetch the package rating. Please try again.");
+      console.error("Error fetching package cost:", error);
+      alert("Failed to fetch the package cost. Please try again.");
     }
   };
 
@@ -210,6 +263,24 @@ const handleUpdate = async () => {
   return (
     <div className="App">
       <h1>Trustworthy Module Registry</h1>
+ {/* Get Package by ID Section */}
+ <h2>Get Package by ID</h2>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter Package ID"
+          value={packageId}
+          onChange={(e) => setPackageId(e.target.value)}
+        />
+        <button onClick={handleGetPackageById}>Get Package</button>
+      </div>
+
+      {packageByIdResult && (
+        <div>
+          <h2>Package Details:</h2>
+          <pre>{JSON.stringify(packageByIdResult, null, 2)}</pre>
+        </div>
+      )}
 
   
       {/* Upload New Package Section */}
@@ -307,7 +378,7 @@ const handleUpdate = async () => {
       Package ID:
       <input
         type="text"
-        placeholder="Enter Package ID"
+        placeholder="Enter Package ID to Update"
         value={updatePackageID}
         onChange={(e) => setUpdatePackageId(e.target.value)}
         style={{ marginLeft: '10px', width: '300px' }}
@@ -319,7 +390,7 @@ const handleUpdate = async () => {
       Package Name:
       <input
         type="text"
-        placeholder="Enter Package Name"
+        placeholder="Enter Package Name to Update"
         value={updatePackageName}
         onChange={(e) => setUpdatePackageName(e.target.value)}
         style={{ marginLeft: '10px', width: '300px' }}
@@ -331,7 +402,7 @@ const handleUpdate = async () => {
       Package Version:
       <input
         type="text"
-        placeholder="Enter Package Version"
+        placeholder="Enter Package Version to Update"
         value={updatePackageVersion}
         onChange={(e) => setUpdatePackageVersion(e.target.value)}
         style={{ marginLeft: '10px', width: '300px' }}
@@ -407,7 +478,7 @@ const handleUpdate = async () => {
         <h2>Check Package Cost</h2>
         <input
           type="text"
-          placeholder="Package ID"
+          placeholder="Package ID for Cost"
           value={costPackageId}
           onChange={(e) => setCostPackageId(e.target.value)}
         />
@@ -445,6 +516,43 @@ const handleUpdate = async () => {
           </ul>
         </div>
       )}
+
+      {/* Get Packages Section */}
+<h2>Get Packages</h2>
+<div>
+
+  <input
+    type="text"
+    placeholder="Enter package Name"
+    value={packagesName}
+    onChange={(e) => setPackagesName(e.target.value)}
+  />
+  <div>
+   <input
+    type="text"
+    placeholder="Enter package Version"
+    value={packagesVersion}
+    onChange={(e) => setPackagesVersion(e.target.value)}
+  /></div>
+  <div><button onClick={handleGetPackages}  >Get Packages</button></div>
+</div>
+
+{packageResults.length > 0 && (
+  <div>
+    <h2>Package Results:</h2>
+    <ul>
+      {packageResults.map((pkg, index) => (
+        <li key={index}>
+          {pkg.Name} (Version: {pkg.Version}, ID: {pkg.ID})
+        </li>
+      ))}
+    </ul>
+    { (
+      <button onClick={handleGetPackages}>Load More</button>
+    )}
+  </div>
+)}
+
     
       {/* Reset Data Section */}
       <h2>Reset Data</h2>

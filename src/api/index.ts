@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 3000;
 // const app = express();
 
 app.use(express.json()); // Parse incoming JSON requests
-app.use('/packages', packagesRouter); // Mount the /packages endpoint
 
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' })); // Increase JSON payload size limit
