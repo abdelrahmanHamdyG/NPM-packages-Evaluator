@@ -32,7 +32,7 @@ const App = () => {
   const [packageId, setPackageId] = useState(""); // State for package ID
   const [packageByIdResult, setPackageByIdResult] = useState(null); // State for package details by ID
   
-  const publicIp = "localhost";
+  const publicIp = "18.117.89.241";
   const handleGetPackageById = async () => {
     if (!packageId) {
       alert("Please enter a package ID.");
@@ -272,7 +272,8 @@ const handleUpdate = async () => {
           value={packageId}
           onChange={(e) => setPackageId(e.target.value)}
         />
-        <button onClick={handleGetPackageById}>Get Package</button>
+        <button style={{ backgroundColor: '#007ea7', color: '#ffffff' }} 
+        onClick={handleGetPackageById}>Get Package</button>
       </div>
 
       {packageByIdResult && (
@@ -310,11 +311,24 @@ const handleUpdate = async () => {
 
       {uploadType === "content" ? (
         <textarea
-          placeholder="Base64 Encoded Package Content"
+          placeholder="Paste Base64 Encoded Package Content Here"
           value={packageContent}
           onChange={(e) => setPackageContent(e.target.value)}
           rows={10}
           cols={50}
+          style={{
+          color: "#000000", // Text color
+          backgroundColor: "#ffffff", // Background color
+          borderColor: "#cccccc", // for border visibility
+          padding: "10px",
+          borderRadius: "4px", // Rounded corners
+      fontFamily: "Arial, sans-serif", // Font family
+      fontSize: "16px", // Font size
+      resize: "vertical", // Allow vertical resizing only
+      width: "100%", // Ensure it adjusts to container width
+      maxWidth: "90vw", // Limit to viewport width
+      boxSizing: "border-box", // Include padding in width calculation
+        }}
         />
       ) : (
         <input
@@ -339,7 +353,8 @@ const handleUpdate = async () => {
         />
         Apply Debloat
       </label>
-      <button onClick={handleUpload}>Upload</button>
+      <button style={{ backgroundColor: '#007ea7', color: '#ffffff' }}
+      onClick={handleUpload}>Upload</button>
 
       {uploadResponse && (
         <div>
@@ -381,7 +396,18 @@ const handleUpdate = async () => {
         placeholder="Enter Package ID to Update"
         value={updatePackageID}
         onChange={(e) => setUpdatePackageId(e.target.value)}
-        style={{ marginLeft: '10px', width: '300px' }}
+        // style={{ marginLeft: '10px', width: '300px' }}
+        style={{
+    marginLeft: "10px",
+    width: "100%", // Makes it responsive
+    maxWidth: "250px", // Limits the maximum width
+    padding: "8px", // Adds internal spacing
+    fontSize: "12px", // Adjusts text size for readability
+    borderRadius: "4px", // Adds slight rounding to edges
+    border: "1px solid #ccc", // Ensures visible border
+    boxSizing: "border-box", // Includes padding in width
+  }}
+        
       />
     </label>
   </div>
@@ -393,7 +419,17 @@ const handleUpdate = async () => {
         placeholder="Enter Package Name to Update"
         value={updatePackageName}
         onChange={(e) => setUpdatePackageName(e.target.value)}
-        style={{ marginLeft: '10px', width: '300px' }}
+        // style={{ marginLeft: '10px', width: '300px' }}
+        style={{
+    marginLeft: "10px",
+    width: "100%", // Makes it responsive
+    maxWidth: "250px", // Limits the maximum width
+    padding: "8px", // Adds internal spacing
+    fontSize: "12px", // Adjusts text size for readability
+    borderRadius: "4px", // Adds slight rounding to edges
+    border: "1px solid #ccc", // Ensures visible border
+    boxSizing: "border-box", // Includes padding in width
+  }}
       />
     </label>
   </div>
@@ -405,7 +441,17 @@ const handleUpdate = async () => {
         placeholder="Enter Package Version to Update"
         value={updatePackageVersion}
         onChange={(e) => setUpdatePackageVersion(e.target.value)}
-        style={{ marginLeft: '10px', width: '300px' }}
+        // style={{ marginLeft: '10px', width: '300px' }}
+        style={{
+    marginLeft: "10px",
+    width: "100%", // Makes it responsive
+    maxWidth: "250px", // Limits the maximum width
+    padding: "8px", // Adds internal spacing
+    fontSize: "12px", // Adjusts text size for readability
+    borderRadius: "4px", // Adds slight rounding to edges
+    border: "1px solid #ccc", // Ensures visible border
+    boxSizing: "border-box", // Includes padding in width
+  }}
       />
     </label>
   </div>
@@ -420,7 +466,19 @@ const handleUpdate = async () => {
           onChange={(e) => setUpdatePackageContent(e.target.value)}
           rows={10}
           cols={50}
-          style={{ display: 'block', marginTop: '5px', width: '300px' }}
+          style={{ display: 'block', marginTop: '5px', width: '300px' ,
+                      color: "#000000", // Text color
+          backgroundColor: "#ffffff", // Background color
+          borderColor: "#cccccc", // for border visibility
+          padding: "10px",
+          borderRadius: "4px", // Rounded corners
+      fontFamily: "Arial, sans-serif", // Font family
+      fontSize: "16px", // Font size
+      resize: "vertical", // Allow vertical resizing only
+      width: "100%", // Ensure it adjusts to container width
+      maxWidth: "90vw", // Limit to viewport width
+      boxSizing: "border-box", // Include padding in width calculation
+          }}
       />
     </label>
   </div>
@@ -450,7 +508,7 @@ const handleUpdate = async () => {
     </label>
   </div>
 
-  <button onClick={handleUpdate} style={{ marginTop: '10px' }}>Update Package</button>
+  <button onClick={handleUpdate} style={{ marginTop: '10px', backgroundColor: '#007ea7', color: '#ffffff' }}>Update Package</button>
 </div>
 
 
@@ -463,7 +521,8 @@ const handleUpdate = async () => {
           value={ratingPackageId}
           onChange={(e) => setRatingPackageId(e.target.value)}
         />
-        <button onClick={handleCheckRating}>Check Rating</button>
+        <button onClick={handleCheckRating}
+        style={{ backgroundColor: '#007ea7', color: '#ffffff' }}>Check Rating</button>
       </div>
 
       {ratingResult && (
@@ -482,7 +541,8 @@ const handleUpdate = async () => {
           value={costPackageId}
           onChange={(e) => setCostPackageId(e.target.value)}
         />
-        <button onClick={handleCheckCost}>Check Cost</button>
+        <button onClick={handleCheckCost}
+        style={{ backgroundColor: '#007ea7', color: '#ffffff' }}>Check Cost</button>
       </div>
 
       {costResult && (
@@ -501,7 +561,7 @@ const handleUpdate = async () => {
           value={regexSearchTerm}
           onChange={(e) => setRegexSearchTerm(e.target.value)}
         />
-        <button onClick={handleRegexSearch}>Search</button>
+        <button onClick={handleRegexSearch} style={{ backgroundColor: '#007ea7', color: '#ffffff' }}>Search</button>
       </div>
 
       {regexSearchResults.length > 0 && (
@@ -534,7 +594,7 @@ const handleUpdate = async () => {
     value={packagesVersion}
     onChange={(e) => setPackagesVersion(e.target.value)}
   /></div>
-  <div><button onClick={handleGetPackages}  >Get Packages</button></div>
+  <div><button onClick={handleGetPackages}  style={{ backgroundColor: '#007ea7', color: '#ffffff' }}>Get Packages</button></div>
 </div>
 
 {packageResults.length > 0 && (
@@ -548,7 +608,7 @@ const handleUpdate = async () => {
       ))}
     </ul>
     { (
-      <button onClick={handleGetPackages}>Load More</button>
+      <button onClick={handleGetPackages} style={{ backgroundColor: '#007ea7', color: '#ffffff' }}>Load More</button>
     )}
   </div>
 )}
@@ -557,13 +617,13 @@ const handleUpdate = async () => {
       {/* Reset Data Section */}
       <h2>Reset Data</h2>
       <div>
-        <button onClick={handleReset}>Reset Data</button>
+        <button onClick={handleReset} style={{ backgroundColor: '#007ea7', color: '#ffffff' }}>Reset Data</button>
       </div>
 
         {/* Display All Tracks */}
         <h2>Tracks</h2>
       <div>
-        <button onClick={handleTracks}>Get Tracks</button>
+        <button onClick={handleTracks} style={{ backgroundColor: '#007ea7', color: '#ffffff' }}>Get Tracks</button>
       </div>
       {trackResult && (
         <div>
