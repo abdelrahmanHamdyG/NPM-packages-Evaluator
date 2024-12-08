@@ -199,7 +199,7 @@ const handleUpdate = async () => {
   
   const handleCheckCost = async () => {
     if (!costPackageId) {
-      alert("Please enter a package ID to check the rating.");
+      alert("Please enter a package ID to check the cost.");
       return;
     }
 
@@ -215,8 +215,8 @@ const handleUpdate = async () => {
 
       setCostResult(response.data);
     } catch (error) {
-      console.error("Error fetching package rating:", error);
-      alert("Failed to fetch the package rating. Please try again.");
+      console.error("Error fetching package cost:", error);
+      alert("Failed to fetch the package cost. Please try again.");
     }
   };
 
@@ -378,7 +378,7 @@ const handleUpdate = async () => {
       Package ID:
       <input
         type="text"
-        placeholder="Enter Package ID"
+        placeholder="Enter Package ID to Update"
         value={updatePackageID}
         onChange={(e) => setUpdatePackageId(e.target.value)}
         style={{ marginLeft: '10px', width: '300px' }}
@@ -390,7 +390,7 @@ const handleUpdate = async () => {
       Package Name:
       <input
         type="text"
-        placeholder="Enter Package Name"
+        placeholder="Enter Package Name to Update"
         value={updatePackageName}
         onChange={(e) => setUpdatePackageName(e.target.value)}
         style={{ marginLeft: '10px', width: '300px' }}
@@ -402,7 +402,7 @@ const handleUpdate = async () => {
       Package Version:
       <input
         type="text"
-        placeholder="Enter Package Version"
+        placeholder="Enter Package Version to Update"
         value={updatePackageVersion}
         onChange={(e) => setUpdatePackageVersion(e.target.value)}
         style={{ marginLeft: '10px', width: '300px' }}
@@ -478,7 +478,7 @@ const handleUpdate = async () => {
         <h2>Check Package Cost</h2>
         <input
           type="text"
-          placeholder="Package ID"
+          placeholder="Package ID for Cost"
           value={costPackageId}
           onChange={(e) => setCostPackageId(e.target.value)}
         />
