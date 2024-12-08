@@ -32,7 +32,7 @@ const App = () => {
   const [packageId, setPackageId] = useState(""); // State for package ID
   const [packageByIdResult, setPackageByIdResult] = useState(null); // State for package details by ID
   
-  const publicIp = "localhost";
+  const publicIp = "18.117.89.241";
   const handleGetPackageById = async () => {
     if (!packageId) {
       alert("Please enter a package ID.");
