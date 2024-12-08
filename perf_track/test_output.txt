@@ -1,4 +1,0 @@
-All containers finished. Total time: 49.64 seconds
-Mean Latency: 27.3411s
-Median Latency: 26.7813s
-99th Percentile Latency: 49.3915s

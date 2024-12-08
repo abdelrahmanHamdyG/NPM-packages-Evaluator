@@ -4,7 +4,7 @@ import time
 import statistics
 
 # API URL 
-API_URL = "http://18.117.89.241:3000/package/lodash-4_17_21"
+API_URL = "http://18.117.89.241:3000/tracks/lodash-4_17_21"
 
 # Number of concurrent threads
 NUM_THREADS = 100

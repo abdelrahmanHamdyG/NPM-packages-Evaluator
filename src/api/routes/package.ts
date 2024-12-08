@@ -1262,64 +1262,64 @@ const calculateDirectoryCost = async (directoryPath: string): Promise<number> =>
     return totalCost;
 };
 
-// const fetchPackageFromNPM = async (packageName: string): Promise<Buffer | null> => {
-//     logger.log(1, `Fetching package ${packageName} from NPM`);
-
-//     try {
-//         const response = await axios.get(`https://registry.npmjs.org/${packageName}`, { timeout: 10000 });
-//         logger.log(2, `Fetched metadata for package ${packageName} from NPM registry`);
-
-//         const latestVersion = response.data['dist-tags'].latest;
-//         const tarballUrl = response.data.versions[latestVersion].dist.tarball;
-
-//         logger.log(2, `Latest version: ${latestVersion}. Tarball URL: ${tarballUrl}`);
-
-//         const tarballResponse = await axios.get(tarballUrl, { responseType: 'arraybuffer', timeout: 10000 });
-//         logger.log(1, `Downloaded tarball for package ${packageName}`);
-
-//         return Buffer.from(tarballResponse.data);
-//     } catch (error) {
-//         logger.log(1, `Error fetching package ${packageName} from NPM`);
-//         return null;
-//     }
-// };
-
 const fetchPackageFromNPM = async (packageName: string): Promise<Buffer | null> => {
     logger.log(1, `Fetching package ${packageName} from NPM`);
 
     try {
-        // Fetch package metadata from NPM registry
         const response = await axios.get(`https://registry.npmjs.org/${packageName}`, { timeout: 10000 });
         logger.log(2, `Fetched metadata for package ${packageName} from NPM registry`);
 
         const latestVersion = response.data['dist-tags'].latest;
-        const repositoryUrl = response.data.versions[latestVersion]?.repository?.url;
+        const tarballUrl = response.data.versions[latestVersion].dist.tarball;
 
-        if (!repositoryUrl) {
-            logger.log(1, `No repository URL found for package ${packageName}`);
-            return null;
-        }
+        logger.log(2, `Latest version: ${latestVersion}. Tarball URL: ${tarballUrl}`);
 
-        logger.log(2, `Latest version: ${latestVersion}. Repository URL: ${repositoryUrl}`);
+        const tarballResponse = await axios.get(tarballUrl, { responseType: 'arraybuffer', timeout: 10000 });
+        logger.log(1, `Downloaded tarball for package ${packageName}`);
 
-        // Normalize the repository URL
-        let githubUrl = repositoryUrl.replace(/^git\+/, '').replace(/\.git$/, '');
-        if (!githubUrl.startsWith('https://')) {
-            githubUrl = `https://${githubUrl}`;
-        }
-
-        // Construct the GitHub ZIP download URL
-        const zipUrl = `${githubUrl}/archive/refs/heads/main.zip`;
-
-        logger.log(2, `Constructed GitHub ZIP download URL: ${zipUrl}`);
-
-        // Download the ZIP from GitHub
-        const zipResponse = await axios.get(zipUrl, { responseType: 'arraybuffer', timeout: 20000 });
-        logger.log(1, `Downloaded ZIP from GitHub for package ${packageName}`);
-
-        return Buffer.from(zipResponse.data);
+        return Buffer.from(tarballResponse.data);
     } catch (error) {
-        logger.log(1, `Error fetching package ${packageName} from GitHub or NPM`);
+        logger.log(1, `Error fetching package ${packageName} from NPM`);
         return null;
     }
 };
+
+// const fetchPackageFromNPM = async (packageName: string): Promise<Buffer | null> => {
+//     logger.log(1, `Fetching package ${packageName} from NPM`);
+
+//     try {
+//         // Fetch package metadata from NPM registry
+//         const response = await axios.get(`https://registry.npmjs.org/${packageName}`, { timeout: 10000 });
+//         logger.log(2, `Fetched metadata for package ${packageName} from NPM registry`);
+
+//         const latestVersion = response.data['dist-tags'].latest;
+//         const repositoryUrl = response.data.versions[latestVersion]?.repository?.url;
+
+//         if (!repositoryUrl) {
+//             logger.log(1, `No repository URL found for package ${packageName}`);
+//             return null;
+//         }
+
+//         logger.log(2, `Latest version: ${latestVersion}. Repository URL: ${repositoryUrl}`);
+
+//         // Normalize the repository URL
+//         let githubUrl = repositoryUrl.replace(/^git\+/, '').replace(/\.git$/, '');
+//         if (!githubUrl.startsWith('https://')) {
+//             githubUrl = `https://${githubUrl}`;
+//         }
+
+//         // Construct the GitHub ZIP download URL
+//         const zipUrl = `${githubUrl}/archive/refs/heads/main.zip`;
+
+//         logger.log(2, `Constructed GitHub ZIP download URL: ${zipUrl}`);
+
+//         // Download the ZIP from GitHub
+//         const zipResponse = await axios.get(zipUrl, { responseType: 'arraybuffer', timeout: 20000 });
+//         logger.log(1, `Downloaded ZIP from GitHub for package ${packageName}`);
+
+//         return Buffer.from(zipResponse.data);
+//     } catch (error) {
+//         logger.log(1, `Error fetching package ${packageName} from GitHub or NPM`);
+//         return null;
+//     }
+// };
