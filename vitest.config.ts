@@ -13,6 +13,7 @@ export default defineConfig({
       // Exclude test files from coverage
       reportsDirectory: "./coverage",             
       // Directory for saving coverage reports
+      enabled: true,
     },
     globals: true,          // Use globals like describe, it, etc.
     environment: "node",     // Node environment (or use 'jsdom' for browser-based tests)

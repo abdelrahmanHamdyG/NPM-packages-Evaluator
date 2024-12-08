@@ -1,0 +1,99 @@
+p-map - Map over promises concurrently.
+
+p-series - Run promise-returning & async functions in series.
+
+p-limit - Run multiple promise-returning & async functions with limited concurrency.
+
+p-memoize - Memoize promise-returning & async functions.
+
+p-retry - Retry a promise-returning or async function.
+
+parent-module - Find the parent module of a module.
+
+path-exists - Check if a path exists.
+
+pretty-bytes - Convert bytes to a human readable string.
+
+random-number-csprng - Generate a random number within a range, using a cryptographically secure PRNG.
+
+redent - Strip redundant indentation from template literals.
+
+require-from-string - Require a module from a string.
+
+safe-eval - Evaluate JavaScript code without allowing global variables to be modified.
+
+semver - The semantic version parser used by npm.
+
+slugify - Slugifies a string, even when it contains Unicode.
+
+strip-bom-buffer - Strip UTF-8 BOM from a Buffer.
+
+test-value - Test if a value matches a predefined pattern.
+
+to-arraybuffer - Convert a buffer to an ArrayBuffer.
+
+to-iso-string - Convert a Date object to an ISO string.
+
+type-of - Find out what type a value is.
+
+unified - Interface for processing text using plugins.
+
+upper-case - Convert a string to uppercase.
+
+validate-npm-package-name - Validate the name of an npm package.
+
+verror - Rich JavaScript errors.
+
+window-size - Get the terminal window size.
+
+wrap-ansi - Wordwrap a string with ANSI escape codes.
+
+yargs-parser - The mighty option parser used by yargs.
+
+xtend - Extend like a boss.
+
+zen-observable - An implementation of Observables for JavaScript.
+
+zone.js - Implements Zones for JavaScript.
+
+zwitch - Switchboard for functions.
+
+emoji-regex - A regular expression to match all emoji symbols and sequences.
+
+find-up - Find a file or directory by walking up parent directories.
+
+find-cache-dir - Finds the common standard directory for cache files.
+
+flat - Flatten or unflatten nested objects.
+
+flip - Flip text characters upside down and reverse text direction.
+
+globby - A better globbing API.
+
+hash-sum - Generates a simple hash from a given input string.
+
+http-errors - Create HTTP errors.
+
+is-stream - Determine if an object is a stream.
+
+js-tokens - ECMAScript lexical tokens.
+
+keyv - Simple key-value storage with support for multiple backends.
+
+levenary - Levenshtein distance with speed & simplicity.
+
+lower-case - Convert a string to lowercase.
+
+mimic-response - Make a function mimic an HTTP response.
+
+normalize-url - Normalize a URL.
+
+path-exists - Check if a path exists.
+
+pretty-bytes - Convert bytes to a human readable string.
+
+random-number-csprng - Generate a random number within a range, using a cryptographically secure PRNG.
+
+remove-trailing-separator - Remove the trailing directory separator.
+
+require-from-string - Require a module from a string.

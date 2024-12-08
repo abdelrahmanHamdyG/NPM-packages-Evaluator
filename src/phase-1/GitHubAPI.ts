@@ -4,6 +4,7 @@ import { GitHubData } from "./GitHubData.js";
 import { API } from "./API.js";
 import { Issue } from "./IssueInterface.js";
 import { Contributor } from "./ContributorInterface.js";
+import { pull } from "isomorphic-git";
 
 export class GitHubAPI extends API {
     private owner: string;
@@ -90,6 +91,8 @@ export class GitHubAPI extends API {
             this.logger.log(2, "Successfully fetched data from GitHub API");
 
             return new GitHubData(
+                this.owner,
+                this.repoName,
                 this.generateRepoUrl(this.owner, this.repoName),
                 reposResponse.data.name,
                 closed_issues.length,
@@ -228,4 +231,84 @@ export class GitHubAPI extends API {
         this.logger.log(2, "Generated repository URL: " + repoUrl);
         return repoUrl;
     }
+
+    // Fetch pull requests with pagination and code review details
+    private async fetchPullRequests(octokit: Octokit): Promise<Array<{ prId: number; codeReview: boolean; addedLines: number; changedLines: number; merged: boolean }>> {
+        const pullRequests: Array<{ prId: number; codeReview: boolean; addedLines: number; changedLines: number; merged: boolean }> = [];
+        let page = 1;
+        const perPage = 50;
+        let morePRs = true;
+
+        this.logger.log(2, "Fetching pull requests for repository: " + this.owner + "/" + this.repoName);
+
+        while (morePRs) {
+            const prResponse = await octokit.request("GET /repos/{owner}/{repo}/pulls", {
+                owner: this.owner,
+                repo: this.repoName,
+                headers: {
+                    "X-GitHub-Api-Version": "2022-11-28"
+                },
+                page: page,
+                per_page: perPage
+            });
+
+            const fetchedPRs = prResponse.data;
+            this.logger.log(2, "Fetched " + fetchedPRs.length + " pull requests on page " + page);
+
+            if (fetchedPRs.length === 0) {
+                morePRs = false;
+            } else {
+                fetchedPRs.forEach(async (pr: any) => {
+                    const prWithReview = !!(pr.requested_reviewers && pr.requested_reviewers.length > 0);
+                    
+                    // Fetch detailed PR data to get additions and deletions
+                    const detailedPR = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
+                        owner: this.owner,
+                        repo: this.repoName,
+                        pull_number: pr.number
+                    });
+                    
+                    const additions = detailedPR.data.additions;
+                    const deletions = detailedPR.data.deletions;
+                    
+                    // Calculate changedLines as sum of additions and deletions
+                    const changedLines = additions + deletions;
+
+                    pullRequests.push({
+                        prId: pr.id,
+                        codeReview: prWithReview,
+                        addedLines: additions,
+                        changedLines: changedLines,  // New field
+                        merged: detailedPR.data.merged
+                    });
+                });
+                page++;
+            }
+        }
+
+        this.logger.log(2, "Finished fetching pull requests. Total PRs: " + pullRequests.length);
+        return pullRequests;
+    }
+
+
+    // Calculate the fraction of code introduced through PRs with code reviews
+    public async calculateCodeReviewFraction(): Promise<{ fraction: number; totalCodeIntroduced: number; reviewedCode: number }> {
+        try {
+            const pullRequests = await this.fetchPullRequests(new Octokit({ auth: process.env.GITHUB_TOKEN }));
+
+            const totalCodeIntroduced = pullRequests.reduce((acc, pr) => acc + pr.addedLines, 0); // Sum of added lines across PRs
+            const reviewedCode = pullRequests
+                .filter(pr => pr.codeReview) // Filter pull requests that had code reviews
+                // .reduce((acc, pr) => acc + pr.addedLines, 0); // Sum of added lines that were reviewed
+                .reduce((acc, pr) => acc + pr.changedLines, 0); // Sum of added lines that were reviewed
+
+            const fraction = totalCodeIntroduced > 0 ? reviewedCode / totalCodeIntroduced : 0;
+
+            return { fraction, totalCodeIntroduced, reviewedCode };
+        } catch (error) {
+            console.error('Error calculating code review fraction:', error);
+            return { fraction: 0, totalCodeIntroduced: 0, reviewedCode: 0 };
+        }
+    }
+
 }
