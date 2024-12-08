@@ -29,8 +29,30 @@ const App = () => {
   const [packagesVersion, setPackagesVersion] = useState("");
 
   const [packageResults, setPackageResults] = useState([]);
+  const [packageId, setPackageId] = useState(""); // State for package ID
+  const [packageByIdResult, setPackageByIdResult] = useState(null); // State for package details by ID
+  
   const publicIp = "localhost";
+  const handleGetPackageById = async () => {
+    if (!packageId) {
+      alert("Please enter a package ID.");
+      return;
+    }
 
+    try {
+      const response = await axios.get(`http://${publicIp}:3000/package/${packageId}`, {
+        headers: {
+          "X-Authorization": `Bearer <your-token-here>`, // Replace with your token
+        },
+      });
+
+      setPackageByIdResult(response.data);
+      alert("Package fetched successfully!");
+    } catch (error) {
+      console.error("Error fetching package by ID:", error);
+      alert("Failed to fetch the package. Please try again.");
+    }
+  };
 const handleGetPackages = async () => {
   if (!packagesName) {
     alert("Please enter a query to fetch packages.");
@@ -53,7 +75,7 @@ const handleGetPackages = async () => {
       }
     );
 
-    setPackageResults(response.data.packages || []);
+    setPackageResults(response.data || []);
    
   } catch (error) {
     console.error("Error fetching packages:", error);
@@ -241,6 +263,24 @@ const handleUpdate = async () => {
   return (
     <div className="App">
       <h1>Trustworthy Module Registry</h1>
+ {/* Get Package by ID Section */}
+ <h2>Get Package by ID</h2>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter Package ID"
+          value={packageId}
+          onChange={(e) => setPackageId(e.target.value)}
+        />
+        <button onClick={handleGetPackageById}>Get Package</button>
+      </div>
+
+      {packageByIdResult && (
+        <div>
+          <h2>Package Details:</h2>
+          <pre>{JSON.stringify(packageByIdResult, null, 2)}</pre>
+        </div>
+      )}
 
   
       {/* Upload New Package Section */}
