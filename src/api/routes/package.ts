@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { getPackageFromDynamoDB, updateDynamoPackagedata, getPackagesByRegex, addModuleToDynamoDB} from '../services/dynamoservice.js';
 import { downloadFileFromS3,uploadPackage} from '../services/s3service.js';
-import {getNPMPackageName, checkNPMOpenSource, getGithubInfo, cloneRepo2, zipDirectory, debloatZippedFile, generateId} from '../routes/package_helper.js'
+import {cloneRepo2} from '../routes/package_helper.js'
 import * as fsExtra from 'fs-extra';
 import AdmZip from 'adm-zip';
 import { execSync } from 'child_process';
