@@ -1,9 +1,11 @@
-import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, PutObjectCommand, GetObjectCommand, ListObjectsV2Command, DeleteObjectCommand } from '@aws-sdk/client-s3';
 import { GetObjectCommandOutput } from '@aws-sdk/client-s3'; // For typing
 import { Readable } from 'stream';
+import { Logger } from "../../phase-1/logger.js";
 
 // Create S3 client instance
 const s3 = new S3Client({ region: 'us-east-2' }); 
+const logger = new Logger();
 
 export const uploadZipToS3 = async (bucketName: string, key: string, fileContent: Buffer) => {
     const command = new PutObjectCommand({
@@ -41,5 +43,57 @@ export const downloadFileFromS3 = async (key: string): Promise<Buffer> => {
     } catch (error) {
         console.error('Error downloading file from S3:', error);
         throw error;
+    }
+};
+
+export const clearRegistryInS3 = async (): Promise<void> => {
+    const bucketName = 'ece461storage';  // Specify your bucket name here
+
+    try {
+        // List all objects in the bucket
+        const listCommand = new ListObjectsV2Command({ Bucket: bucketName });
+        const listedObjects = await s3.send(listCommand);
+
+        if (!listedObjects.Contents || listedObjects.Contents.length === 0) {
+            logger.log(1, 'No files to delete in the bucket.');
+            return;
+        }
+
+        // Delete each object individually
+        const deletePromises = listedObjects.Contents.map((object) => {
+            const deleteCommand = new DeleteObjectCommand({
+                Bucket: bucketName,
+                Key: object.Key!,
+            });
+            return s3.send(deleteCommand);
+        });
+
+        await Promise.all(deletePromises);
+        logger.log(1, `All files in bucket ${bucketName} have been deleted.`);
+    } catch (error) {
+        logger.log(1, `Error clearing registry in S3: ${error}`);
+        throw error;
+    }
+};
+
+export const uploadPackage = async (packageId: string, file: any): Promise<string | null> => {
+    const fileContent = file.buffer;
+
+    const command = new PutObjectCommand({
+        Bucket: 'ece461storage',  
+        Key: packageId,
+        Body: fileContent,
+        ContentType: file.mimetype || 'application/octet-stream', 
+    });
+
+    try {
+        const response = await s3.send(command);
+        const fileUrl = `https://${'ece461storage'}.s3.${'us-east-2'}.amazonaws.com/${packageId}`; // Replace bucket and region accordingly
+        console.log(`File uploaded successfully to S3. URL: ${fileUrl}`);
+
+        return fileUrl;
+    } catch (error) {
+        console.error('Error uploading file to S3:', error);
+        return null;
     }
 };

@@ -25,7 +25,7 @@ case "$mode" in
         exit 0
         ;;
     test)
-        npx vitest --run --coverage --reporter=json > testResults.json
+        npx vitest --run --coverage --reporter=json --coverage.reportOnFailure  > testResults.json
         npx tsc
         node ./dist/phase-1/index.js test
         ;;
