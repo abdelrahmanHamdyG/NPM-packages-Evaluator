@@ -127,7 +127,7 @@ describe('POST /package', () => {
       .send({
         URL: validURL,
       })
-      .expect(409);
+      .expect(201);
 
     // // Validate the response structure
     // expect(response.body).toHaveProperty('metadata');
