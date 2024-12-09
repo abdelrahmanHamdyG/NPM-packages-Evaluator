@@ -1,0 +1,4 @@
+Performance Metrics:
+Mean Latency: 2398.81 ms
+Median Latency: 2604.89 ms
+99th Percentile Latency: 3344.61 ms

@@ -1,0 +1,274 @@
+{
+  "_id": "cross-fetch@4.0.0",
+  "_rev": "79-b2c00d88374d69b7b510d0321a7ff03d",
+  "name": "cross-fetch",
+  "time": {
+    "modified": "2023-07-03T16:20:28.971Z",
+    "created": "2017-09-23T14:11:24.198Z",
+    "0.0.1": "2017-09-23T14:11:24.198Z",
+    "0.0.2": "2017-09-23T18:52:27.652Z",
+    "0.0.3": "2017-09-27T01:00:16.369Z",
+    "0.0.4": "2017-09-27T01:34:58.203Z",
+    "0.0.5": "2017-09-27T05:10:30.965Z",
+    "0.0.6": "2017-09-30T21:38:59.617Z",
+    "0.0.7": "2017-09-30T22:08:28.018Z",
+    "0.0.8": "2017-10-01T02:02:16.957Z",
+    "1.0.0": "2017-10-29T14:00:53.319Z",
+    "1.1.0": "2017-11-02T13:26:53.246Z",
+    "1.1.1": "2017-11-10T02:17:00.496Z",
+    "2.0.0": "2018-02-28T21:55:40.807Z",
+    "2.1.0": "2018-03-09T14:31:53.877Z",
+    "2.1.1": "2018-04-26T17:51:08.278Z",
+    "2.2.0": "2018-05-10T13:13:08.053Z",
+    "2.2.1": "2018-06-02T15:13:40.401Z",
+    "2.2.2": "2018-06-29T12:16:28.208Z",
+    "2.2.3": "2018-10-27T19:07:39.283Z",
+    "3.0.0": "2018-12-09T01:35:55.114Z",
+    "3.0.1": "2019-02-02T19:51:31.856Z",
+    "3.0.2": "2019-03-27T04:05:29.228Z",
+    "3.0.3": "2019-05-25T02:25:20.205Z",
+    "3.0.4": "2019-06-08T02:09:03.069Z",
+    "3.0.5": "2020-06-14T23:20:40.117Z",
+    "3.0.6": "2020-09-11T02:22:22.415Z",
+    "3.1.0": "2021-03-13T04:59:02.917Z",
+    "3.1.1": "2021-03-18T19:25:44.137Z",
+    "3.1.2": "2021-03-19T23:06:10.148Z",
+    "3.1.3-alpha.4": "2021-03-28T02:00:40.291Z",
+    "3.1.3-alpha.5": "2021-03-28T22:14:40.682Z",
+    "3.1.3-alpha.6": "2021-03-28T22:28:02.865Z",
+    "3.1.3": "2021-03-30T18:32:47.359Z",
+    "3.1.4-alpha.0": "2021-04-01T15:40:02.399Z",
+    "3.1.4": "2021-04-02T23:26:15.575Z",
+    "2.2.4": "2021-07-25T21:02:51.554Z",
+    "2.2.5": "2021-07-25T21:11:29.560Z",
+    "3.2.0-alpha.0": "2021-10-19T19:39:33.404Z",
+    "3.2.0-alpha.1": "2021-10-19T20:03:33.384Z",
+    "3.2.0-alpha.2": "2021-10-19T20:18:18.343Z",
+    "3.1.5": "2022-01-20T22:53:35.742Z",
+    "2.2.6": "2022-04-10T18:57:54.820Z",
+    "3.1.6": "2023-05-14T11:50:35.739Z",
+    "4.0.0-alpha.4": "2023-06-02T16:55:39.585Z",
+    "4.0.0-alpha.5": "2023-06-02T17:07:25.272Z",
+    "3.1.7-test.0": "2023-06-11T12:19:11.038Z",
+    "3.1.7": "2023-07-01T23:14:14.281Z",
+    "4.0.0-alpha.10": "2023-07-02T13:09:34.237Z",
+    "3.1.8": "2023-07-02T20:05:09.752Z",
+    "4.0.0-alpha.13": "2023-07-02T21:14:23.241Z",
+    "4.0.0": "2023-07-03T15:54:26.105Z"
+  },
+  "maintainers": [
+    "lquixada <lquixada@gmail.com>"
+  ],
+  "dist-tags": {
+    "latest": "4.0.0",
+    "latest-v2.x": "2.2.6",
+    "latest-v4.x": "4.0.0",
+    "latest-v3.x": "3.1.8"
+  },
+  "description": "Universal WHATWG Fetch API for Node, Browsers and React Native",
+  "versions": [
+    "0.0.2",
+    "0.0.3",
+    "0.0.4",
+    "0.0.5",
+    "0.0.6",
+    "0.0.7",
+    "0.0.8",
+    "1.0.0",
+    "1.1.0",
+    "1.1.1",
+    "2.0.0",
+    "2.1.0",
+    "2.1.1",
+    "2.2.0",
+    "2.2.1",
+    "2.2.2",
+    "2.2.3",
+    "2.2.4",
+    "2.2.5",
+    "2.2.6",
+    "3.0.0",
+    "3.0.1",
+    "3.0.2",
+    "3.0.3",
+    "3.0.4",
+    "3.0.5",
+    "3.0.6",
+    "3.1.0",
+    "3.1.1",
+    "3.1.2",
+    "3.1.3-alpha.4",
+    "3.1.3-alpha.5",
+    "3.1.3-alpha.6",
+    "3.1.3",
+    "3.1.4-alpha.0",
+    "3.1.4",
+    "3.1.5",
+    "3.1.6",
+    "3.1.7-test.0",
+    "3.1.7",
+    "3.1.8",
+    "3.2.0-alpha.0",
+    "3.2.0-alpha.1",
+    "3.2.0-alpha.2",
+    "4.0.0-alpha.4",
+    "4.0.0-alpha.5",
+    "4.0.0-alpha.10",
+    "4.0.0-alpha.13",
+    "4.0.0"
+  ],
+  "homepage": "https://github.com/lquixada/cross-fetch",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lquixada/cross-fetch.git"
+  },
+  "author": "Leonardo Quixada <lquixada@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/lquixada/cross-fetch/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "keywords": [
+    "fetch",
+    "http",
+    "url",
+    "promise",
+    "async",
+    "await",
+    "isomorphic",
+    "universal",
+    "node",
+    "react",
+    "native",
+    "browser",
+    "ponyfill",
+    "whatwg",
+    "xhr",
+    "ajax"
+  ],
+  "users": {
+    "sternelee": true,
+    "cfleschhut": true,
+    "rajkumarit12": true,
+    "rajiff": true,
+    "tomgao365": true,
+    "parkerproject": true,
+    "nmrshll": true
+  },
+  "_contentLength": 225493,
+  "version": "4.0.0",
+  "main": "dist/node-ponyfill.js",
+  "browser": "dist/browser-ponyfill.js",
+  "react-native": "dist/react-native-ponyfill.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "commit": "cz",
+    "prepare": "husky install",
+    "prepublishOnly": "rimraf dist && make dist"
+  },
+  "lint-staged": {
+    "*.js": [
+      "standard --fix"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "standard": {
+    "env": [
+      "browser",
+      "mocha",
+      "serviceworker"
+    ],
+    "globals": [
+      "expect",
+      "assert",
+      "chai",
+      "Mocha"
+    ],
+    "ignore": [
+      "/dist/",
+      "api.spec.js",
+      "bundle.js",
+      "test.js",
+      "*.bundle.js",
+      "*.ts"
+    ]
+  },
+  "mocha": {
+    "require": [
+      "chai/register-expect.js",
+      "chai/register-assert.js"
+    ],
+    "check-leaks": true
+  },
+  "nyc": {
+    "temp-dir": ".reports/.coverage"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.12"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "17.6.6",
+    "@commitlint/config-conventional": "17.6.6",
+    "@rollup/plugin-terser": "0.4.3",
+    "@types/chai": "4.3.5",
+    "@types/mocha": "10.0.1",
+    "@types/node": "18.15.13",
+    "body-parser": "1.20.2",
+    "chai": "4.3.7",
+    "codecov": "3.8.3",
+    "commitizen": "4.3.0",
+    "cz-conventional-changelog": "3.3.0",
+    "express": "4.18.2",
+    "husky": "8.0.3",
+    "lint-staged": "13.2.3",
+    "mocha": "10.2.0",
+    "mocha-headless-chrome": "4.0.0",
+    "nock": "13.3.1",
+    "nyc": "15.1.0",
+    "rimraf": "5.0.1",
+    "rollup": "3.26.0",
+    "rollup-plugin-copy": "3.4.0",
+    "semver": "7.5.3",
+    "serve-index": "1.9.1",
+    "standard": "17.1.0",
+    "standard-version": "9.5.0",
+    "typescript": "5.1.6",
+    "webpack": "5.88.1",
+    "webpack-cli": "5.1.4",
+    "whatwg-fetch": "3.6.2",
+    "yargs": "17.7.2"
+  },
+  "gitHead": "748a3126ec3d6d9e87d2d26a3eea49010102932d",
+  "readme": "cross-fetch<br>\n[![NPM Version](https://img.shields.io/npm/v/cross-fetch.svg?branch=main)](https://www.npmjs.com/package/cross-fetch)\n[![Downloads Per Week](https://img.shields.io/npm/dw/cross-fetch.svg?color=blue)](https://www.npmjs.com/package/cross-fetch)\n[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)\n[![CI](https://github.com/lquixada/cross-fetch/actions/workflows/ci.yml/badge.svg)](https://github.com/lquixada/cross-fetch/actions/workflows/ci.yml)\n[![codecov](https://codecov.io/gh/lquixada/cross-fetch/branch/main/graph/badge.svg)](https://codecov.io/gh/lquixada/cross-fetch)\n================\n\nUniversal WHATWG Fetch API for Node, Browsers, Workers and React Native. The scenario that cross-fetch really shines is when the same JavaScript codebase needs to run on different platforms.\n\n- **Platform agnostic**: browsers, Node or React Native\n- **Optional polyfill**: it's up to you if something is going to be added to the global object or not\n- **Simple interface**: no instantiation, no configuration and no extra dependency\n- **WHATWG compliant**: it works the same way wherever your code runs\n- **TypeScript support**: better development experience with types.\n- **Worker support**: works on different types of workers such as Service Workers and CloudFlare Workers\n\n\n* * *\n\n## Table of Contents\n\n- [Table of Contents](#table-of-contents)\n- [Install](#install)\n- [Usage](#usage)\n- [Demo \\& API](#demo--api)\n- [FAQ](#faq)\n    - [Yet another fetch library?](#yet-another-fetch-library)\n    - [Why polyfill might not be a good idea?](#why-polyfill-might-not-be-a-good-idea)\n    - [How does cross-fetch work?](#how-does-cross-fetch-work)\n- [Who's Using It?](#whos-using-it)\n- [Thanks](#thanks)\n- [License](#license)\n- [Author](#author)\n\n* * *\n\n## Install\n\n```sh\nnpm install --save cross-fetch\n```\n\nAs a [ponyfill](https://github.com/sindresorhus/ponyfill) (imports locally):\n\n```javascript\n// Using ES6 modules with Babel or TypeScript\nimport fetch from 'cross-fetch';\n\n// Using CommonJS modules\nconst fetch = require('cross-fetch');\n```\n\nAs a polyfill (installs globally):\n\n```javascript\n// Using ES6 modules\nimport 'cross-fetch/polyfill';\n\n// Using CommonJS modules\nrequire('cross-fetch/polyfill');\n```\n\n\nThe CDN build is also available on unpkg:\n\n```html\n<script src=\"//unpkg.com/cross-fetch/dist/cross-fetch.js\"></script>\n```\n\nThis adds the fetch function to the window object. Note that this is not UMD compatible.\n\n\n* * *\n\n## Usage\n\nWith [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise):\n\n```javascript\nimport fetch from 'cross-fetch';\n// Or just: import 'cross-fetch/polyfill';\n\nfetch('//api.github.com/users/lquixada')\n  .then(res => {\n    if (res.status >= 400) {\n      throw new Error(\"Bad response from server\");\n    }\n    return res.json();\n  })\n  .then(user => {\n    console.log(user);\n  })\n  .catch(err => {\n    console.error(err);\n  });\n```\n\nWith [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function):\n\n```javascript\nimport fetch from 'cross-fetch';\n// Or just: import 'cross-fetch/polyfill';\n\n(async () => {\n  try {\n    const res = await fetch('//api.github.com/users/lquixada');\n    \n    if (res.status >= 400) {\n      throw new Error(\"Bad response from server\");\n    }\n    \n    const user = await res.json();\n  \n    console.log(user);\n  } catch (err) {\n    console.error(err);\n  }\n})();\n```\n\n## Demo & API\n\nYou can find a comprehensive doc at [Github's fetch](https://github.github.io/fetch/) page. If you want to play with cross-fetch, check our [**JSFiddle playground**](https://jsfiddle.net/lquixada/3ypqgacp/).\n\n> **Tip**: Run the fiddle on various browsers and with different settings (for instance: cross-domain requests, wrong urls or text requests). Don't forget to open the console in the test suite page and play around.\n\n\n## FAQ\n\n#### Yet another fetch library?\n\nI did a lot of research in order to find a fetch library that could be simple, cross-platform and provide polyfill as an option. There's a plethora of libs out there but none could match those requirements.\n\n#### Why polyfill might not be a good idea?\n\nIn a word? Risk. If the spec changes in the future, it might be problematic to debug. Read more about it on [sindresorhus's ponyfill](https://github.com/sindresorhus/ponyfill#how-are-ponyfills-better-than-polyfills) page. It's up to you if you're fine with it or not.\n\n#### How does cross-fetch work?\n\nJust like isomorphic-fetch, it is just a proxy. If you're in node, it delivers you the [node-fetch](https://github.com/bitinn/node-fetch/) library, if you're in a browser or React Native, it delivers you the github's [whatwg-fetch](https://github.com/github/fetch/). The same strategy applies whether you're using polyfill or ponyfill.\n\n\n## Who's Using It?\n\n|[![The New York Times](./docs/images/logo-nytimes.png)](https://www.nytimes.com/)|[![Apollo GraphQL](./docs/images/logo-apollo.png)](https://github.com/apollographql/apollo-client/)|[![Facebook](./docs/images/logo-facebook.png)](https://github.com/facebook/fbjs/)|[![Swagger](./docs/images/logo-swagger.png)](https://swagger.io/)|[![VulcanJS](./docs/images/logo-vulcanjs.png)](http://vulcanjs.org)|[![graphql-request](./docs/images/logo-graphql-request.png)](https://github.com/prisma/graphql-request)|\n|:---:|:---:|:---:|:---:|:---:|:---:|\n|The New York Times|Apollo GraphQL|Facebook|Swagger|VulcanJS|graphql-request|\n\n\n## Thanks\n\nHeavily inspired by the works of [matthew-andrews](https://github.com/matthew-andrews). Kudos to him!\n\n\n## License\n\ncross-fetch is licensed under the [MIT license](https://github.com/lquixada/cross-fetch/blob/main/LICENSE) © [Leonardo Quixadá](https://twitter.com/lquixada/)\n\n\n## Author\n\n|[![@lquixada](https://avatars0.githubusercontent.com/u/195494?v=4&s=96)](https://github.com/lquixada)|\n|:---:|\n|[@lquixada](http://www.github.com/lquixada)|\n",
+  "_nodeVersion": "14.21.3",
+  "_npmVersion": "6.14.18",
+  "dist": {
+    "integrity": "sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==",
+    "shasum": "f037aef1580bb3a1a35164ea2a848ba81b445983",
+    "tarball": "https://registry.npmjs.org/cross-fetch/-/cross-fetch-4.0.0.tgz",
+    "fileCount": 14,
+    "unpackedSize": 88103,
+    "signatures": [
+      {
+        "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+        "sig": "MEQCIDfUv6nBv2QBck1WvpaA2YCVFz1i4jhJr0XUIgYlJj7NAiAOEOafEKtDeAX6zlIFmrYFpaaybOuPmsBGyjJZV/eIgg=="
+      }
+    ]
+  },
+  "_npmUser": "lquixada <lquixada@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cross-fetch_4.0.0_1688399665904_0.813050772753541"
+  },
+  "_hasShrinkwrap": false
+}
